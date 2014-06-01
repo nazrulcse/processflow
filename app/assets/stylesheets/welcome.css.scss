@@ -1,7 +1,7 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.sign-in-wrapper {
+.sign-in-wrapper, .new-account {
   background: none repeat scroll 0 0 #EEEEEE;
   border-radius: 4px;
   box-shadow: 0 1px 5px #CCCCCC;
@@ -12,6 +12,15 @@
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.sign-in-wrapper label, .new-account label {
+  display: block;
+}
+
+.new-account {
+  width: 400px;
+  height: 575px;
 }
 
 .sign-in-wrapper .sign-in-title {
