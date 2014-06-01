@@ -1,0 +1,14 @@
+<div id="dashboard" class="row-fluid reset-margin">
+  <div class="span3">
+    <ul class="highlight list-group">
+        <% @teams.each do |team| %>
+          <li> <%= link_to team.name, team_path(team), :class => 'list-group-item' %> </li>
+        <%end%>
+    </ul>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'pull-right' %>
+  </div>
+  <div class="span9 reset-margin main-content">
+    df dfs gdfg
+  </div>
+</div>
+<%= link_to 'Create Team', 'javascript:void(0);', :class => 'new_team' %>
