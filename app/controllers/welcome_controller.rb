@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  before_action :authenticate_user, :except => ['index']
+  before_action :authenticate_user, :except => ['index' , 'register']
 
   def home
 
@@ -7,6 +7,10 @@ class WelcomeController < ApplicationController
 
   def dashboard
    @teams = Team.all
+  end
+
+  def register
+    
   end
 
 end
