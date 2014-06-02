@@ -5,3 +5,53 @@
       </li>
   <% end %>
 </ul>
+
+<%= render "shared/small_modal" %>
+
+<%= link_to "Add New Project", "javascript:void(0)",  :id => 'btnNewProject', :class => 'btn btn-default' %>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+  });
+
+  $('#btnNewProject').click(function(){
+      $.ajax({
+          url: "<%= new_project_path() %>",
+          type: "get",
+          success:function(data) {
+              $('#new-project .modal-body').html(data);
+              $('#new-project .modal-title').html("New Project");
+              $('#new-project').modal('show');
+          },
+          error: function(){
+              alert('failure');
+          }
+      });
+  });
+
+  $("#btnSave").click(function(){
+
+      if($('input[type=text]').val() ==""){
+          $("#errorForName").html("Name cannot be empty.");
+          $("#errorForName").css({"color":"red"});
+          return false;
+      }
+
+      $.ajax({
+          url: "<%= projects_path() %>",
+          type: "post",
+          data: $("#new_project").serialize(),
+          success:function(data) {
+              $('#new-project').modal('hide');
+          },
+          error: function(){
+              alert('failure');
+          }
+      });
+
+
+  });
+
+</script>

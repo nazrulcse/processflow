@@ -1,6 +1,5 @@
 class WelcomeController < ApplicationController
-  before_action :authenticate_user, :except => ['index']
-  layout :resolve_layout
+  before_action :authenticate_user, :except => ['index' , 'register']
 
   def index
 
@@ -10,6 +9,10 @@ class WelcomeController < ApplicationController
    @teams = Team.all
   end
 
+
+  def register
+
+  end
 
   private
 
