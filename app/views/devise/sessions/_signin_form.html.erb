@@ -1,21 +1,22 @@
-<h1 class="sign-in-title">Sign in</h1>
+<div class="sign-in-wrapper">
+    <h1 class="sign-in-title">Sign in</h1>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div><%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, :class => 'form-control' %></div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div><%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, :class => 'form-control' %></div>
+        <div><%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %></div>
 
-    <div><%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %></div>
+        <% if devise_mapping.rememberable? -%>
+            <label class="checkbox reset-padding">
+              <%= f.check_box :remember_me, :class => 'reset-margin' %>
+              Remember me
+            </label>
+        <% end -%>
 
-    <% if devise_mapping.rememberable? -%>
-        <label class="checkbox reset-padding">
-          <%= f.check_box :remember_me, :class => 'reset-margin' %>
-          Remember me
-        </label>
-    <% end -%>
-
-    <div>
-      <%= f.submit "Sign in", :class => 'btn btn-default btn-lg btn-block' %>
-    </div>
-    <div class="clear-fix"></div>
-<% end %>
+        <div>
+          <%= f.submit "Sign in", :class => 'btn btn-default btn-lg btn-block' %>
+        </div>
+        <div class="clear-fix"></div>
+    <% end %>
+</div>
