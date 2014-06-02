@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    render :layout => false
   end
 
   # GET /projects/1/edit
