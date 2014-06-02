@@ -65,6 +65,8 @@
   width: 100%;
   height: 100%;
   position: absolute;
+  background-image: url('process-bag.png');
+  background-repeat: no-repeat;
 }
 
 body {
@@ -95,13 +97,6 @@ form {
 
 input {
   margin-bottom: 5px !important;
-}
-.image_show
-{
-  width: 40px;
-  height: 40px;
-}
-
 }
 
 .left-nav {

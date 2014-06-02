@@ -1,0 +1,13 @@
+.navbar {
+    min-height: 35px !important;
+    margin-bottom: 5px;
+    padding-right: 25px;
+}
+
+.navbar-nav > li > a {
+    padding: 10px 0 10px 0 !important;
+}
+
+.navbar-nav > li > a.settings-dropdown {
+    padding: 5px !important;
+}

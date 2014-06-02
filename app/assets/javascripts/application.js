@@ -15,13 +15,8 @@
 //= require turbolinks
 //= require_tree .
 $(document).ready(function() {
-    $(".new_team").click(function() {
-        $.ajax({
-            url: '/teams/new',
-            type: 'get',
-            success: function() {
-
-            }
-        });
-    });
+//    $('a.dropdown-toggle').on('click', function() {
+//        $('.dropdown-menu').show();
+//    });
+    $('.dropdown-toggle').dropdown();
 });

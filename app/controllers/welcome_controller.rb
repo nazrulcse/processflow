@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   before_action :authenticate_user, :except => ['index' , 'register']
 
-  def home
+  def index
 
   end
 
@@ -9,8 +9,20 @@ class WelcomeController < ApplicationController
    @teams = Team.all
   end
 
+
   def register
-    
+
+  end
+
+  private
+
+  def resolve_layout
+    case action_name
+      when "index"
+        "home"
+      else
+        "application"
+    end
   end
 
 end
