@@ -1,13 +1,25 @@
 <div id="dashboard" class="row-fluid reset-margin">
-  <div class="span3">
+  <div class="left-nav">
     <ul class="highlight list-group">
-        <% @teams.each do |team| %>
-          <li> <%= link_to team.name, team_path(team), :class => 'list-group-item' %> </li>
-        <%end%>
+        <li class="nav-task-item">
+          <span class="glyphicon glyphicon-th-list"></span> My Work
+        </li>
+      <li class="nav-task-item">
+        <span class="glyphicon glyphicon-th-list"></span> All Task
+      </li>
+      <li class="nav-task-item">
+        <span class="glyphicon glyphicon-th-list"></span> Bugs
+      </li>
+      <li class="nav-task-item">
+        <span class="glyphicon glyphicon-th-list"></span> All Bugs
+      </li>
+      <li class="nav-task-item">
+        <span class="glyphicon glyphicon-th-list"></span> All
+      </li>
     </ul>
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'pull-right' %>
   </div>
-  <div class="span9 reset-margin main-content">
+  <div class="reset-margin board-main-content">
     df dfs gdfg
   </div>
 </div>
