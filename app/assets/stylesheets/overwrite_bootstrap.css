@@ -11,3 +11,9 @@
 .navbar-nav > li > a.settings-dropdown {
     padding: 5px !important;
 }
+
+.modal-footer, .modal-header {
+    background: none repeat scroll 0 0 #FDFDFD;
+    margin-top: 0 !important;
+    border-radius: 4px;
+}
