@@ -1,9 +1,48 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .project-item {
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  border:1px solid gray;
+  -moz-border-radius:9px;
+  -webkit-border-radius:9px;
+  -opera-border-radius:9px;
+  -khtml-border-radius:9px;
+  border-radius:9px;
+  text-decoration: none;
+  -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  display: block;
+  max-width: 120px;
+  padding: 6px;
+  text-align: center;
+}
+
+.project-item b {
+  display: block;
+}
+
+.project-item:hover {
+  border-top-color: #666;
+  background-color:#dfdfdf;
+  color:#000;
+  text-decoration: none;
+}
+.project-item:hover :active {
+  border-top-color: #666;
+  background-color:#dfdfdf;
+  text-decoration: none;
+  color:#000;
+}
+
+.project-list {
   list-style: none;
+//  -webkit-column-count:5; /* Chrome, Safari, Opera */
+//  -moz-column-count:5; /* Firefox */
+//  column-count:5;
+}
+
+.project-list li {
+  padding: 5px;
+  display: inline-block;
+  min-width: 200px;
 }
