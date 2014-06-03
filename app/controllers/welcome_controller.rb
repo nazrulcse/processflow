@@ -2,7 +2,9 @@ class WelcomeController < ApplicationController
   before_action :authenticate_user, :except => ['index' , 'register']
 
   def index
-
+    respond_to do |format|
+      format.html{render :layout => 'home'}
+    end
   end
 
   def dashboard

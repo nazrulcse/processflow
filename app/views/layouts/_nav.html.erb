@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default" role="navigation">
   <ul class="nav navbar-nav">
     <li class="profile">
-      <%= image_tag(current_user.image_url(:small_thumb)) if current_user.image? %> <b> <%= current_user.name %> </b>
+      <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar') if current_user.image? %> <b> <%= current_user.name %> </b>
     </li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
