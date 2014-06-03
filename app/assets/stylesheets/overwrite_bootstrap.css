@@ -2,6 +2,7 @@
     min-height: 35px !important;
     margin-bottom: 5px;
     padding-right: 25px;
+    z-index: 100;
 }
 
 .navbar-nav > li > a {
@@ -16,4 +17,8 @@
     background: none repeat scroll 0 0 #FDFDFD;
     margin-top: 0 !important;
     border-radius: 4px;
+}
+
+#error_explanation {
+    width: auto !important;
 }

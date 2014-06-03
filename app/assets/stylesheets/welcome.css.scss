@@ -14,6 +14,16 @@
   top: 0; left: 0; bottom: 0; right: 0;
 }
 
+.new-account {
+  position: relative !important;
+  height: auto !important;
+  margin-top: 20px;
+}
+
+.body-background {
+  background: #eeeeee;
+}
+
 .sign-in-wrapper label, .new-account label {
   display: block;
 }
@@ -23,7 +33,7 @@
   height: 590px;
 }
 
-.sign-in-wrapper .sign-in-title {
+.sign-in-wrapper .sign-in-title, .profile-title {
   margin-top: 0;
   color: #333;
 }
