@@ -2,8 +2,6 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     # For Rails 4
     account_update_params = devise_parameter_sanitizer.sanitize(:account_update)
-    # For Rails 3
-    # account_update_params = params[:user]
 
     # required for settings form to submit when password is left blank
     if account_update_params[:password].blank?

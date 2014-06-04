@@ -7,8 +7,7 @@
         Sign up
     <% end %>
   </h2>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: current_user.present? ? profile_path() : account_path(), :html => { :method => current_user.present? ? :put : :post}) do |f| %>
       <%= devise_error_messages! %>
 
       <div>

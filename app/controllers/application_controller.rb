@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     if(!current_user.present?)
-      redirect_to home_path()
+      redirect_to root_path()
     end
   end
 

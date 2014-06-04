@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  before_action :authenticate_user, :except => ['index' , 'register']
+  before_action :authenticate_user, :except => ['index']
 
   def index
     respond_to do |format|
@@ -9,11 +9,6 @@ class WelcomeController < ApplicationController
 
   def dashboard
    @teams = Team.all
-  end
-
-
-  def register
-
   end
 
   private

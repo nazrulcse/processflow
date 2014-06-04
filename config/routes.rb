@@ -5,14 +5,24 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
 
-  devise_for :users, :controllers => {:registrations => 'registrations'}
+  devise_for :users #, :controllers => {:registrations => 'registrations'}
+
+  devise_scope :user do
+     get  "/account", :to => "devise/registrations#new"
+     post "/account", :to => "devise/registrations#create"
+     get  "/profile", :to => "devise/registrations#edit"
+     put  "/profile", :to => "registrations#update"
+     get "/",         :to => "devise/sessions#new"
+     post "/",        :to => "devise/sessions#create"
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#dashboard'
-  get '/home' => 'welcome#index'
-  get '/register' => 'welcome#register'
+  #root 'welcome#dashboard'
+  root 'welcome#index'
+  #get '/register' => 'welcome#register'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
