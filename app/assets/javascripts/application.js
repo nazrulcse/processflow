@@ -13,10 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require angular
 //= require_tree .
 $(document).ready(function() {
-//    $('a.dropdown-toggle').on('click', function() {
-//        $('.dropdown-menu').show();
-//    });
     $('.dropdown-toggle').dropdown();
 });
