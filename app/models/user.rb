@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :teams
+  has_many :settings
+
   mount_uploader :image, ImageUploader
   validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
   validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true

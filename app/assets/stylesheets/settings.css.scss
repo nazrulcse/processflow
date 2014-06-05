@@ -1,0 +1,24 @@
+// Place all the styles related to the settings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.color-settings {
+  margin: 0;
+}
+
+.color-settings li {
+  list-style: none;
+  padding: 10px 0;
+}
+
+.color-settings li b {
+  width: 200px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.color-settings #color-selector {
+  width: 30px;
+  height: 25px;
+  display: inline-block;
+  vertical-align: middle;
+}
