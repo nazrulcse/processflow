@@ -6,11 +6,12 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="body-background">
-<% if current_user.present? %>
-  <%= render :partial => 'layouts/nav' %>
-<%end%>
-<%= yield %>
-
+<body>
+ <div class="body-content" style="background:#<%= get_bgcolor %>;">
+   <% if current_user.present? %>
+      <%= render :partial => 'layouts/nav' %>
+   <%end%>
+   <%= yield %>
+ </div>
 </body>
 </html>

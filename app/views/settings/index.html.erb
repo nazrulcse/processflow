@@ -39,7 +39,7 @@
             return false;
         },
         onSubmit: function (hsb, hex, rgb) {
-            $('#color-selector').css('backgroundColor', '#' + hex);
+            $('#color-selector, .body-content').css('backgroundColor', '#' + hex);
             $.ajax({
                 type:'POST',
                 url: "<%= settings_path() %>",
