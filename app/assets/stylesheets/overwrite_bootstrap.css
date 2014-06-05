@@ -2,6 +2,7 @@
     min-height: 35px !important;
     margin-bottom: 5px;
     padding-right: 25px;
+    z-index: 100;
 }
 
 .navbar-nav > li > a {
@@ -13,7 +14,11 @@
 }
 
 .modal-footer, .modal-header {
-    background: none repeat scroll 0 0 #FDFDFD;
+    background: none repeat scroll 0 0 #FAFAFA;
     margin-top: 0 !important;
     border-radius: 4px;
+}
+
+#error_explanation {
+    width: auto !important;
 }

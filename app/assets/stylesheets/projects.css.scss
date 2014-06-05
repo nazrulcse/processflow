@@ -36,9 +36,11 @@
 
 .project-list {
   list-style: none;
-//  -webkit-column-count:5; /* Chrome, Safari, Opera */
-//  -moz-column-count:5; /* Firefox */
-//  column-count:5;
+}
+
+.nav-avatar {
+  width: 25px;
+  height: 25px;
 }
 
 .project-list li {

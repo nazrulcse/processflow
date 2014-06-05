@@ -1,7 +1,7 @@
 <div class="home-body">
   <div class="sign-in-wrapper">
     <h1 class="sign-in-title">Sign in</h1>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: root_path(resource_name)) do |f| %>
         <div><%= f.label :email %>
           <%= f.email_field :email, autofocus: true, :class => 'form-control' %></div>
         <div><%= f.label :password %>
@@ -18,7 +18,7 @@
         </div>
         <div class="clear-fix"></div>
     <% end %>
-    <div><%= link_to "Create New Account", register_path() %></div>
+    <div><%= link_to "Create New Account", account_path() %></div>
     <div class="clear-fix"></div>
   </div>
 </div>
