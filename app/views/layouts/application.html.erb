@@ -6,12 +6,18 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
- <div class="body-content" style="background:#<%= get_bgcolor %>;">
-   <% if current_user.present? %>
-      <%= render :partial => 'layouts/nav' %>
-   <%end%>
-   <%= yield %>
- </div>
-</body>
+  <body>
+    <div class="body-content" style="background:#<%= get_bgcolor %>;">
+       <% if current_user.present? %>
+          <%= render :partial => 'shared/nav' %>
+       <%end%>
+       <%= render :partial => 'shared/message_modal' %>
+       <%= yield %>
+    </div>
+  </body>
+  <script type="text/javascript">
+    <% flash.each do |name, msg| -%>
+      popupMessage("<%= msg %>");
+    <% end -%>
+  </script>
 </html>

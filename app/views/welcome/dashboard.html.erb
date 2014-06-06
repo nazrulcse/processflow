@@ -1,26 +1,31 @@
-<div id="dashboard" class="row-fluid reset-margin">
-  <div class="left-nav">
-    <ul class="highlight list-group">
-        <li class="nav-task-item">
-          <span class="glyphicon glyphicon-th-list"></span> My Work
-        </li>
-      <li class="nav-task-item">
-        <span class="glyphicon glyphicon-th-list"></span> All Task
-      </li>
-      <li class="nav-task-item">
-        <span class="glyphicon glyphicon-th-list"></span> Bugs
-      </li>
-      <li class="nav-task-item">
-        <span class="glyphicon glyphicon-th-list"></span> All Bugs
-      </li>
-      <li class="nav-task-item">
-        <span class="glyphicon glyphicon-th-list"></span> All
-      </li>
-    </ul>
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'pull-right' %>
+<div id="dashboard" class="row-fluid">
+  <div class="project-nav reset-margin">
+    <input type="text" id="search-field" class="form-control" placeholder="Search">
   </div>
-  <div class="reset-margin board-main-content">
-    df dfs gdfg
+  <div class="task-content-wrapper">
+    <div class="project-backlog task-category">
+      <div class="title"> Project Backlog </div>
+      <div class="task-content">  </div>
+    </div>
+
+    <div class="project-sprint task-category">
+      <div class="title"> To Do </div>
+      <div class="task-content">  </div>
+    </div>
+
+    <div class="project-doing task-category">
+      <div class="title"> Doing </div>
+      <div class="task-content">  </div>
+    </div>
+
+    <div class="project-finish task-category">
+      <div class="title"> Finish </div>
+      <div class="task-content">  </div>
+    </div>
+
+    <div class="project-done task-category">
+      <div class="title"> Done </div>
+      <div class="task-content">  </div>
+    </div>
   </div>
 </div>
-<%= link_to 'Create Team', 'javascript:void(0);', :class => 'new_team' %>

@@ -1,0 +1,57 @@
+#dashboard {
+    width: 100%;
+    overflow: auto;
+    padding: 0 25px;
+    min-width: 1250px;
+}
+
+#dashboard .task-content-wrapper {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 1px 5px #CCCCCC;
+    overflow: auto;
+}
+
+#dashboard div.task-category {
+    width: 20%;
+    float: left;
+    display: inline-block;
+}
+
+#dashboard div.task-category:last-child {
+    border: none;
+}
+
+#dashboard div.task-category .title {
+    border-bottom: 1px solid #ddd;
+    color: #555555;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 0;
+    text-align: center;
+    text-shadow: 1px 0 3px #EEEEEE;
+    background: none repeat scroll 0 0 #CDCDCD;
+}
+
+#dashboard div.task-category .task-content {
+    min-height: 700px;
+    border-right: solid 2px #cccccc;
+}
+
+#dashboard .project-nav {
+    border-radius: 4px 4px 0 0 !important;
+    vertical-align: top;
+    box-shadow: none;
+    height: auto !important;
+    background: none repeat scroll 0 0 #C0C0C0;
+    padding: 8px 0 6px 5px;
+    background-image: linear-gradient(to bottom, #C0C0C0 0px, #CDCDCD 100%);
+    border-bottom: 1px solid #FFFFFF;
+}
+
+#dashboard #search-field {
+    color: #777777;
+    font-size: 14px;
+    height: 30px;
+    width: 265px;
+}

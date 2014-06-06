@@ -7,10 +7,6 @@ class WelcomeController < ApplicationController
     end
   end
 
-  def dashboard
-   @teams = Team.all
-  end
-
   private
 
   def resolve_layout

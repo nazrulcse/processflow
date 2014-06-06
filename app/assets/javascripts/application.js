@@ -18,3 +18,12 @@
 $(document).ready(function() {
     $('.dropdown-toggle').dropdown();
 });
+
+function popupMessage(message) {
+    $('#message-modal .modal-body').html(message);
+    $('#message-modal').modal('show');
+    $(".modal-backdrop").hide();
+    setTimeout(function() {
+        $('#message-modal').modal('hide');
+    }, 4000);
+}

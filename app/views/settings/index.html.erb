@@ -13,7 +13,7 @@
     <ul class="color-settings">
       <li>
         <b> BackGround Color: </b>
-        <span id="color-selector-bg" style="background-color:#<%= get_bgcolor %>;">  </span>
+        <span id="color-selector" style="background-color:#<%= get_bgcolor %>;">  </span>
       </li>
 
       <li>
@@ -34,7 +34,7 @@
         $('#myTab a:last').tab('show')
     });
 
-    $('#color-selector-bg').ColorPicker({
+    $('#color-selector').ColorPicker({
         onShow: function (colpkr) {
             $(colpkr).fadeIn(100);
             return false;
@@ -43,16 +43,15 @@
             $(colpkr).fadeOut(100);
             return false;
         },
-        onSubmit: function (hsb, hex, rgb) {
-
-            $('#color-selector-bg, .body-content').css('backgroundColor', '#' + hex);
+        onSubmit: function (hsb, hex, rgb, el) {
+            $('#color-selector, .body-content').css('backgroundColor', '#' + hex);
             $.ajax({
                 type:'POST',
                 url: "<%= settings_path() %>",
                 dataType: 'script',
                 data: { key: 'bgcolor' , value: hex },
                 success:function(res) {
-
+                    $(el).ColorPickerHide();
                 },
                 error: function(e) {
                     console.log(e);

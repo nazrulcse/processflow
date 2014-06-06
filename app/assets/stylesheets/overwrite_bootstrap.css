@@ -22,3 +22,17 @@
 #error_explanation {
     width: auto !important;
 }
+
+#message-modal .modal-sm {
+    width: 425px !important;
+}
+
+#message-modal .modal-body {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+#message-modal .modal-footer {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
