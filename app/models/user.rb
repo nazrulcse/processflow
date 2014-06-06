@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :teams
   has_many :settings
+  has_and_belongs_to_many :projects
 
   mount_uploader :image, ImageUploader
   validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create

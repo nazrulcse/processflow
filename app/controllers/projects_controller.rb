@@ -26,7 +26,8 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = current_user.projects.build(project_params)
+    @project.save
     respond_to do |format|
       if @project.save
           format.html{render :layout => false}
@@ -66,6 +67,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :description, :status)
+      params.require(:project).permit(:name, :description, :status).merge(owner_id: current_user.id)
     end
 end
