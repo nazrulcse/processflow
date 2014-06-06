@@ -16,10 +16,18 @@
   display: inline-block;
 }
 
-.color-settings #color-selector {
+.color-settings #color-selector-bg {
   width: 30px;
   height: 25px;
   display: inline-block;
   vertical-align: middle;
   cursor: crosshair;
 }
+
+.color-settings #color-selector-nav {
+  width: 30px;
+  height: 25px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
