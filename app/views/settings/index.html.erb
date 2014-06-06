@@ -38,7 +38,7 @@
             $(colpkr).fadeOut(100);
             return false;
         },
-        onSubmit: function (hsb, hex, rgb) {
+        onSubmit: function (hsb, hex, rgb, el) {
             $('#color-selector, .body-content').css('backgroundColor', '#' + hex);
             $.ajax({
                 type:'POST',
@@ -46,7 +46,7 @@
                 dataType: 'script',
                 data: { key: 'bgcolor' , value: hex },
                 success:function(res) {
-
+                    $(el).ColorPickerHide();
                 },
                 error: function(e) {
                     console.log(e);
