@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav style="background-color:#<%= get_navcolor %>" class="navbar" role="navigation">
   <ul class="nav navbar-nav">
     <li class="profile">
       <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar') if current_user.image? %> <b> <%= current_user.name %> </b>

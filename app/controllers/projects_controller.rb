@@ -22,7 +22,8 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = current_user.projects.build(project_params)
+    @project = Project.new(project_params)
+    @project.users << current_user
     respond_to do |format|
       if @project.save
           format.html{render :layout => false}
@@ -60,6 +61,6 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :description, :status)
+      params.require(:project).permit(:name, :description, :status).merge(owner_id: current_user.id)
     end
 end

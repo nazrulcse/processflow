@@ -15,6 +15,11 @@
         <b> BackGround Color: </b>
         <span id="color-selector" style="background-color:#<%= get_bgcolor %>;">  </span>
       </li>
+
+      <li>
+        <b> Navigation Color: </b>
+        <span id="color-selector-nav" style="background-color:#<%= get_navcolor %>;">  </span>
+      </li>
     </ul>
   </div>
   <div class="tab-pane" id="messages">this is test2</div>
@@ -55,5 +60,34 @@
         }
 
     });
+
+    $('#color-selector-nav').ColorPicker({
+        onShow: function (colpkr) {
+            $(colpkr).fadeIn(100);
+            return false;
+        },
+        onHide: function (colpkr) {
+            $(colpkr).fadeOut(100);
+            return false;
+        },
+        onSubmit: function (hsb, hex, rgb) {
+
+            $('#color-selector-nav,nav').css('backgroundColor', '#' + hex);
+            $.ajax({
+                type:'POST',
+                url: "<%= settings_path() %>",
+                dataType: 'script',
+                data: { key: 'navcolor' , value: hex },
+                success:function(res) {
+
+                },
+                error: function(e) {
+                    console.log(e);
+                }
+            });
+        }
+
+    });
+
 
 </script>
