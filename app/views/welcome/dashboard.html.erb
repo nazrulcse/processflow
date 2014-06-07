@@ -4,13 +4,9 @@
     <div class="backlog task-category">
       <div class="title"> Backlog </div>
       <div class="task-content">
-       <div class="task-item">
-         First Task
-       </div>
-        <%= render :partial => 'welcome/task_item' %>
-        <div class="task-item">
-          Second Task
-        </div>
+        <% ['high','low','medium'].each do |index| %>
+            <%= render :partial => 'welcome/task_item', :locals => {:p => index} %>
+        <%end%>
       </div>
     </div>
 

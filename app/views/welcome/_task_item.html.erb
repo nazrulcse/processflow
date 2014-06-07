@@ -1,23 +1,26 @@
 <div class="task-item">
-  <div class="pull-left">
+  <div class="pull-left content-left">
     <ul>
-      <li> <b> Custom task </b> </li>
-      <li> <b> End date: </b> <span> 12/08/2014 </span>  </li>
+      <li class="task-name"> Add new task and bug through ajax submit </li>
+      <li>
+        <%= image_tag('date.png', :title => 'End Date') %>
+        <span> 12/08/2014 </span>
+      </li>
     </ul>
   </div>
-  <div class="pull-right">
+  <div class="pull-right content-right">
     <ul>
       <li>
-        priority
-        --
+        <%= image_tag("task_#{p}.png", :title => 'Priority', :class => 'pull-right') %>
+        <div class="clear-fix"> </div>
       </li>
-      <li>
-        effort
-        0.5h
+      <li style="vertical-align: middle;">
+        0.5h <%= image_tag('effort.png', :title => 'Effort') %>
       </li>
       <li>
         <span class="glyphicon-class"></span>
         <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar img-circle') if current_user.image? %>
+        <a href="javascript:void(0);" class="btn-link"> ..... </a>
       </li>
     </ul>
   </div>
