@@ -61,3 +61,39 @@
     });
 
 </script>
+</div>
+
+<%= render 'shared/large_modal' %>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+      $("#btn-task").click(function(){
+          $.ajax({
+              url:"<%= new_task_path() %>",
+              type:"get",
+              success:function(data){
+                  $("#new-task").modal('show');
+                  $("#new-task .modal-body").html(data);
+                  $("#new-task .modal-title").html("New Task");
+              },
+              error:function(){
+              }
+          });
+      });
+
+      $("#btnSaveTask").click(function(){
+          $.ajax({
+              url:"<%= tasks_path() %>",
+              type:"post",
+              success:function(data){
+                  $("#new-task").modal('hide');
+              },
+              error:function(){
+              }
+          });
+      });
+  });
+</script>
+

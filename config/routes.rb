@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :invites
   end
 
+  resources :tasks
+
   get 'welcome/index'
 
   devise_for :users #, :controllers => {:registrations => 'registrations'}
