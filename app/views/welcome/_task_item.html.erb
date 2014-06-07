@@ -1,0 +1,25 @@
+<div class="task-item">
+  <div class="pull-left">
+    <ul>
+      <li> <b> Custom task </b> </li>
+      <li> <b> End date: </b> <span> 12/08/2014 </span>  </li>
+    </ul>
+  </div>
+  <div class="pull-right">
+    <ul>
+      <li>
+        priority
+        --
+      </li>
+      <li>
+        effort
+        0.5h
+      </li>
+      <li>
+        <span class="glyphicon-class"></span>
+        <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar img-circle') if current_user.image? %>
+      </li>
+    </ul>
+  </div>
+  <div class="clear-fix"></div>
+</div>
