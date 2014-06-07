@@ -89,10 +89,15 @@
 
 /* Task Item Design */
 
-.task-item .left-content {
-
+.task-item .content-left {
+  width: 79.9%;
 }
 
-.task-item .right-content {
+.task-item .content-right {
+  width: 20%;
+}
 
+.task-item .task-name {
+    min-height: 40px;
+    overflow: hidden;
 }
