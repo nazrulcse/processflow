@@ -1,13 +1,12 @@
 $(document).ready(function() {
-
-    $( "#dashboard .tasks-item" ).draggable({
+    $( "#dashboard .task-item" ).draggable({
         connectToSortable: ".tasks-content",
         refreshPositions: true,
         revert: true,
         greedy: true
     });
 
-    $( "#dashboard .tasks-content" ).droppable({
+    $( "#dashboard .task-content" ).droppable({
         accept: ".tasks-item",
         activeClass: "ui-state-hover",
         hoverClass: "ui-state-active",
@@ -21,9 +20,9 @@ $(document).ready(function() {
         }
     });
 
-    $( "#dashboard .tasks-item").sortable({
+    $( "#dashboard .task-item").sortable({
         axis: "y",
-        connectWith: "#dashboard .tasks-content"
+        connectWith: "#dashboard .task-content"
     });
 
 });
