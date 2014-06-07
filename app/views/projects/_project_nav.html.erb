@@ -50,11 +50,10 @@
                 data: $("#new_invite").serialize(),
                 success:function(data) {
                     $('#small-modal').modal('hide');
-//                    $('.project-list').prepend(data);
-                    popupMessage("Project has been saved successfully", 'info');
+                    popupMessage("Invitation has been sent successfully", 'info');
                 },
                 error: function(){
-                    popupMessage("Failed to create new project", 'info');
+                    popupMessage("Failed to create new project", 'error');
                 }
             });
         });
