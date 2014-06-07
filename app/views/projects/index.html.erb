@@ -17,9 +17,9 @@
               url: "<%= new_project_path() %>",
               type: "get",
               success:function(data) {
-                  $('#new-project .modal-body').html(data);
-                  $('#new-project .modal-title').html("New Project");
-                  $('#new-project').modal('show');
+                  $('#small-modal .modal-body').html(data);
+                  $('#small-modal .modal-title').html("New Project");
+                  $('#small-modal').modal('show');
               },
               error: function(){
                   alert('failure');
@@ -40,7 +40,7 @@
               type: "post",
               data: $("#new_project").serialize(),
               success:function(data) {
-                  $('#new-project').modal('hide');
+                  $('#small-modal').modal('hide');
                   $('.project-list').prepend(data);
                   popupMessage("Project has been saved successfully", 'info');
               },

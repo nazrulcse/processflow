@@ -4,7 +4,6 @@ class CreateSettings < ActiveRecord::Migration
       t.integer :user_id
       t.string :key
       t.string :value
-
       t.timestamps
     end
   end
