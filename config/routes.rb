@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+
+
   resources :settings
 
   resources :teams
 
-  resources :projects
+  resources :projects do
+    resources :invites
+  end
 
   get 'welcome/index'
 

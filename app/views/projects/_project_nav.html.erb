@@ -5,7 +5,8 @@
   </div>
   <% if is_project_owner!(project) %>
       <div class="project-nav-control add-project-member">
-        <button type="button" class="btn btn-default">Invite team member</button>
+        <button type="button" id="invite-member" class="btn btn-default">Invite team member</button>
+        <%= render "shared/small_modal" %>
       </div>
   <%end%>
   <div class="project-nav-control project-name">
@@ -16,3 +17,47 @@
   </div>
   <div class="clearfix"></div>
 </div>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $('#invite-member').click(function(){
+            $.ajax({
+                url: "<%= new_project_invite_path(project) %>",
+                type: "get",
+                success:function(data) {
+                    $('#small-modal .modal-body').html(data);
+                    $('#small-modal .modal-title').html("Invite A Team Member");
+                    $('#small-modal').modal('show');
+                },
+                error: function(){
+                    alert('failure');
+                }
+            });
+        });
+
+        $("#btnSave").click(function(){
+            if($('input[type=email]').val() ==""){
+                $("#errorForName").html("Email cannot be empty.");
+                $("#errorForName").css({"color":"red"});
+                return false;
+            }
+
+            $.ajax({
+
+                url: "<%= project_invites_path(project) %>",
+                type: "post",
+                data: $("#new_invite").serialize(),
+                success:function(data) {
+                    $('#small-modal').modal('hide');
+//                    $('.project-list').prepend(data);
+                    popupMessage("Project has been saved successfully", 'info');
+                },
+                error: function(){
+                    popupMessage("Failed to create new project", 'info');
+                }
+            });
+        });
+    });
+
+</script>
