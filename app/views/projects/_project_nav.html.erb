@@ -1,6 +1,6 @@
 <div class="project-nav reset-margin">
   <div class="btn-group project-nav-control">
-    <button type="button" class="btn btn-primary">Task</button>
+    <button type="button" class="btn btn-primary" id="btn-task">Task</button>
     <button type="button" class="btn btn-danger">Bug</button>
   </div>
   <% if is_project_owner!(project) %>
@@ -16,3 +16,38 @@
   </div>
   <div class="clearfix"></div>
 </div>
+
+<%= render 'shared/large_modal' %>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+      $("#btn-task").click(function(){
+          $.ajax({
+              url:"<%= new_task_path() %>",
+              type:"get",
+              success:function(data){
+                  $("#new-task").modal('show');
+                  $("#new-task .modal-body").html(data);
+                  $("#new-task .modal-title").html("New Task");
+              },
+              error:function(){
+              }
+          });
+      });
+
+      $("#btnSaveTask").click(function(){
+          $.ajax({
+              url:"<%= tasks_path() %>",
+              type:"post",
+              success:function(data){
+                  $("#new-task").modal('hide');
+              },
+              error:function(){
+              }
+          });
+      });
+  });
+</script>
+

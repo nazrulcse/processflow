@@ -18,7 +18,7 @@
 $(document).ready(function() {
     $('.dropdown-toggle').dropdown();
     $(".task-item").dblclick(function() {
-        popupMessage("Show task details", 'info');
+        popupMessage("Show tasks details", 'info');
     });
 });
 

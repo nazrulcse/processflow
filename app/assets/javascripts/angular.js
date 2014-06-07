@@ -1365,7 +1365,7 @@ function setupModuleLoader(window) {
  */
 var version = {
   full: '1.1.5',    // all of these placeholder strings will be replaced by grunt's
-  major: 1,    // package task
+  major: 1,    // package tasks
   minor: 1,
   dot: 5,
   codeName: 'triangle-squarification'
@@ -3841,7 +3841,7 @@ function Browser(window, document, $log, $sniffer) {
    * @methodOf ng.$browser
    * @param {function()} fn A function, who's execution should be defered.
    * @param {number=} [delay=0] of milliseconds to defer the function execution.
-   * @returns {*} DeferId that can be used to cancel the task via `$browser.defer.cancel()`.
+   * @returns {*} DeferId that can be used to cancel the tasks via `$browser.defer.cancel()`.
    *
    * @description
    * Executes a fn asynchronously via `setTimeout(fn, delay)`.
@@ -3868,10 +3868,10 @@ function Browser(window, document, $log, $sniffer) {
    * @methodOf ng.$browser.defer
    *
    * @description
-   * Cancels a defered task identified with `deferId`.
+   * Cancels a defered tasks identified with `deferId`.
    *
    * @param {*} deferId Token returned by the `$browser.defer` function.
-   * @returns {boolean} Returns `true` if the task hasn't executed yet and was successfully canceled.
+   * @returns {boolean} Returns `true` if the tasks hasn't executed yet and was successfully canceled.
    */
   self.defer.cancel = function(deferId) {
     if (pendingDeferIds[deferId]) {
@@ -7348,7 +7348,7 @@ function $ParseProvider() {
  * A new instance of deferred is constructed by calling `$q.defer()`.
  *
  * The purpose of the deferred object is to expose the associated Promise instance as well as APIs
- * that can be used for signaling the successful or unsuccessful completion of the task.
+ * that can be used for signaling the successful or unsuccessful completion of the tasks.
  *
  * **Methods**
  *
@@ -7368,7 +7368,7 @@ function $ParseProvider() {
  * calling `deferred.promise`.
  *
  * The purpose of the promise object is to allow for interested parties to get access to the result
- * of the deferred task when it completes.
+ * of the deferred tasks when it completes.
  *
  * **Methods**
  *
@@ -7466,7 +7466,7 @@ function qFactory(nextTick, exceptionHandler) {
    * @name ng.$q#defer
    * @methodOf ng.$q
    * @description
-   * Creates a `Deferred` object which represents a task which will finish in the future.
+   * Creates a `Deferred` object which represents a tasks which will finish in the future.
    *
    * @returns {Deferred} Returns a new instance of deferred.
    */
@@ -10614,11 +10614,11 @@ function $TimeoutProvider() {
       * @methodOf ng.$timeout
       *
       * @description
-      * Cancels a task associated with the `promise`. As a result of this, the promise will be
+      * Cancels a tasks associated with the `promise`. As a result of this, the promise will be
       * resolved with a rejection.
       *
       * @param {Promise=} promise Promise returned by the `$timeout` function.
-      * @returns {boolean} Returns `true` if the task hasn't executed yet and was successfully
+      * @returns {boolean} Returns `true` if the tasks hasn't executed yet and was successfully
       *   canceled.
       */
     timeout.cancel = function(promise) {
