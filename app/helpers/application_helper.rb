@@ -15,4 +15,8 @@ module ApplicationHelper
    return "#{project.name} #{image_tag('graph.png')}".html_safe
   end
 
+  def is_project_owner!(project)
+    return project.owner_id == current_user.id ? true : false
+  end
+
 end

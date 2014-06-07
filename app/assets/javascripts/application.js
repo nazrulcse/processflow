@@ -17,10 +17,13 @@
 //= require_tree .
 $(document).ready(function() {
     $('.dropdown-toggle').dropdown();
+    $(".task-item").dblclick(function() {
+        popupMessage("Show task details", 'info');
+    });
 });
 
-function popupMessage(message) {
-    $('#message-modal .modal-body').html(message);
+function popupMessage(message, klass) {
+    $('#message-modal .modal-body').html(message).addClass(klass);
     $('#message-modal').modal('show');
     $(".modal-backdrop").hide();
     setTimeout(function() {

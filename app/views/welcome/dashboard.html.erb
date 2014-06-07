@@ -1,11 +1,13 @@
 <div id="dashboard" class="row-fluid">
-  <div class="project-nav reset-margin">
-    <input type="text" id="search-field" class="form-control" placeholder="Search">
-  </div>
+  <%= render :partial => 'projects/project_nav', :locals => {:project => @project} %>
   <div class="task-content-wrapper">
-    <div class="project-backlog task-category">
-      <div class="title"> Project Backlog </div>
-      <div class="task-content">  </div>
+    <div class="backlog task-category">
+      <div class="title"> Backlog </div>
+      <div class="task-content">
+       <div class="task-item">
+         First Task
+       </div>
+      </div>
     </div>
 
     <div class="project-sprint task-category">

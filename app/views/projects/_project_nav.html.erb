@@ -1,0 +1,18 @@
+<div class="project-nav reset-margin">
+  <div class="btn-group project-nav-control">
+    <button type="button" class="btn btn-primary">Task</button>
+    <button type="button" class="btn btn-danger">Bug</button>
+  </div>
+  <% if is_project_owner!(project) %>
+      <div class="project-nav-control add-project-member">
+        <button type="button" class="btn btn-default">Invite team member</button>
+      </div>
+  <%end%>
+  <div class="project-nav-control project-name">
+    <a href="javascript:void(0);" class="btn btn-link"> <b> <%= project.name %> </b> </a>
+  </div>
+  <div class="project-nav-control pull-right">
+    <input type="text" id="search-field" class="form-control" placeholder="Search">
+  </div>
+  <div class="clearfix"></div>
+</div>

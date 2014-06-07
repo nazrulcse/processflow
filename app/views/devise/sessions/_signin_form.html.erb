@@ -1,4 +1,3 @@
-<div class="home-body">
   <div class="sign-in-wrapper">
     <h1 class="sign-in-title">Sign in</h1>
     <%= form_for(resource, as: resource_name, url: root_path(resource_name)) do |f| %>
@@ -14,11 +13,10 @@
             </label>
         <% end -%>
         <div>
-          <%= f.submit "Sign in", :class => 'btn btn-default btn-lg btn-block' %>
+          <%= f.submit "Sign in", :class => 'btn btn-primary btn-lg btn-block' %>
         </div>
         <div class="clear-fix"></div>
     <% end %>
-    <div><%= link_to "Create New Account", account_path() %></div>
+    <div><%= link_to "Create New Account", account_path(), :class => 'btn btn-link pull-right' %></div>
     <div class="clear-fix"></div>
   </div>
-</div>

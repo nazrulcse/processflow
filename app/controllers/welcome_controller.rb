@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   before_action :authenticate_user, :except => ['index']
+  layout "home", except: [:index]
 
   def index
     respond_to do |format|
@@ -7,14 +8,10 @@ class WelcomeController < ApplicationController
     end
   end
 
-  private
-
-  def resolve_layout
-    case action_name
-      when "index"
-        "home"
-      else
-        "application"
+  def dashboard
+    @project = Project.find(params[:id])
+    respond_to do |format|
+      format.html{}
     end
   end
 

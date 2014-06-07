@@ -54,4 +54,26 @@
     font-size: 14px;
     height: 30px;
     width: 265px;
+    margin: 1px 5px 0 0 !important;
+}
+
+.project-nav-control {
+    float: left;
+}
+
+.project-nav-control.add-project-member {
+    margin-left: 20px;
+}
+
+#dashboard .task-item {
+    width: auto;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    margin: 2px 5px 2px 5px;
+    padding: 5px;
+    cursor: crosshair;
+}
+
+#dashboard .task-item:hover {
+    background: #cccccc;
 }

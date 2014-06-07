@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @projects = Project.order("id DESC")
+    @projects = current_user.projects.order("id DESC")
   end
 
   def show
@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
     if(@project.present?)
       redirect_to dashboard_path()
     else
-      flash.keep[:notice] = 'Access your requested project is denied'
+      flash.keep[:error] = 'Access your requested project is denied'
       redirect_to projects_path()
     end
   end

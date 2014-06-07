@@ -42,9 +42,10 @@
               success:function(data) {
                   $('#new-project').modal('hide');
                   $('.project-list').prepend(data);
+                  popupMessage("Project has been saved successfully", 'info');
               },
               error: function(){
-                  alert('failure');
+                  popupMessage("Failed to create new project", 'info');
               }
           });
       });
