@@ -1,6 +1,5 @@
 class WelcomeController < ApplicationController
   before_action :authenticate_user, :except => ['index']
-  layout "home", except: [:index]
 
   def index
     respond_to do |format|
