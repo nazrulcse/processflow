@@ -25,21 +25,23 @@ class InvitesController < ApplicationController
   # POST /invites
   # POST /invites.json
   def create
-    puts'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-params.inspect
-    puts'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
     @user = User.find_by_email(params[:invite][:email])
-    if (@user.present?)
-    else
-      @invite = Invite.new(invite_params)
-    end
-
-
     respond_to do |format|
-      if @invite.save
-        format.html{render :layout => false}
+      if (@user.present?)
+        if (@user.projects.find_by_id(params[:project_id]).present?)
+          @result = 'Already assigned'
+        else
+          @project = Project.find_by_id(params[:project_id])
+          @project.users << @user
+          @result = 'Successfully Assigned'
+        end
+      else
+        @invite = Invite.new(invite_params)
+        if !@invite.save
+          @result = 'Not Assigned'
+        end
       end
-
+      format.js{render :layout => false}
     end
   end
 
