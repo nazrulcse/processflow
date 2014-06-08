@@ -1,0 +1,37 @@
+.task-detail-tab {
+    background: -webkit-linear-gradient(#CDCDCD, #DFDFDF); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#CDCDCD, #DFDFDF); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#CDCDCD, #FDFDFD); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#CDCDCD, #EFEFEF); /* Standard syntax */
+    border-radius: 5px 5px 0 0;
+}
+
+.task-detail-tab > li a {
+    color: #777777;
+    font-weight: 700;
+}
+
+.task-details .tab-content div.tab-pane {
+    padding: 5px;
+}
+
+.task-detail-tab > li a:hover {
+   background: #ccc;
+}
+
+.task-details .task-name {
+    margin: 10px 0 3px 0;
+    color: #777777;
+    font-size: 18px;
+}
+
+.task-details .task-description {
+    background: none repeat scroll 0 0 #FDF5E6;
+    color: #777777;
+    font-size: 14px;
+    padding: 7px;
+}
+
+#comments ul.comments-list {
+  padding-left: 10px;
+}

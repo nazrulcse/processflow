@@ -15,7 +15,7 @@
         <div class="span2">
            <div class="field">
               <%= f.label :priority %><br>
-              <%= f.select(:priority, ['High','Medium','Low'],:class => 'form-control')  %>
+              <%= f.select(:priority, ['High','Medium','Low'], {}, prompt: true, :class => 'form-control')  %>
            </div>
            <div class="field">
               <%= f.label :effort %><br>
@@ -23,7 +23,7 @@
            </div>
            <div class="field">
               <%= f.label :assigned %><br>
-              <%= f.select(:assigned, ['Nazrul','Jiko','Mahin'],:class => 'form-control')  %>
+              <%= f.select(:assigned, ["Nazrul", 'Jiko', 'Mahin'], {}, prompt: true, :class => 'form-control')  %>
            </div>
            <div class="field">
               <%= f.label :end_Date %><br>

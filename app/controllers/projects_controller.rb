@@ -45,6 +45,13 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+    @project = current_user.projects.find_by_id(params[:id]);
+    respond_to do |format|
+      format.html{render :layout => false}
+    end
+  end
+
   def destroy
     @project.destroy
     respond_to do |format|

@@ -15,18 +15,26 @@
 //= require turbolinks
 //= require angular
 //= require_tree .
-$(document).ready(function() {
-    $('.dropdown-toggle').dropdown();
-    $(".task-item").dblclick(function() {
-        popupMessage("Show tasks details", 'info');
-    });
+$(function () {
+    initPage();
+    return false;
 });
+$(window).bind('page:change', function () {
+    initPage();
+    return false;
+});
+function initPage() {
+    $('.dropdown-toggle').dropdown();
+    $(document).tooltip({
+        track: true
+    });
+}
 
 function popupMessage(message, klass) {
     $('#message-modal .modal-body').html(message).addClass(klass);
     $('#message-modal').modal('show');
     $(".modal-backdrop").hide();
-    setTimeout(function() {
+    setTimeout(function () {
         $('#message-modal').modal('hide');
     }, 4000);
 }

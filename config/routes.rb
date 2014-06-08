@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   resources :settings
 
-  resources :teams
-
   resources :projects do
     resources :invites
   end

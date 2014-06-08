@@ -1,9 +1,9 @@
 <ul class="project-list">
   <% @projects.each do |project| %>
-   <%= render :partial => "projects/project_list", :locals => {:project => project} %>
+      <%= render :partial => "projects/project_list", :locals => {:project => project} %>
   <% end %>
   <li>
-    <%= link_to "Add New Project #{image_tag('new_project_icon.png', :class=>'new-project-icon')}".html_safe, "javascript:void(0)",  :id => 'btn-new-project', :class => 'project-item' %>
+    <%= link_to "Add New Project #{image_tag('new_project_icon.png', :class => 'new-project-icon')}".html_safe, "javascript:void(0)", :id => 'btn-new-project', :class => 'project-item' %>
   </li>
 </ul>
 
@@ -11,44 +11,44 @@
 
 <script type="text/javascript">
 
-  $(document).ready(function() {
-      $('#btn-new-project').click(function(){
-          $.ajax({
-              url: "<%= new_project_path() %>",
-              type: "get",
-              success:function(data) {
-                  $('#small-modal .modal-body').html(data);
-                  $('#small-modal .modal-title').html("New Project");
-                  $('#small-modal').modal('show');
-              },
-              error: function(){
-                  alert('failure');
-              }
-          });
-      });
+    $(document).ready(function () {
+        $('#btn-new-project').click(function () {
+            $.ajax({
+                url: "<%= new_project_path() %>",
+                type: "get",
+                success: function (data) {
+                    $('#small-modal .modal-body').html(data);
+                    $('#small-modal .modal-title').html("New Project");
+                    $('#small-modal').modal('show');
+                },
+                error: function () {
+                    popupMessage("Failed to initialize new project", 'error');
+                }
+            });
+        });
 
-      $("#btnSave").click(function(){
+        $("#btnSave").click(function () {
 
-          if($('input[type=text]').val() ==""){
-              $("#errorForName").html("Name cannot be empty.");
-              $("#errorForName").css({"color":"red"});
-              return false;
-          }
+            if ($('input[type=text]').val() == "") {
+                $("#errorForName").html("Name cannot be empty.");
+                $("#errorForName").css({"color": "red"});
+                return false;
+            }
 
-          $.ajax({
-              url: "<%= projects_path() %>",
-              type: "post",
-              data: $("#new_project").serialize(),
-              success:function(data) {
-                  $('#small-modal').modal('hide');
-                  $('.project-list').prepend(data);
-                  popupMessage("Project has been saved successfully", 'info');
-              },
-              error: function(){
-                  popupMessage("Failed to create new project", 'info');
-              }
-          });
-      });
-  });
+            $.ajax({
+                url: "<%= projects_path() %>",
+                type: "post",
+                data: $("#new_project").serialize(),
+                success: function (data) {
+                    $('#small-modal').modal('hide');
+                    $('.project-list').prepend(data);
+                    popupMessage("Project has been saved successfully", 'info');
+                },
+                error: function () {
+                    popupMessage("Failed to create new project", 'info');
+                }
+            });
+        });
+    });
 
 </script>
