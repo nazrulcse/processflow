@@ -31,7 +31,7 @@
 
       <div>
         <%= f.label :country %>
-        <%= f.select(:country, ['Bangladesh', 'India', 'Pakistan'], :class => 'form-control') %>
+        <%= f.select(:country, ['Bangladesh', 'India', 'Pakistan'], {}, prompt: true, :class => 'form-control') %>
       </div>
 
       <div>

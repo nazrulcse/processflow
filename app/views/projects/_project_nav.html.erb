@@ -10,13 +10,14 @@
       </div>
   <%end%>
   <div class="project-nav-control project-name">
-    <a href="javascript:void(0);" class="btn btn-link"> <b> <%= project.name %> </b> </a>
+    <a href="javascript:void(0);" class="btn btn-link project-title" data-id="<%= project.id %>"> <b> <%= project.name %> </b> </a>
   </div>
   <div class="project-nav-control pull-right">
-    <input type="text" id="search-field" class="form-control" placeholder="Search">
+    <input type="text" id="search-field" class="form-control">
   </div>
   <div class="clearfix"></div>
 </div>
+<%= render "shared/xlarge_modal" %>
 
 <script type="text/javascript">
 

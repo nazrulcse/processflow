@@ -55,6 +55,10 @@
     height: 30px;
     width: 265px;
     margin: 1px 5px 0 0 !important;
+    padding-left: 25px;
+    background-image: url('search.png');
+    background-position: 4px center;
+    background-repeat: no-repeat;
 }
 
 .project-nav-control {
@@ -71,7 +75,7 @@
     border-radius: 4px;
     margin: 2px 5px 2px 5px;
     padding: 5px;
-    cursor: crosshair;
+    cursor: move;
     z-index: 999;
 }
 
@@ -84,20 +88,30 @@
     background: #ffffff url(ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x !important;
     font-weight: normal;
     color: #212121;
-} 
+}
 
 
 /* Task Item Design */
 
 .task-item .content-left {
-  width: 79.9%;
+  width: 76.9%;
 }
 
 .task-item .content-right {
-  width: 20%;
+  width: 23%;
+  text-align: center;
 }
 
 .task-item .task-name {
     min-height: 40px;
     overflow: hidden;
+}
+
+.task-item .assign-member {
+    width: 20px;
+    height: 20px;
+}
+
+#x-large-modal .modal-dialog {
+    width: 1000px;
 }

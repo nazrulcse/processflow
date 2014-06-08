@@ -13,7 +13,7 @@
     <ul class="color-settings">
       <li>
         <b> BackGround Color: </b>
-        <span id="color-selector" style="background-color:#<%= get_bgcolor %>;">  </span>
+        <span id="bg-color-selector" style="background-color:#<%= get_bgcolor %>;">  </span>
       </li>
 
       <li>
@@ -34,7 +34,7 @@
         $('#myTab a:last').tab('show')
     });
 
-    $('#color-selector').ColorPicker({
+    $('#bg-color-selector').ColorPicker({
         onShow: function (colpkr) {
             $(colpkr).fadeIn(100);
             return false;

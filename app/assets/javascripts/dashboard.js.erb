@@ -1,0 +1,50 @@
+$(window).bind('page:change', function() {
+    initDashboard();
+});
+function initDashboard() {
+    $("#dashboard .task-content").sortable({
+        item: '.task-item',
+        connectWith: '#dashboard .task-content',
+        placeholder: 'placeholder',
+        activeClass: "ui-state-hover",
+        hoverClass: "ui-state-active"
+    });
+
+    $( "#dashboard .task-content" ).droppable({
+        accept: ":not(.ui-sortable-helper)",
+        activeClass: "ui-state-hover",
+        hoverClass: "ui-state-active",
+        tolerance: "intersect",
+        greedy: true,
+        drop: function(event, ui) {
+            $(this).append(ui.helper);
+        },
+        accept: function (elem) {
+            return !$(this).has(elem).length;
+        }
+    });
+
+    $(".project-title").click(function() {
+        id = $(this).attr('data-id');
+        $.ajax({
+            url: "/projects/"+id+"/edit",
+            type: 'get',
+            success:function(res) {
+                $("#small-modal .modal-header").text("Project");
+                $("#small-modal .modal-body").html(res);
+                $("#small-modal").modal('show');
+            }
+        });
+    });
+
+    $(".task-item").dblclick(function () {
+        $.ajax({
+            url: "/tasks/1",
+            type: 'get',
+            success:function(res) {
+                $("#x-large-modal").modal('show');
+                $("#x-large-modal .modal-body").html(res);
+            }
+        });
+    });
+}
