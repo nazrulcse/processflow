@@ -5,9 +5,8 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :invites
+    resources :tasks
   end
-
-  resources :tasks
 
   get 'welcome/index'
 

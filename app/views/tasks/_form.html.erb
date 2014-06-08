@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <%= form_for :task do |f| %>
+    <%= form_for [@project, @task] do |f| %>
         <div class="span10">
            <div class="field">
-              <%= f.label :name %>
-              <%= f.text_field :name, autofocus: true, :class => 'form-control', :style=>'' %>
+              <%= f.label :title %>
+              <%= f.text_field :title, autofocus: true, :class => 'form-control', :style=>'' %>
               <span id="errorForName"></span>
            </div>
            <div class="field">
@@ -22,12 +22,12 @@
               <%= f.number_field :effort, autofocus: true, :class => 'form-control' %>
            </div>
            <div class="field">
-              <%= f.label :assigned %><br>
-              <%= f.select(:assigned, ["Nazrul", 'Jiko', 'Mahin'], {}, prompt: true, :class => 'form-control')  %>
+              <%= label_tag('assigned') %><br>
+              <%= select_tag('assigned', ["Nazrul", 'Jiko', 'Mahin'], :class => 'form-control')  %>
            </div>
            <div class="field">
-              <%= f.label :end_Date %><br>
-              <%= f.text_field :endDate, autofocus: true, :class => 'form-control' %>
+              <%= f.label :end_date %><br>
+              <%= f.text_field :end_date, autofocus: true, :class => 'form-control' %>
            </div>
         </div>
     <% end %>
@@ -48,6 +48,6 @@
 
 <script type="text/javascript">
    $(document).ready(function(){
-    $("#task_endDate").datepicker();
+    $("#task_end_date").datepicker();
    });
 </script>

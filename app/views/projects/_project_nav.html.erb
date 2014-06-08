@@ -70,7 +70,7 @@
 
       $("#btn-task").click(function(){
           $.ajax({
-              url:"<%= new_task_path() %>",
+              url:"<%= new_project_task_path(project) %>",
               type:"get",
               success:function(data){
                   $("#new-task").modal('show');
@@ -84,8 +84,9 @@
 
       $("#btnSaveTask").click(function(){
           $.ajax({
-              url:"<%= tasks_path() %>",
+              url: $("#new-task form").attr('action'),
               type:"post",
+              data: $("#new-task form").serialize(),
               success:function(data){
                   $("#new-task").modal('hide');
               },
