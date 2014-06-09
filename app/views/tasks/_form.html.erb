@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <%= form_for [@project, @task] do |f| %>
-        <div class="span10">
+        <div class="left-side">
            <div class="field">
               <%= f.label :title %>
               <%= f.text_field :title, autofocus: true, :class => 'form-control', :style=>'' %>
@@ -9,10 +9,10 @@
            </div>
            <div class="field">
               <%= f.label :description %><br/>
-              <%= f.text_area :description , :class => 'form-control', :style=>'height:147px;' %>
+              <%= f.text_area :description , :class => 'form-control', :style=>'height:168px;' %>
            </div>
         </div>
-        <div class="span2">
+        <div class="right-side">
            <div class="field">
               <%= f.label :priority %><br>
               <%= f.select(:priority, ['High','Medium','Low'], {}, prompt: true, :class => 'form-control')  %>
@@ -23,7 +23,7 @@
            </div>
            <div class="field">
               <%= label_tag('assigned') %><br>
-              <%= select_tag('assigned', ["Nazrul", 'Jiko', 'Mahin'], :class => 'form-control')  %>
+              <%= select_tag('assigned', options_for_select([["Select",0],["Mahin",1],["Nazrul",2],["Jiko",3]]), :class => 'form-control')  %>
            </div>
            <div class="field">
               <%= f.label :end_date %><br>
@@ -35,13 +35,17 @@
 </div>
 
 <style type="text/css">
-   .span10{
-      width: 375px;
+  .container-fluid{
+      margin: 0px;
+      padding: 0px;
+  }
+   .left-side{
+      width: 65%;
       float: left;
-      margin-right: 10px;
+      margin-right: 20px;
    }
-   .span2{
-      width:125px;
+   .right-side{
+      width:31%;
       float: left;
    }
 </style>
