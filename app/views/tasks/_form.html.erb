@@ -9,7 +9,7 @@
            </div>
            <div class="field">
               <%= f.label :description %><br/>
-              <%= f.text_area :description , :class => 'form-control', :style=>'height:168px;' %>
+              <%= f.text_area :description ,:class => 'form-control jqte-test', :style=>'height:168px;' %>
            </div>
         </div>
         <div class="right-side">
@@ -23,7 +23,7 @@
            </div>
            <div class="field">
               <%= label_tag('assigned') %><br>
-              <%= select_tag('assigned', options_for_select([["Select",0],["Mahin",1],["Nazrul",2],["Jiko",3]]), :class => 'form-control')  %>
+             <%= select_tag("assigned", options_from_collection_for_select(@project.users, :id, :name), :class =>"form-control") %>
            </div>
            <div class="field">
               <%= f.label :end_date %><br>
@@ -53,5 +53,6 @@
 <script type="text/javascript">
    $(document).ready(function(){
     $("#task_end_date").datepicker();
+       $('.jqte-test').jqte();
    });
 </script>
