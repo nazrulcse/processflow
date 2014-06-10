@@ -38,3 +38,10 @@ function popupMessage(message, klass) {
         $('#message-modal').modal('hide');
     }, 4000);
 }
+
+function initProjectList() {
+    offset = $(window).height() - $("#project-item-wrapper").height();
+    if(offset > 0) {
+        $("#project-item-wrapper").css('margin-top', offset/2);
+    }
+}

@@ -1,3 +1,19 @@
 <li>
-    <%= link_to(generate_graph(project), project_path(project), :class => 'project-item') %>
+  <a href="<%= project_path(project) %>" class='project-item'>
+    <div class="project-name">
+      <b> <%= project.name %> </b>
+    </div>
+    <div class="graph-<%= project.id %>"> </div>
+  </a>
 </li>
+<script type="text/javascript">
+    $(".graph-<%= project.id %>").sparkline([8, 4, 7, 10, 6], {
+        type: 'bar',
+        color: ['red', 'green', 'blue'],
+        barWidth: '20px',
+        height: '100px',
+        colorMap: ['#939397', '#5BC0F8', '#34BFCD', '#1462AA', '#D54B1D'],
+        tooltipFormat: '{{value}}',
+        zeroAxis: true
+    });
+</script>
