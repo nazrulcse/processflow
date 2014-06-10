@@ -48,13 +48,15 @@
 
                 url: "<%= project_invites_path(project) %>",
                 type: "post",
+                datatype: 'script',
                 data: $("#new_invite").serialize(),
                 success:function(data) {
                     $('#small-modal').modal('hide');
-                    popupMessage("Invitation has been sent successfully", 'info');
+
+//                    popupMessage("Invitation has been sent successfully", 'info');
                 },
                 error: function(){
-                    popupMessage("Failed to create new project", 'error');
+//                    popupMessage("Failed to create new project", 'error');
                 }
             });
         });
@@ -70,7 +72,7 @@
 
       $("#btn-task").click(function(){
           $.ajax({
-              url:"<%= new_task_path() %>",
+              url:"<%= new_project_task_path(project) %>",
               type:"get",
               success:function(data){
                   $("#new-task").modal('show');
@@ -84,8 +86,9 @@
 
       $("#btnSaveTask").click(function(){
           $.ajax({
-              url:"<%= tasks_path() %>",
+              url: $("#new-task form").attr('action'),
               type:"post",
+              data: $("#new-task form").serialize(),
               success:function(data){
                   $("#new-task").modal('hide');
               },
