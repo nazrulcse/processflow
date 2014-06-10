@@ -2,23 +2,25 @@
 <html ng-app="processFlow">
 <head>
   <title>ProcessFlow</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-  <body>
-    <div class="body-content" style="background:#<%= get_bgcolor %>;">
-       <% if current_user.present? %>
-          <%= render :partial => 'shared/nav' %>
-       <%end%>
-       <%= render :partial => 'shared/message_modal' %>
-       <%= yield %>
-    </div>
-  </body>
-  <script type="text/javascript">
+<body>
+<div class="body-content" style="background:#<%= get_bgcolor %>;">
+  <div id="container">
+    <% if current_user.present? %>
+        <%= render :partial => 'shared/nav' %>
+    <% end %>
+    <%= render :partial => 'shared/message_modal' %>
+    <%= yield %>
+  </div>
+</div>
+</body>
+<script type="text/javascript">
     <% @klass = flash[:notice].present? ? '' : 'error' %>
     <% flash.each do |name, msg| -%>
-      popupMessage("<%= msg %>", "<%= @klass %>");
+    popupMessage("<%= msg %>", "<%= @klass %>");
     <% end -%>
-  </script>
+</script>
 </html>

@@ -39,7 +39,7 @@ function initDashboard() {
 
     $(".task-item").dblclick(function () {
         $.ajax({
-            url: "/tasks/1",
+            url: "/projects/1/tasks/1",
             type: 'get',
             success:function(res) {
                 $("#x-large-modal").modal('show');

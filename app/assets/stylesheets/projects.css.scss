@@ -2,6 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#project-item-wrapper {
+  width: 750px;
+  height: auto;
+  margin: auto;
+  border: solid 1px #ccc;
+  box-shadow: 0 1px 5px #CCCCCC;
+  padding: 5px 15px 10px 15px;
+  border-radius: 7px;
+  text-align: center;
+}
+
 .project-item {
   border:1px solid gray;
   -moz-border-radius:9px;
@@ -12,7 +23,6 @@
   text-decoration: none;
   -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
   display: block;
-  max-width: 120px;
   padding: 6px;
   text-align: center;
 }
@@ -34,6 +44,11 @@
   color:#000;
 }
 
+.project-item .project-name {
+  width: 100%;
+  padding: 4px 0 7px 0;
+}
+
 .project-list {
   list-style: none;
 }
@@ -47,4 +62,15 @@
   padding: 5px;
   display: inline-block;
   min-width: 200px;
+  position: relative;
+  margin-right: 25px;
+}
+
+.project-list li:nth-child(3n + 2) {
+  margin-right: 0;
+}
+
+.project-list li a {
+  display: block;
+  width: 100%;
 }

@@ -1,0 +1,26 @@
+.comments-item-wrapper {
+    padding: 7px 4px;
+    border-bottom: solid 2px #FDFDFD;
+    border-radius: 4px;
+}
+
+.comments-list li:nth-child(odd) .comments-item-wrapper {
+    background: #f2f5f7;
+}
+
+.comments-list li:nth-child(even) .comments-item-wrapper {
+    background: #ced9de;
+}
+
+.task-details .comments-item-wrapper .content-left {
+    width: 35px;
+    height: 35px;
+}
+
+.comments-item-wrapper .content-left img {
+    width: 100%
+}
+
+.comments-item-wrapper .content-right {
+  padding: 4px 0 3px 15px;
+}

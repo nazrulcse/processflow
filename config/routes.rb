@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     resources :invites
     resources :tasks
   end
-
+  get "/accept", :to => "invites#accept_invitation"
+  post "/user", :to => "invites#user_create"
   get 'welcome/index'
 
   devise_for :users #, :controllers => {:registrations => 'registrations'}

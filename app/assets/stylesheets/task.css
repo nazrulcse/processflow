@@ -11,6 +11,32 @@
     font-weight: 700;
 }
 
+.task-details-content-left {
+  width: 700px;
+}
+
+.task-details-content-right {
+    width: 250px;
+    margin-top: 42px;
+}
+
+.task-details-content-right .task-info {
+    margin: 0;
+    border: solid 1px #CDCDCD;
+    min-height: 200px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.task-details-content-right .task-info .task-info-title {
+    background: linear-gradient(#CDCDCD, #EFEFEF) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    padding: 7px 5px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+}
+
 .task-details .tab-content div.tab-pane {
     padding: 5px;
 }
@@ -20,18 +46,90 @@
 }
 
 .task-details .task-name {
-    margin: 10px 0 3px 0;
+    margin: 6px 0 3px 0;
     color: #777777;
     font-size: 18px;
+    margin-left: 10px;
+}
+
+.task-details .task-title {
+    padding: 5px 0;
+    margin-bottom: 10px;
+    vertical-align: middle;
+    border-bottom: solid 1px #CDCDCD;
+}
+
+.task-details .task-title label {
+    margin: 0 !important;
+    vertical-align: text-top;
 }
 
 .task-details .task-description {
-    background: none repeat scroll 0 0 #FDF5E6;
+    background-color: #FDF5E6;
+    color: #777777;
+    font-size: 14px;
+    padding: 7px;
+    border-radius: 3px;
+}
+
+.task-details .edit-task-description {
+    height: 50px;
+    width: 97%;
+    border: dotted 1px #8a6d3b;
+    background-color: #FDF5E6;
+    resize: none;
+    padding: 3px;
+}
+
+.task-details .task-description:hover {
+    background-image: url('edit.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+    cursor: pointer;
     color: #777777;
     font-size: 14px;
     padding: 7px;
 }
 
+.editable-content {
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+    overflow: auto;
+    padding: 2px;
+    resize: both;
+    background-image: none !important;
+    height: 150px;
+}
+
 #comments ul.comments-list {
   padding-left: 10px;
+}
+
+.add-attachment {
+    background-image: url("attachment.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 1px dotted #808080;
+    border-radius: 2px;
+    margin: 10px 0;
+    padding: 17px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.progress-bar {
+    background-color: #1a1a1a;
+    padding: 5px;
+    margin: 50px 0;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+}
+
+.progress-bar span {
+    display: inline-block;
+    height: 100%;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+    transition: width .4s ease-in-out;
 }

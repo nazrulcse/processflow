@@ -36,3 +36,26 @@
     padding-top: 5px !important;
     padding-bottom: 5px !important;
 }
+
+.modal {
+    overflow: auto !important;
+}
+
+#x-large-modal .modal-dialog {
+    width: 1000px;
+}
+
+body.modal-open {
+    overflow: auto !important;
+}
+
+.custom-modal-close {
+    cursor: pointer;
+    display: block;
+    opacity: 1 !important;
+    padding: 4px !important;
+    position: absolute;
+    right: -22px;
+    top: -23px;
+}
+

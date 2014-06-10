@@ -1,11 +1,19 @@
-<ul class="project-list">
-  <% @projects.each do |project| %>
-      <%= render :partial => "projects/project_list", :locals => {:project => project} %>
-  <% end %>
-  <li>
-    <%= link_to "Add New Project #{image_tag('new_project_icon.png', :class => 'new-project-icon')}".html_safe, "javascript:void(0)", :id => 'btn-new-project', :class => 'project-item' %>
-  </li>
-</ul>
+<div id="project-item-wrapper">
+  <h1 style="color: #aaa; margin: 10px 0;"> Current projects </h1>
+  <ul class="project-list">
+    <% @projects.each do |project| %>
+        <%= render :partial => "projects/project_list", :locals => {:project => project} %>
+    <% end %>
+    <li>
+      <a href="javascript:void(0)" id="btn-new-project" class="project-item">
+        <div class="project-name">
+          <b> Add New Project </b>
+        </div>
+        <%= image_tag('new_project_icon.png', :class => 'new-project-icon') %>
+      </a>
+    </li>
+  </ul>
+</div>
 
 <%= render "shared/small_modal" %>
 
@@ -49,6 +57,7 @@
                 }
             });
         });
+        initProjectList();
     });
 
 </script>
