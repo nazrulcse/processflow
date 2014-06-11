@@ -11,7 +11,11 @@ class TasksController < ApplicationController
   def create
     @project = Project.find_by_id(params[:project_id])
     @task = @project.tasks.build(task_params)
+    @task.status_id = 1 #default status to backlog
     @task.save
+    respond_to do |format|
+      format.js{render :layout => false}
+    end
   end
 
   def show

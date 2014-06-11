@@ -9,7 +9,6 @@
 
 /* editor's general field */
 .jqte {
-	margin:10px 0;
 	border:#cccccc 1px solid;
 	border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;
 	overflow:hidden;
@@ -337,7 +336,7 @@
 .jqte_editor, .jqte_source {
 	padding:10px;
 	background:#FFF;
-	min-height:100px;
+	min-height:110px;
 	max-height:900px;
 	overflow:auto;
 	outline:none;

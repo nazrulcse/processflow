@@ -72,9 +72,10 @@
 #dashboard .task-item {
     width: auto;
     border: solid 1px #ccc;
+    border-top: solid 3px #3276B1;
     border-radius: 4px;
     margin: 2px 5px 2px 5px;
-    padding: 5px;
+    padding: 2px 5px 5px 5px;
     cursor: move;
     z-index: 999;
 }

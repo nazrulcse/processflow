@@ -89,6 +89,7 @@
               url: $("#new-task form").attr('action'),
               type:"post",
               data: $("#new-task form").serialize(),
+              dataType: "script",
               success:function(data){
                   $("#new-task").modal('hide');
               },
