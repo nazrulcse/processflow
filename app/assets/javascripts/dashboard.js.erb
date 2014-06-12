@@ -1,4 +1,4 @@
-$(window).bind('page:change', function() {
+$(window).bind('page:change', function () {
     initDashboard();
 });
 function initDashboard() {
@@ -10,13 +10,13 @@ function initDashboard() {
         hoverClass: "ui-state-active"
     });
 
-    $( "#dashboard .task-content" ).droppable({
+    $("#dashboard .task-content").droppable({
         accept: ":not(.ui-sortable-helper)",
         activeClass: "ui-state-hover",
         hoverClass: "ui-state-active",
         tolerance: "intersect",
         greedy: true,
-        drop: function(event, ui) {
+        drop: function (event, ui) {
             $(this).append(ui.helper);
         },
         accept: function (elem) {
@@ -24,12 +24,12 @@ function initDashboard() {
         }
     });
 
-    $(".project-title").click(function() {
+    $(".project-title").click(function () {
         id = $(this).attr('data-id');
         $.ajax({
-            url: "/projects/"+id+"/edit",
+            url: "/projects/" + id + "/edit",
             type: 'get',
-            success:function(res) {
+            success: function (res) {
                 $("#small-modal .modal-header").text("Project");
                 $("#small-modal .modal-body").html(res);
                 $("#small-modal").modal('show');
@@ -38,10 +38,16 @@ function initDashboard() {
     });
 
     $(".task-item").dblclick(function () {
+        task_id = $(this).attr('data-task-id');
+        project_id = $(this).attr('data-project-id');
+        if(task_id == '' || project_id == '') {
+            popupMessage('internal error', 'error');
+            return false;
+        }
         $.ajax({
-            url: "/projects/1/tasks/1",
+            url: "/projects/"+project_id+"/tasks/"+task_id,
             type: 'get',
-            success:function(res) {
+            success: function (res) {
                 $("#x-large-modal").modal('show');
                 $("#x-large-modal .modal-body").html(res);
             }
