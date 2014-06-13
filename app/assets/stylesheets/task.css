@@ -133,3 +133,18 @@
     box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
     transition: width .4s ease-in-out;
 }
+
+#write-comments .jqte_editor, .jqte_source{
+    min-height: 120px !important;
+}
+
+#comments ul{
+    margin-bottom: 15px;
+}
+
+.task-info .info-label{
+    width:75px;
+}
+.task-info ul li {
+  padding-left: 10px;
+}

@@ -10,11 +10,10 @@
     <div class="tab-pane active task-details-content-left pull-left" id="general">
       <div class="task-title">
         <label class="label label-primary"> Task </label>
-
-        <div class="task-name inline"> <%= @task.title %></div>
+        <div class="task-name inline"> <%= @task.title %> </div>
       </div>
       <div class="task-description" contenteditable>
-        Task description
+        <%= @task.description %>
       </div>
       <div class="add-attachment">
 
@@ -34,7 +33,7 @@
         </ul>
       </div>
       <div id="write-comments">
-        <textarea style="width: 100%; height: 240px;" class="form-control"></textarea>
+        <textarea style="" class="form-control jqte-test"></textarea>
       </div>
       <div>
         <button type="button" id="btncomment" class="btn btn-primary">Save</button>
@@ -53,8 +52,8 @@
         <div class="task-info-title"> Information</div>
         <ul>
           <li> Owner: <%= current_user.name %> </li>
-          <li> Create date: <span> 12/02/2014 </span></li>
-          <li> End date: <span> 12/02/2014 </span></li>
+          <li> Create date: <span> 12/02/2014 </span> </li>
+          <li> End date: <span> 12/02/2014 </span> </li>
         </ul>
       </div>
     </div>
@@ -64,8 +63,12 @@
 </div>
 
 <script type="text/javascript">
-    $(".progressbar").progressbar({
-        value: 50
+    $(document).ready(function(){
+        $('.jqte-test').jqte();
+
+        $( ".progressbar" ).progressbar({
+            value: 50
+        });
     });
     $('#btncomment').click(function () {
 

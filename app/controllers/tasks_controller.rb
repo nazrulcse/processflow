@@ -19,6 +19,8 @@ class TasksController < ApplicationController
   end
 
   def show
+    @project = Project.find_by_id(params[:project_id])
+    @task = @project.tasks.find_by_id(params[:id])
     @task = Task.find_by_id(params[:id])
     @comments = @task.comments.all
    respond_to do |format|
