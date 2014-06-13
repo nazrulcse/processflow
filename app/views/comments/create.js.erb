@@ -1,0 +1,4 @@
+<% if @comment %>
+$(".comments-list li").last().append("<%= escape_javascript(render :partial => 'shared/comments_item', :locals => {:comment => @comment}).html_safe %>");
+$("#write-comments textarea").val('');
+<% end %>

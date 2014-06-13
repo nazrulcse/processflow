@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :project
-
+  has_many :comments
   scope :backlog, -> {where(status_id: 1)}
   scope :doing, -> {where(status_id: 2)}
   scope :finish, -> {where(status_id: 3)}

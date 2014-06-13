@@ -19,6 +19,8 @@ class TasksController < ApplicationController
   end
 
   def show
+    @task = Task.find_by_id(params[:id])
+    @comments = @task.comments.all
    respond_to do |format|
      format.html{render :layout => false}
    end
