@@ -24,9 +24,7 @@
           <% @comments.each do |comment| %>
               <li>
                 <%= render :partial => 'shared/comments_item', :locals => {:comment => comment} %>
-                <div class="comments-reply" style="visibility: hidden">
-                  <%=   link_to 'reply', 'javascript:void(0);', class: :reply , parent: comment.id %>
-                </div>
+
               </li>
           <% end %>
 
@@ -93,15 +91,14 @@
     });
 
     $(".comments-list li").mouseout(function(){
-
-        $(".comments-reply").css('visibility','hidden');
+        $(this).find(".comments-reply ").css('visibility','hidden');
 
     });
 
         $(".reply").click(function(){
             parent =  $(this).attr("parent");
-            $(".write-reply").remove();
-            $(this).before("<%= escape_javascript( get_reply_div )%>");
+            $(".reply-wrapper").remove();
+            $(this).parent().before("<%= escape_javascript(render :partial => 'shared/reply' )%>");
             $(".btn").click(function(){
                 reply =$(".reply_input").val();
                 alert(reply);
@@ -119,5 +116,7 @@
                 });
             })
         });
+
+
 
 </script>
