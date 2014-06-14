@@ -6,4 +6,10 @@
     <%= comment.comment %>
   </div>
   <div class="clearfix"></div>
+  <div class="comments-reply" style="visibility: hidden;">
+    <%=   link_to 'reply', 'javascript:void(0);', class: :reply , parent: comment.id %>
+    <%=   link_to 'delete', task_comment_path(comment.task_id,comment.id),
+                  method: :delete, data: { confirm: 'Are you sure?' }, :class => "glyphicon glyphicon-trash"  , parent: comment.id %>
+    <%=   link_to 'edit', 'javascript:void(0);', class: :edit , parent: comment.id %>
+  </div>
 </div>

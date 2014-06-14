@@ -4,12 +4,11 @@
     <li><a href="#relation" data-toggle="tab">Relationship</a></li>
     <li><a href="#history" data-toggle="tab">History</a></li>
   </ul>
-
+  
   <!-- Tab panes -->
   <div class="tab-content">
     <div class="task-title">
       <label class="label label-primary"> Task </label>
-
       <div class="task-name inline"> <%= @task.title %> </div>
     </div>
     <div class="tab-pane active task-details-content-left pull-left" id="general">
@@ -40,7 +39,7 @@
               <li>
                 <%= render :partial => 'shared/comments_item', :locals => {:comment => comment} %>
                 <div class="comments-reply" style="visibility: hidden">
-                  <%= link_to 'reply', 'javascript:void(0);', class: :reply, parent: comment.id %>
+                  <%=   link_to 'reply', 'javascript:void(0);', class: :reply , parent: comment.id %>
                 </div>
               </li>
           <% end %>
@@ -52,7 +51,7 @@
         <button type="button" id="btncomment" class="btn btn-default pull-right"> Done </button>
         <div class="clearfix"> </div>
       </div>
-    </div>
+   </div>
 
     <!- Relation Tab content ->
 
@@ -104,6 +103,7 @@
   </div>
   <div class="clearfix"></div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('.jqte-test').jqte();
@@ -135,32 +135,33 @@
 
     });
 
-    $(".comments-list li").mouseout(function () {
-
-        $(".comments-reply").css('visibility', 'hidden');
+    $(".comments-list li").mouseout(function(){
+        $(this).find(".comments-reply ").css('visibility','hidden');
 
     });
 
-    $(".reply").click(function () {
-        parent = $(this).attr("parent");
-        $(".write-reply").remove();
-        $(this).before("<%= escape_javascript( get_reply_div )%>");
-        $(".btn").click(function () {
-            reply = $(".reply_input").val();
-            alert(reply);
-            $.ajax({
-                type: 'POST',
-                url: "<%= task_comments_path(@task.id) %>",
-                dataType: 'script',
-                data: { comment: reply, parent: parent},
-                success: function (res) {
+        $(".reply").click(function(){
+            parent =  $(this).attr("parent");
+            $(".reply-wrapper").remove();
+            $(this).parent().before("<%= escape_javascript(render :partial => 'shared/reply' )%>");
+            $(".btn").click(function(){
+                reply =$(".reply_input").val();
+                alert(reply);
+                $.ajax({
+                    type: 'POST',
+                    url: "<%= task_comments_path(@task.id) %>",
+                    dataType: 'script',
+                    data: { comment: reply, parent:  parent},
+                    success: function (res) {
 
-                },
-                error: function (e) {
+                    },
+                    error: function (e) {
 
-                }
-            });
-        })
-    });
+                    }
+                });
+            })
+        });
+
+
 
 </script>

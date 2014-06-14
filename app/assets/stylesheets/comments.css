@@ -2,6 +2,7 @@
     padding: 7px 4px;
     border-bottom: solid 2px #FDFDFD;
     border-radius: 4px;
+    position: relative;
 }
 
 .comments-list li:nth-child(odd) .comments-item-wrapper {
@@ -23,4 +24,18 @@
 
 .comments-item-wrapper .content-right {
   padding: 4px 0 3px 15px;
+}
+
+.comments-reply{
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+
+.reply-wrapper{
+    padding: 10px;
+}
+
+.button-padding{
+    padding: 5px;
 }
