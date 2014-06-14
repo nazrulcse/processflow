@@ -5,12 +5,19 @@ Rails.application.routes.draw do
   end
 
 
+  resources :attachments
+
   resources :settings
 
   resources :projects do
     resources :invites
     resources :tasks
   end
+
+  resources :tasks do
+    resources :attachments
+  end
+
   get "/accept", :to => "invites#accept_invitation"
   post "/user", :to => "invites#user_create"
   get 'welcome/index'

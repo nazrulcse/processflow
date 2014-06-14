@@ -1,26 +1,40 @@
-<div class="task-details">
+<div class="task-details" data-task-id="<%= @task.id %>">
   <ul class="nav nav-tabs task-detail-tab">
     <li class="active"><a href="#general" data-toggle="tab">General</a></li>
     <li><a href="#relation" data-toggle="tab">Relationship</a></li>
     <li><a href="#history" data-toggle="tab">History</a></li>
   </ul>
-
+  
   <!-- Tab panes -->
   <div class="tab-content">
+    <div class="task-title">
+      <label class="label label-primary"> Task </label>
+      <div class="task-name inline"> <%= @task.title %> </div>
+    </div>
     <div class="tab-pane active task-details-content-left pull-left" id="general">
-      <div class="task-title">
-        <label class="label label-primary"> Task </label>
-        <div class="task-name inline"> <%= @task.title %> </div>
-      </div>
       <div class="task-description" contenteditable>
         <%= @task.description %>
       </div>
-      <div class="add-attachment">
 
+      <div class="attachment-list">
+        <% @task.attachments.each do |attachment| %>
+            <% if attachment.file.present? %>
+                <%= render :partial => 'task_attachment', :locals => {:attachment => attachment} %>
+            <% end %>
+        <% end %>
       </div>
-      <div id="comments">
-        <ul class="comments-list reset-padding">
 
+      <div class="add-attachment">
+        <%= form_for(@attachment, :hrml => {:multipart => true}, :id => "myForm") do |f| %>
+            <%= f.file_field(:file, :class => 'file_upload', :data_task_id => @task.id) %>
+        <% end %>
+      </div>
+
+      <div id="comments">
+        <div>
+          <b> Comments </b>
+        </div>
+        <ul class="comments-list reset-padding">
           <% @comments.each do |comment| %>
               <li>
                 <%= render :partial => 'shared/comments_item', :locals => {:comment => comment} %>
@@ -29,19 +43,34 @@
                 </div>
               </li>
           <% end %>
-
         </ul>
       </div>
+
       <div id="write-comments" style="margin-bottom: 10px;">
         <textarea style="" class="form-control jqte-test"></textarea>
+        <button type="button" id="btncomment" class="btn btn-default pull-right"> Done </button>
+        <div class="clearfix"> </div>
       </div>
-      <div>
-        <button type="button" id="btncomment" class="btn btn-primary">Save</button>
-      </div>
+   </div>
+
+    <!- Relation Tab content ->
+
+    <div class="tab-pane task-details-content-left pull-left" id="relation">
 
     </div>
-    <div class="tab-pane task-details-content-left pull-left" id="relation">...</div>
-    <div class="tab-pane task-details-content-left pull-left" id="history">...</div>
+
+    <!- History Tab content ->
+
+    <div class="tab-pane task-details-content-left pull-left" id="history">
+      <ul>
+        <% @task.histories.each do |history| %>
+            <%= render :partial => 'tasks/history_item', :locals => {:history => history} %>
+        <% end %>
+      </ul>
+    </div>
+
+    <!- Right side bar content ->
+
     <div class="pull-right task-details-content-right">
       <div class="panel panel-default progress-info">
         <div class="panel-heading">
@@ -102,13 +131,14 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('.jqte-test').jqte();
 
-        $( ".progressbar" ).progressbar({
+        $(".progressbar").progressbar({
             value: 50
         });
     });
+
     $('#btncomment').click(function () {
 
         comment = $("textarea").val();
@@ -125,22 +155,21 @@
             }
         });
     });
-    $(".comments-list li").mouseover(function(){
+    $(".comments-list li").mouseover(function () {
 
-        $(this).find(".comments-reply").css('visibility','visible');
+        $(this).find(".comments-reply").css('visibility', 'visible');
 
     });
 
     $(".comments-list li").mouseout(function(){
-
-        $(".comments-reply").css('visibility','hidden');
+        $(this).find(".comments-reply ").css('visibility','hidden');
 
     });
 
         $(".reply").click(function(){
             parent =  $(this).attr("parent");
-            $(".write-reply").remove();
-            $(this).before("<%= escape_javascript( get_reply_div )%>");
+            $(".reply-wrapper").remove();
+            $(this).parent().before("<%= escape_javascript(render :partial => 'shared/reply' )%>");
             $(".btn").click(function(){
                 reply =$(".reply_input").val();
                 alert(reply);
@@ -158,5 +187,7 @@
                 });
             })
         });
+
+
 
 </script>

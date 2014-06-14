@@ -7,7 +7,7 @@
   </a>
 </li>
 <script type="text/javascript">
-    $(".graph-<%= project.id %>").sparkline([8, 4, 7, 10, 6], {
+    $(".graph-<%= project.id %>").sparkline(<%= project_statistic(project) %>, {
         type: 'bar',
         color: ['red', 'green', 'blue'],
         barWidth: '20px',
