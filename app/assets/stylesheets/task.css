@@ -160,6 +160,10 @@
     transition: width .4s ease-in-out;
 }
 
+#write-comments .jqte {
+    margin-bottom: 5px;
+}
+
 #write-comments .jqte_editor, .jqte_source{
     min-height: 120px !important;
 }
