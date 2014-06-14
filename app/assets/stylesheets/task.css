@@ -143,8 +143,8 @@
 }
 
 .task-info .info-label{
-    width:75px;
+    width:96px;
 }
-.task-info ul li {
-  padding-left: 10px;
+.progress-info .info-label{
+    width:96px;
 }
