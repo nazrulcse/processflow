@@ -71,42 +71,67 @@
     $('#btncomment').click(function () {
 
         comment = $("textarea").val();
-        $.ajax({
-            type: 'POST',
-            url: "<%= task_comments_path(@task.id) %>",
-            dataType: 'script',
-            data: { comment: comment},
-            success: function (res) {
+        if (comment != "")
+        {
+            $.ajax({
+                type: 'POST',
+                url: "<%= task_comments_path(@task.id) %>",
+                dataType: 'script',
+                data: { comment: comment},
+                success: function (res) {
 
-            },
-            error: function (e) {
+                },
+                error: function (e) {
 
-            }
-        });
+                }
+            });
+        }
+
     });
-    $(".comments-list li").mouseover(function(){
+    $(document).on("mouseover",".comments-list li",function(){
 
         $(this).find(".comments-reply").css('visibility','visible');
 
     });
 
-    $(".comments-list li").mouseout(function(){
+    $(document).on("mouseout",".comments-list li",function(){
         $(this).find(".comments-reply ").css('visibility','hidden');
 
     });
 
-        $(".reply").click(function(){
+        $(document).on("click",".reply",function(){
             parent =  $(this).attr("parent");
             $(".reply-wrapper").remove();
             $(this).parent().before("<%= escape_javascript(render :partial => 'shared/reply' )%>");
             $(".btn").click(function(){
                 reply =$(".reply_input").val();
-                alert(reply);
+                if (reply != "")
+                {
+                    $.ajax({
+                        type: 'POST',
+                        url: "<%= task_comments_path(@task.id) %>",
+                        dataType: 'script',
+                        data: { comment: reply, parent:  parent},
+                        success: function (res) {
+
+                        },
+                        error: function (e) {
+
+                        }
+                    });
+                }
+
+
+            })
+        });
+    $(document).on("click",".delete",function(){
+        id =  $(this).attr("id");
+        task_id =  $(this).attr("task_id");
                 $.ajax({
-                    type: 'POST',
-                    url: "<%= task_comments_path(@task.id) %>",
+                    type: 'DELETE',
+                    url: '/tasks/'+task_id+'/comments/'+id+'',
                     dataType: 'script',
-                    data: { comment: reply, parent:  parent},
+                    data: { task_id: task_id , id:  id},
                     success: function (res) {
 
                     },
@@ -114,9 +139,8 @@
 
                     }
                 });
-            })
-        });
 
+    });
 
 
 </script>

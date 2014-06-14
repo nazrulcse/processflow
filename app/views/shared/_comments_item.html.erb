@@ -1,4 +1,4 @@
-<div class="comments-item-wrapper">
+<div class="comments-item-wrapper" id="<%=comment.id %>">
   <div class="content-left pull-left">
      <%= image_tag(get_image(comment.user_id)) %>
   </div>
@@ -8,8 +8,8 @@
   <div class="clearfix"></div>
   <div class="comments-reply" style="visibility: hidden;">
     <%=   link_to 'reply', 'javascript:void(0);', class: :reply , parent: comment.id %>
-    <%=   link_to 'delete', task_comment_path(comment.task_id,comment.id),
-                  method: :delete, data: { confirm: 'Are you sure?' }, :class => "glyphicon glyphicon-trash"  , parent: comment.id %>
+    <%=   link_to 'delete', 'javascript:void(0);',
+                  method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete glyphicon glyphicon-trash" ,task_id: comment.task_id, id: comment.id %>
     <%=   link_to 'edit', 'javascript:void(0);', class: :edit , parent: comment.id %>
   </div>
 </div>
