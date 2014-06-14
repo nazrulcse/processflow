@@ -18,9 +18,24 @@ function initDashboard() {
         greedy: true,
         drop: function (event, ui) {
             $(this).append(ui.helper);
+            dropZone = $(event.target);
+            status = dropZone.attr('data-task-status');
+            task_id = $(ui.helper).attr('data-task-id');
+            project_id = $(ui.helper).attr('data-project-id');
+            updateTask("status_id", status, project_id, task_id);
         },
         accept: function (elem) {
             return !$(this).has(elem).length;
+        }
+    });
+
+    $(".add-attachment").droppable({
+        activeClass: "ui-state-hover",
+        hoverClass: "ui-state-active",
+        tolerance: "intersect",
+        greedy: true,
+        drop: function (event, ui) {
+            console.log($(event.target));
         }
     });
 
@@ -40,12 +55,12 @@ function initDashboard() {
     $(".task-item").dblclick(function () {
         task_id = $(this).attr('data-task-id');
         project_id = $(this).attr('data-project-id');
-        if(task_id == '' || project_id == '') {
+        if (task_id == '' || project_id == '') {
             popupMessage('internal error', 'error');
             return false;
         }
         $.ajax({
-            url: "/projects/"+project_id+"/tasks/"+task_id,
+            url: "/projects/" + project_id + "/tasks/" + task_id,
             type: 'get',
             success: function (res) {
                 $("#x-large-modal").modal('show');
@@ -53,4 +68,61 @@ function initDashboard() {
             }
         });
     });
+
+    $(document).on('change', '.file_upload', function (e) {
+        var ofile = this.files[0];
+        var formdata;
+        if (FormData) {
+            formdata = new FormData();
+            formdata.append("attachment[file]", ofile);
+        }
+        task_id = $(this).attr('data_task_id');
+        if(task_id == '') {
+            popupMessage("Error", 'error');
+        }
+        $.ajax({
+            url: "/tasks/"+task_id+"/attachments",
+            data: formdata,
+            type: 'POST',
+            success: function (res) {
+                $('#response').html(res);
+            },
+            error: function (xhr, rrr, error) {
+                alert(error);
+            },
+            processData: false,
+            contentType: false
+        });
+    });
+
+    var old_value = '', new_value ='';
+    $(document).on('click', '.task-description', function() {
+        old_value = $(this).text().trim();
+        $(this).addClass('editable-content');
+    });
+
+    $(document).on('blur', '.task-description', function() {
+        new_value = $(this).text().trim();
+        $(this).removeClass('editable-content');
+        if(old_value != new_value) {
+            task_id = $(".task-details").attr('data-task-id');
+            project_id = $(".task-item").first().attr('data-project-id');
+            updateTask('description', new_value, project_id, task_id);
+        }
+    });
+
+    function updateTask(field, value, project_id, task_id) {
+        $.ajax({
+            url: "/projects/" + project_id + "/tasks/" + task_id,
+            type: 'put',
+            data: {field: field, value: value},
+            dataType: 'script',
+            success: function() {
+                popupMessage("Update task status", 'info');
+            },
+            error: function() {
+                popupMessage("Error", 'error');
+            }
+        });
+    }
 }

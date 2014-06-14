@@ -1,4 +1,4 @@
-<div class="task-details">
+<div class="task-details" data-task-id="<%= @task.id %>">
   <ul class="nav nav-tabs task-detail-tab">
     <li class="active"><a href="#general" data-toggle="tab">General</a></li>
     <li><a href="#relation" data-toggle="tab">Relationship</a></li>
@@ -7,16 +7,25 @@
 
   <!-- Tab panes -->
   <div class="tab-content">
+    <div class="task-title">
+      <label class="label label-primary"> Task </label>
+      <div class="task-name inline"> <%= @task.title %> </div>
+    </div>
     <div class="tab-pane active task-details-content-left pull-left" id="general">
-      <div class="task-title">
-        <label class="label label-primary"> Task </label>
-        <div class="task-name inline"> <%= @task.title %> </div>
-      </div>
       <div class="task-description" contenteditable>
         <%= @task.description %>
       </div>
+      <div class="attachment-list">
+        <% @task.attachments.each do |attachment| %>
+            <% if attachment.file.present? %>
+               <%= render :partial => 'task_attachment', :locals => {:attachment => attachment} %>
+            <%end%>
+        <%end%>
+      </div>
       <div class="add-attachment">
-
+        <%= form_for(@attachment, :hrml => {:multipart => true}, :id => "myForm") do |f| %>
+            <%= f.file_field(:file, :class => 'file_upload', :data_task_id => @task.id) %>
+        <% end %>
       </div>
       <div id="comments">
         <ul class="comments-list reset-padding">
@@ -37,16 +46,33 @@
         <textarea style="" class="form-control jqte-test"></textarea>
       </div>
     </div>
-    <div class="tab-pane task-details-content-left pull-left" id="relation">...</div>
-    <div class="tab-pane task-details-content-left pull-left" id="history">...</div>
+
+    <!- Relation Tab content ->
+
+    <div class="tab-pane task-details-content-left pull-left" id="relation">
+
+    </div>
+
+    <!- History Tab content ->
+
+    <div class="tab-pane task-details-content-left pull-left" id="history">
+      <ul>
+         <% @task.histories.each do |history| %>
+           <%= render :partial => 'tasks/history_item', :locals => {:history => history} %>
+         <%end%>
+      </ul>
+    </div>
+
+    <!- Right side bar content ->
+
     <div class="pull-right task-details-content-right">
       <div class="task-info">
-        <div class="task-info-title"> Progress </div>
-          <div class="progressbar" style="margin: 4px;"></div>
+        <div class="task-info-title"> Progress</div>
+        <div class="progressbar" style="margin: 4px;"></div>
       </div>
 
       <div class="task-info">
-        <div class="task-info-title"> Information </div>
+        <div class="task-info-title"> Information</div>
         <ul>
           <li>
             <label class="info-label"> Owner </label>
@@ -71,13 +97,12 @@
   </div>
   <div class="clearfix"></div>
 </div>
-
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.jqte-test').jqte();
+  $(document).ready(function() {
+      $('.jqte-test').jqte();
 
-        $( ".progressbar" ).progressbar({
-            value: 50
-        });
-    });
+      $(".progressbar").progressbar({
+          value: 50
+      });
+  });
 </script>

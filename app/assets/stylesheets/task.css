@@ -17,7 +17,6 @@
 
 .task-details-content-right {
     width: 250px;
-    margin-top: 42px;
 }
 
 .task-details-content-right .task-info {
@@ -112,9 +111,36 @@
     border: 1px dotted #808080;
     border-radius: 2px;
     margin: 10px 0;
-    padding: 17px;
     width: 100%;
     cursor: pointer;
+}
+
+.add-attachment #attachment_file {
+    width: 100%;
+    height: 50px;
+    display: block;
+    margin: 0 !important;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.attachment-list {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.attachment-list .attachment-item {
+    border: 1px solid #A9A9A9;
+    display: inline-block;
+    height: 75px;
+    margin-right: 10px;
+    padding: 5px;
+    width: 100px;
+}
+
+.attachment-list .attachment-item img {
+    height: 100%;
+    width: 100%;
 }
 
 .progress-bar {
