@@ -7,6 +7,7 @@ class Task < ActiveRecord::Base
   after_create :create_history
   after_update :update_history
 
+  has_many :comments
   scope :backlog, -> {where(status_id: 1)}
   scope :todo, -> {where(status_id: 2)}
   scope :doing, -> {where(status_id: 3)}

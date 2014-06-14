@@ -22,8 +22,9 @@ class TasksController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @task = @project.tasks.find_by_id(params[:id])
     @attachment = @task.attachments.build();
+    @comments = @task.comments
     respond_to do |format|
-     format.html{render :layout => false}
+      format.html{render :layout => false}
     end
   end
 
@@ -40,11 +41,6 @@ class TasksController < ApplicationController
   private
   def task_params
     params.require(:task).permit(:title, :description, :priority, :effort, :status_id, :end_date, :position, :relation, :project_id)
-  end
-
-  def save_history
-    @history = current_user.histories.build(:task_id => params[:id], :context => params[:value])
-    @history.save()
   end
 
 end

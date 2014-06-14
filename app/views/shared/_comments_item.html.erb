@@ -1,9 +1,9 @@
 <div class="comments-item-wrapper">
   <div class="content-left pull-left">
-     <%= image_tag(current_user.image_url(:small_thumb)) %>
+     <%= image_tag(get_image(comment.user_id)) %>
   </div>
   <div class="content-right pull-left">
-    Comments content 1
+    <%= comment.comment %>
   </div>
   <div class="clearfix"></div>
 </div>

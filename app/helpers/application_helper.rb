@@ -23,4 +23,18 @@ module ApplicationHelper
     return current_user.email
   end
 
+  def get_image(user_id)
+    @user = User.find_by_id(user_id)
+    @user.image_url(:small_thumb)
+
+  end
+
+  def get_reply_div
+    content_tag :div, class:"write-reply" do
+      text_area_tag(:comment_reply,nil ,:class => 'reply_input') + # Note the + in this line
+        submit_tag(:Save, :class => 'btn')
+    end
+
+  end
+
 end

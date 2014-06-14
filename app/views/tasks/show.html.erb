@@ -9,41 +9,48 @@
   <div class="tab-content">
     <div class="task-title">
       <label class="label label-primary"> Task </label>
+
       <div class="task-name inline"> <%= @task.title %> </div>
     </div>
     <div class="tab-pane active task-details-content-left pull-left" id="general">
       <div class="task-description" contenteditable>
         <%= @task.description %>
       </div>
+
       <div class="attachment-list">
         <% @task.attachments.each do |attachment| %>
             <% if attachment.file.present? %>
-               <%= render :partial => 'task_attachment', :locals => {:attachment => attachment} %>
-            <%end%>
-        <%end%>
+                <%= render :partial => 'task_attachment', :locals => {:attachment => attachment} %>
+            <% end %>
+        <% end %>
       </div>
+
       <div class="add-attachment">
         <%= form_for(@attachment, :hrml => {:multipart => true}, :id => "myForm") do |f| %>
             <%= f.file_field(:file, :class => 'file_upload', :data_task_id => @task.id) %>
         <% end %>
       </div>
+
       <div id="comments">
+        <div>
+          <b> Comments </b>
+        </div>
         <ul class="comments-list reset-padding">
-          <li>
-            <%= render :partial => 'shared/comments_item' %>
-            <ul class="comments-list">
+          <% @comments.each do |comment| %>
               <li>
-                <%= render :partial => 'shared/comments_item' %>
+                <%= render :partial => 'shared/comments_item', :locals => {:comment => comment} %>
+                <div class="comments-reply" style="visibility: hidden">
+                  <%= link_to 'reply', 'javascript:void(0);', class: :reply, parent: comment.id %>
+                </div>
               </li>
-              <li>
-                <%= render :partial => 'shared/comments_item' %>
-              </li>
-            </ul>
-          </li>
+          <% end %>
         </ul>
       </div>
+
       <div id="write-comments">
         <textarea style="" class="form-control jqte-test"></textarea>
+        <button type="button" id="btncomment" class="btn btn-default pull-right"> Done </button>
+        <div class="clearfix"> </div>
       </div>
     </div>
 
@@ -57,9 +64,9 @@
 
     <div class="tab-pane task-details-content-left pull-left" id="history">
       <ul>
-         <% @task.histories.each do |history| %>
-           <%= render :partial => 'tasks/history_item', :locals => {:history => history} %>
-         <%end%>
+        <% @task.histories.each do |history| %>
+            <%= render :partial => 'tasks/history_item', :locals => {:history => history} %>
+        <% end %>
       </ul>
     </div>
 
@@ -79,8 +86,8 @@
             <span class="info-txt">:<%= current_user.name %> </span>
           </li>
           <li>
-             <label class="info-label"> Create date</label>
-             <span class="info-txt">:<%= @task.created_at %> </span>
+            <label class="info-label"> Create date</label>
+            <span class="info-txt">:<%= @task.created_at %> </span>
           </li>
           <li>
             <label class="info-label"> End date</label>
@@ -98,11 +105,62 @@
   <div class="clearfix"></div>
 </div>
 <script type="text/javascript">
-  $(document).ready(function() {
-      $('.jqte-test').jqte();
+    $(document).ready(function () {
+        $('.jqte-test').jqte();
 
-      $(".progressbar").progressbar({
-          value: 50
-      });
-  });
+        $(".progressbar").progressbar({
+            value: 50
+        });
+    });
+
+    $('#btncomment').click(function () {
+
+        comment = $("textarea").val();
+        $.ajax({
+            type: 'POST',
+            url: "<%= task_comments_path(@task.id) %>",
+            dataType: 'script',
+            data: { comment: comment},
+            success: function (res) {
+
+            },
+            error: function (e) {
+
+            }
+        });
+    });
+    $(".comments-list li").mouseover(function () {
+
+        $(this).find(".comments-reply").css('visibility', 'visible');
+
+    });
+
+    $(".comments-list li").mouseout(function () {
+
+        $(".comments-reply").css('visibility', 'hidden');
+
+    });
+
+    $(".reply").click(function () {
+        parent = $(this).attr("parent");
+        $(".write-reply").remove();
+        $(this).before("<%= escape_javascript( get_reply_div )%>");
+        $(".btn").click(function () {
+            reply = $(".reply_input").val();
+            alert(reply);
+            $.ajax({
+                type: 'POST',
+                url: "<%= task_comments_path(@task.id) %>",
+                dataType: 'script',
+                data: { comment: reply, parent: parent},
+                success: function (res) {
+
+                },
+                error: function (e) {
+
+                }
+            });
+        })
+    });
+
 </script>
