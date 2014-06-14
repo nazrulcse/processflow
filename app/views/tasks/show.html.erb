@@ -4,7 +4,7 @@
     <li><a href="#relation" data-toggle="tab">Relationship</a></li>
     <li><a href="#history" data-toggle="tab">History</a></li>
   </ul>
-  
+
   <!-- Tab panes -->
   <div class="tab-content">
     <div class="task-title">
@@ -76,21 +76,24 @@
         <div class="panel-heading">
          <h3  class="panel-title"> Progress</h3>
         </div>
-        <div class="progressbar" style="margin-top: 10px;">
-        </div>
         <div class="panel-body">
-          <li>
-            <label class="info-label"> Effort </label>
-            <span class="info-txt"><%= @task.effort %> h </span>
-          </li>
-          <li>
-            <label class="info-label"> Spend </label>
-            <span class="info-txt"><%= @task.spend %> h </span>
-          </li>
-          <li>
-            <label class="info-label"> Remaining </label>
-            <span class="info-txt"><%= remaining(@task) %> h </span>
-          </li>
+          <ul>
+              <li>
+                <div class="progressbar" style="margin-bottom: 10px;"> </div>
+              </li>
+              <li>
+                <label class="info-label"> Effort </label>
+                <span class="info-txt"><%= @task.effort %> h </span>
+              </li>
+              <li>
+                <label class="info-label"> Spend </label>
+                <span class="info-txt"><%= @task.spend %> h </span>
+              </li>
+              <li>
+                <label class="info-label"> Remaining </label>
+                <span class="info-txt"><%= remaining(@task) %> h </span>
+              </li>
+          </ul>
         </div>
       </div>
 
