@@ -6,7 +6,7 @@
 }
 
 #dashboard .task-content-wrapper {
-    background: none repeat scroll 0 0 #EEEEEE;
+    #background: none repeat scroll 0 0 #EEEEEE;
     border-radius: 0 0 4px 4px;
     box-shadow: 0 1px 5px #CCCCCC;
     overflow: auto;

@@ -1,12 +1,43 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <ul class="nav navbar-nav">
     <li class="profile">
-      <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar img-circle') if current_user.image? %> <b> <%= current_user.name %> </b>
+      <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar img-circle') if current_user.image? %>
+      <b> <%= current_user.name %> </b>
     </li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
+    <li>
+      <a data-toggle="dropdown" href="#" class="notification-menu dropdown-toggle">
+        <span> 42 </span>
+      </a>
+      <ul role="menu" class="dropdown-menu notification-list" aria-labelledby="dLabel">
+        <li style="padding: 5px; text-align: center;"> Project Notification</li>
+        <% if (action_name == "dashboard") %>
+            <% History.notification(params[:id]).each do |notification| %>
+                <li>
+                  <a href="#">
+                    <div class="pull-left">
+                      <div class=" notification-image">
+                        <%= image_tag(notification.user.image_url(:small_thumb)) %>
+                      </div>
+                    </div>
+                    <div class="pull-left">
+                      <div class="notification-content">
+                        <%= notification.context %>
+                      </div>
+                      <span class="notification-time"> <%= notification.created_at %> </span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </a>
+                </li>
+            <% end %>
+        <% end %>
+        <li style="padding: 2px; text-align: center;"> No Notification </li>
+      </ul>
+    </li>
     <li class="dropdown">
-      <a data-toggle="dropdown" class="dropdown-toggle settings-dropdown" href="#"> <img src="/assets/settings.png"> </a>
+      <a data-toggle="dropdown" class="dropdown-toggle settings-dropdown" href="#"> <img src="/assets/settings.png">
+      </a>
       <ul role="menu" class="dropdown-menu" aria-labelledby="dLabel">
 
         <li><%= link_to "Account", profile_path, :method => :get %></li>
