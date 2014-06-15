@@ -111,6 +111,43 @@ function initDashboard() {
         }
     });
 
+    /* Edit task effort value */
+
+    $(document).on('click', ".task-priority", function() {
+        $(".priority-dropdown").toggle();
+    });
+
+    $(document).on("blur", ".progress-effort, .progress-spend", function() {
+        var progress = $(this).text().trim();
+        var field = $(this).attr('data-task-field').trim();
+        task_id = $(".task-details").attr('data-task-id');
+        project_id = $(".task-item").first().attr('data-project-id');
+        updateTask(field, progress, project_id, task_id);
+    });
+
+    $(document).on("keypress", ".progress-effort, .progress-spend", function(e) {
+        if(e.which == 13) {
+            return false;
+        }
+    });
+
+    $(document).on('click', '.change-priority', function() {
+        task_id = $(".task-details").attr('data-task-id');
+        project_id = $(".task-item").first().attr('data-project-id');
+        field = $(this).attr('data-task-field');
+        var priority = $(this).attr('data-value');
+        new_priority = "/assets/task_"+priority.toLowerCase()+".png";
+        $(this).parents('ul').prev().find('img').attr('src', new_priority);
+        updateTask(field, priority, project_id, task_id);
+        $(".priority-dropdown").hide();
+    });
+
+
+    $(document).on('click', ".assigned-people", function() {
+       $('.unassigned-pophover').toggle();
+    })
+
+
     function updateTask(field, value, project_id, task_id) {
         $.ajax({
             url: "/projects/" + project_id + "/tasks/" + task_id,
