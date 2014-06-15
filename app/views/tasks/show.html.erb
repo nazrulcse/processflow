@@ -4,7 +4,7 @@
     <li><a href="#relation" data-toggle="tab">Relationship</a></li>
     <li><a href="#history" data-toggle="tab">History</a></li>
   </ul>
-  
+
   <!-- Tab panes -->
   <div class="tab-content">
     <div class="task-title">
@@ -48,10 +48,10 @@
 
       <div id="write-comments" style="margin-bottom: 10px;">
         <textarea style="" class="form-control jqte-test"></textarea>
-        <button type="button" id="btncomment" class="btn btn-default pull-right"> Done </button>
-        <div class="clearfix"> </div>
+        <button type="button" id="btncomment" class="btn btn-default pull-right"> Done</button>
+        <div class="clearfix"></div>
       </div>
-   </div>
+    </div>
 
     <!- Relation Tab content ->
 
@@ -74,23 +74,26 @@
     <div class="pull-right task-details-content-right">
       <div class="panel panel-default progress-info">
         <div class="panel-heading">
-         <h3  class="panel-title"> Progress</h3>
-        </div>
-        <div class="progressbar" style="margin-top: 10px;">
+          <h3 class="panel-title"> Progress</h3>
         </div>
         <div class="panel-body">
-          <li>
-            <label class="info-label"> Effort </label>
-            <span class="info-txt"><%= @task.effort %> h </span>
-          </li>
-          <li>
-            <label class="info-label"> Spend </label>
-            <span class="info-txt"><%= @task.spend %> h </span>
-          </li>
-          <li>
-            <label class="info-label"> Remaining </label>
-            <span class="info-txt"><%#= (@task.effort - @task.spend) %> h </span>
-          </li>
+          <ul>
+            <li>
+              <div class="progressbar" style="margin-bottom: 10px;"></div>
+            </li>
+            <li>
+              <label class="info-label"> Effort </label>
+              <div class="info-txt progress-effort" contenteditable data-task-field="effort"><%= @task.effort %></div> h
+            </li>
+            <li>
+              <label class="info-label"> Spend </label>
+              <div class="info-txt progress-spend" data-task-field="spend" contenteditable><%= @task.spend %></div> h
+            </li>
+            <li>
+              <label class="info-label"> Remaining </label>
+              <span class="info-txt progress-remaining"><%= remaining_effort(@task).round(2) %></span> h
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -99,29 +102,52 @@
           <h3 class="panel-title">Information</h3>
         </div>
         <div class="panel-body">
-        <ul>
-          <li>
-            <label class="info-label"> Owner </label>
-            <span class="info-txt"><%= current_user.name %> </span>
-          </li>
-          <li>
-             <label class="info-label"> Create date</label>
-             <span class="info-txt"><%= @task.created_at %> </span>
-          </li>
-          <li>
-            <label class="info-label"> End date</label>
-            <span class="info-txt"><%= @task.end_date %> </span>
-          </li>
-          <li>
-            <label class="info-label"> Priority </label>
-            <span class="info-txt">
-              <%= image_tag("task_#{@task.priority.downcase}.png", :title => 'Priority') %>
-            </span>
-          </li>
-          <li>
-            <label> Assigned People</label>
-          </li>
-        </ul>
+          <ul>
+            <li>
+              <label class="info-label"> Owner </label>
+              <span class="info-txt"><%= current_user.name %> </span>
+            </li>
+            <li>
+              <label class="info-label"> Create date</label>
+              <span class="info-txt"><%= @task.created_at %> </span>
+            </li>
+            <li>
+              <label class="info-label"> End date</label>
+              <span class="info-txt"><%= @task.end_date %> </span>
+            </li>
+            <li class="priority-list">
+              <label class="info-label"> Priority </label>
+                 <span class="info-txt task-priority">
+                       <%= image_tag("task_#{@task.priority.downcase}.png", :title => 'Priority') %>
+                 </span>
+                 <ul class="dropdown-menu priority-dropdown">
+                    <li class="reset-padding">
+                      <a href="javascript:void(0)" class="change-priority" data-task-field="priority" data-value="Low">Low</a>
+                    </li>
+                    <li class="reset-padding">
+                      <a href="javascript:void(0)" class="change-priority" data-task-field="priority" data-value="Medium">Medium</a></li>
+                    <li class="reset-padding">
+                      <a href="javascript:void(0)" class="change-priority" data-task-field="priority" data-value="High">High</a>
+                    </li>
+                 </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"> Assigned People</h3>
+        </div>
+        <div class="panel-body assign-people">
+          <% @task.project.users.each do |user| %>
+           <span class="assigned-people">
+             <%= image_tag(user.image_url(:small_thumb), :class => 'nav-avatar') %>
+           </span>
+          <%end%>
+          <div class="unassigned-pophover">
+            <a href="javascript:void(0);" data-assigned-id=""> Unassigned </a>
+          </div>
         </div>
       </div>
     </div>

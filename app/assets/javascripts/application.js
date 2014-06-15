@@ -23,17 +23,25 @@ $(window).bind('page:change', function () {
     initPage();
     return false;
 });
+
 function initPage() {
     $('.dropdown-toggle').dropdown();
     $(document).tooltip({
         track: true
     });
+//
+//    $(document).click(function() {
+//        alert($('.unassigned-pophover').length);
+//        if($('.unassigned-pophover').length > 0 || $('.priority-dropdown').length > 0) {
+//          $('.unassigned-pophover, .priority-dropdown').hide();
+//        }
+//    });
 }
 
 function popupMessage(message, klass) {
     $('#message-modal .modal-body').html(message).addClass(klass);
     $('#message-modal').modal('show');
-    $(".modal-backdrop").hide();
+    //$(".modal-backdrop").hide();
     setTimeout(function () {
         $('#message-modal').modal('hide');
     }, 4000);

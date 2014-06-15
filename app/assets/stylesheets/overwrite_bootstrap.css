@@ -23,6 +23,10 @@
     width: auto !important;
 }
 
+#message-modal {
+    z-index: 1200;
+}
+
 #message-modal .modal-sm {
     width: 425px !important;
 }
@@ -61,6 +65,10 @@ body.modal-open {
 
 .ui-progressbar .ui-progressbar-value {
     margin: 0 !important;
+}
+
+.ui-progressbar {
+  height: 23px !important;
 }
 
 .comments-reply.btn-group a.btn {
