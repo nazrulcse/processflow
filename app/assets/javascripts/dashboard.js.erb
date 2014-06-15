@@ -205,7 +205,7 @@ function initDashboard() {
         reply_context =$(".reply_input").val();
         parent_comments = $(this).parent('.comments-item-wrapper').attr('id');
         task_id = $(this).attr('data-task-id');
-        if (reply != "")
+        if (reply_context != "")
         {
             $.ajax({
                 type: 'POST',
@@ -226,20 +226,22 @@ function initDashboard() {
         comments_id =  $(this).attr("data-comments-id");
         task_id =  $(this).attr("data-task-id");
         reply =$(".edit_input").val();
+
         if (reply != "")
         {
-            $.ajax({
-                type: 'PUT',
-                url: '/tasks/'+task_id+'/comments/'+comments_id+'/',
-                dataType: 'script',
-                data: { comment: reply, parent:  parent},
-                success: function (res) {
-
-                },
-                error: function (e) {
-
-                }
-            });
+            alert("test");
+//            $.ajax({
+//                type: 'PUT',
+//                url:'/tasks/'+task_id+'/comments/'+comments_id,
+//                dataType: 'script',
+//                data: { comment: reply, parent:  parent},
+//                success: function (res) {
+//
+//                },
+//                error: function (e) {
+//
+//                }
+//            });
         }
     });
 }
