@@ -1,4 +1,5 @@
 <% if @comment %>
 $(".comments-list").append("<li> <%= escape_javascript(render :partial => 'shared/comments_item', :locals => {:comment => @comment}).html_safe %> </li>");
 $(".jqte_editor").text('');
+$(".reply-wrapper").remove();
 <% end %>

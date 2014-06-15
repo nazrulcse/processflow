@@ -112,3 +112,23 @@
     width: 20px;
     height: 20px;
 }
+
+/* History item design */
+
+#history {
+    border-right: solid 1px #DFDFDF;
+}
+
+#history ul li:nth-child(odd) {
+    padding: 3px 0;
+}
+
+#history ul li:nth-child(even) {
+    padding: 3px 10px 3px 25px;
+    background: none repeat scroll 0 0 #f2f5f7;
+    border-radius: 4px;
+}
+
+#history ul li:nth-child(even) b {
+    display: block;
+}

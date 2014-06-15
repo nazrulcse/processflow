@@ -21,11 +21,21 @@ class TasksController < ApplicationController
   def show
     @project = Project.find_by_id(params[:project_id])
     @task = @project.tasks.find_by_id(params[:id])
-    @task = Task.find_by_id(params[:id])
-    @comments = @task.comments.all
-   respond_to do |format|
-     format.html{render :layout => false}
-   end
+    @attachment = @task.attachments.build();
+    @comments = @task.comments
+    respond_to do |format|
+      format.html{render :layout => false}
+    end
+  end
+
+  def update
+    @project = current_user.projects.find_by_id(params[:project_id])
+    @task = @project.tasks.find_by_id(params[:id])
+    respond_to do |format|
+      if(@task.update_attributes(params[:field] => params[:value]))
+        format.js{render :layout => false}
+      end
+    end
   end
 
   private

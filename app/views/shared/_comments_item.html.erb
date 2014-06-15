@@ -6,10 +6,10 @@
     <%= comment.comment %>
   </div>
   <div class="clearfix"></div>
-  <div class="comments-reply" style="visibility: hidden;">
-    <%=   link_to 'reply', 'javascript:void(0);', class: :reply , parent: comment.id %>
-    <%=   link_to 'delete', 'javascript:void(0);',
-                  method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete glyphicon glyphicon-trash" ,task_id: comment.task_id, id: comment.id %>
-    <%=   link_to 'edit', 'javascript:void(0);', class: :edit , parent: comment.id %>
+  <div class="comments-reply btn-group" style="visibility: hidden;">
+    <%= link_to '', 'javascript:void(0);', :class => "reply glyphicon glyphicon-share-alt btn btn-primary"  , parent: comment.id %>
+    <%= link_to '', 'javascript:void(0);',
+                  method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete glyphicon glyphicon-trash btn btn-danger" ,task_id: comment.task_id, id: comment.id %>
+    <%= link_to '', 'javascript:void(0);',:class => "edit glyphicon glyphicon-pencil btn btn-default" ,task_id: comment.task_id, id: comment.id %>
   </div>
 </div>

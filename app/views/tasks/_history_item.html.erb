@@ -1,0 +1,8 @@
+<li>
+  <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar img-circle') if current_user.image? %> <%= history.user.name %>
+</li>
+<li>
+  <b> <%= history.context %> </b>
+  <label class="label-success label pull-right"> <%= history.created_at %> </label>
+  <div class="clearfix"></div>
+</li>

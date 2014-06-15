@@ -59,3 +59,10 @@ body.modal-open {
     top: -23px;
 }
 
+.ui-progressbar .ui-progressbar-value {
+    margin: 0 !important;
+}
+
+.comments-reply.btn-group a.btn {
+    padding: 4px 8px;
+}
