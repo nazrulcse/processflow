@@ -23,6 +23,10 @@
     width: auto !important;
 }
 
+#message-modal {
+    z-index: 1200;
+}
+
 #message-modal .modal-sm {
     width: 425px !important;
 }
