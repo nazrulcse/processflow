@@ -23,6 +23,8 @@ class Task < ActiveRecord::Base
       context = "Changed task status to: #{self.status.detail}"
     elsif(self.description_changed?)
       context = "Changed task description to: #{self.description}"
+    elsif(self.priority_changed?)
+      context = "Changed task priority to: #{self.priority}"
     end
     History.create(:task_id => self.id, :user_id => self.project.owner_id, :context => context)
   end

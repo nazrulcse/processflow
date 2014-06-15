@@ -38,9 +38,6 @@
           <% @comments.each do |comment| %>
               <li>
                 <%= render :partial => 'shared/comments_item', :locals => {:comment => comment} %>
-                <!--<div class="comments-reply" style="visibility: hidden">-->
-                  <!--<%#=   link_to 'reply', 'javascript:void(0);', class: :reply , parent: comment.id %>-->
-                <!--</div>-->
               </li>
           <% end %>
         </ul>
@@ -48,7 +45,7 @@
 
       <div id="write-comments" style="margin-bottom: 10px;">
         <textarea style="" class="form-control jqte-test"></textarea>
-        <button type="button" id="btncomment" class="btn btn-default pull-right"> Done</button>
+        <button type="button" id="btncomment" data-task-id="<%= @task.id %>" class="btn btn-default pull-right"> Done</button>
         <div class="clearfix"></div>
       </div>
     </div>
@@ -165,108 +162,23 @@
         });
     });
 
-    $('#btncomment').click(function () {
-        comment = $("textarea").val();
-        if (comment != "")
-        {
-            $.ajax({
-                type: 'POST',
-                url: "<%= task_comments_path(@task.id) %>",
-                dataType: 'script',
-                data: { comment: comment},
-                success: function (res) {
-
-                },
-                error: function (e) {
-
-                }
-            });
-        }
-
-    });
-    $(document).on("mouseover",".comments-list li",function(){
-
-        $(this).find(".comments-reply").css('visibility','visible');
-
+    $(document).on("mouseover", ".comments-list li",function(){
+        $(this).find(".comments-reply").removeClass('hidden');
     });
 
-    $(document).on("mouseout",".comments-list li",function(){
-        $(this).find(".comments-reply ").css('visibility','hidden');
-
+    $(document).on("mouseout", ".comments-list li",function(){
+        $(".comments-reply").addClass('hidden');
     });
 
-        $(document).on("click",".reply",function(){
-            parent =  $(this).attr("parent");
-            $(".reply-wrapper").remove();
-            $(".edit-wrapper").remove();
-            $(this).parent().before("<%= escape_javascript(render :partial => 'shared/reply' )%>");
-            $(".btn").click(function(){
-                reply =$(".reply_input").val();
-                if (reply != "")
-                {
-                    $.ajax({
-                        type: 'POST',
-                        url: "<%= task_comments_path(@task.id) %>",
-                        dataType: 'script',
-                        data: { comment: reply, parent:  parent},
-                        success: function (res) {
-
-                        },
-                        error: function (e) {
-
-                        }
-                    });
-                }
-
-
-            })
-        });
-
-    $(document).on("click",".edit",function(){
-        parent =  $(this).attr("parent");
-        edit_id =  $(this).attr("id");
-        task_id =  $(this).attr("task_id");
-        $(".edit-wrapper").remove();
-        $(".reply-wrapper").remove();
-        $(this).parent().before("<%= escape_javascript(render :partial => 'shared/edit' )%>");
-        $("#editbtn").click(function(){
-            reply =$(".edit_input").val();
-            if (reply != "")
-            {
-                $.ajax({
-                    type: 'PUT',
-                    url: '/tasks/'+task_id+'/comments/'+edit_id+'/',
-                    dataType: 'script',
-                    data: { comment: reply, parent:  parent},
-                    success: function (res) {
-
-                    },
-                    error: function (e) {
-
-                    }
-                });
-            }
-
-
-        })
-    });
-    $(document).on("click",".delete",function(){
-        id =  $(this).attr("id");
-        task_id =  $(this).attr("task_id");
-                $.ajax({
-                    type: 'DELETE',
-                    url: '/tasks/'+task_id+'/comments/'+id+'',
-                    dataType: 'script',
-                    data: { task_id: task_id , id:  id},
-                    success: function (res) {
-
-                    },
-                    error: function (e) {
-
-                    }
-                });
-
+    $(document).off("click", ".reply").on("click", ".reply", function() {
+        $(".reply-wrapper, .edit-wrapper").remove();
+        $(this).parent().before("<%= escape_javascript(render :partial => 'shared/reply', :locals => {:task => @task} )%>");
     });
 
-
+    $(document).off("click", ".edit").on("click", ".edit", function() {
+        $(".edit-wrapper, .reply-wrapper").remove();
+        $(this).parent().before("<%= escape_javascript(render :partial => 'shared/edit', :locals => {:task => @task})%>");
+        comments_id = $(this).attr('id');
+        $("#editbtn").attr('data-comments-id', comments_id);
+    });
 </script>

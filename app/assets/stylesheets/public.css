@@ -53,3 +53,11 @@ form {
 .reset-padding {
     padding: 0 !important;
 }
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}

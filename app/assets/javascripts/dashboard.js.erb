@@ -162,4 +162,84 @@ function initDashboard() {
             }
         });
     }
+
+    /* Comments and reply section */
+
+    $(document).on('click', '#btncomment', function () {
+        comment = $("textarea").val();
+        task_id = $(this).attr('data-task-id');
+        if (comment != "")
+        {
+            $.ajax({
+                type: 'POST',
+                url: "/tasks/"+task_id+"/comments",
+                dataType: 'script',
+                data: { comment: comment},
+                success: function (res) {
+
+                },
+                error: function (e) {
+
+                }
+            });
+        }
+    });
+
+    $(document).on("click", ".delete", function() {
+        id = $(this).attr("id");
+        task_id =  $(this).attr("task_id");
+        $.ajax({
+            type: 'DELETE',
+            url: '/tasks/'+task_id+'/comments/'+id+'',
+            dataType: 'script',
+            success: function (res) {
+
+            },
+            error: function (e) {
+
+            }
+        });
+    });
+
+    $(document).on('click', "#save-reply", function(){
+        reply_context =$(".reply_input").val();
+        parent_comments = $(this).parent('.comments-item-wrapper').attr('id');
+        task_id = $(this).attr('data-task-id');
+        if (reply != "")
+        {
+            $.ajax({
+                type: 'POST',
+                url: "/tasks/"+task_id+"/comments",
+                dataType: 'script',
+                data: { comment: reply_context, parent:  parent_comments},
+                success: function (res) {
+
+                },
+                error: function (e) {
+
+                }
+            });
+        }
+    });
+
+    $(document).on('click', '#editbtn', function() {
+        comments_id =  $(this).attr("data-comments-id");
+        task_id =  $(this).attr("data-task-id");
+        reply =$(".edit_input").val();
+        if (reply != "")
+        {
+            $.ajax({
+                type: 'PUT',
+                url: '/tasks/'+task_id+'/comments/'+comments_id+'/',
+                dataType: 'script',
+                data: { comment: reply, parent:  parent},
+                success: function (res) {
+
+                },
+                error: function (e) {
+
+                }
+            });
+        }
+    });
 }
