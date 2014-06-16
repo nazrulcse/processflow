@@ -179,6 +179,8 @@
         $(".edit-wrapper, .reply-wrapper").remove();
         $(this).parent().before("<%= escape_javascript(render :partial => 'shared/edit', :locals => {:task => @task})%>");
         comments_id = $(this).attr('id');
+        edit_context = $(this).parents('.comments-item-wrapper').find('.content-right').html();
+        $(this).parents('.comments-item-wrapper').find('.jqte_editor').html(edit_context);
         $("#editbtn").attr('data-comments-id', comments_id);
     });
 </script>
