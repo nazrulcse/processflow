@@ -151,6 +151,8 @@ ul.notification-list:before {
 ul.notification-list {
   padding: 0 !important;
   width: 350px;
+  height: 450px;
+  overflow: hidden;
 }
 
 ul.notification-list .notification-image {

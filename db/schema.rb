@@ -11,7 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601172415) do
+ActiveRecord::Schema.define(version: 20140614071859) do
+
+  create_table "attachments", force: true do |t|
+    t.string   "file"
+    t.integer  "task_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", force: true do |t|
+    t.string   "comment"
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.integer  "parent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "histories", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.text     "context"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invites", force: true do |t|
+    t.string   "email"
+    t.integer  "project_id"
+    t.string   "token"
+    t.date     "exp_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -19,6 +52,42 @@ ActiveRecord::Schema.define(version: 20140601172415) do
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "owner_id"
+  end
+
+  create_table "projects_users", force: true do |t|
+    t.integer "project_id"
+    t.integer "user_id"
+  end
+
+  create_table "settings", force: true do |t|
+    t.integer  "user_id"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statuses", force: true do |t|
+    t.string   "detail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "priority"
+    t.float    "effort"
+    t.integer  "status_id"
+    t.datetime "end_date"
+    t.integer  "position"
+    t.integer  "relation"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "spend"
   end
 
   create_table "teams", force: true do |t|

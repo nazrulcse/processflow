@@ -39,6 +39,8 @@ function initDashboard() {
         }
     });
 
+    $(".notification-list").perfectScrollbar();
+
     $(".project-title").click(function () {
         id = $(this).attr('data-id');
         $.ajax({
@@ -77,11 +79,11 @@ function initDashboard() {
             formdata.append("attachment[file]", ofile);
         }
         task_id = $(this).attr('data_task_id');
-        if(task_id == '') {
+        if (task_id == '') {
             popupMessage("Error", 'error');
         }
         $.ajax({
-            url: "/tasks/"+task_id+"/attachments",
+            url: "/tasks/" + task_id + "/attachments",
             data: formdata,
             type: 'POST',
             success: function (res) {
@@ -95,16 +97,16 @@ function initDashboard() {
         });
     });
 
-    var old_value = '', new_value ='';
-    $(document).on('click', '.task-description', function() {
+    var old_value = '', new_value = '';
+    $(document).on('click', '.task-description', function () {
         old_value = $(this).text().trim();
         $(this).addClass('editable-content');
     });
 
-    $(document).on('blur', '.task-description', function() {
+    $(document).on('blur', '.task-description', function () {
         new_value = $(this).text().trim();
         $(this).removeClass('editable-content');
-        if(old_value != new_value) {
+        if (old_value != new_value) {
             task_id = $(".task-details").attr('data-task-id');
             project_id = $(".task-item").first().attr('data-project-id');
             updateTask('description', new_value, project_id, task_id);
@@ -113,11 +115,11 @@ function initDashboard() {
 
     /* Edit task effort value */
 
-    $(document).on('click', ".task-priority", function() {
+    $(document).on('click', ".task-priority", function () {
         $(".priority-dropdown").toggle();
     });
 
-    $(document).on("blur", ".progress-effort, .progress-spend", function() {
+    $(document).on("blur", ".progress-effort, .progress-spend", function () {
         var progress = $(this).text().trim();
         var field = $(this).attr('data-task-field').trim();
         task_id = $(".task-details").attr('data-task-id');
@@ -125,26 +127,26 @@ function initDashboard() {
         updateTask(field, progress, project_id, task_id);
     });
 
-    $(document).on("keypress", ".progress-effort, .progress-spend", function(e) {
-        if(e.which == 13) {
+    $(document).on("keypress", ".progress-effort, .progress-spend", function (e) {
+        if (e.which == 13) {
             return false;
         }
     });
 
-    $(document).on('click', '.change-priority', function() {
+    $(document).on('click', '.change-priority', function () {
         task_id = $(".task-details").attr('data-task-id');
         project_id = $(".task-item").first().attr('data-project-id');
         field = $(this).attr('data-task-field');
         var priority = $(this).attr('data-value');
-        new_priority = "/assets/task_"+priority.toLowerCase()+".png";
+        new_priority = "/assets/task_" + priority.toLowerCase() + ".png";
         $(this).parents('ul').prev().find('img').attr('src', new_priority);
         updateTask(field, priority, project_id, task_id);
         $(".priority-dropdown").hide();
     });
 
 
-    $(document).on('click', ".assigned-people", function() {
-       $('.unassigned-pophover').toggle();
+    $(document).on('click', ".assigned-people", function () {
+        $('.unassigned-pophover').toggle();
     })
 
 
@@ -161,10 +163,10 @@ function initDashboard() {
             type: 'put',
             data: {field: field, value: value},
             dataType: 'script',
-            success: function() {
+            success: function () {
                 popupMessage("Update task status", 'info');
             },
-            error: function() {
+            error: function () {
                 popupMessage("Error", 'error');
             }
         });
@@ -172,14 +174,13 @@ function initDashboard() {
 
     /* Comments and reply section */
 
-    $(document).on('click', '#btncomment', function () {
+    $(document).off('click', '#btncomment').on('click', '#btncomment', function () {
         comment = $("textarea").val();
         task_id = $(this).attr('data-task-id');
-        if (comment != "")
-        {
+        if (comment != "") {
             $.ajax({
                 type: 'POST',
-                url: "/tasks/"+task_id+"/comments",
+                url: "/tasks/" + task_id + "/comments",
                 dataType: 'script',
                 data: { comment: comment},
                 success: function (res) {
@@ -192,12 +193,12 @@ function initDashboard() {
         }
     });
 
-    $(document).on("click", ".delete", function() {
+    $(document).on("click", ".delete", function () {
         id = $(this).attr("id");
-        task_id =  $(this).attr("task_id");
+        task_id = $(this).attr("task_id");
         $.ajax({
             type: 'DELETE',
-            url: '/tasks/'+task_id+'/comments/'+id+'',
+            url: '/tasks/' + task_id + '/comments/' + id + '',
             dataType: 'script',
             success: function (res) {
 
@@ -208,17 +209,16 @@ function initDashboard() {
         });
     });
 
-    $(document).on('click', "#save-reply", function(){
-        reply_context =$(".reply_input").val();
+    $(document).off('click', "#save-reply").on('click', "#save-reply", function () {
+        reply_context = $(".jqte_editor").text();
         parent_comments = $(this).parent('.comments-item-wrapper').attr('id');
         task_id = $(this).attr('data-task-id');
-        if (reply_context != "")
-        {
+        if (reply_context != "") {
             $.ajax({
                 type: 'POST',
-                url: "/tasks/"+task_id+"/comments",
+                url: "/tasks/" + task_id + "/comments",
                 dataType: 'script',
-                data: { comment: reply_context, parent:  parent_comments},
+                data: { comment: reply_context, parent: parent_comments},
                 success: function (res) {
 
                 },
@@ -229,26 +229,23 @@ function initDashboard() {
         }
     });
 
-    $(document).on('click', '#editbtn', function() {
-        comments_id =  $(this).attr("data-comments-id");
-        task_id =  $(this).attr("data-task-id");
-        reply =$(".edit_input").val();
+    $(document).off('click', '#editbtn').on('click', '#editbtn', function () {
+        comments_id = $(this).attr("data-comments-id");
+        task_id = $(this).attr("data-task-id");
+        edit_context = $(".jqte_editor").text();
+        if (edit_context != "") {
+            $.ajax({
+                url: "/tasks/" + task_id + "/comments/" + comments_id,
+                type: 'PUT',
+                dataType: 'script',
+                data: { comment: edit_context},
+                success: function (res) {
 
-        if (reply != "")
-        {
-            alert("test");
-//            $.ajax({
-//                type: 'PUT',
-//                url:'/tasks/'+task_id+'/comments/'+comments_id,
-//                dataType: 'script',
-//                data: { comment: reply, parent:  parent},
-//                success: function (res) {
-//
-//                },
-//                error: function (e) {
-//
-//                }
-//            });
+                },
+                error: function (e) {
+
+                }
+            });
         }
     });
 }
