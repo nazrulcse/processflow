@@ -241,4 +241,15 @@ function initDashboard() {
             });
         }
     });
+
+    $(document).off('click', '#canceleditbtn').on('click', '#canceleditbtn', function () {
+
+        $(".edit-wrapper").remove();
+    });
+
+    $(document).off('click', '#cancel-reply').on('click', '#cancel-reply', function () {
+
+        $(".reply-wrapper").remove();
+    });
+
 }

@@ -173,6 +173,7 @@
     $(document).off("click", ".reply").on("click", ".reply", function() {
         $(".reply-wrapper, .edit-wrapper").remove();
         $(this).parent().before("<%= escape_javascript(render :partial => 'shared/reply', :locals => {:task => @task} )%>");
+        $(this).parents('.comments-item-wrapper').find('.jqte_editor').focus();
     });
 
     $(document).off("click", ".edit").on("click", ".edit", function() {
@@ -181,6 +182,7 @@
         comments_id = $(this).attr('id');
         edit_context = $(this).parents('.comments-item-wrapper').find('.content-right').html();
         $(this).parents('.comments-item-wrapper').find('.jqte_editor').html(edit_context);
+        $(this).parents('.comments-item-wrapper').find('.jqte_editor').focus();
         $("#editbtn").attr('data-comments-id', comments_id);
     });
 </script>
