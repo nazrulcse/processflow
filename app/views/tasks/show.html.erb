@@ -137,13 +137,16 @@
           <h3 class="panel-title"> Assigned People</h3>
         </div>
         <div class="panel-body assign-people">
-          <% @task.project.users.each do |user| %>
+          <% @task.users.each do |user| %>
            <span class="assigned-people">
-             <%= image_tag(user.image_url(:small_thumb), :class => 'nav-avatar') %>
+             <%= image_tag(user.image.present? ? user.image_url(:small_thumb) : 'default_user_icon.png', :class => 'nav-avatar') %>
            </span>
           <%end%>
+          <span class="assigned-new-people">
+             <%= image_tag("new_project_icon.png",:class => 'nav-avatar') %>
+          </span>
           <div class="unassigned-pophover">
-            <a href="javascript:void(0);" data-assigned-id=""> Unassigned </a>
+            <a href="javascript:void(0);"  class="unassigned-people" data-assigned-id=""> Unassigned </a>
           </div>
         </div>
       </div>

@@ -148,6 +148,13 @@ function initDashboard() {
     })
 
 
+    $(document).on("click",".unassigned-people",function(){
+        task_id = $(".task-details").attr('data-task-id');
+
+        $('.unassigned-pophover').hide();
+    });
+
+
     function updateTask(field, value, project_id, task_id) {
         $.ajax({
             url: "/projects/" + project_id + "/tasks/" + task_id,
