@@ -36,9 +36,7 @@
         </div>
         <ul class="comments-list reset-padding">
           <% @comments.each do |comment| %>
-              <li>
-                <%= render :partial => 'shared/comments_item', :locals => {:comment => comment} %>
-              </li>
+                <%= comments_replies comment %>
           <% end %>
         </ul>
       </div>

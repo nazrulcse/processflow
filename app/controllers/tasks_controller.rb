@@ -22,7 +22,7 @@ class TasksController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @task = @project.tasks.find_by_id(params[:id])
     @attachment = @task.attachments.build();
-    @comments = @task.comments
+    @comments = @task.comments.where('comments.parent IS NULL')
     respond_to do |format|
       format.html{render :layout => false}
     end
