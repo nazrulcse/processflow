@@ -36,7 +36,9 @@
         </div>
         <ul class="comments-list reset-padding">
           <% @comments.each do |comment| %>
+              <ul style="margin: 0px;">
                 <%= comments_replies comment %>
+              </ul>
           <% end %>
         </ul>
       </div>
