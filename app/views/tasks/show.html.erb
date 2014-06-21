@@ -132,22 +132,31 @@
         </div>
       </div>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default assign-unassign-people">
         <div class="panel-heading">
           <h3 class="panel-title"> Assigned People</h3>
         </div>
         <div class="panel-body assign-people">
+
           <% @task.users.each do |user| %>
-           <span class="assigned-people">
-             <%= image_tag(user.image.present? ? user.image_url(:small_thumb) : 'default_user_icon.png', :class => 'nav-avatar') %>
+           <span class="assigned-people" data-assigned-id="<%= user.id %>" data-assigned-name="<%= user.name %>">
+             <%= image_tag(user.image.present? ? user.image_url(:small_thumb) : 'default_user_icon.png', :id => user.id, :class => 'nav-avatar') %>
            </span>
-          <%end%>
+          <% end %>
           <span class="assigned-new-people">
              <%= image_tag("new_project_icon.png",:class => 'nav-avatar') %>
           </span>
+          <ul class="assigned-people-list dropdown-menu" id="assigned-list">
+            <% @rest = rest_of_users(@task.users, @project.users) %>
+            <% @rest.each do |user| %>
+                <li> <a href="javascript:void(0)" class="assigned-in-task" data-value="<%= user.id %>" ><%= user.name %></a></li>
+            <% end %>
+          </ul>
+
           <div class="unassigned-pophover">
-            <a href="javascript:void(0);"  class="unassigned-people" data-assigned-id=""> Unassigned </a>
+            <a href="javascript:void(0);"  class="unassigned-people" data-assigned-value="" data-name=""> Unassigned </a>
           </div>
+
         </div>
       </div>
     </div>
