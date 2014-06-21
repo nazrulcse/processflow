@@ -147,7 +147,6 @@ function initDashboard() {
 
     $(document).on('click', ".assigned-people", function () {
         $('.unassigned-people').attr('data-assigned-value',$(this).attr('data-assigned-id'));
-        $('.unassigned-people').attr('data-name',$(this).attr('data-assigned-name'));
         $('.unassigned-pophover').toggle();
     })
 
@@ -156,7 +155,6 @@ function initDashboard() {
         task_id = $(".task-details").attr('data-task-id');
         project_id = $(".task-item").first().attr('data-project-id');
         user_id = $('.unassigned-people').attr('data-assigned-value');
-        user_name = $('.unassigned-people').attr('data-name');
         unassignedPeople(user_id,task_id,project_id);
         $('.unassigned-pophover').hide();
     });

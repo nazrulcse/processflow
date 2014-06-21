@@ -52,12 +52,11 @@ class TasksController < ApplicationController
   end
 
   def unassign
-    user = User.find_by_id(params[:user_id])
     @user = User.find_by_id(params[:user_id])
 
-    if user
-      task = user.tasks.find_by_id(params[:id])
-      user.tasks.delete(task)
+    if @user.present?
+      task = @user.tasks.find_by_id(params[:id])
+      @user.tasks.delete(task)
     end
 
     respond_to do |format|
