@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614071859) do
+ActiveRecord::Schema.define(version: 20140615180524) do
 
   create_table "attachments", force: true do |t|
     t.string   "file"
@@ -50,6 +50,49 @@ ActiveRecord::Schema.define(version: 20140614071859) do
     t.string   "name"
     t.string   "description"
     t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "owner_id"
+  end
+
+  create_table "projects_users", force: true do |t|
+    t.integer "project_id"
+    t.integer "user_id"
+  end
+
+  create_table "settings", force: true do |t|
+    t.integer  "user_id"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statuses", force: true do |t|
+    t.string   "detail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "priority"
+    t.float    "effort"
+    t.integer  "status_id"
+    t.datetime "end_date"
+    t.integer  "position"
+    t.integer  "relation"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "spend"
+  end
+
+  create_table "tasks_users", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
