@@ -291,7 +291,7 @@ function initDashboard() {
                 url: "/tasks/" + task_id + "/comments/" + comments_id,
                 type: 'PUT',
                 dataType: 'script',
-                data: { comment: edit_context},
+                data: {comment: edit_context},
                 success: function (res) {
 
                 },
@@ -300,5 +300,33 @@ function initDashboard() {
                 }
             });
         }
+    });
+
+    $(document).off('click', '#canceleditbtn').on('click', '#canceleditbtn', function () {
+
+        $(".edit-wrapper").remove();
+    });
+
+    $(document).off('click', '#cancel-reply').on('click', '#cancel-reply', function () {
+
+        $(".reply-wrapper").remove();
+    });
+
+
+    $(document).on('click', '.notification-list ul li a', function(e) {
+        e.preventDefault();
+        url = $(this).attr('href');
+        if (url == '') {
+            popupMessage('internal error', 'error');
+            return false;
+        }
+        $.ajax({
+            url: url,
+            type: 'get',
+            success: function (res) {
+                $("#x-large-modal").modal('show');
+                $("#x-large-modal .modal-body").html(res);
+            }
+        });
     });
 }

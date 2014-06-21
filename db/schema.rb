@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20140615180524) do
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
     t.integer  "owner_id"
+    t.integer  "user_id"
   end
 
   create_table "projects_users", force: true do |t|

@@ -37,7 +37,8 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1.json
   def update
     respond_to do |format|
-      if @comment.update(comment: params[:comment], task_id: params[:task_id], user_id: current_user.id, parent: params[:parent])
+      @comments = Comment.find_by_id(params[:id])
+      if @comments.update_attributes(comment: params[:comment], task_id: params[:task_id], user_id: current_user.id, parent: @comments.parent)
         format.js {render :layout => false }
       end
     end
