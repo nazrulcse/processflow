@@ -150,6 +150,13 @@ function initDashboard() {
     })
 
 
+    $(document).on("click",".unassigned-people",function(){
+        task_id = $(".task-details").attr('data-task-id');
+
+        $('.unassigned-pophover').hide();
+    });
+
+
     function updateTask(field, value, project_id, task_id) {
         $.ajax({
             url: "/projects/" + project_id + "/tasks/" + task_id,
@@ -204,7 +211,9 @@ function initDashboard() {
 
     $(document).off('click', "#save-reply").on('click', "#save-reply", function () {
         reply_context = $(".jqte_editor").text();
-        parent_comments = $(this).parent('.comments-item-wrapper').attr('id');
+        parent_comments_id = $(this).parents(".comments-item-wrapper").attr('id');
+        comment_id = parent_comments_id.split("_");
+        parent_comments = comment_id[1];
         task_id = $(this).attr('data-task-id');
         if (reply_context != "") {
             $.ajax({
@@ -231,7 +240,7 @@ function initDashboard() {
                 url: "/tasks/" + task_id + "/comments/" + comments_id,
                 type: 'PUT',
                 dataType: 'script',
-                data: { comment: edit_context},
+                data: {comment: edit_context},
                 success: function (res) {
 
                 },
@@ -241,4 +250,15 @@ function initDashboard() {
             });
         }
     });
+
+    $(document).off('click', '#canceleditbtn').on('click', '#canceleditbtn', function () {
+
+        $(".edit-wrapper").remove();
+    });
+
+    $(document).off('click', '#cancel-reply').on('click', '#cancel-reply', function () {
+
+        $(".reply-wrapper").remove();
+    });
+
 }

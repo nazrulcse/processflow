@@ -3,6 +3,7 @@ class Task < ActiveRecord::Base
   has_many :attachments
   has_many :histories
   belongs_to :status #, :foreign_key => :status_id
+  has_and_belongs_to_many :users
 
   after_create :create_history
   after_update :update_history

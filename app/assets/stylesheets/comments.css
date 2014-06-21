@@ -5,11 +5,11 @@
     position: relative;
 }
 
-.comments-list li:nth-child(odd) .comments-item-wrapper {
+.comments-list ul li:nth-child(odd) .comments-item-wrapper {
     background: #f2f5f7;
 }
 
-.comments-list li:nth-child(even) .comments-item-wrapper {
+.comments-list ul li:nth-child(even) .comments-item-wrapper {
     background: #ced9de;
 }
 

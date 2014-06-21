@@ -36,9 +36,9 @@
         </div>
         <ul class="comments-list reset-padding">
           <% @comments.each do |comment| %>
-              <li>
-                <%= render :partial => 'shared/comments_item', :locals => {:comment => comment} %>
-              </li>
+              <ul style="margin: 0px;">
+                <%= comments_replies comment %>
+              </ul>
           <% end %>
         </ul>
       </div>
@@ -137,13 +137,16 @@
           <h3 class="panel-title"> Assigned People</h3>
         </div>
         <div class="panel-body assign-people">
-          <% @task.project.users.each do |user| %>
+          <% @task.users.each do |user| %>
            <span class="assigned-people">
-             <%= image_tag(user.image_url(:small_thumb), :class => 'nav-avatar') %>
+             <%= image_tag(user.image.present? ? user.image_url(:small_thumb) : 'default_user_icon.png', :class => 'nav-avatar') %>
            </span>
           <%end%>
+          <span class="assigned-new-people">
+             <%= image_tag("new_project_icon.png",:class => 'nav-avatar') %>
+          </span>
           <div class="unassigned-pophover">
-            <a href="javascript:void(0);" data-assigned-id=""> Unassigned </a>
+            <a href="javascript:void(0);"  class="unassigned-people" data-assigned-id=""> Unassigned </a>
           </div>
         </div>
       </div>
@@ -173,6 +176,7 @@
     $(document).off("click", ".reply").on("click", ".reply", function() {
         $(".reply-wrapper, .edit-wrapper").remove();
         $(this).parent().before("<%= escape_javascript(render :partial => 'shared/reply', :locals => {:task => @task} )%>");
+        $(this).parents('.comments-item-wrapper').find('.jqte_editor').focus();
     });
 
     $(document).off("click", ".edit").on("click", ".edit", function() {
@@ -181,6 +185,7 @@
         comments_id = $(this).attr('id');
         edit_context = $(this).parents('.comments-item-wrapper').find('.content-right').html();
         $(this).parents('.comments-item-wrapper').find('.jqte_editor').html(edit_context);
+        $(this).parents('.comments-item-wrapper').find('.jqte_editor').focus();
         $("#editbtn").attr('data-comments-id', comments_id);
     });
 </script>
