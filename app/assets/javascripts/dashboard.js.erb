@@ -211,9 +211,7 @@ function initDashboard() {
 
     $(document).off('click', "#save-reply").on('click', "#save-reply", function () {
         reply_context = $(".jqte_editor").text();
-        parent_comments_id = $(this).parents(".comments-item-wrapper").attr('id');
-        comment_id = parent_comments_id.split("_");
-        parent_comments = comment_id[1];
+        parent_comments = $(this).parent('.comments-item-wrapper').attr('id');
         task_id = $(this).attr('data-task-id');
         if (reply_context != "") {
             $.ajax({
@@ -261,4 +259,21 @@ function initDashboard() {
         $(".reply-wrapper").remove();
     });
 
+
+    $(document).on('click', '.notification-list ul li a', function(e) {
+        e.preventDefault();
+        url = $(this).attr('href');
+        if (url == '') {
+            popupMessage('internal error', 'error');
+            return false;
+        }
+        $.ajax({
+            url: url,
+            type: 'get',
+            success: function (res) {
+                $("#x-large-modal").modal('show');
+                $("#x-large-modal .modal-body").html(res);
+            }
+        });
+    });
 }
