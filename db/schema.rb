@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614071859) do
+ActiveRecord::Schema.define(version: 20140617172432) do
 
   create_table "attachments", force: true do |t|
     t.string   "file"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20140614071859) do
   end
 
   create_table "comments", force: true do |t|
-    t.string   "comment"
+    t.text     "comment"
     t.integer  "task_id"
     t.integer  "user_id"
     t.integer  "parent"
@@ -88,6 +88,13 @@ ActiveRecord::Schema.define(version: 20140614071859) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "spend"
+  end
+
+  create_table "tasks_users", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "teams", force: true do |t|
