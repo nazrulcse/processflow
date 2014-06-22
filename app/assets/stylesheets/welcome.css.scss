@@ -4,16 +4,11 @@
 
 
 .sign-in-wrapper, .new-account {
-  background: none repeat scroll 0 0 #EEEEEE;
   border-radius: 4px;
-  box-shadow: 0 1px 5px #CCCCCC;
+  box-shadow: 0 0px 1px #CCCCCC;
   padding: 10px 20px 10px 30px;
   width: 350px;
-  height: 330px;
-  overflow: auto;
   margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
 }
 
 .new-account {
@@ -53,13 +48,18 @@
   margin: 0;
 }
 
+#user_remember_me {
+  margin-left: 0;
+  margin-top: 2px;
+}
+
 .home-body {
-  background: #474A56;
+  //background: #474A56;
   display: block;
   width: 100%;
   min-height: 100%;
   position: absolute;
-  background-image: url('process-bag.png');
+  //background-image: url('process-bag.png');
   background-repeat: no-repeat;
 }
 
@@ -137,7 +137,7 @@ input {
   position: relative;
 }
 
-ul.notification-list:before {
+.notification-list:before {
   border-bottom: 6px solid #fdfdfd;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
@@ -148,20 +148,34 @@ ul.notification-list:before {
   top: -7px;
 }
 
-ul.notification-list {
+.notification-list {
   padding: 0 !important;
   width: 350px;
   height: 450px;
   overflow: hidden;
 }
 
-ul.notification-list .notification-image {
+.notification-list ul {
+  margin-top: 30px;
+}
+
+.notification-list .notification-title {
+  position: fixed;
+  padding: 5px;
+  width: 348px;
+  text-align: center;
+  background: #FDFDFD;
+  box-shadow: 1px 1px 3px #dfdfdf;
+  z-index: 100000;
+}
+
+.notification-list .notification-image {
   width: 45px;
   height: 45px;
   margin-right: 8px;
 }
 
-ul.notification-list .notification-image img {
+.notification-list .notification-image img {
   width: 100%;
   height: 100%;
 }
@@ -189,20 +203,21 @@ ul.notification-list .notification-image img {
   padding-left: 23px;
 }
 
-ul.notification-list li a {
+.notification-list li a {
   padding: 5px;
   background: none repeat scroll 0 0 rgba(237, 239, 245, 0.98);
   border-bottom: solid 1px #d1d8e7;
   display: block;
 }
 
-ul.notification-list li a span {
+.notification-list li a span {
   word-wrap: break-word;
   word-break: break-all;
 }
 
-ul.notification-list li a:hover {
+.notification-list li a:hover {
   background: #F4F6F9;
+  color: #333;
 }
 
 .navbar-nav > li > a.notification-menu:hover {
@@ -239,4 +254,109 @@ fieldset {
   border: 1px dashed #666;
   height: 70px;
   margin: 3px 5px 3px 5px;
+}
+
+
+/* Design landing page */
+
+.top-nav-wrapper {
+  background-image: linear-gradient(top, #ffffff, #dfdfdf);
+  background-image: -moz-linear-gradient(top, #ffffff, #dfdfdf);
+  padding: 6px 5px;
+  height: 39px;
+}
+
+.product-description {
+  background: none repeat scroll 0 0 #f9f9f9;
+  padding: 8px 5px;
+  text-align: center;
+  //border-bottom: 4px solid #A5007E;
+}
+
+.product-description h1 {
+  color: #a5007e;
+  font-family: arial;
+  font-size: 30px;
+  margin-bottom: 5px;
+  text-align: center;
+  word-spacing: -1px;
+}
+
+.product-description p {
+  margin-bottom: 10px !important;
+  font-size: 15px;
+  font-family: arial;
+  font-weight: normal;
+}
+
+.project-overview {
+  background: #FDFDFD;
+  padding: 15px;
+}
+
+.project-overview .overview-content-left {
+  width: 48%;
+  margin: auto;
+  text-align: center;
+}
+
+.project-overview .overview-content-right {
+  width: 48%;
+  margin: auto;
+  border-left: solid 1px #ccc;
+}
+
+.overview-content-left img {
+  height: 253px;
+  width: 435px;
+  margin: auto;
+}
+
+.product-feature-wrapper {
+  background: none repeat scroll 0 0 #f9f9f9;
+  padding: 15px;
+}
+
+.product-feature {
+  width: 750px;
+  margin: auto;
+}
+
+.product-footer {
+  background: #353535;
+  height: 66px;
+}
+
+.product-feature-list {
+  width: 49%;
+  margin-right: 1%;
+  border-rihgt: solid 1px #ccc;
+}
+
+.product-feature-list h1 {
+  font-family: arial;
+  font-size: 30px;
+  margin-bottom: 10px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 25px;
+}
+
+.product-feature-list h1.task {
+  background-image: url('task_board.png');
+}
+
+.product-feature-list h1.project {
+  background-image: url('project_board.png');
+}
+
+.product-feature-list ul {
+  padding-left: 25px;
+}
+
+.product-feature-list ul li {
+  padding: 7px 22px;
+  background-image: url('arrow.png');
+  background-repeat: no-repeat;
+  background-position: left center;
 }

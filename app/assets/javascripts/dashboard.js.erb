@@ -146,23 +146,38 @@ function initDashboard() {
 
 
     $(document).on('click', ".assigned-people", function () {
+        $('.unassigned-people').attr('data-assigned-value',$(this).attr('data-assigned-id'));
         $('.unassigned-pophover').toggle();
     })
 
 
     $(document).on("click",".unassigned-people",function(){
         task_id = $(".task-details").attr('data-task-id');
-
+        project_id = $(".task-item").first().attr('data-project-id');
+        user_id = $('.unassigned-people').attr('data-assigned-value');
+        unassignedPeople(user_id,task_id,project_id);
         $('.unassigned-pophover').hide();
     });
 
+    $(document).on("click",".assigned-new-people",function(){
+        $('.assigned-people-list').toggle();
+    });
+
+    $(document).on("click",".assigned-in-task",function(){
+        task_id = $(".task-details").attr('data-task-id');
+        project_id = $(".task-item").first().attr('data-project-id');
+        user_id = $(this).attr('data-value');
+        assignedPeople(user_id, task_id, project_id);
+        $(this).parent().remove();
+        $('.assigned-people-list').hide();
+    });
 
     function updateTask(field, value, project_id, task_id) {
         $.ajax({
             url: "/projects/" + project_id + "/tasks/" + task_id,
             type: 'put',
             data: {field: field, value: value},
-            dataType: 'script',
+            dataType: 'html',
             success: function () {
                 popupMessage("Update task status", 'info');
             },
@@ -171,6 +186,42 @@ function initDashboard() {
             }
         });
     }
+
+    function assignedPeople(user_id, task_id, project_id){
+        $.ajax({
+            url: "/projects/" + project_id + "/tasks/" + task_id + "/assign",
+            type: 'post',
+            data: {user_id:user_id},
+            dataType: 'html',
+            async:false,
+            success: function (data) {
+                $(".assign-people").prepend(data);
+                popupMessage("Assigned new people in this task.", 'info');
+            },
+            error: function () {
+                popupMessage("Error", 'error');
+            }
+        });
+    }
+
+    function unassignedPeople(user_id,task_id,project_id){
+        $.ajax({
+            url: "/projects/" + project_id + "/tasks/" + task_id + "/unassign",
+            type: 'DELETE',
+            data: {user_id:user_id},
+            dataType: 'html',
+            async:false,
+            success: function (data) {
+                $("#"+user_id).remove();
+                $("#assigned-list").append(data);
+                popupMessage("Unassigned people from this task.", 'info');
+            },
+            error: function () {
+                popupMessage("Error", 'error');
+            }
+        });
+    }
+
 
     /* Comments and reply section */
 
@@ -211,9 +262,7 @@ function initDashboard() {
 
     $(document).off('click', "#save-reply").on('click', "#save-reply", function () {
         reply_context = $(".jqte_editor").text();
-        parent_comments_id = $(this).parents(".comments-item-wrapper").attr('id');
-        comment_id = parent_comments_id.split("_");
-        parent_comments = comment_id[1];
+        parent_comments = $(this).parent('.comments-item-wrapper').attr('id');
         task_id = $(this).attr('data-task-id');
         if (reply_context != "") {
             $.ajax({
@@ -261,4 +310,21 @@ function initDashboard() {
         $(".reply-wrapper").remove();
     });
 
+
+    $(document).on('click', '.notification-list ul li a', function(e) {
+        e.preventDefault();
+        url = $(this).attr('href');
+        if (url == '') {
+            popupMessage('internal error', 'error');
+            return false;
+        }
+        $.ajax({
+            url: url,
+            type: 'get',
+            success: function (res) {
+                $("#x-large-modal").modal('show');
+                $("#x-large-modal .modal-body").html(res);
+            }
+        });
+    });
 }

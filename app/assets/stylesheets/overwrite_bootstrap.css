@@ -74,3 +74,8 @@ body.modal-open {
 .comments-reply.btn-group a.btn {
     padding: 4px 8px;
 }
+
+.btn-default  {
+    background-image: linear-gradient(to bottom, #fff 0px, #e0e0e0 100%) !important;
+    border: 1px solid transparent;
+}

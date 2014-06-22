@@ -1,9 +1,9 @@
-<div class="comments-item-wrapper" id="comments_<%=comment.id %>">
+<div class="comments-item-wrapper" id="<%=comment.id %>">
   <div class="content-left pull-left">
      <%= image_tag(get_image(comment.user_id)) %>
   </div>
   <div class="content-right pull-left">
-    <%= raw(comment.comment) %>
+    <%= comment.comment.html_safe %>
   </div>
   <div class="clearfix"></div>
   <div class="comments-reply btn-group hidden">

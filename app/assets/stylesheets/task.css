@@ -219,7 +219,7 @@
     background: #fdfdfd;
 }
 
-.unassigned-pophover:before, .priority-dropdown:before {
+.unassigned-pophover:before, .priority-dropdown:before, .assigned-people-list:before {
     width: 0;
     height: 0;
     border-style: solid;
@@ -253,4 +253,11 @@
 
 .assigned-people {
     cursor: pointer;
+}
+.assigned-people-list{
+    position: absolute;
+    margin-top: -10px;
+}
+.assigned-new-people{
+    position: relative;
 }

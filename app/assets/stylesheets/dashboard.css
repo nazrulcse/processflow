@@ -30,7 +30,7 @@
     padding: 10px 0;
     text-align: center;
     text-shadow: 1px 0 3px #EEEEEE;
-    background: none repeat scroll 0 0 #CDCDCD;
+    background: none repeat scroll 0 0 #f9f9f9;
 }
 
 #dashboard div.task-category .task-content {
@@ -38,14 +38,21 @@
     border-right: solid 2px #cccccc;
 }
 
+/* Task color by task status category  */
+
+#dashboard div.task-category.project-done .task-item {
+    background: none repeat scroll 0 0 rgba(237, 239, 245, 0.98);
+}
+
+/*end*/
+
 #dashboard .project-nav {
     border-radius: 4px 4px 0 0 !important;
     vertical-align: top;
-    box-shadow: none;
     height: auto !important;
-    background: none repeat scroll 0 0 #C0C0C0;
+    background: none repeat scroll 0 0 #f9f9f9;
     padding: 8px 0 6px 5px;
-    background-image: linear-gradient(to bottom, #C0C0C0 0px, #CDCDCD 100%);
+    //background-image: linear-gradient(to bottom, #C0C0C0 0px, #CDCDCD 100%);
     border-bottom: 1px solid #FFFFFF;
 }
 
@@ -112,6 +119,7 @@
 .task-item .assign-member {
     width: 20px;
     height: 20px;
+    overflow: hidden;
 }
 
 /* History item design */

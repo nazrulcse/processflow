@@ -1,14 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ProcessFlow: Home</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="icon" type="image/png" href="logo.png">
+  <title>
+    ProcessFlow: Home
+  </title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
- <div class="home-body">
+<div class="home-body">
+  <div class="top-nav-wrapper">
+    <div class="pull-left">
+      <%#= image_tag('logo.png') %>
+    </div>
+    <div class="pull-right" style="margin-top: -3px;">
+      <a href="#" class="btn btn-default"> Blog </a>
+      <a href="#" class="btn btn-default"> Login </a>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="product-description">
+    <h1> Very useful and easy development tools for ever </h1>
+
+    <p>
+      ProcessFlow is an open source project management tools. <br/> Signup for free and manage your project easily.
+    </p>
+    <a href="#" class="btn btn-primary"> Free Signup </a>
+  </div>
   <%= yield %>
- </div>
+  <div class="product-feature-wrapper">
+    <div class="product-feature">
+      <div class="pull-left product-feature-list">
+        <h1 class="project"> Project Board </h1>
+        <ul>
+          <li> Easy to create project</li>
+          <li> Quick to invite project member</li>
+          <li> Setup project deadline</li>
+          <li> Graphical view of project statistic</li>
+        </ul>
+      </div>
+      <div class="pull-left product-feature-list">
+        <h1 class="task"> Task Board </h1>
+        <ul>
+          <li> Easy to create task</li>
+          <li> Task details only click</li>
+          <li> Easy to assign task to user</li>
+          <li> Show task details progress</li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <div class="product-footer">
+    asd
+  </div>
+</div>
 </body>
 </html>

@@ -12,7 +12,12 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :invites
-    resources :tasks
+    resources :tasks do
+      member do
+        post "assign"
+        delete "unassign"
+      end
+    end
   end
 
   resources :tasks do

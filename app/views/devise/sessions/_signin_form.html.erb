@@ -1,22 +1,29 @@
-  <div class="sign-in-wrapper">
-    <h1 class="sign-in-title">Sign in</h1>
-    <%= form_for(resource, as: resource_name, url: root_path(resource_name)) do |f| %>
-        <div><%= f.label :email %>
-          <%= f.email_field :email, autofocus: true, :class => 'form-control' %></div>
-        <div><%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %></div>
-
-        <% if devise_mapping.rememberable? -%>
-            <label class="checkbox reset-padding">
-              <%= f.check_box :remember_me, :class => 'reset-margin' %>
-              Remember me
-            </label>
-        <% end -%>
-        <div>
-          <%= f.submit "Sign in", :class => 'btn btn-primary btn-lg btn-block' %>
-        </div>
-        <div class="clear-fix"></div>
-    <% end %>
-    <div><%= link_to "Create New Account", account_path(), :class => 'btn btn-link pull-right' %></div>
-    <div class="clear-fix"></div>
+<div class="project-overview">
+  <div class="pull-left overview-content-left">
+    <%= image_tag('product.png', :style => "width: 400px;") %>
   </div>
+  <div class="pull-right overview-content-right">
+    <div class="sign-in-wrapper">
+      <%= form_for(resource, as: resource_name, url: root_path(resource_name)) do |f| %>
+          <div><%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, :class => 'form-control' %></div>
+          <div><%= f.label :password %>
+            <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %></div>
+
+          <% if devise_mapping.rememberable? -%>
+              <label class="checkbox reset-padding">
+                <%= f.check_box :remember_me, :class => 'reset-margin' %>
+                Remember me
+              </label>
+          <% end -%>
+          <div>
+            <%= f.submit "Sign in", :class => 'btn btn-primary btn-lg btn-block' %>
+          </div>
+          <div class="clear-fix"></div>
+      <% end %>
+      <div><%= link_to "Create New Account", account_path(), :class => 'btn btn-link pull-right' %></div>
+      <div class="clear-fix"></div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
