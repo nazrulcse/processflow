@@ -13,7 +13,7 @@
 <div class="home-body">
   <div class="top-nav-wrapper">
     <div class="pull-left">
-      <%#= image_tag('logo.png') %>
+      <%= link_to(image_tag('logo.png'), root_path()) %>
     </div>
     <div class="pull-right" style="margin-top: -3px;">
       <a href="#" class="btn btn-default"> Blog </a>
@@ -27,7 +27,7 @@
     <p>
       ProcessFlow is an open source project management tools. <br/> Signup for free and manage your project easily.
     </p>
-    <a href="#" class="btn btn-primary"> Free Signup </a>
+    <a href="/account" class="btn btn-default"> Free Signup </a>
   </div>
   <%= yield %>
   <div class="product-feature-wrapper">
@@ -39,6 +39,7 @@
           <li> Quick to invite project member</li>
           <li> Setup project deadline</li>
           <li> Graphical view of project statistic</li>
+          <li> Project notification </li>
         </ul>
       </div>
       <div class="pull-left product-feature-list">
@@ -48,6 +49,8 @@
           <li> Task details only click</li>
           <li> Easy to assign task to user</li>
           <li> Show task details progress</li>
+          <li> Easy attached file and image </li>
+          <li> Comments and replay </li>
         </ul>
       </div>
       <div class="clearfix"></div>

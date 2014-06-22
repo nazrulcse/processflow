@@ -110,7 +110,7 @@
             </li>
             <li>
               <label class="info-label"> End date</label>
-              <span class="info-txt"><%= @task.end_date %> </span>
+              <input type="text" value="<%= @task.end_date %>" class="info-txt edit-end-date" readonly>
             </li>
             <li class="priority-list">
               <label class="info-label"> Priority </label>
@@ -140,7 +140,7 @@
 
           <% @task.users.each do |user| %>
            <span class="assigned-people" data-assigned-id="<%= user.id %>" data-assigned-name="<%= user.name %>">
-             <%= image_tag(user.image.present? ? user.image_url(:small_thumb) : 'default_user_icon.png', :id => user.id, :class => 'nav-avatar') %>
+             <%= image_tag(user.image.present? ? user.image_url(:small_thumb) : 'default_user_icon.png', :id => "assign-user-#{user.id}", :class => 'nav-avatar') %>
            </span>
           <% end %>
           <span class="assigned-new-people">
@@ -171,6 +171,9 @@
 
         $(".progressbar").progressbar({
             value: 50
+        });
+        $(".edit-end-date").datepicker({
+            dateFormat: 'yy-mm-dd'
         });
     });
 

@@ -1,21 +1,21 @@
-<div class="task-item" data-task-id="<%= task.id %>" data-project-id="<%= task.project.id %>">
+<div class="task-item" data-task-id="<%= task.id %>" id="task-<%= task.id %>" data-project-id="<%= task.project.id %>">
   <div class="pull-left content-left">
     <ul>
       <li class="task-name"> <%= task.title %> </li>
       <li>
         <%= image_tag('date.png', :title => 'End Date') %>
-        <span> <%= task.end_date %> </span>
+        <span class="task-end-date"> <%= task.end_date %> </span>
       </li>
     </ul>
   </div>
   <div class="pull-right content-right">
     <ul>
       <li>
-        <%= image_tag("task_#{task.priority.downcase}.png", :title => 'Priority', :class => 'pull-right') %>
+        <%= image_tag("task_#{task.priority.downcase}.png", :title => 'Priority', :class => 'pull-right task-priority-icon') %>
         <div class="clear-fix"> </div>
       </li>
       <li style="vertical-align: middle;">
-        <%= task.effort %>h <%= image_tag('effort.png', :title => 'Effort') %>
+        <span class="total-effort"> <%= task.effort %> </span>h <%= image_tag('effort.png', :title => 'Effort') %>
       </li>
       <li>
         <span class="glyphicon-class"></span>

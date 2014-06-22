@@ -54,7 +54,7 @@ function initDashboard() {
         });
     });
 
-    $(".task-item").dblclick(function () {
+    $(document).on('dblclick', '.task-item', function () {
         task_id = $(this).attr('data-task-id');
         project_id = $(this).attr('data-project-id');
         if (task_id == '' || project_id == '') {
@@ -119,7 +119,7 @@ function initDashboard() {
         $(".priority-dropdown").toggle();
     });
 
-    $(document).on("blur", ".progress-effort, .progress-spend", function () {
+    $(document).off("blur", ".progress-effort, .progress-spend").on("blur", ".progress-effort, .progress-spend", function () {
         var progress = $(this).text().trim();
         var field = $(this).attr('data-task-field').trim();
         task_id = $(".task-details").attr('data-task-id');
@@ -131,6 +131,12 @@ function initDashboard() {
         if (e.which == 13) {
             return false;
         }
+    });
+
+    $(document).on('change', '.edit-end-date', function() {
+        task_id = $(".task-details").attr('data-task-id');
+        project_id = $(".task-item").first().attr('data-project-id');
+        updateTask('end_date', $(this).val(), project_id, task_id);
     });
 
     $(document).on('click', '.change-priority', function () {
@@ -151,7 +157,7 @@ function initDashboard() {
     })
 
 
-    $(document).on("click",".unassigned-people",function(){
+    $(document).on("click", ".unassigned-people", function(){
         task_id = $(".task-details").attr('data-task-id');
         project_id = $(".task-item").first().attr('data-project-id');
         user_id = $('.unassigned-people').attr('data-assigned-value');
@@ -159,7 +165,10 @@ function initDashboard() {
         $('.unassigned-pophover').hide();
     });
 
-    $(document).on("click",".assigned-new-people",function(){
+    $(document).on("click", ".assigned-new-people", function() {
+        if($("#assigned-list").find('li').length == 0) {
+            $("#assigned-list").html("<li class='text-center'> No more user </li>");
+        }
         $('.assigned-people-list').toggle();
     });
 
@@ -177,7 +186,7 @@ function initDashboard() {
             url: "/projects/" + project_id + "/tasks/" + task_id,
             type: 'put',
             data: {field: field, value: value},
-            dataType: 'html',
+            dataType: 'script',
             success: function () {
                 popupMessage("Update task status", 'info');
             },
@@ -204,15 +213,15 @@ function initDashboard() {
         });
     }
 
-    function unassignedPeople(user_id,task_id,project_id){
+    function unassignedPeople(user_id, task_id, project_id){
         $.ajax({
             url: "/projects/" + project_id + "/tasks/" + task_id + "/unassign",
             type: 'DELETE',
-            data: {user_id:user_id},
+            data: {user_id: user_id},
             dataType: 'html',
             async:false,
             success: function (data) {
-                $("#"+user_id).remove();
+                $("#assign-user-"+user_id).parent().remove();
                 $("#assigned-list").append(data);
                 popupMessage("Unassigned people from this task.", 'info');
             },

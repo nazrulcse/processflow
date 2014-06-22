@@ -121,6 +121,21 @@
     overflow: hidden;
 }
 
+.edit-end-date {
+    border: medium none;
+    cursor: pointer;
+    display: inline-block;
+    min-height: 21px;
+    width: 100px;
+}
+
+.edit-end-date:hover {
+    background-image: url("edit.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 15% 66%;
+}
+
 /* History item design */
 
 #history {

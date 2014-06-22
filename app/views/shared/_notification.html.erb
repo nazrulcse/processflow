@@ -1,0 +1,31 @@
+<li>
+  <a data-toggle="dropdown" href="#" class="notification-menu dropdown-toggle">
+    <span> 42 </span>
+  </a>
+
+  <div class="notification-list dropdown-menu">
+    <div class="notification-title">
+      Project Notification
+    </div>
+    <ul role="menu" style="display: block;" aria-labelledby="dLabel">
+      <% History.notification(params[:id]).each do |notification| %>
+          <li data-task-id="<%= notification.task_id %>" data-project-id="<%= notification.task.project_id %>">
+            <a href="<%= project_task_path(notification.task.project_id, notification.task_id) %>">
+              <div class="pull-left">
+                <div class=" notification-image">
+                  <%= image_tag(notification.user.image_url(:small_thumb)) %>
+                </div>
+              </div>
+              <div class="pull-left">
+                <div class="notification-content">
+                  <%= notification.context %>
+                </div>
+                <span class="notification-time"> <%= notification.created_at %> </span>
+              </div>
+              <div class="clearfix"></div>
+            </a>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</li>
