@@ -12,8 +12,9 @@
   <div class="project-nav-control project-name">
     <a href="javascript:void(0);" class="btn btn-link project-title" data-id="<%= project.id %>"> <b> <%= project.name %> </b> </a>
   </div>
-  <div class="project-nav-control pull-right">
-    <input type="text" id="search-field" class="form-control">
+  <div class="project-nav-control pull-right form-group has-feedback">
+    <input type="text" id="search-field" class="form-control" data-project-id ="<%= project.id %>">
+    <span class="glyphicon glyphicon-remove  cross-image hidden" data-project-id ="<%= project.id %>"></span>
   </div>
   <div class="clearfix"></div>
 </div>
@@ -22,6 +23,7 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
+
         $('#invite-member').click(function(){
             $.ajax({
                 url: "<%= new_project_invite_path(project) %>",
@@ -69,7 +71,6 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-
       $("#btn-task").click(function(){
           $.ajax({
               url:"<%= new_project_task_path(project) %>",
@@ -96,6 +97,54 @@
               error:function(){
               }
           });
+      });
+  });
+
+  $(document).on("keyup", "#search-field", function(e) {
+      if($(this).val() == '')
+      {
+          $(".cross-image").addClass('hidden');
+      }
+      else
+      {
+          $(".cross-image").removeClass('hidden');
+      }
+
+      if(e.which == 13) {
+          project_id = $("#search-field").attr('data-project-id');
+          search_item =  $("#search-field").val()
+          $.ajax({
+              url: "<%= search_path() %>",
+              type:"post",
+              data: {search_item: search_item , project_id:  project_id},
+              dataType: "script",
+              success:function(data){
+
+              },
+              error:function(){
+              }
+          });
+
+      }
+  });
+
+  $(document).off("click", ".cross-image").on("click", ".cross-image", function() {
+      $("#search-field").val('');
+      $(this).addClass('hidden');
+
+      project_id = $("#search-field").attr('data-project-id');
+      search_item =  $("#search-field").val()
+      alert(search_item);
+      $.ajax({
+          url: "<%= search_path() %>",
+          type:"post",
+          data: {search_item: search_item , project_id:  project_id},
+          dataType: "script",
+          success:function(data){
+
+          },
+          error:function(){
+          }
       });
   });
 </script>

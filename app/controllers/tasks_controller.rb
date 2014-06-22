@@ -38,6 +38,25 @@ class TasksController < ApplicationController
     end
   end
 
+  def search_task
+    @search_item = params[:search_item]
+    @project_id = params[:project_id]
+    if @search_item != Integer
+      if @search_item.nil?
+        @project = Project.find_by_id(@project_id)
+        @task = @project.tasks
+      else
+        @task = Task.find_by_sql("select * from tasks where title like '%#{@search_item}%' and 	project_id = '#{@project_id}'")
+      end
+
+    else
+      @task = Task.find_by_id(@search_item)
+    end
+    respond_to do |format|
+        format.js{render :layout => false}
+      end
+    end
+
   private
   def task_params
     params.require(:task).permit(:title, :description, :priority, :effort, :status_id, :end_date, :position, :relation, :project_id)
