@@ -42,10 +42,14 @@
           <% end %>
         </ul>
       </div>
+      <div>
+        <%= link_to 'Add Comments...', 'javascript:void(0);', :class => "add-cmnt btn btn-link"%>
 
-      <div id="write-comments" style="margin-bottom: 10px;">
+      </div>
+      <div id="write-comments" class="hidden" style="margin-bottom: 10px;">
         <textarea style="" class="form-control jqte-test"></textarea>
         <button type="button" id="btncomment" data-task-id="<%= @task.id %>" class="btn btn-default pull-right"> Done</button>
+        <button type="button" id="btncmtcncel" class="btn btn-default pull-right"> Cancel</button>
         <div class="clearfix"></div>
       </div>
     </div>
@@ -184,6 +188,18 @@
     $(document).on("mouseout", ".comments-list li",function(){
         $(".comments-reply").addClass('hidden');
     });
+
+    $(document).off("click", ".add-cmnt").on("click", ".add-cmnt", function() {
+        $("#write-comments").removeClass('hidden');
+        $(this).addClass('hidden');
+    });
+
+
+    $(document).off("click", "#btncmtcncel").on("click", "#btncmtcncel", function() {
+        $("#write-comments").addClass('hidden');
+        $(".add-cmnt").removeClass('hidden');
+    });
+
 
     $(document).off("click", ".reply").on("click", ".reply", function() {
         $(".reply-wrapper, .edit-wrapper").remove();
