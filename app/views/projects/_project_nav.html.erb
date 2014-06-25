@@ -134,7 +134,6 @@
 
       project_id = $("#search-field").attr('data-project-id');
       search_item =  $("#search-field").val()
-      alert(search_item);
       $.ajax({
           url: "<%= search_path() %>",
           type:"post",
