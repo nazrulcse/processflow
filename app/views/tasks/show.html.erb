@@ -9,6 +9,7 @@
   <div class="tab-content">
     <div class="task-title">
       <label class="label label-primary"> Task </label>
+
       <div class="task-name inline"> <%= @task.title %> </div>
     </div>
     <div class="tab-pane active task-details-content-left pull-left" id="general">
@@ -43,12 +44,13 @@
         </ul>
       </div>
       <div>
-        <%= link_to 'Add Comments...', 'javascript:void(0);', :class => "add-cmnt btn btn-link"%>
+        <%= link_to 'Add Comments...', 'javascript:void(0);', :class => "add-cmnt btn btn-link" %>
 
       </div>
       <div id="write-comments" class="hidden" style="margin-bottom: 10px;">
         <textarea style="" class="form-control jqte-test"></textarea>
-        <button type="button" id="btncomment" data-task-id="<%= @task.id %>" class="btn btn-default pull-right"> Done</button>
+        <button type="button" id="btncomment" data-task-id="<%= @task.id %>" class="btn btn-default pull-right"> Done
+        </button>
         <button type="button" id="btncmtcncel" class="btn btn-default pull-right"> Cancel</button>
         <div class="clearfix"></div>
       </div>
@@ -84,11 +86,15 @@
             </li>
             <li>
               <label class="info-label"> Effort </label>
-              <div class="info-txt progress-effort" contenteditable data-task-field="effort"><%= @task.effort %></div> h
+
+              <div class="info-txt progress-effort" contenteditable data-task-field="effort"><%= @task.effort %></div>
+              h
             </li>
             <li>
               <label class="info-label"> Spend </label>
-              <div class="info-txt progress-spend" data-task-field="spend" contenteditable><%= @task.spend %></div> h
+
+              <div class="info-txt progress-spend" data-task-field="spend" contenteditable><%= @task.spend %></div>
+              h
             </li>
             <li>
               <label class="info-label"> Remaining </label>
@@ -121,16 +127,17 @@
                  <span class="info-txt task-priority">
                        <%= image_tag("task_#{@task.priority.downcase}.png", :title => 'Priority') %>
                  </span>
-                 <ul class="dropdown-menu priority-dropdown">
-                    <li class="reset-padding">
-                      <a href="javascript:void(0)" class="change-priority" data-task-field="priority" data-value="Low">Low</a>
-                    </li>
-                    <li class="reset-padding">
-                      <a href="javascript:void(0)" class="change-priority" data-task-field="priority" data-value="Medium">Medium</a></li>
-                    <li class="reset-padding">
-                      <a href="javascript:void(0)" class="change-priority" data-task-field="priority" data-value="High">High</a>
-                    </li>
-                 </ul>
+              <ul class="dropdown-menu priority-dropdown">
+                <li class="reset-padding">
+                  <a href="javascript:void(0)" class="change-priority" data-task-field="priority" data-value="Low">Low</a>
+                </li>
+                <li class="reset-padding">
+                  <a href="javascript:void(0)" class="change-priority" data-task-field="priority" data-value="Medium">Medium</a>
+                </li>
+                <li class="reset-padding">
+                  <a href="javascript:void(0)" class="change-priority" data-task-field="priority" data-value="High">High</a>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -148,17 +155,19 @@
            </span>
           <% end %>
           <span class="assigned-new-people">
-             <%= image_tag("new_project_icon.png",:class => 'nav-avatar') %>
+             <%= image_tag("new_project_icon.png", :class => 'nav-avatar') %>
           </span>
           <ul class="assigned-people-list dropdown-menu" id="assigned-list">
             <% @rest = rest_of_users(@task.users, @project.users) %>
             <% @rest.each do |user| %>
-                <li> <a href="javascript:void(0)" class="assigned-in-task" data-value="<%= user.id %>" ><%= user.name %></a></li>
+                <li>
+                  <a href="javascript:void(0)" class="assigned-in-task" data-value="<%= user.id %>"><%= user.name %></a>
+                </li>
             <% end %>
           </ul>
 
           <div class="unassigned-pophover">
-            <a href="javascript:void(0);"  class="unassigned-people" data-assigned-value="" data-name=""> Unassigned </a>
+            <a href="javascript:void(0);" class="unassigned-people" data-assigned-value="" data-name=""> Unassigned </a>
           </div>
 
         </div>
@@ -181,33 +190,33 @@
         });
     });
 
-    $(document).on("mouseover", ".comments-list li",function(){
+    $(document).on("mouseover", ".comments-list li", function () {
         $(this).find(".comments-reply").removeClass('hidden');
     });
 
-    $(document).on("mouseout", ".comments-list li",function(){
+    $(document).on("mouseout", ".comments-list li", function () {
         $(".comments-reply").addClass('hidden');
     });
 
-    $(document).off("click", ".add-cmnt").on("click", ".add-cmnt", function() {
+    $(document).off("click", ".add-cmnt").on("click", ".add-cmnt", function () {
         $("#write-comments").removeClass('hidden');
         $(this).addClass('hidden');
     });
 
 
-    $(document).off("click", "#btncmtcncel").on("click", "#btncmtcncel", function() {
+    $(document).off("click", "#btncmtcncel").on("click", "#btncmtcncel", function () {
         $("#write-comments").addClass('hidden');
         $(".add-cmnt").removeClass('hidden');
     });
 
 
-    $(document).off("click", ".reply").on("click", ".reply", function() {
+    $(document).off("click", ".reply").on("click", ".reply", function () {
         $(".reply-wrapper, .edit-wrapper").remove();
         $(this).parent().before("<%= escape_javascript(render :partial => 'shared/reply', :locals => {:task => @task} )%>");
         $(this).parents('.comments-item-wrapper').find('.jqte_editor').focus();
     });
 
-    $(document).off("click", ".edit").on("click", ".edit", function() {
+    $(document).off("click", ".edit").on("click", ".edit", function () {
         $(".edit-wrapper, .reply-wrapper").remove();
         $(this).parent().before("<%= escape_javascript(render :partial => 'shared/edit', :locals => {:task => @task})%>");
         comments_id = $(this).attr('id');

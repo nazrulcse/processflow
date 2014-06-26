@@ -49,7 +49,7 @@ function popupMessage(message, klass) {
 
 function initProjectList() {
     offset = $(window).height() - $("#project-item-wrapper").height();
-    if(offset > 0) {
-        $("#project-item-wrapper").css('margin-top', offset/2);
+    if (offset > 0) {
+        $("#project-item-wrapper").css('margin-top', offset / 2);
     }
 }

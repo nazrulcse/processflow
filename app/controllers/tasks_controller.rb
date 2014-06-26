@@ -1,11 +1,11 @@
 class TasksController < ApplicationController
 
   def new
-     @project = Project.find_by_id(params[:project_id])
-     @task = @project.tasks.build()
-     respond_to do |format|
-       format.html{render layout: false}
-     end
+    @project = Project.find_by_id(params[:project_id])
+    @task = @project.tasks.build()
+    respond_to do |format|
+      format.html { render layout: false }
+    end
   end
 
   def create
@@ -14,7 +14,7 @@ class TasksController < ApplicationController
     @task.status_id = 1 #default status to backlog
     @task.save
     respond_to do |format|
-      format.js{render :layout => false}
+      format.js { render :layout => false }
     end
   end
 
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
     @attachment = @task.attachments.build();
     @comments = @task.comments.where('comments.parent IS NULL')
     respond_to do |format|
-      format.html{render :layout => false}
+      format.html { render :layout => false }
     end
   end
 
@@ -32,8 +32,8 @@ class TasksController < ApplicationController
     @project = current_user.projects.find_by_id(params[:project_id])
     @task = @project.tasks.find_by_id(params[:id])
     respond_to do |format|
-      if(@task.update_attributes(params[:field] => params[:value]))
-        format.js{render :layout => false}
+      if (@task.update_attributes(params[:field] => params[:value]))
+        format.js { render :layout => false }
       end
     end
   end
@@ -53,9 +53,9 @@ class TasksController < ApplicationController
       @task = Task.find_by_id(@search_item)
     end
     respond_to do |format|
-        format.js{render :layout => false}
-      end
+      format.js { render :layout => false }
     end
+  end
 
   def assign
 
@@ -66,7 +66,7 @@ class TasksController < ApplicationController
     @user.save
 
     respond_to do |format|
-      format.js{render :layout => false}
+      format.js { render :layout => false }
     end
   end
 
@@ -79,7 +79,7 @@ class TasksController < ApplicationController
     end
 
     respond_to do |format|
-      format.js{render :layout => false}
+      format.js { render :layout => false }
     end
   end
 

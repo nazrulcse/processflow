@@ -83,17 +83,18 @@ class InvitesController < ApplicationController
     @invites = Invite.find_by_token(@token)
     if !@invites.present?
       flash[:error] = "Invalid Token"
+      redirect_to root_path()
     end
   end
 
   def user_create
     @token = params[:user][:token]
     @invites = Invite.find_by_token(@token)
-    @user = User.new(name: params[:user][:name],email: @invites.email,password: params[:user][:password])
-    @project = Project.find_by_id( @invites.project_id)
+    @user = User.new(name: params[:user][:name], email: @invites.email, password: params[:user][:password])
+    @project = Project.find_by_id(@invites.project_id)
     @project.users << @user
     sign_in(@user)
-    @invites.remove()
+    @invites.destroy()
     redirect_to profile_path()
   end
 

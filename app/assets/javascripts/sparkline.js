@@ -202,15 +202,15 @@
 
 /*jslint regexp: true, browser: true, jquery: true, white: true, nomen: false, plusplus: false, maxerr: 500, indent: 4 */
 
-(function(document, Math, undefined) { // performance/minified-size optimization
-    (function(factory) {
-        if(typeof define === 'function' && define.amd) {
+(function (document, Math, undefined) { // performance/minified-size optimization
+    (function (factory) {
+        if (typeof define === 'function' && define.amd) {
             define(['jquery'], factory);
         } else if (jQuery && !jQuery.fn.sparkline) {
             factory(jQuery);
         }
     }
-    (function($) {
+    (function ($) {
         'use strict';
 
         var UNSET_OPTION = {},
@@ -364,7 +364,7 @@
             'color: white;' +
             'font: 10px arial, san serif;' +
             'text-align: left;' +
-            'border-radius: 7px;'+
+            'border-radius: 7px;' +
             'white-space: nowrap;' +
             'padding: 10px 20px 20px 10px;' +
             'border: none;' +
@@ -462,7 +462,7 @@
         });
 
         // convience method to avoid needing the new operator
-        $.spformat = function(format, fclass) {
+        $.spformat = function (format, fclass) {
             return new SPFormat(format, fclass);
         };
 
@@ -480,14 +480,14 @@
             var vl;
             if (q === 2) {
                 vl = Math.floor(values.length / 2);
-                return values.length % 2 ? values[vl] : (values[vl-1] + values[vl]) / 2;
+                return values.length % 2 ? values[vl] : (values[vl - 1] + values[vl]) / 2;
             } else {
-                if (values.length % 2 ) { // odd
+                if (values.length % 2) { // odd
                     vl = (values.length * q + q) / 4;
-                    return vl % 1 ? (values[Math.floor(vl)] + values[Math.floor(vl) - 1]) / 2 : values[vl-1];
+                    return vl % 1 ? (values[Math.floor(vl)] + values[Math.floor(vl) - 1]) / 2 : values[vl - 1];
                 } else { //even
                     vl = (values.length * q + 2) / 4;
-                    return vl % 1 ? (values[Math.floor(vl)] + values[Math.floor(vl) - 1]) / 2 :  values[vl-1];
+                    return vl % 1 ? (values[Math.floor(vl)] + values[Math.floor(vl) - 1]) / 2 : values[vl - 1];
 
                 }
             }
@@ -556,7 +556,7 @@
         // returns true if the array is empty
         all = function (val, arr, ignoreNull) {
             var i;
-            for (i = arr.length; i--; ) {
+            for (i = arr.length; i--;) {
                 if (ignoreNull && arr[i] === null) continue;
                 if (arr[i] !== val) {
                     return false;
@@ -579,7 +579,7 @@
         };
 
         // http://paulirish.com/2008/bookmarklet-inject-new-css-rules/
-        addCSS = function(css) {
+        addCSS = function (css) {
             var tag;
             //if ('\v' == 'v') /* ie only */ {
             if (document.createStyleSheet) {
@@ -608,13 +608,13 @@
                 var el = document.createElement('canvas');
                 if (!!(el.getContext && el.getContext('2d'))) {
                     // Canvas is available
-                    $.fn.sparkline.canvas = function(width, height, target, interact) {
+                    $.fn.sparkline.canvas = function (width, height, target, interact) {
                         return new VCanvas_canvas(width, height, target, interact);
                     };
                 } else if (document.namespaces && !document.namespaces.v) {
                     // VML is available
                     document.namespaces.add('v', 'urn:schemas-microsoft-com:vml', '#default#VML');
-                    $.fn.sparkline.canvas = function(width, height, target, interact) {
+                    $.fn.sparkline.canvas = function (width, height, target, interact) {
                         return new VCanvas_vml(width, height, target);
                     };
                 } else {
@@ -682,7 +682,7 @@
         });
 
         // Convenience function
-        $.range_map = function(map) {
+        $.range_map = function (map) {
             return new RangeMap(map);
         };
 
@@ -933,7 +933,7 @@
             }
         });
 
-        initStyles = function() {
+        initStyles = function () {
             addCSS(defaultStyles);
         };
 
@@ -1197,7 +1197,8 @@
                 this.changeHighlight(false);
             },
 
-            changeHighlight: function (highlight)  {},
+            changeHighlight: function (highlight) {
+            },
 
             /**
              * Fetch the HTML to display as a tooltip
@@ -1268,7 +1269,8 @@
                 return '';
             },
 
-            getCurrentRegionFields: function () {},
+            getCurrentRegionFields: function () {
+            },
 
             calcHighlightColor: function (color, options) {
                 var highlightColor = options.get('highlightColor'),
@@ -1550,7 +1552,7 @@
                 }
                 if (spotRadius) {
                     // adjust the canvas size as required so that spots will fit
-                    hlSpotsEnabled = options.get('highlightSpotColor') &&  !options.get('disableInteraction');
+                    hlSpotsEnabled = options.get('highlightSpotColor') && !options.get('disableInteraction');
                     if (hlSpotsEnabled || options.get('minSpotColor') || (options.get('spotColor') && yvalues[yvallast] === this.miny)) {
                         canvasHeight -= Math.ceil(spotRadius);
                     }
@@ -1926,7 +1928,7 @@
                         minPlotted = true;
                     }
                     if (range > 0) {
-                        height = ((val/100)*canvasHeightEf) * (canvasHeightEf / this.max) + 1;//Math.floor(canvasHeightEf * ((Math.abs(val - 10) / range))) + 1;
+                        height = ((val / 100) * canvasHeightEf) * (canvasHeightEf / this.max) + 1;//Math.floor(canvasHeightEf * ((Math.abs(val - 10) / range))) + 1;
                     } else {
                         height = 1;
                     }
@@ -2309,7 +2311,7 @@
                     circle = 2 * Math.PI,
                     values = this.values,
                     total = this.total,
-                    next = offset ? (2*Math.PI)*(offset/360) : 0,
+                    next = offset ? (2 * Math.PI) * (offset / 360) : 0,
                     start, end, i, vlen, color;
 
                 vlen = values.length;
@@ -2435,7 +2437,9 @@
                         rwhisker = values[4];
                     }
                 } else {
-                    values.sort(function (a, b) { return a - b; });
+                    values.sort(function (a, b) {
+                        return a - b;
+                    });
                     q1 = quartile(values, 1);
                     q2 = quartile(values, 2);
                     q3 = quartile(values, 3);
@@ -2577,7 +2581,10 @@
             },
 
             drawLine: function (x1, y1, x2, y2, lineColor, lineWidth) {
-                return this.drawShape([[x1, y1], [x2, y2]], lineColor, lineWidth);
+                return this.drawShape([
+                    [x1, y1],
+                    [x2, y2]
+                ], lineColor, lineWidth);
             },
 
             drawShape: function (path, lineColor, fillColor, lineWidth) {
@@ -2786,7 +2793,13 @@
             },
 
             _drawRect: function (shapeid, x, y, width, height, lineColor, fillColor) {
-                return this._drawShape(shapeid, [[x, y], [x + width, y], [x + width, y + height], [x, y + height], [x, y]], lineColor, fillColor);
+                return this._drawShape(shapeid, [
+                    [x, y],
+                    [x + width, y],
+                    [x + width, y + height],
+                    [x, y + height],
+                    [x, y]
+                ], lineColor, fillColor);
             },
 
             appendShape: function (shape) {
@@ -2984,7 +2997,13 @@
             },
 
             _drawRect: function (shapeid, x, y, width, height, lineColor, fillColor) {
-                return this._drawShape(shapeid, [[x, y], [x, y + height], [x + width, y + height], [x + width, y], [x, y]], lineColor, fillColor);
+                return this._drawShape(shapeid, [
+                    [x, y],
+                    [x, y + height],
+                    [x + width, y + height],
+                    [x + width, y],
+                    [x, y]
+                ], lineColor, fillColor);
             },
 
             reset: function () {
@@ -3048,4 +3067,5 @@
             }
         });
 
-    }))}(document, Math));
+    }))
+}(document, Math));

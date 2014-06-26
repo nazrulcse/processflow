@@ -1,5 +1,5 @@
 <% if params[:field] == "spend" %>
- $(".progress-remaining").text("<%= remaining_effort(@task) %>");
+$(".progress-remaining").text("<%= remaining_effort(@task) %>");
 <%elsif params[:field] == "effort" %>
 $(".progress-remaining").text("<%= remaining_effort(@task) %>");
 $("#task-<%= @task.id %>").find('.total-effort').text("<%= @task.effort %>");

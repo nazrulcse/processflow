@@ -3,7 +3,7 @@ class Invitation < ActionMailer::Base
 
   def invitation_email(invitation)
     @invitation = invitation
-    @url  = 'http://example.com/login'
+    @url = 'http://example.com/login'
     mail(to: @invitation.email, subject: 'Welcome to My Awesome Site')
   end
 

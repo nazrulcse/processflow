@@ -1,12 +1,12 @@
 <div class="project-overview">
   <div class="new-account">
     <!--<h2 class="profile-title">-->
-      <!--<%# if (current_user.present?) %>-->
-          <!--Edit Profile -->
-           <%#= image_tag(@user.image_url(:small_thumb), :class => "pull-right nav-avatar") if @user.image? %>
-      <!--<%# else %>-->
-          <!--Sign up-->
-      <!--<%# end %>-->
+    <!--<%# if (current_user.present?) %>-->
+    <!--Edit Profile -->
+    <%#= image_tag(@user.image_url(:small_thumb), :class => "pull-right nav-avatar") if @user.image? %>
+    <!--<%# else %>-->
+    <!--Sign up-->
+    <!--<%# end %>-->
     <!--</h2>-->
     <%= form_for(resource, as: resource_name, url: current_user.present? ? profile_path() : account_path(), :html => {:method => current_user.present? ? :put : :post}) do |f| %>
         <%= devise_error_messages! %>

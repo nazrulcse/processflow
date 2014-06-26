@@ -12,7 +12,7 @@
 }
 
 .task-details-content-left {
-  width: 700px;
+    width: 700px;
 }
 
 .task-details-content-right {
@@ -41,7 +41,7 @@
 }
 
 .task-detail-tab > li a:hover {
-   background: #ccc;
+    background: #ccc;
 }
 
 .task-details .task-name {
@@ -101,7 +101,7 @@
 }
 
 #comments ul.comments-list {
-  padding-left: 10px;
+    padding-left: 10px;
 }
 
 .add-attachment {
@@ -164,29 +164,31 @@
     margin-bottom: 5px;
 }
 
-#write-comments .jqte_editor, .jqte_source{
+#write-comments .jqte_editor, .jqte_source {
     min-height: 120px !important;
 }
 
-#comments ul{
+#comments ul {
     margin-bottom: 15px;
 }
 
-.task-info .info-label{
-    width:96px;
+.task-info .info-label {
+    width: 96px;
 }
-.progress-info .info-label{
-    width:96px;
+
+.progress-info .info-label {
+    width: 96px;
 }
+
 .task-info ul li {
-  padding-left: 10px;
+    padding-left: 10px;
 }
 
 .priority-list {
     position: relative;
 }
 
-.priority-dropdown{
+.priority-dropdown {
     position: absolute;
 }
 
@@ -254,10 +256,12 @@
 .assigned-people {
     cursor: pointer;
 }
-.assigned-people-list{
+
+.assigned-people-list {
     position: absolute;
     margin-top: -10px;
 }
-.assigned-new-people{
+
+.assigned-new-people {
     position: relative;
 }

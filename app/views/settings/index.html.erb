@@ -1,30 +1,30 @@
 <div class="setting">
   <div class="setting_content">
-<ul class="nav nav-tabs" id="myTab">
-  <li class="active"><a href="#home" data-toggle="tab">General</a></li>
-  <li><a href="#profile" data-toggle="tab">Color</a></li>
-  <li><a href="#messages" data-toggle="tab">Email Notification</a></li>
-  <li><a href="#settings" data-toggle="tab">Notifications</a></li>
-</ul>
-
-<div class="tab-content">
-  <div class="tab-pane active" id="home"></div>
-  <div class="tab-pane" id="profile">
-    <ul class="color-settings">
-      <li>
-        <b> BackGround Color: </b>
-        <span id="bg-color-selector" style="background-color:#<%= get_bgcolor %>;">  </span>
-      </li>
-
-      <li>
-        <b> Navigation Color: </b>
-        <span id="color-selector-nav" style="background-color:#<%= get_navcolor %>;">  </span>
-      </li>
+    <ul class="nav nav-tabs" id="myTab">
+      <li class="active"><a href="#home" data-toggle="tab">General</a></li>
+      <li><a href="#profile" data-toggle="tab">Color</a></li>
+      <li><a href="#messages" data-toggle="tab">Email Notification</a></li>
+      <li><a href="#settings" data-toggle="tab">Notifications</a></li>
     </ul>
-  </div>
-  <div class="tab-pane" id="messages">this is test2</div>
-  <div class="tab-pane" id="settings">this is test 3</div>
-</div>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="home"></div>
+      <div class="tab-pane" id="profile">
+        <ul class="color-settings">
+          <li>
+            <b> BackGround Color: </b>
+            <span id="bg-color-selector" style="background-color:#<%= get_bgcolor %>;">  </span>
+          </li>
+
+          <li>
+            <b> Navigation Color: </b>
+            <span id="color-selector-nav" style="background-color:#<%= get_navcolor %>;">  </span>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-pane" id="messages">this is test2</div>
+      <div class="tab-pane" id="settings">this is test 3</div>
+    </div>
 
   </div>
 </div>
@@ -46,14 +46,14 @@
         onSubmit: function (hsb, hex, rgb, el) {
             $('#color-selector, .body-content').css('backgroundColor', '#' + hex);
             $.ajax({
-                type:'POST',
+                type: 'POST',
                 url: "<%= settings_path() %>",
                 dataType: 'script',
-                data: { key: 'bgcolor' , value: hex },
-                success:function(res) {
+                data: { key: 'bgcolor', value: hex },
+                success: function (res) {
                     $(el).ColorPickerHide();
                 },
-                error: function(e) {
+                error: function (e) {
                     console.log(e);
                 }
             });
@@ -74,14 +74,14 @@
 
             $('#color-selector-nav,nav').css('backgroundColor', '#' + hex);
             $.ajax({
-                type:'POST',
+                type: 'POST',
                 url: "<%= settings_path() %>",
                 dataType: 'script',
-                data: { key: 'navcolor' , value: hex },
-                success:function(res) {
+                data: { key: 'navcolor', value: hex },
+                success: function (res) {
 
                 },
-                error: function(e) {
+                error: function (e) {
                     console.log(e);
                 }
             });

@@ -68,14 +68,14 @@ body.modal-open {
 }
 
 .ui-progressbar {
-  height: 23px !important;
+    height: 23px !important;
 }
 
 .comments-reply.btn-group a.btn {
     padding: 4px 8px;
 }
 
-.btn-default  {
+.btn-default {
     background-image: linear-gradient(to bottom, #fff 0px, #e0e0e0 100%) !important;
 }
 
