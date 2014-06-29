@@ -1,4 +1,4 @@
-<div id="dashboard" class="row-fluid">
+<div id="dashboard" data-project-id="<%= @project.id %>" class="row-fluid">
   <%= render :partial => 'projects/project_nav', :locals => {:project => @project} %>
   <div class="task-content-wrapper">
     <div class="backlog task-category">

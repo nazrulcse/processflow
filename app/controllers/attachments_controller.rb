@@ -9,7 +9,7 @@ class AttachmentsController < ApplicationController
     @attachment = @task.attachments.build(attachment_params)
     if @attachment.save
       respond_to do |format|
-        format.js {render :layout => false}
+        format.js { render :layout => false }
       end
     end
   end
@@ -23,13 +23,13 @@ class AttachmentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_attachment
-      @attachment = Attachment.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_attachment
+    @attachment = Attachment.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def attachment_params
-      params.require(:attachment).permit(:file, :task_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def attachment_params
+    params.require(:attachment).permit(:file, :task_id)
+  end
 end

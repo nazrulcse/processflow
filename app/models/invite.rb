@@ -9,4 +9,5 @@ class Invite < ActiveRecord::Base
       break @random_token unless Invite.exists?(token: @random_token)
     end
   end
+
 end

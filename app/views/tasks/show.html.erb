@@ -36,9 +36,7 @@
         </div>
         <ul class="comments-list reset-padding">
           <% @comments.each do |comment| %>
-              <ul style="margin: 0px;">
                 <%= comments_replies comment %>
-              </ul>
           <% end %>
         </ul>
       </div>
@@ -48,8 +46,10 @@
       </div>
       <div id="write-comments" class="hidden" style="margin-bottom: 10px;">
         <textarea style="" class="form-control jqte-test"></textarea>
-        <button type="button" id="btncomment" data-task-id="<%= @task.id %>" class="btn btn-default pull-right"> Done</button>
-        <button type="button" id="btncmtcncel" class="btn btn-default pull-right"> Cancel</button>
+        <div class="btn-group pull-right">
+          <button type="button" id="btncmtcncel" class="btn btn-default"> Cancel</button>
+          <button type="button" id="btncomment" data-task-id="<%= @task.id %>" class="btn btn-default"> Done</button>
+        </div>
         <div class="clearfix"></div>
       </div>
     </div>
@@ -203,17 +203,17 @@
 
     $(document).off("click", ".reply").on("click", ".reply", function() {
         $(".reply-wrapper, .edit-wrapper").remove();
-        $(this).parent().before("<%= escape_javascript(render :partial => 'shared/reply', :locals => {:task => @task} )%>");
+        $(this).parent().before("<%= escape_javascript(render :partial => 'comments/reply', :locals => {:task => @task} )%>");
         $(this).parents('.comments-item-wrapper').find('.jqte_editor').focus();
     });
 
-    $(document).off("click", ".edit").on("click", ".edit", function() {
+    $(document).off("click", ".comments-edit").on("click", ".comments-edit", function() {
         $(".edit-wrapper, .reply-wrapper").remove();
-        $(this).parent().before("<%= escape_javascript(render :partial => 'shared/edit', :locals => {:task => @task})%>");
-        comments_id = $(this).attr('id');
-        edit_context = $(this).parents('.comments-item-wrapper').find('.content-right').html();
-        $(this).parents('.comments-item-wrapper').find('.jqte_editor').html(edit_context);
-        $(this).parents('.comments-item-wrapper').find('.jqte_editor').focus();
+        edit_comments = $(this);
+        edit_comments.parent().before("<%= escape_javascript(render :partial => 'comments/edit', :locals => {:task => @task})%>");
+        comments_id = edit_comments.attr('id');
+        edit_context = edit_comments.parents('.comments-item-wrapper').find('.content-right').html();
+        edit_comments.parents('.comments-item-wrapper').find('.jqte_editor').html(edit_context).focus();
         $("#editbtn").attr('data-comments-id', comments_id);
     });
 </script>

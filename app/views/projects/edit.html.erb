@@ -1,1 +1,16 @@
 <%= render :partial => 'form' %>
+<script type="text/javascript">
+ $('#btnSave').click(function() {
+     $.ajax({
+         url: $('.edit_project').attr('action'),
+         data: $('.edit_project').serialize(),
+         type: 'put',
+         success: function() {
+             popupMessage('success', 'info');
+         },
+         error: function() {
+             popupMessage('failed', 'error');
+         }
+     });
+ });
+</script>

@@ -23,7 +23,8 @@
 }
 
 #dashboard div.task-category .title {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
+    border-right: 2px solid #ddd;
     color: #555555;
     font-size: 16px;
     font-weight: 700;
@@ -52,7 +53,7 @@
     height: auto !important;
     background: none repeat scroll 0 0 #f9f9f9;
     padding: 8px 0 6px 5px;
-    //background-image: linear-gradient(to bottom, #C0C0C0 0px, #CDCDCD 100%);
+    background-image : linear-gradient(to bottom, #C0C0C0 0 px, #CDCDCD 100%);
     border-bottom: 1px solid #FFFFFF;
 }
 
@@ -80,12 +81,19 @@
 #dashboard .task-item {
     width: auto;
     border: solid 1px #ccc;
-    border-top: solid 3px #3276B1;
     border-radius: 4px;
     margin: 2px 5px 2px 5px;
     padding: 2px 5px 5px 5px;
     cursor: move;
     z-index: 999;
+}
+
+#dashboard .task-item.feature {
+    border-top: solid 3px #3276B1;
+}
+
+#dashboard .task-item.bug {
+    border-top: solid 3px darkred;
 }
 
 #dashboard .task-item:hover {
@@ -99,16 +107,15 @@
     color: #212121;
 }
 
-
 /* Task Item Design */
 
 .task-item .content-left {
-  width: 76.9%;
+    width: 76.9%;
 }
 
 .task-item .content-right {
-  width: 23%;
-  text-align: center;
+    width: 23%;
+    text-align: center;
 }
 
 .task-item .task-name {
@@ -156,9 +163,10 @@
 #history ul li:nth-child(even) b {
     display: block;
 }
-.cross-image{
+
+.cross-image {
     position: absolute;
-    top:10px;
+    top: 10px;
     right: 10px;
     cursor: pointer;
 }

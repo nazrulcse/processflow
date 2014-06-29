@@ -13,6 +13,10 @@
     padding: 5px !important;
 }
 
+.navbar-default {
+    background: -moz-linear-gradient(center top , #ffffff, #dcdcdc) repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+}
+
 .modal-footer, .modal-header {
     background: none repeat scroll 0 0 #FAFAFA;
     margin-top: 0 !important;
@@ -68,14 +72,14 @@ body.modal-open {
 }
 
 .ui-progressbar {
-  height: 23px !important;
+    height: 23px !important;
 }
 
 .comments-reply.btn-group a.btn {
     padding: 4px 8px;
 }
 
-.btn-default  {
+.btn-default {
     background-image: linear-gradient(to bottom, #fff 0px, #e0e0e0 100%) !important;
 }
 

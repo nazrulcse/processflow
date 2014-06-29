@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def generate_graph(project)
-   return "#{project.name} #{image_tag('graph.png')}".html_safe
+    return "#{project.name} #{image_tag('graph.png')}".html_safe
   end
 
   def is_project_owner!(project)
@@ -30,11 +30,10 @@ module ApplicationHelper
   end
 
   def get_reply_div
-    content_tag :div, class:"write-reply" do
-      text_area_tag(:comment_reply,nil ,:class => 'reply_input jqte-test') + # Note the + in this line
-        submit_tag(:Save, :class => 'btn')
+    content_tag :div, class: "write-reply" do
+      text_area_tag(:comment_reply, nil, :class => 'reply_input jqte-test') # Note the + in this line
+      submit_tag(:Save, :class => 'btn')
     end
-
   end
 
 end

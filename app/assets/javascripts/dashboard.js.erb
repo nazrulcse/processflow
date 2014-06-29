@@ -2,71 +2,73 @@ $(window).bind('page:change', function () {
     initDashboard();
 });
 function initDashboard() {
-    $("#dashboard .task-content").sortable({
+    var current_project_id = $('#dashboard').attr('data-project-id');
+    if (current_project_id == '') {
+        popupMessage('Internal Error', 'error');
+    }
+    $('#dashboard .task-content').sortable({
         item: '.task-item',
         connectWith: '#dashboard .task-content',
         placeholder: 'placeholder',
-        activeClass: "ui-state-hover",
-        hoverClass: "ui-state-active"
+        activeClass: 'ui-state-hover',
+        hoverClass: 'ui-state-active'
     });
 
-    $("#dashboard .task-content").droppable({
-        accept: ":not(.ui-sortable-helper)",
-        activeClass: "ui-state-hover",
-        hoverClass: "ui-state-active",
-        tolerance: "intersect",
+    $('#dashboard .task-content').droppable({
+        accept: ':not(.ui-sortable-helper)',
+        activeClass: 'ui-state-hover',
+        hoverClass: 'ui-state-active',
+        tolerance: 'intersect',
         greedy: true,
         drop: function (event, ui) {
             $(this).append(ui.helper);
             dropZone = $(event.target);
             status = dropZone.attr('data-task-status');
             task_id = $(ui.helper).attr('data-task-id');
-            project_id = $(ui.helper).attr('data-project-id');
-            updateTask("status_id", status, project_id, task_id);
+            updateTask('status_id', status, task_id);
         },
         accept: function (elem) {
             return !$(this).has(elem).length;
         }
     });
 
-    $(".add-attachment").droppable({
-        activeClass: "ui-state-hover",
-        hoverClass: "ui-state-active",
-        tolerance: "intersect",
+    $('.add-attachment').droppable({
+        activeClass: 'ui-state-hover',
+        hoverClass: 'ui-state-active',
+        tolerance: 'intersect',
         greedy: true,
         drop: function (event, ui) {
             console.log($(event.target));
         }
     });
 
-    $(".notification-list").perfectScrollbar();
+    $('.notification-list').perfectScrollbar();
 
-    $(".project-title").click(function () {
+    $('.project-title').click(function () {
         id = $(this).attr('data-id');
         $.ajax({
-            url: "/projects/" + id + "/edit",
+            url: '/projects/' + id + '/edit',
             type: 'get',
             success: function (res) {
-                $("#small-modal .modal-header").text("Project");
-                $("#small-modal .modal-body").html(res);
-                $("#small-modal").modal('show');
+                $('#small-modal .modal-header').text('Project');
+                $('#small-modal .modal-body').html(res);
+                $('#small-modal').modal('show');
             }
         });
     });
 
-    $(document).on('dblclick', '.task-item', function () {
+    $(document).off('dblclick', '.task-item').on('dblclick', '.task-item', function () {
         task_id = $(this).attr('data-task-id');
-        project_id = $(this).attr('data-project-id');
-        if (task_id == '' || project_id == '') {
+        if (task_id == '') {
             popupMessage('internal error', 'error');
             return false;
         }
         $.ajax({
-            url: "/projects/" + project_id + "/tasks/" + task_id,
+            url: '/projects/' + current_project_id + '/tasks/' + task_id,
             type: 'get',
             success: function (res) {
-                $("#x-large-modal").modal('show');
-                $("#x-large-modal .modal-body").html(res);
+                $('#x-large-modal').modal('show');
+                $('#x-large-modal .modal-body').html(res);
             }
         });
     });
@@ -76,14 +78,14 @@ function initDashboard() {
         var formdata;
         if (FormData) {
             formdata = new FormData();
-            formdata.append("attachment[file]", ofile);
+            formdata.append('attachment[file]', ofile);
         }
         task_id = $(this).attr('data_task_id');
         if (task_id == '') {
-            popupMessage("Error", 'error');
+            popupMessage('Error', 'error');
         }
         $.ajax({
-            url: "/tasks/" + task_id + "/attachments",
+            url: '/tasks/' + task_id + '/attachments',
             data: formdata,
             type: 'POST',
             success: function (res) {
@@ -107,126 +109,119 @@ function initDashboard() {
         new_value = $(this).text().trim();
         $(this).removeClass('editable-content');
         if (old_value != new_value) {
-            task_id = $(".task-details").attr('data-task-id');
-            project_id = $(".task-item").first().attr('data-project-id');
-            updateTask('description', new_value, project_id, task_id);
+            task_id = $('.task-details').attr('data-task-id');
+            updateTask('description', new_value, task_id);
         }
     });
 
     /* Edit task effort value */
 
-    $(document).on('click', ".task-priority", function () {
-        $(".priority-dropdown").toggle();
+    $(document).on('click', '.task-priority', function () {
+        $('.priority-dropdown').toggle();
     });
 
-    $(document).off("blur", ".progress-effort, .progress-spend").on("blur", ".progress-effort, .progress-spend", function () {
+    $(document).off('blur', '.progress-effort, .progress-spend').on('blur', '.progress-effort, .progress-spend', function () {
         var progress = $(this).text().trim();
         var field = $(this).attr('data-task-field').trim();
-        task_id = $(".task-details").attr('data-task-id');
-        project_id = $(".task-item").first().attr('data-project-id');
-        updateTask(field, progress, project_id, task_id);
+        task_id = $('.task-details').attr('data-task-id');
+        updateTask(field, progress, task_id);
     });
 
-    $(document).on("keypress", ".progress-effort, .progress-spend", function (e) {
+    $(document).on('keypress', '.progress-effort, .progress-spend', function (e) {
         if (e.which == 13) {
             return false;
         }
     });
 
-    $(document).on('change', '.edit-end-date', function() {
-        task_id = $(".task-details").attr('data-task-id');
-        project_id = $(".task-item").first().attr('data-project-id');
-        updateTask('end_date', $(this).val(), project_id, task_id);
+    $(document).on('change', '.edit-end-date', function () {
+        task_id = $('.task-details').attr('data-task-id');
+        updateTask('end_date', $(this).val(), task_id);
     });
 
     $(document).on('click', '.change-priority', function () {
-        task_id = $(".task-details").attr('data-task-id');
-        project_id = $(".task-item").first().attr('data-project-id');
+        task_id = $('.task-details').attr('data-task-id');
         field = $(this).attr('data-task-field');
         var priority = $(this).attr('data-value');
-        new_priority = "/assets/task_" + priority.toLowerCase() + ".png";
+        new_priority = '/assets/task_' + priority.toLowerCase() + '.png';
         $(this).parents('ul').prev().find('img').attr('src', new_priority);
-        updateTask(field, priority, project_id, task_id);
-        $(".priority-dropdown").hide();
+        updateTask(field, priority, task_id);
+        $('.priority-dropdown').hide();
     });
 
 
-    $(document).on('click', ".assigned-people", function () {
-        $('.unassigned-people').attr('data-assigned-value',$(this).attr('data-assigned-id'));
+    $(document).off('click', '.assigned-people').on('click', '.assigned-people', function () {
+        $('.unassigned-people').attr('data-assigned-value', $(this).attr('data-assigned-id'));
         $('.unassigned-pophover').toggle();
-    })
+    });
 
-
-    $(document).on("click", ".unassigned-people", function(){
-        task_id = $(".task-details").attr('data-task-id');
-        project_id = $(".task-item").first().attr('data-project-id');
+    $(document).on('click', '.unassigned-people', function () {
+        task_id = $('.task-details').attr('data-task-id');
         user_id = $('.unassigned-people').attr('data-assigned-value');
-        unassignedPeople(user_id,task_id,project_id);
+        unassignedPeople(user_id, task_id);
         $('.unassigned-pophover').hide();
     });
 
-    $(document).on("click", ".assigned-new-people", function() {
-        if($("#assigned-list").find('li').length == 0) {
-            $("#assigned-list").html("<li class='text-center'> No more user </li>");
+    $(document).off('click', '.assigned-new-people').on('click', '.assigned-new-people', function () {
+        if ($('#assigned-list').find('li').length == 0) {
+            $('#assigned-list').html("<li class='text-center'> No more user </li>");
         }
         $('.assigned-people-list').toggle();
     });
 
-    $(document).on("click",".assigned-in-task",function(){
-        task_id = $(".task-details").attr('data-task-id');
-        project_id = $(".task-item").first().attr('data-project-id');
+    $(document).on('click', '.assigned-in-task', function () {
+        task_id = $('.task-details').attr('data-task-id');
         user_id = $(this).attr('data-value');
-        assignedPeople(user_id, task_id, project_id);
+        assignedPeople(user_id, task_id);
         $(this).parent().remove();
         $('.assigned-people-list').hide();
     });
 
-    function updateTask(field, value, project_id, task_id) {
+    function updateTask(field, value, task_id) {
         $.ajax({
-            url: "/projects/" + project_id + "/tasks/" + task_id,
+            url: '/projects/' + current_project_id + '/tasks/' + task_id,
             type: 'put',
             data: {field: field, value: value},
             dataType: 'script',
             success: function () {
-                popupMessage("Update task status", 'info');
+                popupMessage('Update task status', 'info');
             },
             error: function () {
-                popupMessage("Error", 'error');
+                popupMessage('Error', 'error');
             }
         });
     }
 
-    function assignedPeople(user_id, task_id, project_id){
+    function assignedPeople(user_id, task_id) {
         $.ajax({
-            url: "/projects/" + project_id + "/tasks/" + task_id + "/assign",
+            url: '/projects/' + current_project_id + '/tasks/' + task_id + '/assign',
             type: 'post',
-            data: {user_id:user_id},
+            data: {user_id: user_id},
             dataType: 'html',
-            async:false,
+            async: false,
             success: function (data) {
-                $(".assign-people").prepend(data);
-                popupMessage("Assigned new people in this task.", 'info');
+                $('.assign-people').prepend(data);
+                popupMessage('Assigned new people in this task.', 'info');
             },
             error: function () {
-                popupMessage("Error", 'error');
+                popupMessage('Error', 'error');
             }
         });
     }
 
-    function unassignedPeople(user_id, task_id, project_id){
+    function unassignedPeople(user_id, task_id) {
         $.ajax({
-            url: "/projects/" + project_id + "/tasks/" + task_id + "/unassign",
+            url: '/projects/' + current_project_id + '/tasks/' + task_id + '/unassign',
             type: 'DELETE',
             data: {user_id: user_id},
             dataType: 'html',
-            async:false,
+            async: false,
             success: function (data) {
-                $("#assign-user-"+user_id).parent().remove();
-                $("#assigned-list").append(data);
-                popupMessage("Unassigned people from this task.", 'info');
+                $('#assign-user-' + user_id).parent().remove();
+                $('#assigned-list').append(data);
+                popupMessage('Unassigned people from this task.', 'info');
             },
             error: function () {
-                popupMessage("Error", 'error');
+                popupMessage('Error', 'error');
             }
         });
     }
@@ -235,12 +230,12 @@ function initDashboard() {
     /* Comments and reply section */
 
     $(document).off('click', '#btncomment').on('click', '#btncomment', function () {
-        comment = $("textarea").val();
+        comment = $('textarea').val();
         task_id = $(this).attr('data-task-id');
-        if (comment != "") {
+        if (comment != '') {
             $.ajax({
                 type: 'POST',
-                url: "/tasks/" + task_id + "/comments",
+                url: '/tasks/' + task_id + '/comments',
                 dataType: 'script',
                 data: { comment: comment},
                 success: function (res) {
@@ -253,9 +248,9 @@ function initDashboard() {
         }
     });
 
-    $(document).on("click", ".delete", function () {
-        id = $(this).attr("id");
-        task_id = $(this).attr("task_id");
+    $(document).on('click', '.delete', function () {
+        id = $(this).attr('id');
+        task_id = $(this).attr('task_id');
         $.ajax({
             type: 'DELETE',
             url: '/tasks/' + task_id + '/comments/' + id + '',
@@ -269,14 +264,14 @@ function initDashboard() {
         });
     });
 
-    $(document).off('click', "#save-reply").on('click', "#save-reply", function () {
-        reply_context = $(".jqte_editor").text();
-        parent_comments = $(this).parent('.comments-item-wrapper').attr('id');
+    $(document).off('click', '#save-reply').on('click', '#save-reply', function () {
+        reply_context = $('.jqte_editor').text();
+        parent_comments = $(this).parents('.comments-item-wrapper').attr('data-comments-id');
         task_id = $(this).attr('data-task-id');
-        if (reply_context != "") {
+        if (reply_context != '' && parent_comments != '' && task_id != '') {
             $.ajax({
                 type: 'POST',
-                url: "/tasks/" + task_id + "/comments",
+                url: '/tasks/' + task_id + '/comments',
                 dataType: 'script',
                 data: { comment: reply_context, parent: parent_comments},
                 success: function (res) {
@@ -287,15 +282,18 @@ function initDashboard() {
                 }
             });
         }
+        else {
+            popupMessage('Internal Error', 'error');
+        }
     });
 
     $(document).off('click', '#editbtn').on('click', '#editbtn', function () {
-        comments_id = $(this).attr("data-comments-id");
-        task_id = $(this).attr("data-task-id");
-        edit_context = $(".jqte_editor").text();
-        if (edit_context != "") {
+        comments_id = $(this).attr('data-comments-id');
+        task_id = $(this).attr('data-task-id');
+        edit_context = $('.jqte_editor').text();
+        if (edit_context != '') {
             $.ajax({
-                url: "/tasks/" + task_id + "/comments/" + comments_id,
+                url: '/tasks/' + task_id + '/comments/' + comments_id,
                 type: 'PUT',
                 dataType: 'script',
                 data: {comment: edit_context},
@@ -311,16 +309,16 @@ function initDashboard() {
 
     $(document).off('click', '#canceleditbtn').on('click', '#canceleditbtn', function () {
 
-        $(".edit-wrapper").remove();
+        $('.edit-wrapper').remove();
     });
 
     $(document).off('click', '#cancel-reply').on('click', '#cancel-reply', function () {
 
-        $(".reply-wrapper").remove();
+        $('.reply-wrapper').remove();
     });
 
 
-    $(document).on('click', '.notification-list ul li a', function(e) {
+    $(document).on('click', '.notification-list ul li a', function (e) {
         e.preventDefault();
         url = $(this).attr('href');
         if (url == '') {
@@ -331,8 +329,8 @@ function initDashboard() {
             url: url,
             type: 'get',
             success: function (res) {
-                $("#x-large-modal").modal('show');
-                $("#x-large-modal .modal-body").html(res);
+                $('#x-large-modal').modal('show');
+                $('#x-large-modal .modal-body').html(res);
             }
         });
     });

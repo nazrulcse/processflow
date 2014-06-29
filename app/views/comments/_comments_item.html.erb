@@ -1,0 +1,15 @@
+<div class='comments-item-wrapper' id='comments-<%= comment.id %>' data-comments-id='<%= comment.id %>'>
+  <div class='content-left pull-left'>
+    <%= image_tag(get_image(comment.user_id)) %>
+  </div>
+  <div class='content-right pull-left'>
+    <%= comment.comment.html_safe %>
+  </div>
+  <div class='clearfix'></div>
+  <div class='comments-reply btn-group hidden'>
+    <%= link_to '', 'javascript:void(0);', :class => 'reply glyphicon glyphicon-share-alt btn btn-primary', parent: comment.id %>
+    <%= link_to '', 'javascript:void(0);',
+                method: :delete, data: {confirm: 'Are you sure?'}, :class => 'delete glyphicon glyphicon-trash btn btn-danger', task_id: comment.task_id, id: comment.id %>
+    <%= link_to '', 'javascript:void(0);', :class => 'comments-edit glyphicon glyphicon-pencil btn btn-default', task_id: comment.task_id, id: comment.id %>
+  </div>
+</div>

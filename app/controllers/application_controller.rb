@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def authenticate_user
-    if(!current_user.present?)
+    if (!current_user.present?)
       redirect_to root_path()
     end
   end
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
       u.permit(:name, :zip, :email, :image, :password, :password_confirmation)
     end
     devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:name, :country,:zip, :username,:image, :email, :password, :password_confirmation)
+      u.permit(:name, :country, :zip, :username, :image, :email, :password, :password_confirmation)
     end
     devise_parameter_sanitizer.for(:sign_in) do |u|
       u.permit(:username, :email, :password)
