@@ -1,10 +1,10 @@
-<% if params[:field] == "spend" %>
-$(".progress-remaining").text("<%= remaining_effort(@task) %>");
-<%elsif params[:field] == "effort" %>
-$(".progress-remaining").text("<%= remaining_effort(@task) %>");
+<% if params[:field] == 'spend' %>
+ $('.progress-remaining').text("<%= remaining_effort(@task) %>");
+<%elsif params[:field] == 'effort' %>
+$('.progress-remaining').text("<%= remaining_effort(@task) %>");
 $("#task-<%= @task.id %>").find('.total-effort').text("<%= @task.effort %>");
-<%elsif params[:field] == "priority" %>
+<%elsif params[:field] == 'priority' %>
 $("#task-<%= @task.id %>").find('.task-priority-icon').attr('src', "/assets/task_<%= @task.priority.downcase %>.png");
-<%elsif params[:field] == "end_date" %>
+<%elsif params[:field] == 'end_date' %>
 $("#task-<%= @task.id %>").find('.task-end-date').text("<%= @task.end_date %>");
 <%end%>

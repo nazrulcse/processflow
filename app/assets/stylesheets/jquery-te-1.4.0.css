@@ -27,10 +27,8 @@
 }
 
 .jqte_focused {
-    border-color: #00AAE7;
-    box-shadow: 0 0 10px #00BDFF;
-    -webkit-box-shadow: 0 0 10px #00BDFF;
-    -moz-box-shadow: 0 0 10px #00BDFF;
+	border-color:#00AAE7;
+	/*box-shadow:0 0 10px #00BDFF; -webkit-box-shadow:0 0 10px #00BDFF; -moz-box-shadow:0 0 10px #00BDFF;*/
 }
 
 /* toolbar */

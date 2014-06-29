@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="icon" type="image/png" href="logo.png">
+  <!--<link rel="icon" type="image/png" href="logo.png">-->
   <title>
     ProcessFlow: Home
   </title>
@@ -61,4 +61,10 @@
   </div>
 </div>
 </body>
+<script type="text/javascript">
+    <% @klass = flash[:notice].present? ? '' : 'error' %>
+    <% flash.each do |name, msg| -%>
+    popupMessage("<%= msg %>", "<%= @klass %>");
+    <% end -%>
+</script>
 </html>

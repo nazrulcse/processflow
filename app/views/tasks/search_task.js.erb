@@ -1,27 +1,22 @@
-$(".backlog .task-content").empty();
-$(".project-sprint .task-content").empty();
-$(".project-doing .task-content").empty();
-$(".project-finish .task-content").empty();
-$(".project-done .task-content").empty();
+$('.task-category .task-content').html('');
 <% @task.each do |task| %>
+    <% if task.status_id == 1 %>
+    $(".backlog .task-content").append("<%= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => task}).html_safe %>");
+    <% end %>
 
-<% if task.status_id == 1 %>
-$(".backlog .task-content").append("<%= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => task}).html_safe %>");
-<% end %>
+    <% if task.status_id == 2 %>
+    $(".project-sprint .task-content").append("<%= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => task}).html_safe %>");
+    <% end %>
 
-<% if task.status_id == 2 %>
-$(".project-sprint .task-content").append("<%= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => task}).html_safe %>");
-<% end %>
+    <% if task.status_id == 3 %>
+    $(".project-doing .task-content").append("<%= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => task}).html_safe %>");
+    <% end %>
 
-<% if task.status_id == 3 %>
-$(".project-doing .task-content").append("<%= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => task}).html_safe %>");
-<% end %>
+    <% if task.status_id == 4 %>
+    $(".project-finish .task-content").append("<%= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => task}).html_safe %>");
+    <% end %>
 
-<% if task.status_id == 4 %>
-$(".project-finish .task-content").append("<%= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => task}).html_safe %>");
-<% end %>
-
-<% if task.status_id == 5 %>
-$(".project-done .task-content").append("<%= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => task}).html_safe %>");
-<% end %>
+    <% if task.status_id == 5 %>
+    $(".project-done .task-content").append("<%= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => task}).html_safe %>");
+    <% end %>
 <% end %>

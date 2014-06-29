@@ -1,8 +1,8 @@
 .task-detail-tab {
-    background: -webkit-linear-gradient(#CDCDCD, #DFDFDF); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#CDCDCD, #DFDFDF); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#CDCDCD, #FDFDFD); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#CDCDCD, #EFEFEF); /* Standard syntax */
+    background: -webkit-linear-gradient(center top, #ffffff, #dcdcdc) repeat scroll 0 0 rgba(0, 0, 0, 0); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(center top, #ffffff, #dcdcdc) repeat scroll 0 0 rgba(0, 0, 0, 0); /* For Opera 11.1 to 12.0 */
+    background: linear-gradient(center top, #ffffff, #dcdcdc) repeat scroll 0 0 rgba(0, 0, 0, 0); /* Standard syntax */
+    background: -moz-linear-gradient(center top, #ffffff, #dcdcdc) repeat scroll 0 0 rgba(0, 0, 0, 0);
     border-radius: 5px 5px 0 0;
 }
 
@@ -264,4 +264,21 @@
 
 .assigned-new-people {
     position: relative;
+    cursor: pointer;
+}
+
+.container-fluid {
+    margin: 0px;
+    padding: 0px;
+}
+
+.left-side {
+    width: 65%;
+    float: left;
+    margin-right: 20px;
+}
+
+.right-side {
+    width: 31%;
+    float: left;
 }

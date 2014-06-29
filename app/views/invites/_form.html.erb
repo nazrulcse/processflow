@@ -1,25 +1,23 @@
 <%= form_for(@invite, :url => {:action => 'create'}, :method => :post) do |f| %>
-    <% if @invite.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
+  <% if @invite.errors.any? %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@invite.errors.count, 'error') %> prohibited this invite from being saved:</h2>
 
-          <ul>
-            <% @invite.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <div class="field">
+      <ul>
+      <% @invite.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class='field'>
       <%= f.label :email %>
       <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
-      <span id="errorForName"></span>
+      <span id='errorForName'></span>
     </div>
-
-
-
-    <!--<div class="actions">-->
+  <!--<div class='actions'>-->
     <!--<%= f.submit %>-->
     <!--</div>-->
 <% end %>

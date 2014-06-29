@@ -1,9 +1,9 @@
 <% if @comment.parent.present?  %>
-$("#comments_<%= @comment.parent %>").closest("ul").append("<ul style='padding-left: 10px;'><li><%= escape_javascript(render :partial => 'shared/comments_item', :locals => {:comment => @comment}).html_safe %></li></ul>");
+$("#comments_<%= @comment.parent %>").closest("ul").append("<ul style='padding-left: 10px;'><li><%= escape_javascript(render :partial => 'comments/comments_item', :locals => {:comment => @comment}).html_safe %></li></ul>");
 $(".jqte_editor").text('');
 $(".reply-wrapper").remove();
 <% else %>
-$(".comments-list").append("<li> <%= escape_javascript(render :partial => 'shared/comments_item', :locals => {:comment => @comment}).html_safe %> </li>");
+$(".comments-list").append("<li> <%= escape_javascript(render :partial => 'comments/comments_item', :locals => {:comment => @comment}).html_safe %> </li>");
 $(".jqte_editor").text('');
 $(".reply-wrapper").remove();
 <% end %>

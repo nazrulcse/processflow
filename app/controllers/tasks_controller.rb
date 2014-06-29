@@ -58,13 +58,10 @@ class TasksController < ApplicationController
   end
 
   def assign
-
     @user = User.find_by_id(params[:user_id])
     @task = Task.find_by_id(params[:id])
-
     @user.tasks << @task
     @user.save
-
     respond_to do |format|
       format.js { render :layout => false }
     end
@@ -72,12 +69,10 @@ class TasksController < ApplicationController
 
   def unassign
     @user = User.find_by_id(params[:user_id])
-
     if @user.present?
       task = @user.tasks.find_by_id(params[:id])
       @user.tasks.delete(task)
     end
-
     respond_to do |format|
       format.js { render :layout => false }
     end

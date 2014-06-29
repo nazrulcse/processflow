@@ -11,7 +11,6 @@ module TasksHelper
   end
 
   def rest_of_users(task_users, project_users)
-
     if (task_users.nil?)
       return project_users
     elsif (project_users.nil?)
@@ -20,6 +19,5 @@ module TasksHelper
       return project_users - task_users
     end
   end
-
 
 end

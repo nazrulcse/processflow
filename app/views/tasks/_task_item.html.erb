@@ -1,28 +1,28 @@
-<div class="task-item" data-task-id="<%= task.id %>" id="task-<%= task.id %>" data-project-id="<%= task.project.id %>">
-  <div class="pull-left content-left">
+<div class='task-item feature' data-task-id='<%= task.id %>' id='task-<%= task.id %>' data-project-id='<%= task.project.id %>'>
+  <div class='pull-left content-left'>
     <ul>
-      <li class="task-name"> <%= task.title %> </li>
+      <li class='task-name'> <%= task.title %> </li>
       <li>
         <%= image_tag('date.png', :title => 'End Date') %>
-        <span class="task-end-date"> <%= task.end_date %> </span>
+        <span class='task-end-date'> <%= task.end_date %> </span>
       </li>
     </ul>
   </div>
-  <div class="pull-right content-right">
+  <div class='pull-right content-right'>
     <ul>
       <li>
         <%= image_tag("task_#{task.priority.downcase}.png", :title => 'Priority', :class => 'pull-right task-priority-icon') %>
-        <div class="clear-fix"></div>
+        <div class='clear-fix'></div>
       </li>
-      <li style="vertical-align: middle;">
-        <span class="total-effort"> <%= task.effort %> </span>h <%= image_tag('effort.png', :title => 'Effort') %>
+      <li style='vertical-align: middle;'>
+        <span class='total-effort'> <%= task.effort %> </span>h <%= image_tag('effort.png', :title => 'Effort') %>
       </li>
       <li>
-        <span class="glyphicon-class"></span>
+        <span class='glyphicon-class'></span>
         <%= image_tag(current_user.image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{current_user.name}") if current_user.image? %>
-        <a href="javascript:void(0);" class="btn-link" title="More"> ... </a>
+        <a href='javascript:void(0);' class='btn-link' title='More'> ... </a>
       </li>
     </ul>
   </div>
-  <div class="clear-fix"></div>
+  <div class='clear-fix'></div>
 </div>

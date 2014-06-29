@@ -1,39 +1,18 @@
 class SettingsController < ApplicationController
-  before_action :set_setting, only: [:show, :edit, :update, :destroy]
+  before_action :set_setting, only: [:update]
 
-  # GET /settings
-  # GET /settings.json
   def index
     @settings = Setting.all
   end
 
-  # GET /settings/1
-  # GET /settings/1.json
-  def show
-  end
-
-  # GET /settings/new
-  def new
-    @setting = Setting.new
-  end
-
-  # GET /settings/1/edit
-  def edit
-  end
-
-  # POST /settings
-  # POST /settings.json
   def create
-
     @settings = current_user.settings.find_by_key(params[:key])
-
     if @settings.present?
       @result = @settings.update_attributes(:value => params[:value])
     else
       @new_settings = current_user.settings.build(:key => params[:key], :value => params[:value])
       @result = @new_settings.save()
     end
-
     respond_to do |format|
       if @result
         format.js { render :layout => false }
@@ -41,8 +20,6 @@ class SettingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /settings/1
-  # PATCH/PUT /settings/1.json
   def update
     respond_to do |format|
       if @setting.update(setting_params)
@@ -52,16 +29,6 @@ class SettingsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @setting.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /settings/1
-  # DELETE /settings/1.json
-  def destroy
-    @setting.destroy
-    respond_to do |format|
-      format.html { redirect_to settings_url, notice: 'Setting was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @projects = current_user.projects.order("id DESC")
+    @projects = current_user.projects.order('id DESC')
+    @feeds = History.feeds(current_user.id)
   end
 
   def show
@@ -36,11 +37,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project }
-      else
-        format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.js { }
       end
     end
   end
@@ -61,6 +58,7 @@ class ProjectsController < ApplicationController
   end
 
   private
+
   def set_project
     @project = Project.find_by_id(params[:id])
     if !@project.present?
@@ -72,4 +70,5 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:name, :description, :status).merge(owner_id: current_user.id)
   end
+
 end

@@ -13,6 +13,8 @@
         </div>
         <div class='left-side'>
           <div class='field'>
+        <div class='left-side'>
+          <div class='field'>
             <%= f.label :title %>
             <%= f.text_field :title, autofocus: true, :class => 'form-control', :style => '' %>
             <span id='errorForName'></span>
@@ -48,24 +50,6 @@
     <% end %>
   </div>
 </div>
-
-<style type='text/css'>
-    .container-fluid {
-        margin: 0px;
-        padding: 0px;
-    }
-
-    .left-side {
-        width: 65%;
-        float: left;
-        margin-right: 20px;
-    }
-
-    .right-side {
-        width: 31%;
-        float: left;
-    }
-</style>
 
 <script type='text/javascript'>
     $(document).ready(function () {

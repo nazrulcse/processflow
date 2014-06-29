@@ -1,31 +1,31 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <ul class="nav navbar-nav">
-    <li style="padding: 3px 10px 0 2px;">
+<nav class='navbar navbar-default navbar-fixed-top' role='navigation'>
+  <ul class='nav navbar-nav'>
+    <li style='padding: 3px 10px 0 2px;'>
       <%= image_tag('logo.png') %>
     </li>
-    <li class="profile">
+    <li class='profile'>
       <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar img-circle') if current_user.image? %>
       <b> <%= current_user.name %> </b>
     </li>
   </ul>
-  <ul class="nav navbar-nav navbar-right">
-    <% if (action_name == "dashboard") %>
-        <%= render :partial => 'shared/notification' %>
-    <% end %>
-    <li class="dropdown">
-      <a data-toggle="dropdown" class="dropdown-toggle settings-dropdown" href="#"> <img src="/assets/settings.png">
+  <ul class='nav navbar-nav navbar-right'>
+    <% if (action_name == 'dashboard') %>
+      <%= render :partial => 'shared/notification' %>
+    <%end%>
+    <li class='dropdown'>
+      <a data-toggle='dropdown' class='dropdown-toggle settings-dropdown' href='#'> <img src='/assets/settings.png'>
       </a>
-      <ul role="menu" class="dropdown-menu" aria-labelledby="dLabel">
+      <ul role='menu' class='dropdown-menu' aria-labelledby='dLabel'>
 
-        <li><%= link_to "Account", profile_path, :method => :get %></li>
+        <li><%= link_to 'Account', profile_path, :method => :get %></li>
 
-        <li><%= link_to "Home", root_path, :method => :get %></li>
+        <li><%= link_to 'Home', root_path, :method => :get %></li>
 
-        <li><%= link_to "Settings", settings_path, :method => :get %></li>
+        <li><%= link_to 'Settings', settings_path, :method => :get %></li>
 
-        <li><%= link_to "Projects", projects_path, :method => :get %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to 'Projects', projects_path, :method => :get %></li>
+        <li class='divider'></li>
+        <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
 
       </ul>
     </li>
