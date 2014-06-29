@@ -8,14 +8,14 @@ class SettingsController < ApplicationController
   def create
     @settings = current_user.settings.find_by_key(params[:key])
     if @settings.present?
-        @result = @settings.update_attributes(:value => params[:value])
+      @result = @settings.update_attributes(:value => params[:value])
     else
-        @new_settings = current_user.settings.build(:key => params[:key], :value => params[:value])
-        @result = @new_settings.save()
+      @new_settings = current_user.settings.build(:key => params[:key], :value => params[:value])
+      @result = @new_settings.save()
     end
     respond_to do |format|
       if @result
-        format.js {render :layout => false }
+        format.js { render :layout => false }
       end
     end
   end
@@ -33,13 +33,13 @@ class SettingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_setting
-      @setting = Setting.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_setting
+    @setting = Setting.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def setting_params
-      params.require(:setting).permit(:user_id, :key, :value)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def setting_params
+    params.require(:setting).permit(:user_id, :key, :value)
+  end
 end

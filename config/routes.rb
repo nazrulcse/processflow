@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  post "/search", :to =>"tasks#search_task"
+  post "/search", :to => "tasks#search_task"
 
   resources :attachments
 
@@ -32,12 +32,12 @@ Rails.application.routes.draw do
   devise_for :users #, :controllers => {:registrations => 'registrations'}
 
   devise_scope :user do
-     get  "/account", :to => "devise/registrations#new"
-     post "/account", :to => "devise/registrations#create"
-     get  "/profile", :to => "devise/registrations#edit"
-     put  "/profile", :to => "registrations#update"
-     get "/",         :to => "devise/sessions#new"
-     post "/",        :to => "devise/sessions#create"
+    get "/account", :to => "devise/registrations#new"
+    post "/account", :to => "devise/registrations#create"
+    get "/profile", :to => "devise/registrations#edit"
+    put "/profile", :to => "registrations#update"
+    get "/", :to => "devise/sessions#new"
+    post "/", :to => "devise/sessions#create"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

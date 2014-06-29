@@ -48,7 +48,7 @@ class InvitesController < ApplicationController
     @project = Project.find_by_id(@invites.project_id)
     @project.users << @user
     sign_in(@user)
-    @invites.remove()
+    @invites.destroy()
     redirect_to profile_path()
   end
 

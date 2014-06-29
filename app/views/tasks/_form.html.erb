@@ -1,35 +1,35 @@
 <div class='container-fluid'>
   <div class='row-fluid'>
     <%= form_for [@project, @task] do |f| %>
-        <div class='left-side'>
-          <div class='field'>
+        <div class="left-side">
+          <div class="field">
             <%= f.label :title %>
             <%= f.text_field :title, autofocus: true, :class => 'form-control', :style => '' %>
-            <span id='errorForName'></span>
+            <span id="errorForName"></span>
           </div>
-          <div class='field'>
+          <div class="field">
             <%= f.label :description %>
             <br/>
             <%= f.text_area :description, :class => 'form-control jqte-test', :style => 'height:168px;' %>
           </div>
         </div>
-        <div class='right-side'>
-          <div class='field'>
+        <div class="right-side">
+          <div class="field">
             <%= f.label :priority %>
             <br>
             <%= f.select(:priority, ['High', 'Medium', 'Low'], {}, prompt: true, :class => 'form-control') %>
           </div>
-          <div class='field'>
+          <div class="field">
             <%= f.label :effort %>
             <br>
             <%= f.number_field :effort, autofocus: true, :class => 'form-control' %>
           </div>
-          <div class='field'>
+          <div class="field">
             <%= label_tag('assigned') %>
             <br>
-            <%= select_tag('assigned', options_from_collection_for_select(@project.users, :id, :name), :class => 'form-control') %>
+            <%= select_tag("assigned", options_from_collection_for_select(@project.users, :id, :name), :class => "form-control") %>
           </div>
-          <div class='field'>
+          <div class="field">
             <%= f.label :end_date %>
             <br>
             <%= f.text_field :end_date, autofocus: true, :class => 'form-control' %>
@@ -39,9 +39,27 @@
   </div>
 </div>
 
-<script type='text/javascript'>
+<style type="text/css">
+    .container-fluid {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .left-side {
+        width: 65%;
+        float: left;
+        margin-right: 20px;
+    }
+
+    .right-side {
+        width: 31%;
+        float: left;
+    }
+</style>
+
+<script type="text/javascript">
     $(document).ready(function () {
-        $('#task_end_date').datepicker({
+        $("#task_end_date").datepicker({
             dateFormat: 'yy-mm-dd'
         });
         $('.jqte-test').jqte();

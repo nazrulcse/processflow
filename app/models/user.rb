@@ -13,5 +13,5 @@ class User < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
   validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
-  validates :current_password,length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
+  validates :current_password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
 end
