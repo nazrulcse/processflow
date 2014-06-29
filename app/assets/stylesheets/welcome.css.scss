@@ -129,16 +129,16 @@ input {
   position: relative;
 }
 
-.notification-list:before {
-  border-bottom: 6px solid #fdfdfd;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  content: "";
-  height: 0;
-  position: absolute;
-  right: 15px;
-  top: -7px;
-}
+//.notification-list:before {
+//  border-bottom: 6px solid #fdfdfd;
+//  border-left: 6px solid transparent;
+//  border-right: 6px solid transparent;
+//  content: "";
+//  height: 0;
+//  position: absolute;
+//  right: 15px;
+//  top: -7px;
+//}
 
 .notification-list {
   padding: 0 !important;
@@ -159,6 +159,17 @@ input {
   background: #FDFDFD;
   box-shadow: 1px 1px 3px #dfdfdf;
   z-index: 100000;
+}
+
+.notification-list .notification-title:before {
+  border-bottom: 6px solid #fdfdfd;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  content: "";
+  height: 0;
+  position: absolute;
+  right: 16px;
+  top: -6px;
 }
 
 .notification-list .notification-image {
@@ -184,14 +195,15 @@ input {
 }
 
 .notification-list .notification-time {
-  background-image: url("date.png");
-  background-position: 0px center;
-  background-repeat: no-repeat;
-  background-size: 13px 92%;
+//  background-image: url("date.png");
+//  background-position: 0px center;
+//  background-repeat: no-repeat;
+//  background-size: 13px 92%;
   display: block;
   font-size: 12px;
   height: 15px;
-  padding-left: 23px;
+  //padding-left: 23px;
+  padding-top: 2px;
 }
 
 .notification-list li a {

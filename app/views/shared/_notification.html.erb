@@ -1,6 +1,6 @@
 <li>
   <a data-toggle='dropdown' href='#' class='notification-menu dropdown-toggle'>
-    <span> 42 </span>
+    <span> <%= History.notification(params[:id]).count %> </span>
   </a>
 
   <div class='notification-list dropdown-menu'>
@@ -20,7 +20,9 @@
                 <div class='notification-content'>
                   <%= notification.context %>
                 </div>
-                <span class='notification-time'> <%= notification.created_at %> </span>
+                <span class='notification-time'>
+                  <i> <%= time_ago_in_words(notification.created_at) %> ago </i>
+                </span>
               </div>
               <div class='clearfix'></div>
             </a>

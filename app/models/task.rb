@@ -36,4 +36,9 @@ class Task < ActiveRecord::Base
     History.create(:task_id => self.id, :user_id => self.project.owner_id, :context => context)
   end
 
+  scope :latest, -> (project_id, user_id) {
+    joins("track ")
+  }
+
+
 end

@@ -116,7 +116,7 @@ function initDashboard() {
 
     /* Edit task effort value */
 
-    $(document).on('click', '.task-priority', function () {
+    $(document).off('click', '.task-priority').on('click', '.task-priority', function () {
         $('.priority-dropdown').toggle();
     });
 
@@ -168,7 +168,7 @@ function initDashboard() {
         $('.assigned-people-list').toggle();
     });
 
-    $(document).on('click', '.assigned-in-task', function () {
+    $(document).off('click', '.assigned-in-task').on('click', '.assigned-in-task', function () {
         task_id = $('.task-details').attr('data-task-id');
         user_id = $(this).attr('data-value');
         assignedPeople(user_id, task_id);
