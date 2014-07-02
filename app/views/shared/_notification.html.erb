@@ -1,21 +1,7 @@
-
-      <% @notifications.each do |notification| %>
-          <li data-task-id="<%= notification.task_id %>" data-project-id="<%= notification.task.project_id %>">
-            <a href="<%= project_task_path(notification.task.project_id, notification.task_id) %>">
-              <div class='pull-left'>
-                <div class=' notification-image'>
-                  <%= image_tag(notification.user.image_url(:small_thumb)) %>
-                </div>
-              </div>
-              <div class='pull-left'>
-                <div class='notification-content'>
-                  <%= notification.context %>
-                </div>
-                <span class='notification-time'>
-                  <i> <%= time_ago_in_words(notification.created_at) %> ago </i>
-                </span>
-              </div>
-              <div class='clearfix'></div>
-            </a>
-          </li>
-      <% end %>
+<% @notifications.each do |notification| %>
+    <li data-task-id="<%= notification.task_id %>" data-project-id="<%= notification.task.project_id %>">
+      <a href="<%= project_task_path(notification.task.project_id, notification.task_id) %>">
+        <%= notification.inspect %>
+      </a>
+    </li>
+<% end %>
