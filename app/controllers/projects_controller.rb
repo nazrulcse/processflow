@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = current_user.projects.find_by_id(params[:id])
+    @notifications = History.notification(params[:id]).limit(15)
     respond_to do |format|
       if (@project.present?)
         format.html { }#redirect_to dashboard_path() }
