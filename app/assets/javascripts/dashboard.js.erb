@@ -345,7 +345,7 @@ function initDashboard() {
     pubnub.subscribe({
         channel  : 'channel_'+current_project_id,
         connect  : function() {
-            popupMessage('Connect to server', 'info');
+            //popupMessage('Connect to server', 'info');
         },
         callback : function(message) {
             $response = $.parseJSON(message);
