@@ -5,7 +5,7 @@
       <div class="title"> Backlog</div>
       <div class="task-content" data-task-status="1">
         <% @project.tasks.backlog.each do |task| %>
-            <%#= render :partial => 'tasks/task_item', :locals => {:task => task} %>
+            <%= render :partial => 'tasks/task_item', :locals => {:task => task} %>
         <% end %>
       </div>
     </div>
