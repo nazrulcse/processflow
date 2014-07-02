@@ -12,42 +12,41 @@
           </div>
         </div>
         <div class='left-side'>
-              <div class='field'>
-                <%= f.label :title %>
-                <%= f.text_field :title, autofocus: true, :class => 'form-control', :style => '' %>
-                <span id='errorForName'></span>
-              </div>
-              <div class='field'>
-                <%= f.label :description %>
-                <br/>
-                <%= f.text_area :description, :class => 'form-control jqte-test', :style => 'height:168px;' %>
-              </div>
+          <div class='field'>
+            <%= f.label :title %>
+            <%= f.text_field :title, autofocus: true, :class => 'form-control', :style => '' %>
+            <span id='errorForName'></span>
           </div>
+          <div class='field'>
+            <%= f.label :description %>
+            <br/>
+            <%= f.text_area :description, :class => 'form-control jqte-test', :style => 'height:168px;' %>
           </div>
-            <div class='right-side'>
-              <div class='field'>
-                <%= f.label :priority %>
-                <br>
-                <%= f.select(:priority, ['High', 'Medium', 'Low'], {}, prompt: true, :class => 'form-control') %>
-              </div>
-              <div class='field'>
-                <%= f.label :effort %>
-                <br>
-                <%= f.number_field :effort, autofocus: true, :class => 'form-control' %>
-              </div>
-              <div class='field'>
-                <%= label_tag('assigned') %>
-                <br>
-                <%= select_tag('assigned', options_from_collection_for_select(@project.users, :id, :name), :class => 'form-control') %>
-              </div>
-              <div class='field'>
-                <%= f.label :end_date %>
-                <br>
-                <%= f.text_field :end_date, autofocus: true, :class => 'form-control' %>
-              </div>
-            </div>
+        </div>
+        <div class='right-side'>
+          <div class='field'>
+            <%= f.label :priority %>
+            <br>
+            <%= f.select(:priority, ['High', 'Medium', 'Low'], {}, prompt: true, :class => 'form-control') %>
+          </div>
+          <div class='field'>
+            <%= f.label :effort %>
+            <br>
+            <%= f.number_field :effort, autofocus: true, :class => 'form-control' %>
+          </div>
+          <div class='field'>
+            <%= label_tag('assigned') %>
+            <br>
+            <%= select_tag('assigned', options_from_collection_for_select(@project.users, :id, :name), :class => 'form-control') %>
+          </div>
+          <div class='field'>
+            <%= f.label :end_date %>
+            <br>
+            <%= f.text_field :end_date, autofocus: true, :class => 'form-control' %>
+          </div>
+        </div>
     <% end %>
-  </div>
+    </div>
 </div>
 
 
