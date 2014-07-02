@@ -10,8 +10,21 @@
   </ul>
   <ul class='nav navbar-nav navbar-right'>
     <% if (action_name == 'dashboard') %>
-      <%= render :partial => 'shared/notification' %>
-    <%end%>
+        <li>
+          <a data-toggle='dropdown' href='#' class='notification-menu dropdown-toggle'>
+            <span> <%= History.notification(params[:id]).count %> </span>
+          </a>
+
+          <div class='notification-list dropdown-menu' data-projects-id='<%= params[:id] %>'>
+            <div class='notification-title'>
+              Project Notification
+            </div>
+            <ul role='menu' style='display: block;' aria-labelledby='dLabel' class='notification'>
+              <%= render :partial => 'shared/notification', :locals => {:notifications => @notifications} %>
+            </ul>
+          </div>
+        </li>
+    <% end %>
     <li class='dropdown'>
       <a data-toggle='dropdown' class='dropdown-toggle settings-dropdown' href='#'> <img src='/assets/settings.png'>
       </a>
