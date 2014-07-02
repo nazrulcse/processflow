@@ -14,7 +14,7 @@
       <div class="title"> To Do</div>
       <div class="task-content" data-task-status="2">
         <% @project.tasks.todo.each do |task| %>
-            <%#= render :partial => 'tasks/task_item', :locals => {:task => task} %>
+            <%= render :partial => 'tasks/task_item', :locals => {:task => task} %>
         <% end %>
       </div>
     </div>
@@ -23,7 +23,7 @@
       <div class="title"> Doing</div>
       <div class="task-content" data-task-status="3">
         <% @project.tasks.doing.each do |task| %>
-            <%#= render :partial => 'tasks/task_item', :locals => {:task => task} %>
+            <%= render :partial => 'tasks/task_item', :locals => {:task => task} %>
         <% end %>
       </div>
     </div>
@@ -32,7 +32,7 @@
       <div class="title"> Finish</div>
       <div class="task-content" data-task-status="4">
         <% @project.tasks.finish.each do |task| %>
-            <%#= render :partial => 'tasks/task_item', :locals => {:task => task} %>
+            <%= render :partial => 'tasks/task_item', :locals => {:task => task} %>
         <% end %>
       </div>
     </div>
@@ -41,7 +41,7 @@
       <div class="title"> Done</div>
       <div class="task-content" data-task-status="5">
         <% @project.tasks.done.each do |task| %>
-            <%#= render :partial => 'tasks/task_item', :locals => {:task => task} %>
+            <%= render :partial => 'tasks/task_item', :locals => {:task => task} %>
         <% end %>
       </div>
       <!--<ul ng-controller="taskCtrl">-->
