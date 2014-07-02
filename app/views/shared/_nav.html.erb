@@ -9,7 +9,7 @@
     </li>
   </ul>
   <ul class='nav navbar-nav navbar-right'>
-    <% if (action_name == 'dashboard') %>
+    <% if (action_name == 'show' && controller.controller_name == 'projects') %>
         <li>
           <a data-toggle='dropdown' href='#' class='notification-menu dropdown-toggle'>
             <span> <%= History.notification(params[:id]).count %> </span>
