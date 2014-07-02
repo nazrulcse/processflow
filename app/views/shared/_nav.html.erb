@@ -20,7 +20,8 @@
               Project Notification
             </div>
             <ul role='menu' style='display: block;' aria-labelledby='dLabel' class='notification'>
-              <%= render :partial => 'shared/notification', :locals => {:@notifications => @notifications} %>
+              <%= @notifications.inspect %>
+              <%#= render :partial => 'shared/notification', :locals => {:@notifications => @notifications} %>
             </ul>
           </div>
         </li>
