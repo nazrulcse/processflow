@@ -12,7 +12,7 @@
     <% if (action_name == 'show' && controller.controller_name == 'projects') %>
         <li>
           <a data-toggle='dropdown' href='#' class='notification-menu dropdown-toggle'>
-            <span> <%= History.notification(params[:id]).count %> </span>
+            <span> <%#= History.notification(params[:id]).count %> </span>
           </a>
 
           <div class='notification-list dropdown-menu' data-projects-id='<%= params[:id] %>'>
