@@ -16,7 +16,12 @@ class Task < ActiveRecord::Base
   scope :done, -> { where(status_id: 5) }
 
   def create_history
-    History.create(:task_id => self.id, :user_id => self.project.owner_id, :context => "Added new task: #{self.title}")
+    if self.task_type == 'feature'
+      History.create(:task_id => self.id, :user_id => self.project.owner_id, :context => "Added new task: #{self.title}")
+    else
+      History.create(:task_id => self.id, :user_id => self.project.owner_id, :context => "Added new Bug: #{self.title}")
+    end
+
   end
 
   def update_history

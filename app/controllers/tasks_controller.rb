@@ -100,9 +100,21 @@ class TasksController < ApplicationController
     end
   end
 
+  def get_notification
+    @count = params[:count]
+    @project_id = params[:project_id]
+    @notifications = History.notification(@project_id).limit(15).offset(@count)
+    puts'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    puts(@notifications.inspect)
+    puts'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
+  end
+
   private
   def task_params
-    params.require(:task).permit(:title, :description, :priority, :effort, :status_id, :end_date, :position, :relation, :project_id)
+    params.require(:task).permit(:title, :description, :priority, :effort, :status_id, :end_date, :position, :relation, :project_id, :task_type)
   end
 
 end

@@ -42,7 +42,7 @@ function initDashboard() {
         }
     });
 
-    $('.notification-list').perfectScrollbar();
+    //$('.notification-list').perfectScrollbar();
 
     $('.project-title').click(function () {
         id = $(this).attr('data-id');
@@ -355,4 +355,28 @@ function initDashboard() {
             }
         }
     });
-}
+}}
+
+$(document).ready(function(){
+    var current_project_id = $('#dashboard').attr('data-project-id');
+   // $('.notification-list').scrollTop(0);
+    $('.notification-list').perfectScrollbar();
+    $('.notification-list').scrollTop(0);
+    $('.notification-list').scroll( function() {
+        var count = $(this).find(("ul li")).length;
+        if($(this).scrollTop() + $(this).innerHeight() == this.scrollHeight) {
+            $.ajax({
+                url: '/notification',
+                type: 'POST',
+                dataType: 'script',
+                data: {count: count, project_id:  current_project_id},
+                success: function (res) {
+
+                },
+                error: function (e) {
+
+                }
+            });
+        }
+    });
+});

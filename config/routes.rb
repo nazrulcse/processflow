@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   post "/search", :to => "tasks#search_task"
 
+  post "/notification", :to => "tasks#get_notification"
+
   resources :attachments
 
   resources :settings
