@@ -14,6 +14,21 @@ class ApplicationController < ActionController::Base
     projects_path()
   end
 
+  def process_flow
+    Pubnub.new(
+        :publish_key => 'pub-c-c4cb0923-f0e6-43cf-b514-86be9bf01cea',
+        :subscribe_key => 'sub-c-6386dc38-0034-11e4-b698-02ee2ddab7fe',
+        :secret_key => 'sec-c-Yzc1NTIxMjktMDg5Ny00NzYzLTgxNjUtMzEzOWQ2NDg5OGZi',
+        :error_callback   => lambda { |msg|
+          puts "Error callback says: #{msg.inspect}"
+        },
+        :connect_callback => lambda { |msg|
+          puts "CONNECTED: #{msg.inspect}"
+        },
+        :ssl => false
+    )
+  end
+
   protected
 
   def configure_permitted_parameters

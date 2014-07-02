@@ -12,7 +12,17 @@ class TasksController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @task = @project.tasks.build(task_params)
     @task.status_id = 1 #default status to backlog
+    cb = lambda { |envelope| puts envelope.message }
     @task.save
+    # begin
+      pb = process_flow.publish({
+          :channel => 'public_channel',
+          :message => 'myname, myage, mysex',
+          :callback => cb
+      })
+    # rescue
+    #   puts "Error Exception"
+    # end
     respond_to do |format|
       format.js { render :layout => false }
     end
@@ -29,10 +39,22 @@ class TasksController < ApplicationController
   end
 
   def update
+    message = {}
     @project = current_user.projects.find_by_id(params[:project_id])
     @task = @project.tasks.find_by_id(params[:id])
+    cb = lambda { |envelope| puts envelope.message }
     respond_to do |format|
       if (@task.update_attributes(params[:field] => params[:value]))
+        message['message'] = "Update task #{params[:field]}"
+        message['field'] = params[:field]
+        message['value'] = params[:value]
+        message['action'] = 'update'
+        message['task_id'] = @task.id
+        pb = process_flow.publish({
+            :channel => "channel_#{@project.id}",
+            :message => message.to_json,
+            :callback => cb
+        })
         format.js { render :layout => false }
       end
     end

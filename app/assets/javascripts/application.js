@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require angular
 //= require_tree .
 $(function () {
     initPage();
@@ -41,6 +40,46 @@ function initPage() {
     $(document).ajaxError(function() {
         loader('hide');
     });
+}
+
+var category = {
+      '1' : '.backlog .task-content'
+    , '2' : '.project-sprint .task-content'
+    , '3' : '.project-doing .task-content'
+    , '4' : '.project-finish .task-content'
+    , '5' : '.project-done .task-content'
+};
+
+function update_task(response) {
+    element = $('.task-details-'+response.task_id);
+    task = $('#task-'+response.task_id);
+    switch(response.field) {
+        case 'priority':
+            task.find('.task-priority-icon').attr('src', "/assets/task_"+response.value.toLowerCase()+".png");
+            element.find('.task-priority img').attr('src', "/assets/task_"+response.value.toLowerCase()+".png");
+            break;
+        case 'end_date':
+            element.find('.edit-end-date').val(response.value);
+            task.find('.task-end-date').html(response.value);
+            break;
+        case 'effort':
+            element.find('.progress-effort').text(response.value);
+            task.find('.total-effort').html(response.value);
+            break;
+        case 'spend':
+            element.find('.progress-spend').text(response.value);
+            break;
+        case 'status_id':
+            container = $(''+category[response.value]);
+            copy_task_item = task.clone();
+            task.remove();
+            container.append(copy_task_item);
+            break;
+    }
+}
+
+function move_task(response) {
+
 }
 
 function popupMessage(message, klass) {

@@ -9,6 +9,7 @@ gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 gem 'devise'
+gem 'pubnub'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -32,6 +33,7 @@ gem 'spring', group: :development
 gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'metric_fu'
 
 # Use unicorn as the app server
 # gem 'unicorn'

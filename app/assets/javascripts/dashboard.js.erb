@@ -334,4 +334,25 @@ function initDashboard() {
             }
         });
     });
+
+    var pubnub = PUBNUB({
+        publish_key   : 'pub-c-c4cb0923-f0e6-43cf-b514-86be9bf01cea',
+        subscribe_key : 'sub-c-6386dc38-0034-11e4-b698-02ee2ddab7fe',
+        origin        : 'pubsub.pubnub.com',
+        ssl           : false
+    });
+
+    pubnub.subscribe({
+        channel  : 'channel_'+current_project_id,
+        connect  : function() {
+            popupMessage('Connect to server', 'info');
+        },
+        callback : function(message) {
+            $response = $.parseJSON(message);
+            console.log($response);
+            if($response.action == "update") {
+                update_task($response);
+            }
+        }
+    });
 }
