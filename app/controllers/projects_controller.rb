@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
     @notifications = History.notification(params[:id]).limit(15)
     respond_to do |format|
       if (@project.present?)
-        format.html { }#redirect_to dashboard_path() }
+        format.html { redirect_to dashboard_path() }
       else
         flash.keep[:error] = 'Access your requested project is denied'
         redirect_to projects_path()
