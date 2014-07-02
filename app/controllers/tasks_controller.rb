@@ -14,15 +14,15 @@ class TasksController < ApplicationController
     @task.status_id = 1 #default status to backlog
     cb = lambda { |envelope| puts envelope.message }
     @task.save
-    # begin
+    begin
       pb = process_flow.publish({
           :channel => 'public_channel',
           :message => 'myname, myage, mysex',
           :callback => cb
       })
-    # rescue
-    #   puts "Error Exception"
-    # end
+    rescue
+      puts "Error Exception"
+    end
     respond_to do |format|
       format.js { render :layout => false }
     end
