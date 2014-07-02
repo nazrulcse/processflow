@@ -12,7 +12,13 @@
     <% if (action_name == 'show' && controller.controller_name == 'projects') %>
         <li>
           <a data-toggle='dropdown' href='#' class='notification-menu dropdown-toggle'>
-            <span> <%#= History.notification(params[:id]).count %> </span>
+            <span>
+              <% if @notifications.present? %>
+                <%= @notifications.count %>
+              <% else %>
+                0
+              <% end %>
+            </span>
           </a>
 
           <div class='notification-list dropdown-menu' data-projects-id='<%= params[:id] %>'>
@@ -20,8 +26,9 @@
               Project Notification
             </div>
             <ul role='menu' style='display: block;' aria-labelledby='dLabel' class='notification'>
-              <%= @notifications.inspect %>
-              <%#= render :partial => 'shared/notification', :locals => {:@notifications => @notifications} %>
+              <% if @notifications.present? %>
+                  <%= render :partial => 'shared/notification', :locals => {:@notifications => @notifications} %>
+              <% end %>
             </ul>
           </div>
         </li>
