@@ -9,15 +9,24 @@ class TasksController < ApplicationController
   end
 
   def create
+    message = {}
     @project = Project.find_by_id(params[:project_id])
     @task = @project.tasks.build(task_params)
     @task.status_id = 1 #default status to backlog
     cb = lambda { |envelope| puts envelope.message }
     @task.save
     begin
+      message['message'] = 'added new task'
+      message['title'] = @task.title
+      message['project_id'] = @task.project_id
+      message['action'] = 'create'
+      message['id'] = @task.id
+      message['effort'] = @task.effort
+      message['priority'] = @task.priority.downcase
+      message['end_date'] = @task.end_date.strftime('%d/%m/%Y') if @task.end_date.present?
       pb = process_flow.publish({
-          :channel => 'public_channel',
-          :message => 'myname, myage, mysex',
+          :channel => "channel_#{@task.project_id}",
+          :message => message.to_json,
           :callback => cb
       })
     rescue

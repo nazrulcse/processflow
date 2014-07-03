@@ -52,3 +52,33 @@
     </div>
   </div>
 </div>
+<script id="new-task-item" type="text/template">
+  <div data-project-id="{{project_id}}" id="task-{{id}}" data-task-id="{{id}}" class="task-item feature">
+    <div class="pull-left content-left">
+      <ul>
+        <li class="task-name"> {{title}} </li>
+        <li>
+          <img title="End Date" src="/assets/date.png" alt="Date">
+          <span class="task-end-date"> {{end_date}} </span>
+        </li>
+      </ul>
+    </div>
+    <div class="pull-right content-right">
+      <ul>
+        <li>
+          <img title="Priority" src="/assets/task_{{priority}}.png" class="pull-right task-priority-icon" alt="Task high">
+          <div class="clear-fix"></div>
+        </li>
+        <li style="vertical-align: middle;">
+          <span class="total-effort"> {{effort}} </span>h <img title="Effort" src="/assets/effort.png" alt="Effort">
+        </li>
+        <li>
+          <span class="glyphicon-class"></span>
+          <img title="Md Nazrul Islam" src="/uploads/user/image/1/small_thumb_292762_3383628283285_742236737_n.jpg" class="img-circle assign-member" alt="Small thumb 292762 3383628283285 742236737 n">
+          <a title="More" class="btn-link" href="javascript:void(0);"> ... </a>
+        </li>
+      </ul>
+    </div>
+    <div class="clear-fix"></div>
+  </div>
+</script>

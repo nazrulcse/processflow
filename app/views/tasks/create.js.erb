@@ -1,8 +1,8 @@
 if (<%= @task.errors.any? %>) {
     popupMessage('Failed to create task', 'error');
 }
-else {
-    $('#new-task').modal('hide');
-    $('.backlog .task-content').append("<%= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => @task}).html_safe %>");
-    popupMessage('Added new task', 'info');
-}
+//else {
+//    $('#new-task').modal('hide');
+//    $('.backlog .task-content').append("<%#= escape_javascript(render :partial => 'tasks/task_item', :locals => {:task => @task}).html_safe %>");
+//    popupMessage('Added new task', 'info');
+//}

@@ -2,14 +2,15 @@
   <div class='row-fluid'>
     <%= form_for [@project, @task] do |f| %>
         <div class='field'>
-          <div class='btn-group' data-toggle='buttons'>
-            <label class='btn btn-primary active task-type'>
-              <input type='radio' name='task[task_type]' value="feature" id='option1' checked> Task
-            </label>
-            <label class='btn btn-danger task-type'>
-              <input type='radio' name='task[task_type]' value="bug" id='option2'> Bug
-            </label>
+          <div class='btn-group'>
+            <a class='btn btn-primary active task-type' href="javascript:void(0);" data-value="feature">
+              Task
+            </a>
+            <a class='btn btn-danger task-type' href="javascript:void(0);" data-value="bug">
+              Bug
+            </a>
           </div>
+          <input type="hidden" value="feature" id="task-type" name="task[task_type]">
         </div>
         <div class='left-side'>
           <div class='field'>
@@ -46,7 +47,7 @@
           </div>
         </div>
     <% end %>
-    </div>
+  </div>
 </div>
 
 
@@ -56,6 +57,10 @@
             dateFormat: 'yy-mm-dd'
         });
         $('.jqte-test').jqte();
-        //$('.task-type').button('toggle');
+        $('.task-type').click(function () {
+            $('.task-type').removeClass('active');
+            $(this).addClass('active');
+            $("#task-type").val($(this).attr('data-value'));
+        });
     });
 </script>

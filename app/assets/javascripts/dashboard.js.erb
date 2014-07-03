@@ -336,40 +336,43 @@ function initDashboard() {
     });
 
     var pubnub = PUBNUB({
-        publish_key   : 'pub-c-c4cb0923-f0e6-43cf-b514-86be9bf01cea',
-        subscribe_key : 'sub-c-6386dc38-0034-11e4-b698-02ee2ddab7fe',
-        origin        : 'pubsub.pubnub.com',
-        ssl           : false
+        publish_key: 'pub-c-c4cb0923-f0e6-43cf-b514-86be9bf01cea',
+        subscribe_key: 'sub-c-6386dc38-0034-11e4-b698-02ee2ddab7fe',
+        origin: 'pubsub.pubnub.com',
+        ssl: false
     });
 
     pubnub.subscribe({
-        channel  : 'channel_'+current_project_id,
-        connect  : function() {
+        channel: 'channel_' + current_project_id,
+        connect: function () {
             //popupMessage('Connect to server', 'info');
         },
-        callback : function(message) {
+        callback: function (message) {
             $response = $.parseJSON(message);
             console.log($response);
-            if($response.action == "update") {
+            if ($response.action == 'update') {
                 update_task($response);
+            }
+            else if ($response.action == 'create') {
+                new_task($response);
             }
         }
     });
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
     var current_project_id = $('#dashboard').attr('data-project-id');
-   // $('.notification-list').scrollTop(0);
+    // $('.notification-list').scrollTop(0);
     $('.notification-list').perfectScrollbar();
     $('.notification-list').scrollTop(0);
-    $('.notification-list').scroll( function() {
+    $('.notification-list').scroll(function () {
         var count = $(this).find(("ul li")).length;
-        if($(this).scrollTop() + $(this).innerHeight() == this.scrollHeight) {
+        if ($(this).scrollTop() + $(this).innerHeight() == this.scrollHeight) {
             $.ajax({
                 url: '/notification',
                 type: 'POST',
                 dataType: 'script',
-                data: {count: count, project_id:  current_project_id},
+                data: {count: count, project_id: current_project_id},
                 success: function (res) {
 
                 },

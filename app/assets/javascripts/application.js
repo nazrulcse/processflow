@@ -78,8 +78,10 @@ function update_task(response) {
     }
 }
 
-function move_task(response) {
-
+function new_task(response) {
+    template = $('#new-task-item').html();
+    var rendered = Mustache.render(template, response);
+    $('.task-category.backlog .task-content').append(rendered);
 }
 
 function popupMessage(message, klass) {
