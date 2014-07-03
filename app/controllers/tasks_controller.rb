@@ -113,9 +113,6 @@ class TasksController < ApplicationController
     @count = params[:count]
     @project_id = params[:project_id]
     @notifications = History.notification(@project_id).limit(15).offset(@count)
-    puts'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-    puts(@notifications.inspect)
-    puts'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     respond_to do |format|
       format.js { render :layout => false }
     end

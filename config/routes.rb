@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
 
   post "/search", :to => "tasks#search_task"
+  post "/feeds", :to => "projects#get_feeds"
 
   post "/notification", :to => "tasks#get_notification"
 
