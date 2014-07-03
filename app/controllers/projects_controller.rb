@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = current_user.projects.order('id DESC')
-    @feeds = History.feeds(current_user.id)
+    @feeds = History.feeds(current_user.id,0)
   end
 
   def show
@@ -55,6 +55,13 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def get_feeds
+    @feeds = History.feeds(current_user.id,5)
+    puts"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+     puts(@feeds.inspect)
+    puts"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
   end
 
   private

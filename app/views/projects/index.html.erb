@@ -37,6 +37,12 @@
           <% end %>
         </ul>
       </div>
+      <div class='pagination'>
+        <ul class='jpage-pagination'>
+          <li class='previous hidden' data-offset= '0'><</li>
+          <li class='next' data-offset= '10'>></li>
+        </ul>
+      </div>
     </div>
     <div class='clearfix'></div>
   </div>
@@ -87,4 +93,20 @@
         initProjectList();
     });
 
+    $(document).off('click', '.next,.previous').on('click', '.next,.previous', function (e) {
+        offset = ($(e.target).attr('data-offset'));
+        $.ajax({
+            url: '/feeds',
+            type: 'POST',
+            dataType: 'script',
+            data: {offset: offset},
+            success: function (res) {
+
+            },
+            error: function (e) {
+
+            }
+        });
+
+    });
 </script>

@@ -143,3 +143,29 @@
   display: block;
   width: 100%;
 }
+
+.jpage-pagination
+{
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+}
+
+.jpage-pagination li {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #E3E3E3;
+  border-radius: 2px;
+  color: #0381BB;
+  cursor: pointer;
+  float: left;
+  margin-right: 5px;
+  padding: 0 10px;
+}
+
+
+.jpage-pagination li:hover {
+  background: none repeat scroll 0 0 #E2E2E2;
+  border: 1px solid #AAAAAA;
+  font-weight: bold;
+  outline: 1px solid #FFFFFF;
+}
