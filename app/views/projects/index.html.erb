@@ -93,7 +93,7 @@
         initProjectList();
     });
 
-    $(document).off('click', '.next,.previous').on('click', '.next,.previous', function (e) {
+    $(document).off('click', '.next, .previous').on('click', '.next, .previous', function (e) {
         offset = ($(e.target).attr('data-offset'));
         $.ajax({
             url: '/feeds',

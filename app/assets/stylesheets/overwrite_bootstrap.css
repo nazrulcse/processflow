@@ -92,5 +92,5 @@ body.modal-open {
 }
 
 .btn-group > a.task-type.active {
-    background: #aaaaaa !important;
+    background: #555 !important;
 }

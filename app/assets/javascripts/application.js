@@ -50,6 +50,8 @@ var category = {
     , '5' : '.project-done .task-content'
 };
 
+var new_notification_count = 0;
+
 function update_task(response) {
     element = $('.task-details-'+response.task_id);
     task = $('#task-'+response.task_id);
@@ -76,6 +78,20 @@ function update_task(response) {
             container.append(copy_task_item);
             break;
     }
+    add_notification(response);
+}
+
+function add_notification(response) {
+    new_notification_count += 1;
+    template = $('#notification-item-template').html();
+    var rendered = Mustache.render(template, response);
+    if($('ul.notification li').length > 0) {
+        $('ul.notification li').first().before(rendered);
+    }
+    else {
+        $('ul.notification').append(rendered)
+    }
+    $('a.notification-menu').html("<span class='new-notification-count'>"+new_notification_count+"</span>");
 }
 
 function new_task(response) {

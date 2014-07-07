@@ -54,11 +54,13 @@ class TasksController < ApplicationController
     cb = lambda { |envelope| puts envelope.message }
     respond_to do |format|
       if (@task.update_attributes(params[:field] => params[:value]))
-        message['message'] = "Update task #{params[:field]}"
+        message['message'] = @task.histories.last().context if @task.histories.present?
         message['field'] = params[:field]
         message['value'] = params[:value]
         message['action'] = 'update'
         message['task_id'] = @task.id
+        message['project_id'] = @task.project_id
+        message['time_ago'] = 'less then few seconds '
         pb = process_flow.publish({
             :channel => "channel_#{@project.id}",
             :message => message.to_json,
