@@ -59,10 +59,18 @@ class ProjectsController < ApplicationController
   end
 
   def get_feeds
-    @feeds = History.feeds(current_user.id,5)
-    puts"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-     puts(@feeds.inspect)
-    puts"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+    @action = params[:action1]
+    if (@action  == 'next')
+      @offset = params[:offset].to_i + 10
+      @previous = params[:offset]
+    elsif(@action == 'previous')
+        @offset = params[:offset].to_i - 10
+        @next = params[:offset]
+    end
+    @feeds = History.feeds(current_user.id,@offset)
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
   end
 
   private

@@ -18,24 +18,8 @@
     </div>
     <div class="project-feed">
       <h2 class='activity-feed'> Activity feed </h2>
-
       <div class='feed-list'>
-        <ul>
-          <% @feeds.each do |feed| %>
-              <li>
-                <div class='feed-content'>
-                  <b> <%= link_to(feed.task.project.name, project_path(feed.task.project.id)) %> </b>
-                  <%= feed.user.name %>
-                  <%= feed.context %>
-                  <b style="display: block;"> <%= feed.task.title %> </b>
-                </div>
-
-                <span class='notification-time'>
-                  <i> <%= time_ago_in_words(feed.created_at) %> ago </i>
-                </span>
-              </li>
-          <% end %>
-        </ul>
+          <%= render :partial => 'feeds', :locals => {:feeds => @feeds} %>
       </div>
       <div class='pagination'>
         <ul class='jpage-pagination'>
@@ -95,11 +79,12 @@
 
     $(document).off('click', '.next, .previous').on('click', '.next, .previous', function (e) {
         offset = ($(e.target).attr('data-offset'));
+        action1 = ($(e.target).attr('class'));
         $.ajax({
             url: '/feeds',
             type: 'POST',
             dataType: 'script',
-            data: {offset: offset},
+            data: {offset: offset, action1: action1},
             success: function (res) {
 
             },

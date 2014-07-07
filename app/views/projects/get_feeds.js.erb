@@ -1,17 +1,26 @@
-$('.feed-list').html('');
-$('.feed-list').append(<ul>
-<% @feeds.each do |feed| %>
-    <li>
-        <div class='feed-content'>
-            <b> <%= link_to(feed.task.project.name, project_path(feed.task.project.id)) %> </b>
-        <%= feed.user.name %>
-        <%= feed.context %>
-            <b style="display: block;"> <%= feed.task.title %> </b>
-        </div>
-
-        <span class='notification-time'>
-            <i> <%= time_ago_in_words(feed.created_at) %> ago </i>
-        </span>
-    </li>
+$('.feed-list').html("<%= escape_javascript(render :partial => 'feeds', :locals => {:feeds => @feeds} ).html_safe %>");
+<% if @action == 'next'%>
+$('.next').attr('data-offset','<%= @offset %>')
+$('.previous').attr('data-offset','<%= @previous %>')
+<% else %>
+$('.next').attr('data-offset','<%= @next %>')
+$('.previous').attr('data-offset','<%= @offset %>')
 <% end %>
-</ul>);
+if($('.previous').attr('data-offset') == '0')
+{
+    $('.previous').addClass('hidden');
+}
+else
+{
+    $('.previous').removeClass('hidden');
+}
+if ( $('.feed-list ul li').length < 10 )
+{
+    $('.next').addClass('hidden');
+}
+else{
+    $('.next').removeClass('hidden');
+}
+
+
+
