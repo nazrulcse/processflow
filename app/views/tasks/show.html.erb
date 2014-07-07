@@ -3,6 +3,14 @@
     <li class="active"><a href="#general" data-toggle="tab">General</a></li>
     <li><a href="#relation" data-toggle="tab">Relationship</a></li>
     <li><a href="#history" data-toggle="tab">History</a></li>
+    <li>
+        <a href="#" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          Action <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#" class="remove_task" data-task-id ="<%= @task.id %>" data-project-id="<%= @task.project_id %>">Remove task</a></li>
+        </ul>
+    </li>
   </ul>
 
   <!-- Tab panes -->
@@ -10,6 +18,7 @@
     <div class="task-title">
       <label class="label label-primary"> Task </label>
       <div class="task-name inline"> <%= @task.title %> </div>
+      <!--<div class=" inline"> <label class="label label-primary remove_task" data-task-id = "<%#= @task.id %>" data-project-id="<%#= @task.project_id %>"> Remove Task </label> </div>-->
     </div>
     <div class="tab-pane active task-details-content-left pull-left" id="general">
       <div class="task-description" contenteditable>
@@ -177,6 +186,7 @@
 </div>
 
 <script type="text/javascript">
+    $('.dropdown-toggle').dropdown();
     $(document).ready(function () {
         $('.jqte-test').jqte();
 
@@ -222,5 +232,22 @@
         edit_context = edit_comments.parents('.comments-item-wrapper').find('.content-right').html();
         edit_comments.parents('.comments-item-wrapper').find('.jqte_editor').html(edit_context).focus();
         $("#editbtn").attr('data-comments-id', comments_id);
+    });
+
+    $(document).off("click", ".remove_task").on("click", ".remove_task", function () {
+        task_id = $(this).attr('data-task-id');
+        project_id = $(this).attr('data-project-id');
+        $.ajax({
+            type: 'DELETE',
+            url: '/tasks/'+task_id,
+            dataType: 'script',
+            data: {project_id: project_id},
+            success: function (res) {
+
+            },
+            error: function (e) {
+
+            }
+        });
     });
 </script>

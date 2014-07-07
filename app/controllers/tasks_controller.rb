@@ -118,6 +118,20 @@ class TasksController < ApplicationController
     end
   end
 
+def destroy
+  @task_id = params[:id]
+  project_id = params[:project_id]
+  project = current_user.projects.find_by_id(project_id)
+  if(project.present?)
+    task = Task.find_by_id(@task_id)
+    task.destroy
+  end
+  respond_to do |format|
+    format.js { render :layout => false }
+  end
+end
+
+
   private
   def task_params
     params.require(:task).permit(:title, :description, :priority, :effort, :status_id, :end_date, :position, :relation, :project_id, :task_type)
