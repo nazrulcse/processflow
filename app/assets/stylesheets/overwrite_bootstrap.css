@@ -90,3 +90,7 @@ body.modal-open {
 .btn-primary {
     background-image: linear-gradient(to bottom, #428bca 0px, #2d6ca2 100%) !important;
 }
+
+.btn-group > a.task-type.active {
+    background: #aaaaaa !important;
+}
