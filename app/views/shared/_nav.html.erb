@@ -15,7 +15,7 @@
           <a data-toggle='dropdown' href='#' class='notification-menu dropdown-toggle'>
             <span>
               <% if @notifications.present? %>
-                <%= @notifications.count %>
+                <%= NotificationSubcription.notification_count(params[:id], current_user.id) %>
               <% else %>
                 0
               <% end %>
