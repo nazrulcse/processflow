@@ -120,6 +120,12 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy_notification_subcription
+    project_id = params[:project_id]
+    user_id = params[:user_id]
+    NotificationSubcription.destroy_all(["project_id = ? and user_id = ?",project_id,user_id])
+  end
+
 def destroy
   @task_id = params[:id]
   project_id = params[:project_id]

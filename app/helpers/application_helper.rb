@@ -36,4 +36,8 @@ module ApplicationHelper
     end
   end
 
+  def is_read(notification)
+   NotificationSubcription.read_info(notification).present?
+  end
+
 end

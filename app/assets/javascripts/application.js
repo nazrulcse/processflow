@@ -24,7 +24,7 @@ $(window).bind('page:change', function () {
 });
 
 function initPage() {
-    $('.dropdown-toggle').dropdown();
+//    $('.dropdown-toggle').dropdown();
     $(document).tooltip({
         track: true
     });
