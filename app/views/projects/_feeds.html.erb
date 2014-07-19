@@ -1,6 +1,11 @@
 <ul>
 <% @feeds.each do |feed| %>
-    <li>
+      <% if(feed.task.task_type == 'bug') %>
+          <li class='task_bug'>
+      <% else %>
+          <li class= 'task_feature'>
+      <% end %>
+
       <div class='feed-content'>
         <b> <%= link_to(feed.task.project.name, project_path(feed.task.project.id)) %> </b>
         <%= feed.user.name %>
