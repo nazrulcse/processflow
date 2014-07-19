@@ -24,13 +24,14 @@
 }
 
 .body-content {
-    #background: #EEE;
+    background-image: url("bg.png");
     display: block;
-    width: auto;
+    height: auto;
     min-height: 100%;
-    position: absolute;
+    min-width: 100%;
     padding-top: 5px;
-    background-image: url('bg.png');
+    position: absolute;
+    width: auto;
 }
 
 body {
