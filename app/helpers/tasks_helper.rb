@@ -20,4 +20,13 @@ module TasksHelper
     end
   end
 
+  def is_image?(file)
+    file_type = file.content_type
+    if(file_type == 'image/png' || file_type == 'image/jpeg' || file_type == 'image/gif' || file_type == 'image/jpg')
+      return true
+    else
+      return false
+    end
+  end
+
 end

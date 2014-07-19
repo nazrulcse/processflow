@@ -1,3 +1,9 @@
-<div class='attachment-item'>
-  <%= image_tag(attachment.file) %>
-</div>
+<% if is_image?(attachment.file) %>
+    <div class='attachment-item attachment-image-item'>
+      <%= image_tag(attachment.file) %>
+    </div>
+<% else %>
+    <div class='attachment-item'>
+       <%= link_to(image_tag('document.png', :style => 'width: 90px; height: 64px;'), download_attachment_path(attachment), :style => 'display: block;') %>
+    </div>
+<% end %>

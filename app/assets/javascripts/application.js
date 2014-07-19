@@ -81,6 +81,13 @@ function update_task(response) {
     add_notification(response);
 }
 
+function remove_task(response) {
+    task_id = response.task_id;
+    $('#x-large-modal').modal('hide');
+    $('#task-'+task_id).remove();
+    add_notification(response);
+}
+
 function add_notification(response) {
     new_notification_count += 1;
     template = $('#notification-item-template').html();
@@ -106,6 +113,12 @@ function popupMessage(message, klass) {
     setTimeout(function () {
         $('#message-modal').modal('hide');
     }, 4000);
+}
+
+function show_attachment(obj) {
+    $(".attachment-overlay").remove();
+    $('body').append("<div class='attachment-overlay'> </div>" +
+        "<img class='attachment-details' src='"+$(obj).attr('src')+"'/>");
 }
 
 function loader(type) {

@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   post "/notification", :to => "tasks#get_notification"
 
-  resources :attachments
+  resources :attachments do
+    member do
+      get 'download'
+    end
+  end
 
   resources :settings
 

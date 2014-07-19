@@ -120,19 +120,33 @@ class TasksController < ApplicationController
     end
   end
 
-def destroy
-  @task_id = params[:id]
-  project_id = params[:project_id]
-  project = current_user.projects.find_by_id(project_id)
-  if(project.present?)
-    task = Task.find_by_id(@task_id)
-    task.destroy
+  def destroy
+    message = {}
+    cb = lambda { |envelope| puts envelope.message }
+    @task_id = params[:id]
+    project_id = params[:project_id]
+    project = current_user.projects.find_by_id(project_id)
+    if (project.present?)
+      task = Task.find_by_id(@task_id)
+      message['message'] = "<b> #{task.title} </b> has been removed"
+      message['action'] = 'remove'
+      message['task_id'] = task.id
+      message['project_id'] = task.project_id
+      message['time_ago'] = 'less then few seconds '
+      if(task.destroy)
+        pb = process_flow.publish({
+            :channel => "channel_#{project_id}",
+            :message => message.to_json,
+            :callback => cb
+        })
+      end
+    else
+      flash[:error] = 'Internal error'
+    end
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
   end
-  respond_to do |format|
-    format.js { render :layout => false }
-  end
-end
-
 
   private
   def task_params

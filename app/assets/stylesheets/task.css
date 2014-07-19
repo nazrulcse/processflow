@@ -137,6 +137,7 @@
     margin-right: 10px;
     padding: 5px;
     width: 100px;
+    vertical-align: top;
 }
 
 .attachment-list .attachment-item img {
@@ -259,8 +260,9 @@
 }
 
 .assigned-people-list {
+    left: -5px;
+    margin-top: 12px;
     position: absolute;
-    margin-top: -10px;
 }
 
 .assigned-new-people {
@@ -282,4 +284,29 @@
 .right-side {
     width: 31%;
     float: left;
+}
+
+.attachment-overlay {
+    position: absolute;
+    z-index: 9999;
+    opacity: 0.8;
+    background: #ccc;
+    width: auto;
+    height: auto;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+img.attachment-details {
+    width: auto;
+    height: auto;
+    position: absolute;
+    margin: auto;
+    z-index: 99999;
+    left: 40%;
+    top: 40%;
+}
+
+.assign-people {
+    position: relative;
 }

@@ -73,7 +73,7 @@ function initDashboard() {
         });
     });
 
-    $(document).on('change', '.file_upload', function (e) {
+    $(document).off('change', '.file_upload').on('change', '.file_upload', function (e) {
         var ofile = this.files[0];
         var formdata;
         if (FormData) {
@@ -100,12 +100,12 @@ function initDashboard() {
     });
 
     var old_value = '', new_value = '';
-    $(document).on('click', '.task-description', function () {
+    $(document).off('click', '.task-description').on('click', '.task-description', function () {
         old_value = $(this).text().trim();
         $(this).addClass('editable-content');
     });
 
-    $(document).on('blur', '.task-description', function () {
+    $(document).off('blur', '.task-description').on('blur', '.task-description', function () {
         new_value = $(this).text().trim();
         $(this).removeClass('editable-content');
         if (old_value != new_value) {
@@ -133,12 +133,12 @@ function initDashboard() {
         }
     });
 
-    $(document).on('change', '.edit-end-date', function () {
+    $(document).off('change', '.edit-end-date').on('change', '.edit-end-date', function () {
         task_id = $('.task-details').attr('data-task-id');
         updateTask('end_date', $(this).val(), task_id);
     });
 
-    $(document).on('click', '.change-priority', function () {
+    $(document).off('click', '.change-priority').on('click', '.change-priority', function () {
         task_id = $('.task-details').attr('data-task-id');
         field = $(this).attr('data-task-field');
         var priority = $(this).attr('data-value');
@@ -150,22 +150,33 @@ function initDashboard() {
 
 
     $(document).off('click', '.assigned-people').on('click', '.assigned-people', function () {
-        $('.unassigned-people').attr('data-assigned-value', $(this).attr('data-assigned-id'));
-        $('.unassigned-pophover').toggle();
+        $('.unassigned-people').attr('data-assigned-user', $(this).attr('data-assigned-user-id'));
+        var $parent = $(this).offsetParent();
+        parentOffset = $('.assign-people').offset();
+        childOffser = $(this).offset();
+        offsetLeft = childOffser.left - parentOffset.left - 5;
+        if(offsetLeft < 0)
+          offsetLeft = 0;
+        $('.unassigned-pophover').css('left', offsetLeft).toggle();
+        $('.assigned-people-list').hide();
     });
 
-    $(document).on('click', '.unassigned-people', function () {
+    $(document).off('click', '.unassigned-people').on('click', '.unassigned-people', function () {
         task_id = $('.task-details').attr('data-task-id');
-        user_id = $('.unassigned-people').attr('data-assigned-value');
+        user_id = $(this).attr('data-assigned-user');
         unassignedPeople(user_id, task_id);
         $('.unassigned-pophover').hide();
     });
 
     $(document).off('click', '.assigned-new-people').on('click', '.assigned-new-people', function () {
-        if ($('#assigned-list').find('li').length == 0) {
-            $('#assigned-list').html("<li class='text-center'> No more user </li>");
+        if ($(this).find('ul li').length == 0) {
+            $('#assigned-list').html("<li class='no-assign-user text-center'> No more user </li>");
+        }
+        else{
+            $('.no-assign-user').remove();
         }
         $('.assigned-people-list').toggle();
+        $('.unassigned-pophover').hide();
     });
 
     $(document).off('click', '.assigned-in-task').on('click', '.assigned-in-task', function () {
@@ -216,7 +227,7 @@ function initDashboard() {
             dataType: 'html',
             async: false,
             success: function (data) {
-                $('#assign-user-' + user_id).parent().remove();
+                $('#assign-user-' + user_id + '-'+task_id).parent().remove();
                 $('#assigned-list').append(data);
                 popupMessage('Unassigned people from this task.', 'info');
             },
@@ -335,11 +346,20 @@ function initDashboard() {
         });
     });
 
+    $(document).off('click', '.attachment-image-item img').on('click', '.attachment-image-item img', function() {
+        show_attachment($(this));
+    });
+
+    $(document).on('click', '.attachment-overlay', function() {
+        $(this).remove();
+        $('.attachment-details').remove();
+    });
+
     var pubnub = PUBNUB({
         publish_key: 'pub-c-c4cb0923-f0e6-43cf-b514-86be9bf01cea',
         subscribe_key: 'sub-c-6386dc38-0034-11e4-b698-02ee2ddab7fe',
         origin: 'pubsub.pubnub.com',
-        ssl: false
+        ssl: true
     });
 
     pubnub.subscribe({
@@ -355,6 +375,9 @@ function initDashboard() {
             }
             else if ($response.action == 'create') {
                 new_task($response);
+            }
+            else if($response.action == 'remove') {
+                remove_task($response);
             }
         }
     });

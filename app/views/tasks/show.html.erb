@@ -4,12 +4,13 @@
     <li><a href="#relation" data-toggle="tab">Relationship</a></li>
     <li><a href="#history" data-toggle="tab">History</a></li>
     <li>
-        <a href="#" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          Action <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="#" class="remove_task" data-task-id ="<%= @task.id %>" data-project-id="<%= @task.project_id %>">Remove task</a></li>
-        </ul>
+      <a href="#" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Action <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" class="remove_task" data-task-id="<%= @task.id %>" data-project-id="<%= @task.project_id %>">Remove
+          task</a></li>
+      </ul>
     </li>
   </ul>
 
@@ -17,6 +18,7 @@
   <div class="tab-content">
     <div class="task-title">
       <label class="label label-primary"> Task </label>
+
       <div class="task-name inline"> <%= @task.title %> </div>
       <!--<div class=" inline"> <label class="label label-primary remove_task" data-task-id = "<%#= @task.id %>" data-project-id="<%#= @task.project_id %>"> Remove Task </label> </div>-->
     </div>
@@ -45,7 +47,7 @@
         </div>
         <ul class="comments-list reset-padding">
           <% @comments.each do |comment| %>
-                <%= comments_replies comment %>
+              <%= comments_replies comment %>
           <% end %>
         </ul>
       </div>
@@ -55,6 +57,7 @@
       </div>
       <div id="write-comments" class="hidden" style="margin-bottom: 10px;">
         <textarea style="" class="form-control jqte-test"></textarea>
+
         <div class="btn-group pull-right">
           <button type="button" id="btncmtcncel" class="btn btn-default"> Cancel</button>
           <button type="button" id="btncomment" data-task-id="<%= @task.id %>" class="btn btn-default"> Done</button>
@@ -157,24 +160,24 @@
         <div class="panel-body assign-people">
 
           <% @task.users.each do |user| %>
-           <span class="assigned-people" data-assigned-id="<%= user.id %>" data-assigned-name="<%= user.name %>">
-             <%= image_tag(user.image.present? ? user.image_url(:small_thumb) : 'default_user_icon.png', :id => "assign-user-#{user.id}", :class => 'nav-avatar') %>
+           <span class="assigned-people" data-assigned-user-id="<%= user.id %>" data-assigned-name="<%= user.name %>">
+             <%= image_tag(user.image.present? ? user.image_url(:small_thumb) : 'default_user_icon.png', :id => "assign-user-#{user.id}-#{@task.id}", :class => 'nav-avatar') %>
            </span>
           <% end %>
           <span class="assigned-new-people">
              <%= image_tag("new_project_icon.png", :class => 'nav-avatar') %>
+            <ul class="assigned-people-list dropdown-menu" id="assigned-list">
+              <% @rest = rest_of_users(@task.users, @project.users) %>
+              <% @rest.each do |user| %>
+                  <li>
+                    <a href="javascript:void(0)" class="assigned-in-task" data-value="<%= user.id %>"><%= user.name %></a>
+                  </li>
+              <% end %>
+            </ul>
           </span>
-          <ul class="assigned-people-list dropdown-menu" id="assigned-list">
-            <% @rest = rest_of_users(@task.users, @project.users) %>
-            <% @rest.each do |user| %>
-                <li>
-                  <a href="javascript:void(0)" class="assigned-in-task" data-value="<%= user.id %>"><%= user.name %></a>
-                </li>
-            <% end %>
-          </ul>
 
           <div class="unassigned-pophover">
-            <a href="javascript:void(0);" class="unassigned-people" data-assigned-value="" data-name=""> Unassigned </a>
+            <a href="javascript:void(0);" class="unassigned-people" data-assigned-user="" data-name=""> Unassigned </a>
           </div>
 
         </div>
@@ -224,7 +227,7 @@
         $(this).parents('.comments-item-wrapper').find('.jqte_editor').focus();
     });
 
-    $(document).off("click", ".comments-edit").on("click", ".comments-edit", function() {
+    $(document).off("click", ".comments-edit").on("click", ".comments-edit", function () {
         $(".edit-wrapper, .reply-wrapper").remove();
         edit_comments = $(this);
         edit_comments.parent().before("<%= escape_javascript(render :partial => 'comments/edit', :locals => {:task => @task})%>");
@@ -239,7 +242,7 @@
         project_id = $(this).attr('data-project-id');
         $.ajax({
             type: 'DELETE',
-            url: '/tasks/'+task_id,
+            url: '/tasks/' + task_id,
             dataType: 'script',
             data: {project_id: project_id},
             success: function (res) {

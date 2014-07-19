@@ -10,12 +10,13 @@
     border-radius: 0 0 4px 4px;
     box-shadow: 0 1px 5px #CCCCCC;
     overflow: auto;
+    display: table;
 }
 
 #dashboard div.task-category {
     width: 20%;
-    float: left;
-    display: inline-block;
+    border-right: 2px solid #cccccc;
+    display: table-cell;
 }
 
 #dashboard div.task-category:last-child {
@@ -24,7 +25,6 @@
 
 #dashboard div.task-category .title {
     border-bottom: 2px solid #ddd;
-    border-right: 2px solid #ddd;
     color: #555555;
     font-size: 16px;
     font-weight: 700;
@@ -36,7 +36,6 @@
 
 #dashboard div.task-category .task-content {
     min-height: 700px;
-    border-right: solid 2px #cccccc;
 }
 
 /* Task color by task status category  */
@@ -110,11 +109,11 @@
 /* Task Item Design */
 
 .task-item .content-left {
-    width: 76.9%;
+    width: 70.9%;
 }
 
 .task-item .content-right {
-    width: 23%;
+    width: 29%;
     text-align: center;
 }
 

@@ -16,12 +16,18 @@
         <div class='clear-fix'></div>
       </li>
       <li style='vertical-align: middle;'>
-        <span class='total-effort'> <%= task.effort %> </span>h <%= image_tag('effort.png', :title => 'Effort') %>
+        <span class='total-effort'> <%= task.effort.present? ? task.effort : 0.0 %> </span>h <%= image_tag('effort.png', :title => 'Effort') %>
       </li>
       <li>
         <span class='glyphicon-class'></span>
-        <%= image_tag(current_user.image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{current_user.name}") if current_user.image? %>
-        <a href='javascript:void(0);' class='btn-link' title='More'> ... </a>
+        <% if task.users.count > 1 %>
+           <%= image_tag(task.users.first().image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{task.users.first().name}") if task.users.first().image? %>
+           <a href='javascript:void(0);' class='btn-link' title='More'> ... </a>
+        <%elsif task.users.count == 1 %>
+          <%= image_tag(task.users.first().image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{task.users.first().name}") if task.users.first().image? %>
+        <%else%>
+          Unassign
+        <%end%>
       </li>
     </ul>
   </div>
