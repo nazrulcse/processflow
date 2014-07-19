@@ -12,7 +12,7 @@
      <%# if (action_name == 'show' && controller.controller_name == 'projects') %>
      <% if (action_name == 'dashboard') %>
         <li>
-          <a data-toggle='dropdown' href='#' class='notification-menu dropdown-toggle' data-user-id='<%= current_user.id %>' data-project-id='<%= params[:id] %>' >
+          <a data-toggle='dropdown' href='#' class='notification-menu' data-user-id='<%= current_user.id %>' data-project-id='<%= params[:id] %>' >
             <span class='notification-value'>
               <% if @notifications.present? %>
                 <%= NotificationSubcription.notification_count(params[:id], current_user.id) %>
