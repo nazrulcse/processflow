@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :teams
   has_many :settings
+  has_many :notification_subcriptions
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :tasks
   has_many :histories

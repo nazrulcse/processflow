@@ -12,10 +12,10 @@
      <%# if (action_name == 'show' && controller.controller_name == 'projects') %>
      <% if (action_name == 'dashboard') %>
         <li>
-          <a data-toggle='dropdown' href='#' class='notification-menu dropdown-toggle'>
-            <span>
+          <a data-toggle='dropdown' href='#' class='notification-menu' data-user-id='<%= current_user.id %>' data-project-id='<%= params[:id] %>' >
+            <span class='notification-value'>
               <% if @notifications.present? %>
-                <%= @notifications.count %>
+                <%= NotificationSubcription.notification_count(params[:id], current_user.id) %>
               <% else %>
                 0
               <% end %>
@@ -53,3 +53,30 @@
     </li>
   </ul>
 </nav>
+
+<script>
+$(document).off('click', '.notification-menu').on('click', '.notification-menu', function () {
+   if( $('.notification-list').is(":visible"))
+   {
+       $('.notification-list').hide()
+   }
+    else{
+       $('.notification-list').show();
+   }
+    project_id = $(this).attr('data-project-id');
+    user_id = $(this).attr('data-user-id');
+
+     $.ajax({
+         url: '<%= destroy_notification_subcription_path() %>',
+         type: 'post',
+         datatype: 'script',
+         data:{ project_id: project_id, user_id: user_id},
+         success: function (data) {
+
+         },
+         error: function () {
+         }
+     });
+});
+
+</script>

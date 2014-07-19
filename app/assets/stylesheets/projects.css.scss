@@ -169,3 +169,17 @@
   font-weight: bold;
   outline: 1px solid #FFFFFF;
 }
+
+.task_bug{
+  background-image: url('bug.png');
+  background-repeat: no-repeat;
+  background-position: left 5px;
+  padding-left: 20px !important;
+}
+
+.task_feature{
+  background-image: url('task.png');
+  background-repeat: no-repeat;
+  background-position: left 5px;
+  padding-left: 20px !important;
+}

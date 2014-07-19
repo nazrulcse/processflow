@@ -72,3 +72,6 @@ form {
     top: 45%;
     z-index: 999999;
 }
+.unread{
+    background-color: #00AAE7 !important;
+}

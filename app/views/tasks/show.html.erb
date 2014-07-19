@@ -4,13 +4,12 @@
     <li><a href="#relation" data-toggle="tab">Relationship</a></li>
     <li><a href="#history" data-toggle="tab">History</a></li>
     <li>
-      <a href="#" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        Action <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#" class="remove_task" data-task-id="<%= @task.id %>" data-project-id="<%= @task.project_id %>">Remove
-          task</a></li>
-      </ul>
+        <a href="#" type="button" class="dropdown-toggle" data-toggle="dropdown">
+          Action <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#" class="remove_task" data-task-id ="<%= @task.id %>" data-project-id="<%= @task.project_id %>">Remove task</a></li>
+        </ul>
     </li>
   </ul>
 
@@ -20,7 +19,6 @@
       <label class="label label-primary"> Task </label>
 
       <div class="task-name inline"> <%= @task.title %> </div>
-      <!--<div class=" inline"> <label class="label label-primary remove_task" data-task-id = "<%#= @task.id %>" data-project-id="<%#= @task.project_id %>"> Remove Task </label> </div>-->
     </div>
     <div class="tab-pane active task-details-content-left pull-left" id="general">
       <div class="task-description" contenteditable>

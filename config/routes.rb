@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   post "/search", :to => "tasks#search_task"
   post "/remove_task", :to => "tasks#remove_task"
+  post "/destroy_notification_subcription", :to => "tasks#destroy_notification_subcription"
   post "/feeds", :to => "projects#get_feeds"
 
   post "/notification", :to => "tasks#get_notification"

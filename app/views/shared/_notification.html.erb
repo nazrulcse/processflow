@@ -1,5 +1,9 @@
 <% @notifications.each do |notification| %>
-    <li data-task-id="<%= notification.task_id %>" data-project-id="<%= notification.task.project_id %>">
+    <% if is_read(notification) %>
+        <li class="unread" data-task-id="<%= notification.task_id %>" data-project-id="<%= notification.task.project_id %>">
+        <% else %>
+        <li data-task-id="<%= notification.task_id %>" data-project-id="<%= notification.task.project_id %>">
+        <% end %>
       <a href="<%= project_task_path(notification.task.project_id, notification.task_id) %>">
         <div class='pull-left'>
           <div class=' notification-image'>

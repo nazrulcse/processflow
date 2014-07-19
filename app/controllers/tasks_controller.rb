@@ -133,7 +133,7 @@ class TasksController < ApplicationController
       message['task_id'] = task.id
       message['project_id'] = task.project_id
       message['time_ago'] = 'less then few seconds '
-      if(task.destroy)
+      if (task.destroy)
         pb = process_flow.publish({
             :channel => "channel_#{project_id}",
             :message => message.to_json,
@@ -146,6 +146,12 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.js { render :layout => false }
     end
+  end
+
+  def destroy_notification_subcription
+    project_id = params[:project_id]
+    user_id = params[:user_id]
+    NotificationSubcription.destroy_all(["project_id = ? and user_id = ?", project_id, user_id])
   end
 
   private
