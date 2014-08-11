@@ -9,19 +9,18 @@ class Task < ActiveRecord::Base
   after_update :update_history
 
   has_many :comments
-  scope :backlog, -> { where(status_id: 1) }
-  scope :todo, -> { where(status_id: 2) }
-  scope :doing, -> { where(status_id: 3) }
-  scope :finish, -> { where(status_id: 4) }
-  scope :done, -> { where(status_id: 5) }
+  scope :backlog, -> { where(status_id: 1).order('position') }
+  scope :todo, -> { where(status_id: 2).order('position') }
+  scope :doing, -> { where(status_id: 3).order('position') }
+  scope :finish, -> { where(status_id: 4).order('position') }
+  scope :done, -> { where(status_id: 5).order('position') }
 
   def create_history
     if self.task_type == 'feature'
-      History.create(:task_id => self.id, :user_id => self.project.owner_id, :context => "Added new task: #{self.title}")
+      History.create(:task_id => self.id, :user_id => self.last_updated_by, :context => "Added new task: #{self.title}")
     else
-      History.create(:task_id => self.id, :user_id => self.project.owner_id, :context => "Added new Bug: #{self.title}")
+      History.create(:task_id => self.id, :user_id => self.last_updated_by, :context => "Added new Bug: #{self.title}")
     end
-
   end
 
   def update_history
@@ -38,7 +37,10 @@ class Task < ActiveRecord::Base
     elsif (self.end_date_changed?)
       context = "Changed task end date to: #{self.spend}"
     end
-    History.create(:task_id => self.id, :user_id => self.project.owner_id, :context => context)
+   if context.present?
+     History.create(:task_id => self.id, :user_id => self.last_updated_by, :context => context)
+   end
+
   end
 
   scope :latest, -> (project_id, user_id) {

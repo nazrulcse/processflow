@@ -11,7 +11,13 @@ function initDashboard() {
         connectWith: '#dashboard .task-content',
         placeholder: 'placeholder',
         activeClass: 'ui-state-hover',
-        hoverClass: 'ui-state-active'
+        hoverClass: 'ui-state-active',
+        update: function (event, ui){
+            console.log($(this).sortable('serialize'));
+            task_id = $(ui.helper).attr('data-task-id');
+            updateposition($(this).sortable('serialize'))
+        }
+
     });
 
     $('#dashboard .task-content').droppable({
@@ -192,6 +198,22 @@ function initDashboard() {
             url: '/projects/' + current_project_id + '/tasks/' + task_id,
             type: 'put',
             data: {field: field, value: value},
+            dataType: 'script',
+            success: function () {
+                popupMessage('Update task status', 'info');
+            },
+            error: function () {
+                popupMessage('Error', 'error');
+            }
+        });
+    }
+
+
+    function updateposition(positions) {
+        $.ajax({
+            url: '/update_position',
+            type: 'POST',
+            data: positions,
             dataType: 'script',
             success: function () {
                 popupMessage('Update task status', 'info');

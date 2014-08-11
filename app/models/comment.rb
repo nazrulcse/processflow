@@ -15,7 +15,6 @@ class Comment < ActiveRecord::Base
     else
       History.create(:task_id => self.task.id, :user_id => self.user_id, :context => "Added new comment: #{self.comment}")
     end
-
   end
 
   def update_history

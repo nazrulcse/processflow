@@ -13,6 +13,7 @@ class TasksController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @task = @project.tasks.build(task_params)
     @task.status_id = 1 #default status to backlog
+    @task.last_updated_by = current_user.id
     cb = lambda { |envelope| puts envelope.message }
     @task.save
     begin
@@ -53,7 +54,7 @@ class TasksController < ApplicationController
     @task = @project.tasks.find_by_id(params[:id])
     cb = lambda { |envelope| puts envelope.message }
     respond_to do |format|
-      if (@task.update_attributes(params[:field] => params[:value]))
+      if (@task.update_attributes(params[:field] => params[:value],:last_updated_by => current_user.id))
         message['message'] = @task.histories.last().context if @task.histories.present?
         message['field'] = params[:field]
         message['value'] = params[:value]
@@ -114,7 +115,7 @@ class TasksController < ApplicationController
   def get_notification
     @count = params[:count]
     @project_id = params[:project_id]
-    @notifications = History.notification(@project_id).limit(15).offset(@count)
+    @notifications = History.notification(@project_id,current_user.id).limit(15).offset(@count)
     respond_to do |format|
       format.js { render :layout => false }
     end
@@ -145,6 +146,14 @@ class TasksController < ApplicationController
     end
     respond_to do |format|
       format.js { render :layout => false }
+    end
+  end
+
+  def update_position
+  task_ids = params[:task]
+    task_ids.each_with_index do |id, index|
+      task = Task.find_by_id(id)
+      task.update_attribute :position, index
     end
   end
 
