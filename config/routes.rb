@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     post "/account", :to => "devise/registrations#create"
     get "/profile", :to => "devise/registrations#edit"
     put "/profile", :to => "registrations#update"
-    get "/", :to => "devise/sessions#new"
+    #get "/", :to => "devise/sessions#new"
     post "/", :to => "devise/sessions#create"
   end
 

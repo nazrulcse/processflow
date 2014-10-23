@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  before_action :authenticate_user, :except => ['index']
+  #before_action :authenticate_user, :only => ['dashboard']
 
   def index
     respond_to do |format|

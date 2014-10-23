@@ -44,7 +44,7 @@ class InvitesController < ApplicationController
   def user_create
     @token = params[:user][:token]
     @invites = Invite.find_by_token(@token)
-    @user = User.new(name: params[:user][:name], email: @invites.email, password: params[:user][:password])
+    @user = User.new(:name => params[:user][:name], email: @invites.email, password: params[:user][:password])
     @project = Project.find_by_id(@invites.project_id)
     @project.users << @user
     sign_in(@user)
@@ -61,6 +61,6 @@ class InvitesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def invite_params
     # params[:invite]
-    params.require(:invite).permit(:email,).merge(project_id: params[:project_id], exp_date: DateTime.now.tomorrow.to_date, token: @random_token)
+    params.require(:invite).permit(:email).merge(project_id: params[:project_id], exp_date: DateTime.now.tomorrow.to_date, token: @random_token)
   end
 end
