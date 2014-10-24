@@ -1,1 +1,4 @@
-<%= render :partial => 'devise/sessions/signin_form' %>
+<% content_for :login_content do %>
+    <%= render :partial => 'devise/sessions/signin_form' %>
+<%end%>
+<%= render :partial => 'landing_page_content' %>

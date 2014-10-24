@@ -1,2 +1,6 @@
-<%= render :partial => 'signin_form' %>
-<%#= render "devise/shared/links" %>
+<% content_for :login_content do %>
+    <%= render :partial => 'signin_form' %>
+<%end%>
+<%= render :partial => 'welcome/landing_page_content' %>
+
+

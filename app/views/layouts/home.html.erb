@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--<link rel="icon" type="image/png" href="logo.png">-->
   <title>
     ProcessFlow: Welcome
   </title>
@@ -10,58 +9,121 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="home-body">
-  <div class="top-nav-wrapper">
-    <div class="pull-left">
-      <%= link_to(image_tag('processflow.png'), root_path(), :style => 'padding: 0 !important;') %>
+<div class="header">
+  <div class="content-width">
+    <div class="header-follow-link">
+      <div class="follow-item">
+        <a href="tw" class="tw-follow follow-link"> </a>
+      </div>
+      <div class="follow-item">
+        <a href="fb" class="fb-follow follow-link"> </a>
+      </div>
+      <div class="follow-item">
+        <a href="g+" class="g-follow follow-link"> </a>
+      </div>
     </div>
-    <div class="pull-right" style="margin-top: -3px;">
-      <a href="#" class="btn btn-default"> Blog </a>
-      <a href="#" class="btn btn-default"> Login </a>
-    </div>
-    <div class="clearfix"></div>
   </div>
-  <div class="product-description">
-    <h1> Very useful and easy development tools for ever </h1>
+</div>
+<!--        <span>
+            http://www.wix.com/website-template/view/html/626?originUrl=http%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fdesign%2F8&bookName=create-master-new&galleryDocIndex=2&category=design&viewMode=desktop
+        </span>-->
+<div class="body-top"></div>
+<div class="content-wrapper content-width">
+  <div class="top-content">
+    <div class="project-logo">
+      <div class="logo">
+        <img src="/assets/processflow.png" alt="Processflow">
+      </div>
+      <div style="padding-left: 101px; position: relative;">
+        <h1 class="font_0">PROJECT MANAGEMENT TOOLS</h1>
+        <h6 class="font_6">
+            <span class="color_15">
+                HANDLE YOUR PROJECT EASILY
+            </span>
+        </h6>
+        <div class='template-signin'>
+          <%= yield :login_content %>
+        </div>
+      </div>
+    </div>
+    <div>
+      <ul class="menu">
+        <li class="item">
+          <%= link_to "Home", root_path() %>
+        </li>
+        <li class="item">
+          <a href="#"> Contact </a>
+        </li>
+        <li class="item">
+          <a href="#"> About </a>
+        </li>
+        <li class="item">
+          <a href="#"> Blog </a>
+        </li>
+        <li class="item">
+          <a href="/account#registration"> Sign Up </a>
+        </li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <div class="main-content">
+      <div class="left-content">
+        <div class="jcarousel-wrapper">
+          <div class="jcarousel">
+            <ul>
+              <li><img src="product.png" width="520" height="297" alt=""></li>
+              <li><img src="product.png" width="520" height="297" alt=""></li>
+              <li><img src="product.png" width="520" height="297" alt=""></li>
+              <li><img src="product.png" width="520" height="297" alt=""></li>
+              <li><img src="product.png" width="520" height="297" alt=""></li>
+              <li><img src="product.png" width="520" height="297" alt=""></li>
+            </ul>
+          </div>
+          <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+          <a href="#" class="jcarousel-control-next">&rsaquo;</a>
 
-    <p>
-      ProcessFlow is an open source project management tools. <br/> Signup for free and manage your project easily.
-    </p>
-    <a href="/account" class="btn btn-default"> Free Signup </a>
-  </div>
-  <%= yield %>
-  <div class="product-feature-wrapper">
-    <div class="product-feature">
-      <div class="pull-left product-feature-list">
-        <h1 class="project"> Project Board </h1>
-        <ul>
-          <li> Easy to create project</li>
-          <li> Quick to invite project member</li>
-          <li> Setup project deadline</li>
-          <li> Graphical view of project statistic</li>
-          <li> Project notification</li>
-        </ul>
+          <p class="jcarousel-pagination">
+
+          </p>
+        </div>
       </div>
-      <div class="pull-left product-feature-list">
-        <h1 class="task"> Task Board </h1>
-        <ul>
-          <li> Easy to create task</li>
-          <li> Task details only click</li>
-          <li> Easy to assign task to user</li>
-          <li> Show task details progress</li>
-          <li> Easy attached file and image</li>
-          <li> Comments and replay</li>
-        </ul>
+      <div class="right-content">
+        <h5 class="font_0">WELCOME!</h5>
+
+        <p class="main-content-text">
+          <span>&#8203;We paint your house!&nbsp;</span>
+          <span>I'm a paragraph.&nbsp;Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me and you can start adding your own content and make changes to the font.</span>
+        </p>
+        <a href="/account#registration" class="free-signup"> FREE SIGNUP </a>
       </div>
-      <div class="clearfix"></div>
     </div>
   </div>
-  <div class="product-footer">
-    asd
+  <div class='middle-content'>
+      <%= yield %>
+  </div>
+</div>
+<div class="footer">
+  <div class="content-width">
+    <p style="margin: 0; padding-top: 10px; float: left">
+      <span class="font_0"> Project Management </span>
+      <b class="font_0" style="color: white;"> Tools </b>
+    </p>
+
+    <p style="float: right; margin-top: 17px;">
+        <span class="color_13" style="color: #ebebeb;">
+            &copy; 2023 by The Painting Company. Proudly created with
+            <a style="cursor: pointer; color: #ebebeb;" href="http://processflow.herokuapp.com/" target="_blank">
+                processflow
+            </a>
+        </span>
+    </p>
   </div>
 </div>
 </body>
 <script type="text/javascript">
+    $(function () {
+        $('.jcarousel').jcarousel();
+    });
     <% @klass = flash[:notice].present? ? '' : 'error' %>
     <% flash.each do |name, msg| -%>
     popupMessage("<%= msg %>", "<%= @klass %>");

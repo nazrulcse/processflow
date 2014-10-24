@@ -1,0 +1,241 @@
+body {
+ padding: 0;
+ margin: 0;
+}
+
+.body-top {
+    background-color: #ebece4;
+    border-bottom: 14px solid rgba(71, 122, 58, 0.23);
+    border-top: 0 solid rgba(71, 122, 58, 0.23);
+    bottom: 0;
+    height: 343px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 41px;
+    z-index: -1;
+}
+
+.header {
+    width: 100%;
+    background-color: #484545;
+    border-bottom: 0 solid #484545;
+    border-top: 0 solid #484545;
+    height: 40px;
+}
+
+.header-follow-link {
+    color: #fdfdfd;
+    float: right;
+    margin-top: 8px;
+    width: 103px;
+}
+
+.follow-item {
+    display: inline-block;
+    height: 26px;
+    visibility: visible;
+    width: 31px;
+    vertical-align: top;
+}
+
+.tw-follow {
+   background-image: url("http://static.wixstatic.com/media/71f65917c81585f32982a568c20df3ec.png_srz_p_26_26_85_22_0.50_1.20_0.00_png_srz");
+}
+
+.fb-follow {
+   background-image: url("http://static.wixstatic.com/media/770afd1fe2d3552b389caf59c7aac5f7.wix_mp_srz_p_26_26_85_22_0.50_1.20_0.00_wix_mp_srz");
+}
+
+.g-follow {
+   background-image: url("http://static.wixstatic.com/media/0271ff410d2eb1f73d408586f1bc5cdb.wix_mp_srz_p_26_26_85_22_0.50_1.20_0.00_wix_mp_srz");
+}
+
+.follow-link {
+   width: 26px;
+   height: 26px;
+   display: block;    
+}
+
+.top-content {
+    
+}
+
+.logo {
+    background-image: url("lg.png");
+    float: left;
+    height: 152px;
+    position: absolute;
+    top: -11px;
+    width: 98px;
+}
+
+.logo img {
+    -webkit-transform: rotate(269deg);
+    -moz-transform: rotate(269deg);
+    -o-transform: rotate(269deg);
+    writing-mode: lr-tb;
+    margin-top: 58px;
+    padding: 0 0 14px;
+}
+
+.project-logo {
+    padding: 26px 0 20px;
+    position: relative;
+}
+
+.content-wrapper {
+    min-height: 1117px;
+    opacity: 1;
+    padding-bottom: 0;
+    margin: auto;
+}
+
+.content-width {
+    width: 980px;
+    margin: auto;
+}
+
+.font_0 {
+   color: #4aad1f; 
+   font: bold 26px/38px "open sans",sans-serif;
+   margin: 0;
+}
+
+.font_6 {
+   font: normal 16px/1.1em "open sans",sans-serif;
+   margin: 0; 
+}
+
+.menu {
+    height: 25px;
+    float: right;
+}
+
+.menu .item {
+    min-width: 75px;
+    color: #484545;
+    display: inline-block;
+    font: bold 14px/1.1em "open sans",sans-serif;
+    transition: color 0.4s ease 0s;
+    text-align: center;
+}
+
+.menu .item a {
+    color: #484545;
+    display: block;
+    padding: 0 23px;
+    line-height: 27px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.menu .item a.active {
+    color: #fff;
+    background: #67c83d;
+}
+
+.menu .item a:hover {
+    color: #fff;
+    background: #67c83d;
+    transition: background-color 0.4s ease 0s;
+}
+
+.main-content {
+    min-height: 358px;
+    min-width: 940px;
+    padding: 20px;
+    background-color: #f3f3f3;
+    border: 0 solid #f3f3f3;
+    border-radius: 6px;
+    box-shadow: 0 -1px 14px 0 rgba(0, 0, 0, 0.18);
+    margin-top: 20px;
+}
+
+.free-signup {
+    background-color: #9b4f92;
+    border: 0 solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer !important;
+    text-decoration: none;
+    transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+    color: #ffffff;
+    font: 15px/1.3em "open sans",sans-serif;
+    padding: 7px 10px;
+    display: inline-block;
+}
+
+.free-signup:hover {
+    background: #67c83d;
+    text-decoration: none;
+}
+
+.main-content .left-content {
+    float: left;
+    width: 540px;
+}
+
+.main-content .right-content {
+    float: right;
+    width: 370px;
+    margin-top: 50px;
+}
+
+.main-content-text {
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    color: #484545;
+    line-height: 1.3em;
+    padding-right: 50px;
+    margin-bottom: 40px;
+}
+
+.clear {
+    clear: both;
+}
+
+.footer {
+    background-color: #484545;
+    border-bottom: 0 solid #4aad1f;
+    border-top: 0 solid #4aad1f;
+    height: 55px;
+}
+
+.content-item {
+    background-color: #f3f3f3;
+    border: 0 solid #ebebeb;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+h1.project {
+    background: url("project_board.png") no-repeat 0px center;
+}
+
+h1.task {
+    background: url('task_board.png') no-repeat 0px center;
+}
+
+.template-title-text {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.template-signin {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.template-signin input[type='email'],
+.template-signin input[type='password'] {
+    display: inline-block !important;
+    width: 150px;
+}
+
+.template-signin input[type='submit'] {
+    margin-left: 6px;
+    text-transform: uppercase;
+}

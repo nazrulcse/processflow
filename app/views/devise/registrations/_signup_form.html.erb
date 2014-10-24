@@ -1,5 +1,6 @@
-<div class="project-overview">
-  <div class="new-account">
+<div class="project-overview new-account-wrap">
+  <h1 class='font_0 template-title-text new-account-title'> create new account </h1>
+  <div class="new-account content-item">
     <!--<h2 class="profile-title">-->
     <!--<%# if (current_user.present?) %>-->
     <!--Edit Profile -->
@@ -48,7 +49,7 @@
 
         <div style="margin-top: 10px;">
           <% if (!current_user.present?) %>
-              <%= f.submit "Sign up", :class => 'btn btn-primary btn-lg btn-block' %>
+              <%= f.submit "Sign up", :id => 'registration', :class => 'btn btn-primary btn-lg btn-block' %>
           <% else %>
               <%= f.submit "Update", :class => 'btn btn-primary btn-lg btn-block' %>
           <% end %>

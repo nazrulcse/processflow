@@ -4,7 +4,6 @@
 
 .sign-in-wrapper, .new-account {
   border-radius: 4px;
-  box-shadow: 0 0px 1px #CCCCCC;
   padding: 10px 20px 10px 30px;
   width: 350px;
   margin: auto;
@@ -13,16 +12,36 @@
 .new-account {
   position: relative !important;
   height: auto !important;
-  margin-top: 20px;
+  margin-top: 35px;
+  width: 400px;
+}
+
+.new-account-wrap {
+  border: solid 1px #f3f3f3;
+  border-radius: 5px;
+  padding-bottom: 20px;
+  position: relative;
+  margin-top: 35px !important;
+  box-shadow: 0px 0px 2px #dfdfdf;
+}
+
+.new-account-title {
+  position: absolute;
+  border-radius: 5px;
+  background: #f9f9f9;
+  top: -20px;
+  left: 32%;
+  width: 336px;
+}
+
+.new-account #error_explanation {
+  position: absolute;
+  top: -94px;
+  left: 10%;
 }
 
 .sign-in-wrapper label, .new-account label {
   display: block;
-}
-
-.new-account {
-  width: 400px;
-  height: 590px;
 }
 
 .sign-in-wrapper .sign-in-title, .profile-title {
@@ -297,20 +316,17 @@ fieldset {
 }
 
 .project-overview {
-  background: #FDFDFD;
-  padding: 15px;
+    margin-top: 20px;
 }
 
 .project-overview .overview-content-left {
   width: 48%;
   margin: auto;
-  text-align: center;
 }
 
 .project-overview .overview-content-right {
   width: 48%;
   margin: auto;
-  border-left: solid 1px #ccc;
 }
 
 .overview-content-left img {
@@ -332,12 +348,6 @@ fieldset {
 .product-footer {
   background: #353535;
   height: 66px;
-}
-
-.product-feature-list {
-  width: 49%;
-  margin-right: 1%;
-  border-rihgt: solid 1px #ccc;
 }
 
 .product-feature-list h1 {
