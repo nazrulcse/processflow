@@ -22,10 +22,14 @@
           <%= render :partial => 'feeds', :locals => {:feeds => @feeds} %>
       </div>
       <div class='pagination'>
-        <ul class='jpage-pagination'>
-          <li class='previous hidden' data-offset= '0'><</li>
-          <li class='next' data-offset= '10'>></li>
-        </ul>
+        <% if @feeds.present? && @feeds.count > 10 %>
+            <ul class='jpage-pagination'>
+              <li class='previous hidden' data-offset= '0'><</li>
+              <li class='next' data-offset= '10'>></li>
+            </ul>
+        <%else%>
+            <li class='no-feed'> No Active Feed Found </li>
+        <%end%>
       </div>
     </div>
     <div class='clearfix'></div>
@@ -86,10 +90,8 @@
             dataType: 'script',
             data: {offset: offset, action1: action1},
             success: function (res) {
-
             },
             error: function (e) {
-
             }
         });
 

@@ -120,6 +120,7 @@
 .task-item .task-name {
     min-height: 40px;
     overflow: hidden;
+    min-width: 178px;
 }
 
 .task-item .assign-member {

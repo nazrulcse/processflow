@@ -45,11 +45,9 @@
 }
 
 .task-details .task-name {
-    margin: 6px 0 3px 0;
+    margin: 6px 0 3px 10px;
     color: #777777;
     font-size: 18px;
-    margin-left: 10px;
-
 }
 
 .task-details .task-title {
@@ -62,6 +60,17 @@
 .task-details .task-title label {
     margin: 0 !important;
     vertical-align: text-top;
+}
+
+.task-detail-title {
+    cursor: default;
+    padding: 5px;
+}
+
+.task-detail-title-edit {
+    width: 500px;
+    background: #FDF5E6;
+    cursor: text;
 }
 
 .task-details .task-description {

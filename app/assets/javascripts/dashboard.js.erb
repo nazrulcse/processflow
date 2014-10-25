@@ -120,6 +120,24 @@ function initDashboard() {
         }
     });
 
+    var old_title = '', new_title = '';
+    $(document).off('dblclick', '.task-name.task-detail-title').on('dblclick', '.task-name.task-detail-title', function () {
+        old_title = $(this).text().trim();
+        $(this).attr("contenteditable", '');
+        $(this).addClass('task-detail-title-edit');
+    });
+
+    $(document).off('blur', '.task-name.task-detail-title').on('blur', '.task-name.task-detail-title', function () {
+        new_title = $(this).text().trim();
+        $(this).removeAttr("contenteditable");
+        $(this).removeClass('task-detail-title-edit');
+        if (old_title != new_title) {
+            task_id = $('.task-details').attr('data-task-id');
+            updateTask('title', new_title, task_id);
+            old_title = ''; new_title = '';
+        }
+    });
+
     /* Edit task effort value */
 
     $(document).off('click', '.task-priority').on('click', '.task-priority', function () {
