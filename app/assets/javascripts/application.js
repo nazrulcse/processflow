@@ -116,9 +116,25 @@ function popupMessage(message, klass) {
 }
 
 function show_attachment(obj) {
-    $(".attachment-overlay").remove();
+    var style = "";
+    file = $(obj).attr('src');
+    filename = file.substring(file.lastIndexOf('/')+1);
+    $(".attachment-details-wrap").remove();
     $('body').append("<div class='attachment-overlay'> </div>" +
-        "<img class='attachment-details' src='"+$(obj).attr('src')+"'/>");
+        "<div class='attachment-details-wrap'>" +
+        "<div class='attachment-title'> Title: "+filename+"</div>" +
+        "<span class='close-attachment'> X Close </span>"+
+        "<img class='attachment-details' src='"+$(obj).attr('src')+"'/>" +
+        "</div>");
+    windowsize = {width: $(window).width(), height: $(window).height()};
+    image = $(".attachment-details");
+    if(image.width() > windowsize.width || image.width() > windowsize.width) {
+        style += "width:"+ (windowsize.width - 100) +"px;height"+(windowsize.height - 100)+"top:25px;left:25px;";
+    }
+    else {
+        style += "top:"+ (windowsize.height - image.height() - 10) / 2 +"px;left:"+(windowsize.width - image.width() - 10) / 2+"px;";
+    }
+    $(".attachment-details-wrap").attr('style', style);
 }
 
 function loader(type) {

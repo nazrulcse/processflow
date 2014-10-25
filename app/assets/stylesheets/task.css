@@ -296,24 +296,56 @@
 }
 
 .attachment-overlay {
-    position: absolute;
+    background-color: #000;
+    left: 0;
+    right: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
     z-index: 9999;
-    opacity: 0.8;
-    background: #ccc;
-    width: auto;
-    height: auto;
-    min-height: 100%;
-    min-width: 100%;
+    opacity: 0.7;
 }
 
 img.attachment-details {
     width: auto;
     height: auto;
-    position: absolute;
+    border: solid 10px #fdfdfd;
+    border-radius: 4px;
+}
+
+.attachment-details-wrap {
+    width: auto;
+    height: auto;
     margin: auto;
     z-index: 99999;
-    left: 40%;
-    top: 40%;
+    left: 40px;
+    top: 40px;
+    position: absolute;
+}
+
+.attachment-details-wrap .attachment-title {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 10px;
+    height: 25px;
+    padding: 8px 8px 25px 8px;
+    background: url("fancy_title_over.png");
+    display: block;
+    margin-left: 10px;
+    color: #dfdfdf;
+    font-weight: bold;
+}
+
+.attachment-details-wrap .close-attachment {
+    background: none repeat scroll 0 0 #666;
+    border-bottom: 2px solid red;
+    color: #cccccc;
+    padding: 6px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
 }
 
 .assign-people {

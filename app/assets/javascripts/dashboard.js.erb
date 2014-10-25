@@ -390,9 +390,9 @@ function initDashboard() {
         show_attachment($(this));
     });
 
-    $(document).on('click', '.attachment-overlay', function() {
+    $(document).on('click', '.attachment-overlay, .close-attachment', function() {
         $(this).remove();
-        $('.attachment-details').remove();
+        $(".attachment-details-wrap, .attachment-overlay").remove();
     });
 
     var pubnub = PUBNUB({
