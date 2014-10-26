@@ -62,12 +62,10 @@ class ProjectsController < ApplicationController
     @action = params[:action1]
     if (@action  == 'next')
       @offset = params[:offset].to_i + 10
-      @previous = params[:offset]
     elsif(@action == 'previous')
         @offset = params[:offset].to_i - 10
-        @next = params[:offset]
     end
-    @feeds = History.feeds(current_user.id,@offset)
+    @feeds = History.feeds(current_user.id, @offset)
     respond_to do |format|
       format.js { render :layout => false }
     end

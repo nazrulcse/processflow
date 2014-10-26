@@ -18,6 +18,16 @@
     <div class="task-title">
       <label class="label label-primary"> Task </label>
       <div class="task-name task-detail-title inline" title="Double click to edit"> <%= @task.title %> </div>
+      <div class='edit-task-label'>
+        <div class='btn-group'>
+          <a class='btn btn-primary active task-type' href="javascript:void(0);" data-value="feature">
+            Task
+          </a>
+          <a class='btn btn-danger task-type' href="javascript:void(0);" data-value="bug">
+            Bug
+          </a>
+        </div>
+      </div>
     </div>
     <div class="tab-pane active task-details-content-left pull-left" id="general">
       <div class="task-description" contenteditable>

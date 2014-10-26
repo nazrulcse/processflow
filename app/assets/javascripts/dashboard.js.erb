@@ -138,6 +138,15 @@ function initDashboard() {
         }
     });
 
+    $(document).off('click', '.edit-task-label a').on('click', '.edit-task-label a', function () {
+        if(!$(this).hasClass('active')) {
+            task_id = $('.task-details').attr('data-task-id');
+            $('.edit-task-label a').removeClass('active');
+            $(this).addClass('active');
+            updateTask('task_type', $(this).attr('data-value'), task_id);
+        }
+    });
+
     /* Edit task effort value */
 
     $(document).off('click', '.task-priority').on('click', '.task-priority', function () {

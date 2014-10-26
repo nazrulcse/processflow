@@ -1,11 +1,5 @@
 $('.feed-list').html("<%= escape_javascript(render :partial => 'feeds', :locals => {:feeds => @feeds} ).html_safe %>");
-<% if @action == 'next'%>
-$('.next').attr('data-offset','<%= @offset %>')
-$('.previous').attr('data-offset','<%= @previous %>')
-<% else %>
-$('.next').attr('data-offset','<%= @next %>')
-$('.previous').attr('data-offset','<%= @offset %>')
-<% end %>
+$('.next, .previous').attr('data-offset','<%= @offset %>');
 if($('.previous').attr('data-offset') == '0')
 {
     $('.previous').addClass('hidden');

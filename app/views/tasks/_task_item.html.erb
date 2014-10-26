@@ -23,7 +23,11 @@
            <%= image_tag(task.users.first().image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{task.users.first().name}") if task.users.first().image? %>
            <a href='javascript:void(0);' class='btn-link' title='More'> ... </a>
         <%elsif task.users.count == 1 %>
-          <%= image_tag(task.users.first().image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{task.users.first().name}") if task.users.first().image? %>
+            <% if task.users.first().image? %>
+                <%= image_tag(task.users.first().image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{task.users.first().name}") %>
+            <%else%>
+                <%= image_tag("/assets/default_user_icon.png", :class => 'nav-avatar img-circle') %>
+            <%end%>
         <%else%>
           Unassign
         <%end%>

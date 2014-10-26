@@ -11,9 +11,21 @@
         </a>
       </h2>
       <ul class='project-list'>
+        <li class='color-label-status'>
+          <div class='color-label-status-item'>
+            <span style='background: #939397;'> </span> <span> Backlog Task </span>
+            <span style='background: #5BC0F8;'> </span> <span> TODO Task </span>
+            <span style='background: #34BFCD;'> </span> <span> Doing Task </span>
+            <span style='background: #1462AA;'> </span> <span> Resolved Task </span>
+            <span style='background: #D54B1D;'> </span> <span> Done Task </span>
+          </div>
+        </li>
         <% @projects.each do |project| %>
             <%= render :partial => 'projects/project_list', :locals => {:project => project} %>
         <% end %>
+        <% if @projects.count == 0 %>
+            <li class='no-feed'> Create Your First Project </li>
+        <%end%>
       </ul>
     </div>
     <div class="project-feed">
@@ -25,7 +37,7 @@
         <% if @feeds.present? && @feeds.count > 10 %>
             <ul class='jpage-pagination'>
               <li class='previous hidden' data-offset= '0'><</li>
-              <li class='next' data-offset= '10'>></li>
+              <li class='next' data-offset= '0'>></li>
             </ul>
         <%else%>
             <li class='no-feed'> No Active Feed Found </li>

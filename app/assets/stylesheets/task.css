@@ -62,6 +62,12 @@
     vertical-align: text-top;
 }
 
+.edit-task-label {
+    display: inline-block;
+    float: right;
+    width: 115px;
+}
+
 .task-detail-title {
     cursor: default;
     padding: 5px;

@@ -4,7 +4,11 @@
       <%= link_to(image_tag('processflow.png'), root_path(), :style => 'padding: 0 !important;') %>
     </li>
     <li class='profile'>
-      <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar img-circle') if current_user.image? %>
+      <% if current_user.image? %>
+          <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar img-circle') %>
+      <%else%>
+          <%= image_tag("/assets/default_user_icon.png", :class => 'nav-avatar img-circle') %>
+      <%end%>
       <b> <%= current_user.name %> </b>
     </li>
   </ul>
