@@ -164,10 +164,7 @@ input {
   width: 350px;
   height: 450px;
   overflow: hidden;
-}
-
-.notification-list ul {
-  margin-top: 30px;
+  margin-top: 29px !important;
 }
 
 .new-notification-count {
@@ -176,12 +173,13 @@ input {
 }
 
 .notification-list .notification-title {
-  position: fixed;
-  padding: 5px;
-  width: 348px;
-  text-align: center;
-  background: #FDFDFD;
+  background: none repeat scroll 0 0 #fdfdfd;
   box-shadow: 1px 1px 3px #dfdfdf;
+  padding: 5px;
+  position: fixed;
+  text-align: center;
+  top: 37px;
+  width: 348px;
   z-index: 100000;
 }
 
@@ -191,9 +189,9 @@ input {
   border-right: 6px solid transparent;
   content: "";
   height: 0;
-  position: absolute;
-  right: 16px;
-  top: -6px;
+  position: fixed;
+  right: 61px;
+  top: 31px;
 }
 
 .notification-list .notification-image {

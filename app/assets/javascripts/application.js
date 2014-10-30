@@ -40,6 +40,12 @@ function initPage() {
     $(document).ajaxError(function() {
         loader('hide');
     });
+
+    $("body").click(function(e) {
+        if(e.target.className !== "notification-menu") {
+            $(".notification-list").hide();
+        }
+    });
 }
 
 var category = {
@@ -70,6 +76,12 @@ function update_task(response) {
             break;
         case 'spend':
             element.find('.progress-spend').text(response.value);
+            break;
+        case 'task_type':
+            task.removeClass('bug').removeClass('feature').addClass(response.value);
+            break;
+        case 'title':
+            task.find('.task-name').text(response.value);
             break;
         case 'status_id':
             container = $(''+category[response.value]);

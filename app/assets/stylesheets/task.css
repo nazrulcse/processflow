@@ -357,3 +357,17 @@ img.attachment-details {
 .assign-people {
     position: relative;
 }
+
+/* Remaining date task background status*/
+
+.finish_today {
+   background: #ffbaba;
+}
+
+.finish_tomorrow {
+   background: #feefb3;
+}
+
+.time_past {
+   background: #d4d4d4;
+}

@@ -1,5 +1,11 @@
 <div class="project-overview new-account-wrap">
-  <h1 class='font_0 template-title-text new-account-title'> create new account </h1>
+  <h1 class='font_0 template-title-text new-account-title'>
+    <% if (current_user.present?) %>
+       Edit Profile
+    <%else%>
+       create new account
+    <%end%>
+  </h1>
   <div class="new-account content-item">
     <!--<h2 class="profile-title">-->
     <!--<%# if (current_user.present?) %>-->

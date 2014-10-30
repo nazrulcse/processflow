@@ -18,3 +18,17 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     padding:0;
     list-style: none;
 }
+
+a:hover, a:focus {
+    color: #2a6496;
+    text-decoration: none !important;
+}
+
+.comments-item-wrapper ul {
+   margin-left: 15px !important;
+}
+
+.comments-item-wrapper ul li {
+    padding: 2px 0px 3px 2px !important;
+    list-style: square;
+}

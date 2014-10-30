@@ -25,8 +25,11 @@ module ApplicationHelper
 
   def get_image(user_id)
     @user = User.find_by_id(user_id)
-    @user.image_url(:small_thumb)
-
+    if(@user.image?)
+      @user.image_url(:small_thumb)
+    else
+      '/assets/default_user_icon.png'
+    end
   end
 
   def get_reply_div

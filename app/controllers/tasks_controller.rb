@@ -19,6 +19,7 @@ class TasksController < ApplicationController
     begin
       message['message'] = 'added new task'
       message['title'] = @task.title
+      message['task_type'] = @task.task_type
       message['project_id'] = @task.project_id
       message['action'] = 'create'
       message['id'] = @task.id

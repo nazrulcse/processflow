@@ -2,18 +2,18 @@ $('.feed-list').html("<%= escape_javascript(render :partial => 'feeds', :locals 
 $('.next, .previous').attr('data-offset','<%= @offset %>');
 if($('.previous').attr('data-offset') == '0')
 {
-    $('.previous').addClass('hidden');
+    $('.previous').addClass('disable');
 }
 else
 {
-    $('.previous').removeClass('hidden');
+    $('.previous').removeClass('disable');
 }
-if ( $('.feed-list ul li').length < 10 )
+if ($('.feed-list ul li').length < 10)
 {
-    $('.next').addClass('hidden');
+    $('.next').addClass('disable');
 }
 else{
-    $('.next').removeClass('hidden');
+    $('.next').removeClass('disable');
 }
 
 

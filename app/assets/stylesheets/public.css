@@ -59,6 +59,12 @@ form {
     visibility: hidden;
 }
 
+.disable {
+    background: none repeat scroll 0 0 #cccccc !important;
+    color: #aaa !important;
+    pointer-events: none;
+}
+
 .visible {
     visibility: visible;
 }

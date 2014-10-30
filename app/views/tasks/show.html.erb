@@ -20,10 +20,10 @@
       <div class="task-name task-detail-title inline" title="Double click to edit"> <%= @task.title %> </div>
       <div class='edit-task-label'>
         <div class='btn-group'>
-          <a class='btn btn-primary active task-type' href="javascript:void(0);" data-value="feature">
+          <a class="btn btn-primary <%= @task.task_type == 'feature' ? 'active' : '' %> task-type" href="javascript:void(0);" data-value="feature">
             Task
           </a>
-          <a class='btn btn-danger task-type' href="javascript:void(0);" data-value="bug">
+          <a class='btn btn-danger <%= @task.task_type == 'bug' ? 'active' : '' %> task-type' href="javascript:void(0);" data-value="bug">
             Bug
           </a>
         </div>

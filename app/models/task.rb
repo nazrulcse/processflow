@@ -35,12 +35,15 @@ class Task < ActiveRecord::Base
     elsif (self.spend_changed?)
       context = "Changed task spend to: #{self.spend}"
     elsif (self.end_date_changed?)
-      context = "Changed task end date to: #{self.spend}"
+      context = "Changed task end date to: #{self.end_date}"
+    elsif (self.title_changed?)
+      context = "Changed task title to: #{self.title}"
+    elsif (self.task_type_changed?)
+      context = "Changed task type to: #{self.task_type}"
     end
-   if context.present?
+    if context.present?
      History.create(:task_id => self.id, :user_id => self.last_updated_by, :context => context)
-   end
-
+    end
   end
 
   scope :latest, -> (project_id, user_id) {
