@@ -1,5 +1,10 @@
 <li>
-  <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar img-circle') if current_user.image? %> <%= history.user.name %>
+  <% if history.user.image? %>
+      <%= image_tag(history.user.image_url(:small_thumb), :class => 'nav-avatar img-circle')%>
+  <%else%>
+      <img src="/assets/default_user_icon.png" class="nav-avatar img-circle" alt="default"/>
+  <%end%>
+   <%= history.user.name %>
 </li>
 <li>
   <b> <%= history.context %> </b>

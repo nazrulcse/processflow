@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  #before_action :authenticate_user, :only => ['dashboard']
+  before_action :authenticate_user, :only => ['dashboard']
 
   def index
     respond_to do |format|
@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
 
   def dashboard
     @project = Project.find(params[:id])
-    @notifications = History.notification(params[:id],current_user.id).limit(15)
+    @notifications = History.notification(params[:id], current_user.id).limit(15)
     respond_to do |format|
       format.html {}
     end

@@ -2,7 +2,7 @@
   <%= render :partial => 'projects/project_nav', :locals => {:project => @project} %>
   <div class="task-content-wrapper">
     <div class="backlog task-category">
-      <div class="title"> Backlog</div>
+      <div class="title"> Backlog&#10092;<%= @project.tasks.backlog.count %>&#10093; </div>
       <div class="task-content" data-task-status="1">
         <% @project.tasks.backlog.each do |task| %>
             <%= render :partial => 'tasks/task_item', :locals => {:task => task} %>
@@ -11,7 +11,7 @@
     </div>
 
     <div class="project-sprint task-category">
-      <div class="title"> To Do</div>
+      <div class="title"> To Do&#10092;<%= @project.tasks.todo.count %>&#10093; </div>
       <div class="task-content" data-task-status="2">
         <% @project.tasks.todo.each do |task| %>
             <%= render :partial => 'tasks/task_item', :locals => {:task => task} %>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="project-doing task-category">
-      <div class="title"> Doing</div>
+      <div class="title"> Doing&#10092;<%= @project.tasks.doing.count %>&#10093; </div>
       <div class="task-content" data-task-status="3">
         <% @project.tasks.doing.each do |task| %>
             <%= render :partial => 'tasks/task_item', :locals => {:task => task} %>
@@ -29,7 +29,7 @@
     </div>
 
     <div class="project-finish task-category">
-      <div class="title"> Finish</div>
+      <div class="title"> Finish&#10092;<%= @project.tasks.finish.count %>&#10093; </div>
       <div class="task-content" data-task-status="4">
         <% @project.tasks.finish.each do |task| %>
             <%= render :partial => 'tasks/task_item', :locals => {:task => task} %>
@@ -38,7 +38,7 @@
     </div>
 
     <div class="project-done task-category">
-      <div class="title"> Done</div>
+      <div class="title"> Done&#10092;<%= @project.tasks.done.count %>&#10093; </div>
       <div class="task-content" data-task-status="5">
         <% @project.tasks.done.each do |task| %>
             <%= render :partial => 'tasks/task_item', :locals => {:task => task} %>
@@ -53,7 +53,7 @@
   </div>
 </div>
 <script id="new-task-item" type="text/template">
-  <div data-project-id="{{project_id}}" id="task-{{id}}" data-task-id="{{id}}" class="task-item {{task_type}}">
+  <div data-project-id="{{project_id}}" id="task-{{id}}" data-task-id="{{id}}" class="task-item {{task_type}} {{day_remaining_status}}">
     <div class="pull-left content-left">
       <ul>
         <li class="task-name"> {{title}}</li>
@@ -75,8 +75,7 @@
         </li>
         <li>
           <span class="glyphicon-class"></span>
-          <img title="Md Nazrul Islam" src="/uploads/user/image/1/small_thumb_292762_3383628283285_742236737_n.jpg" class="img-circle assign-member" alt="Small thumb 292762 3383628283285 742236737 n">
-          <a title="More" class="btn-link" href="javascript:void(0);"> ... </a>
+          <img src='{{assign_member}}' class='nav-avatar img-circle' alt="Unassigned"/>
         </li>
       </ul>
     </div>

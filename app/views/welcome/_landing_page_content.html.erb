@@ -23,9 +23,49 @@
     </div>
   </div>
   <div class="pull-right overview-content-right">
-    <h1 class="font_0 template-title-text"> Right Content </h1>
+    <h1 class="font_0 template-title-text"> ABOUT US </h1>
+    <div class='content-item product-feature-list'>
+      I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me and you can start adding your own content and make changes to the font.
+    </div>
+    <h1 class="font_0 template-title-text"> LEAVE A COMMENTS </h1>
+    <div class='content-item product-feature-list'>
+      <form action="" onsubmit="return is_valid(this);" method="post">
+        <div>
+          <label for="form_name">Name<span class='required'>*</span></label>
+          <input type="text" name="Name" placeholder="name" class="is_required form-control" id="form_name">
+        </div>
+        <div class="email">
+          <label for="form_email">Email<span class='required'>*</span></label>
+          <input type="email" name="Email" placeholder="example@domain.com" class="is_required  form-control" id="form_email">
+        </div>
+        <div class="comments">
+          <label for="form_comment">Comments<span class='required'>*</span></label>
+          <textarea cols="57" rows="5" name="Comment" placeholder="Write Comments........" class="is_required" id="form_comment"></textarea>
+        </div>
+        <div class="submit" style='margin-top: 10px;'>
+          <input type="submit" onfocus="" value="POST COMMENTS" id="send_contact" class='btn btn-primary pull-right'>
+          <div class='clear'></div>
+        </div>
+      </form>
+    </div>
     <div class="sign-in-wrapper">
     </div>
   </div>
   <div class="clearfix"></div>
 </div>
+<script type="text/javascript">
+   function is_valid(form) {
+       objForm = $(form);
+       fields = objForm.find('.is_required');
+       valid = true;
+       $.each(fields, function(index, field) {
+           $(field).removeClass('field_errors');
+           if($(field).val() == '') {
+               $(field).addClass('field_errors');
+               valid = false;
+           }
+       });
+       alert(valid);
+       return valid;
+   }
+</script>

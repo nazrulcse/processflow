@@ -10,12 +10,18 @@ class TasksController < ApplicationController
 
   def create
     message = {}
+    user_image = '';
     @project = Project.find_by_id(params[:project_id])
     @task = @project.tasks.build(task_params)
     @task.status_id = 1 #default status to backlog
     @task.last_updated_by = current_user.id
     cb = lambda { |envelope| puts envelope.message }
     @task.save
+    if(params[:assigned].present?)
+      user = User.find_by_id(params[:assigned])
+      user.tasks << @task
+      user_image = user.image_url.present? ? user.image_url : '/assets/default_user_icon.png'
+    end
     begin
       message['message'] = 'added new task'
       message['title'] = @task.title
@@ -26,6 +32,8 @@ class TasksController < ApplicationController
       message['effort'] = @task.effort
       message['priority'] = @task.priority.downcase
       message['end_date'] = @task.end_date.strftime('%d/%m/%Y') if @task.end_date.present?
+      message['day_remaining_status'] = day_remaining_status(@task)
+      message['assign_member'] = user_image
       pb = process_flow.publish({
           :channel => "channel_#{@task.project_id}",
           :message => message.to_json,
@@ -45,7 +53,8 @@ class TasksController < ApplicationController
     @attachment = @task.attachments.build();
     @comments = @task.comments.where('comments.parent IS NULL')
     respond_to do |format|
-      format.html { render :layout => false }
+      format.html {}
+      format.js { render :layout => false }
     end
   end
 
@@ -55,11 +64,12 @@ class TasksController < ApplicationController
     @task = @project.tasks.find_by_id(params[:id])
     cb = lambda { |envelope| puts envelope.message }
     respond_to do |format|
-      if (@task.update_attributes(params[:field] => params[:value],:last_updated_by => current_user.id))
+      if (@task.update_attributes(params[:field] => params[:value], :last_updated_by => current_user.id))
         message['message'] = @task.histories.last().context if @task.histories.present?
         message['field'] = params[:field]
         message['value'] = params[:value]
         message['action'] = 'update'
+        message['remaining_status'] = day_remaining_status(@task)
         message['task_id'] = @task.id
         message['project_id'] = @task.project_id
         message['time_ago'] = 'less then few seconds '
@@ -151,10 +161,13 @@ class TasksController < ApplicationController
   end
 
   def update_position
-  task_ids = params[:task]
+    task_ids = params[:task]
     task_ids.each_with_index do |id, index|
       task = Task.find_by_id(id)
       task.update_attribute :position, index
+    end
+    respond_to do |format|
+      format.js { render :layout => false }
     end
   end
 

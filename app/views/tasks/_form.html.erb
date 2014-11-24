@@ -38,7 +38,7 @@
           <div class='field'>
             <%= label_tag('assigned') %>
             <br>
-            <%= select_tag('assigned', options_from_collection_for_select(@project.users, :id, :name), :class => 'form-control') %>
+            <%= select_tag('assigned', options_from_collection_for_select(@project.users, :id, :name), :prompt => 'Assign member...', :class => 'form-control') %>
           </div>
           <div class='field'>
             <%= f.label :end_date %>

@@ -16,7 +16,7 @@
             </div>
             <div class='pull-left'>
                 <div class='notification-content'>
-                    <%= notification.context %>
+                    <%= notification.context.html_safe %>
                 </div>
                 <span class='notification-time'>
                   <i> <%= time_ago_in_words(notification.created_at) %> ago </i>

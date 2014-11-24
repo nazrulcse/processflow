@@ -72,9 +72,9 @@ function initDashboard() {
         $.ajax({
             url: '/projects/' + current_project_id + '/tasks/' + task_id,
             type: 'get',
+            dataType: 'script',
             success: function (res) {
-                $('#x-large-modal').modal('show');
-                $('#x-large-modal .modal-body').html(res);
+
             }
         });
     });
@@ -388,9 +388,10 @@ function initDashboard() {
         $.ajax({
             url: url,
             type: 'get',
+            dataType: 'script',
             success: function (res) {
-                $('#x-large-modal').modal('show');
-                $('#x-large-modal .modal-body').html(res);
+//                $('#x-large-modal').modal('show');
+//                $('#x-large-modal .modal-body').html(res);
             }
         });
     });
@@ -402,6 +403,29 @@ function initDashboard() {
     $(document).on('click', '.attachment-overlay, .close-attachment', function() {
         $(this).remove();
         $(".attachment-details-wrap, .attachment-overlay").remove();
+    });
+}
+
+$(document).ready(function () {
+    var current_project_id = $('#dashboard').attr('data-project-id');
+    $('.notification-list').perfectScrollbar();
+    $('.notification-list').scrollTop(0);
+    $('.notification-list').scroll(function () {
+        var count = $(this).find(("ul li")).length;
+        if ($(this).scrollTop() + $(this).innerHeight() == this.scrollHeight) {
+            $.ajax({
+                url: '/notification',
+                type: 'POST',
+                dataType: 'script',
+                data: {count: count, project_id: current_project_id},
+                success: function (res) {
+
+                },
+                error: function (e) {
+
+                }
+            });
+        }
     });
 
     var pubnub = PUBNUB({
@@ -428,30 +452,6 @@ function initDashboard() {
             else if($response.action == 'remove') {
                 remove_task($response);
             }
-        }
-    });
-}
-
-$(document).ready(function () {
-    var current_project_id = $('#dashboard').attr('data-project-id');
-    // $('.notification-list').scrollTop(0);
-    $('.notification-list').perfectScrollbar();
-    $('.notification-list').scrollTop(0);
-    $('.notification-list').scroll(function () {
-        var count = $(this).find(("ul li")).length;
-        if ($(this).scrollTop() + $(this).innerHeight() == this.scrollHeight) {
-            $.ajax({
-                url: '/notification',
-                type: 'POST',
-                dataType: 'script',
-                data: {count: count, project_id: current_project_id},
-                success: function (res) {
-
-                },
-                error: function (e) {
-
-                }
-            });
         }
     });
 });

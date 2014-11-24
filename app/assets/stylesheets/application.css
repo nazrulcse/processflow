@@ -32,3 +32,27 @@ a:hover, a:focus {
     padding: 2px 0px 3px 2px !important;
     list-style: square;
 }
+
+.general-menu {
+    margin-right: 50px;
+}
+
+.general-menu li {
+   display: inline-block;
+}
+
+.general-menu li a {
+    font-weight: 700;
+}
+
+.notification-value.font-1 {
+    font-size: 12px;
+}
+
+.notification-value.font-2 {
+    font-size: 11px;
+}
+
+.notification-value.font-3 {
+    font-size: 9px;
+}

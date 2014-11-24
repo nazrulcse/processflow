@@ -70,11 +70,11 @@ form {
 }
 
 .ajax-loader {
-    background: none repeat scroll 0 0 #111;
+    background: none repeat scroll 0 0 #ccc;
     border-radius: 10px;
     box-shadow: 0 0 8px #777;
     left: 45%;
-    padding: 10px;
+    padding: 5px;
     position: absolute;
     top: 45%;
     z-index: 999999;

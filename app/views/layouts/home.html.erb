@@ -24,27 +24,27 @@
     </div>
   </div>
 </div>
-<!--        <span>
-            http://www.wix.com/website-template/view/html/626?originUrl=http%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fdesign%2F8&bookName=create-master-new&galleryDocIndex=2&category=design&viewMode=desktop
-        </span>-->
+<!--<span>
+  http://www.wix.com/website-template/view/html/626?originUrl=http%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fdesign%2F8&bookName=create-master-new&galleryDocIndex=2&category=design&viewMode=desktop
+</span>-->
 <div class="body-top"></div>
 <div class="content-wrapper content-width">
   <div class="top-content">
     <div class="project-logo">
-      <div class="logo">
-        <img src="/assets/processflow.png" alt="Processflow">
-      </div>
-      <div style="padding-left: 101px; position: relative;">
-        <h1 class="font_0">PROJECT MANAGEMENT TOOLS</h1>
-        <h6 class="font_6">
-            <span class="color_15">
-                HANDLE YOUR PROJECT EASILY
-            </span>
-        </h6>
+        <a href="/" class="logo">
+          <img src="/assets/processflow.png" alt="Processflow">
+        </a>
+        <div style="padding-left: 101px; position: relative;">
+            <h1 class="font_0">PROJECT MANAGEMENT TOOLS</h1>
+            <h6 class="font_6">
+                <span class="color_15">
+                    MANAGE YOUR PROJECT EASILY
+                </span>
+            </h6>
         <div class='template-signin'>
           <%= yield :login_content %>
         </div>
-      </div>
+        </div>
     </div>
     <div>
       <ul class="menu">
@@ -76,6 +76,7 @@
               <li><img src="assets/slider/task_detail.png" width="520" height="297" alt=""></li>
               <li><img src="assets/slider/task_board.png" width="520" height="297" alt=""></li>
               <li><img src="assets/slider/history.png" width="520" height="297" alt=""></li>
+              <li><img src="assets/slider/notification.png" width="520" height="297" alt=""></li>
             </ul>
           </div>
           <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
@@ -94,7 +95,8 @@
     </div>
   </div>
   <div class='middle-content'>
-      <%= yield %>
+    <%= render :partial => 'shared/message_modal' %>
+    <%= yield %>
   </div>
 </div>
 <div class="footer">

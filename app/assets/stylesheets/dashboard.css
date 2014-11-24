@@ -17,21 +17,24 @@
     width: 20%;
     border-right: 2px solid #cccccc;
     display: table-cell;
+    width: 274px;
+    border-top: solid 1px #ccc;
 }
 
-#dashboard div.task-category:last-child {
-    border: none;
-}
+/*#dashboard div.task-category:last-child {*/
+    /*border: none;*/
+/*}*/
 
 #dashboard div.task-category .title {
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid #ccc;
     color: #555555;
     font-size: 16px;
     font-weight: 700;
     padding: 10px 0;
     text-align: center;
     text-shadow: 1px 0 3px #EEEEEE;
-    background: none repeat scroll 0 0 #f9f9f9;
+    background: none repeat scroll 0 0 #DFDFDF;
+    margin-bottom: 5px;
 }
 
 #dashboard div.task-category .task-content {
@@ -41,7 +44,7 @@
 /* Task color by task status category  */
 
 #dashboard div.task-category.project-done .task-item {
-    background: none repeat scroll 0 0 rgba(237, 239, 245, 0.98);
+    background: none repeat scroll 0 0 #dff2bf;
 }
 
 /*end*/
@@ -50,10 +53,18 @@
     border-radius: 4px 4px 0 0 !important;
     vertical-align: top;
     height: auto !important;
-    background: none repeat scroll 0 0 #f9f9f9;
-    padding: 8px 0 6px 5px;
-    background-image : linear-gradient(to bottom, #C0C0C0 0 px, #CDCDCD 100%);
+    padding: 7px;
     border-bottom: 1px solid #FFFFFF;
+    margin-bottom: 1px;
+    background: #36a0d0; /* Old browsers */
+    background: -moz-linear-gradient(top,  #36a0d0 0%, #41a1c6 50%, #5ab8dd 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#36a0d0), color-stop(50%,#41a1c6), color-stop(100%,#5ab8dd)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #36a0d0 0%,#41a1c6 50%,#5ab8dd 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #36a0d0 0%,#41a1c6 50%,#5ab8dd 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #36a0d0 0%,#41a1c6 50%,#5ab8dd 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #36a0d0 0%,#41a1c6 50%,#5ab8dd 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#36a0d0', endColorstr='#5ab8dd',GradientType=0 ); /* IE6-9 */
+
 }
 
 #dashboard #search-field {
@@ -81,7 +92,7 @@
     width: auto;
     border: solid 1px #ccc;
     border-radius: 4px;
-    margin: 2px 5px 2px 5px;
+    margin: 3px 5px;
     padding: 2px 5px 5px 5px;
     cursor: move;
     z-index: 999;
@@ -93,6 +104,10 @@
 
 #dashboard .task-item.bug {
     border-top: solid 3px darkred;
+}
+
+#dashboard .task-item .task-name {
+    color: #444444;
 }
 
 #dashboard .task-item:hover {
@@ -147,7 +162,14 @@
 /* History item design */
 
 #history {
-    border-right: solid 1px #DFDFDF;
+    border-right: 1px solid #dfdfdf;
+    width: 700px;
+}
+
+#history .history-list {
+    overflow: hidden;
+    height: 525px;
+    position: relative;
 }
 
 #history ul li:nth-child(odd) {
@@ -164,9 +186,18 @@
     display: block;
 }
 
-.cross-image {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.clear-search {
+    background: none repeat scroll 0 0 #dfdfdf;
+    border-radius: 10px;
+    bottom: 16px;
     cursor: pointer;
+    display: inline-block;
+    padding: 3px;
+    position: absolute;
+    right: 14px;
+    top: inherit;
+}
+
+.clear-search:hover {
+   box-shadow: 0 0 3px orangered;
 }

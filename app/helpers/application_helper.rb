@@ -32,6 +32,11 @@ module ApplicationHelper
     end
   end
 
+  def count_notification(user_id, project_id)
+    total_notification = NotificationSubcription.notification_count(project_id, user_id)
+    return total_notification > 0 ? total_notification : 0
+  end
+
   def get_reply_div
     content_tag :div, class: 'write-reply' do
       text_area_tag(:comment_reply, nil, :class => 'reply_input jqte-test') # Note the + in this line

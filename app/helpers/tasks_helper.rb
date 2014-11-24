@@ -28,22 +28,4 @@ module TasksHelper
       return false
     end
   end
-
-  def day_remaining_status(task)
-    if(task.end_date?)
-      today_time = Date.parse(task.end_date.to_s).to_time.to_i
-      end_time = Date.today.to_time.to_i
-      remaining_day = (today_time - end_time).to_i / 86400
-      if(remaining_day == 2)
-        return 'finish_tomorrow'
-      elsif(remaining_day == 1)
-        return 'finish_today'
-      elsif(remaining_day <= 0)
-        return 'time_past'
-      else
-        return ''
-      end
-    end
-  end
-
 end

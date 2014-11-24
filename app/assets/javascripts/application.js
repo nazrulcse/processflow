@@ -68,7 +68,8 @@ function update_task(response) {
             break;
         case 'end_date':
             element.find('.edit-end-date').val(response.value);
-            task.find('.task-end-date').html(response.value);
+            task.find('.task-end-date').html(formatted_date(response.value));
+            task.removeClass('finish_today finish_tomorrow time_past upcoming').addClass(response.remaining_status);
             break;
         case 'effort':
             element.find('.progress-effort').text(response.value);
@@ -100,6 +101,14 @@ function remove_task(response) {
     add_notification(response);
 }
 
+function formatted_date(date) {
+    d = new Date(date);
+    var dd = d.getDate() + 1;
+    var mm = d.getMonth()+1; //January is 0!
+    var yyyy = d.getFullYear();
+    return dd + "/" + mm + "/" + yyyy;
+}
+
 function add_notification(response) {
     new_notification_count += 1;
     template = $('#notification-item-template').html();
@@ -115,6 +124,9 @@ function add_notification(response) {
 
 function new_task(response) {
     template = $('#new-task-item').html();
+    if(!response.assign_member) {
+        response.assign_member = "Unassign";
+    }
     var rendered = Mustache.render(template, response);
     $('.task-category.backlog .task-content').append(rendered);
 }
@@ -151,10 +163,10 @@ function show_attachment(obj) {
 
 function loader(type) {
     if(type == 'show') {
-        $('body').append("<div class='ajax-loader'> <img src='/assets/ajax-loader.gif'> </div>");
+        $('body').append("<div class='ajax-loader'> <img src='/assets/ajax-loader.GIF'> </div>");
     }
     else {
-        $('.ajax-loader').remove();
+       $('.ajax-loader').remove();
     }
 }
 
