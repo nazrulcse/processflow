@@ -1,0 +1,8 @@
+<li>
+  <%= builder.check_box :is_complete %>
+  <%= builder.text_field :title, :class => 'hidden edit-check-item' %>
+  <span class='editable'>
+    <%= builder.object.title %>
+  </span>
+  <%= link_to(raw("<span class='glyphicon glyphicon-remove'></span>"), checklist_item_path(builder.object.id), :class => 'remove-checklist', :method => :delete, :remote => true) %>
+</li>

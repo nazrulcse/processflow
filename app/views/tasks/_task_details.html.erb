@@ -48,6 +48,12 @@
         <% end %>
       </div>
 
+      <div id="checklist">
+       <% @task.checklists.each do |checklist| %>
+        <%= render 'checklists/checklist_items', :checklist => checklist %>
+       <%end%>
+      </div>
+
       <div id="comments">
         <div>
           <b> Comments </b>
@@ -92,6 +98,10 @@
     <!- Right side bar content ->
 
     <div class="pull-right task-details-content-right">
+      <div class='add-checklist-wrapper'>
+        <a href="javascript:void(0);" id="add-checklist"> add checklist </a>
+        <input type="text" placeholder="add title..." id="checklist-input" class='hidden'/>
+      </div>
       <div class="panel panel-default progress-info">
         <div class="panel-heading">
           <h3 class="panel-title"> Progress</h3>
@@ -99,7 +109,9 @@
         <div class="panel-body">
           <ul>
             <li>
-              <div class="progressbar" style="margin-bottom: 10px;"></div>
+              <div class="progressbar" style="margin-bottom: 10px;">
+               <span class='progress-text'> <%= task_progress(@task).round %>% </span>
+              </div>
             </li>
             <li>
               <label class="info-label"> Effort </label>
@@ -201,7 +213,7 @@
         $('.jqte-test').jqte();
 
         $(".progressbar").progressbar({
-            value: 50
+            value: <%= task_progress(@task) %>
         });
         $(".edit-end-date").datepicker({
             dateFormat: 'yy-mm-dd'
@@ -262,4 +274,68 @@
             }
         });
     });
+
+    $('.attachment-item').hover(function(event) {
+         $(this).find('.attachment-hover-details').stop().slideDown('fast');
+    },
+    function(event){
+         $(this).find('.attachment-hover-details').stop().slideUp('fast');
+    });
+
+    $('#add-checklist').click(function() {
+       $(this).next().removeClass('hidden');
+        $(this).hide();
+    });
+
+    $('#checklist-input').blur(function() {
+        $('#add-checklist').show();
+        $(this).addClass('hidden');
+    });
+
+    $(document).off('keypress', '#checklist-input').on('keypress', '#checklist-input', function(e) {
+        console.log(e.which);
+        if(e.which == 13 && $(this).val().length > 2) {
+            $.ajax({
+                url: "<%= checklists_path() %>",
+                type: 'post',
+                data: {task_id: <%= @task.id %>, title: $(this).val()},
+                dataType: 'script',
+                success:function() {
+                    $('#checklist-input').val('').addClass('hidden');
+                    popupMessage("Success", '');
+                }
+            });
+        }
+    });
+
+    $(document).off('click', '.add-checklist-item').on('click', '.add-checklist-item', function(e) {
+        $(this).prev().removeClass('hidden').focus();
+        $(this).hide();
+    });
+
+    $(document).off('keypress', '.add-check-item, .edit-check-item').on('keypress', '.add-check-item, .edit-check-item', function(e) {
+        if(e.which == 13 && $(this).val().length > 2) {
+            $(this).parents('form').submit();
+            $(this).val('').addClass('hidden');
+            $(this).prev().show();
+            $(this).next().show();
+        }
+    });
+
+    $(document).off('click', '.show-checklist input[type="checkbox"]').on('click', '.show-checklist input[type="checkbox"]', function(e) {
+        $(this).parents('form').submit();
+    });
+
+    $(document).off('dblclick', '.show-checklist .editable').on('dblclick', '.show-checklist .editable', function(e) {
+        $(this).prev().removeClass('hidden').focus();
+        $(this).hide();
+    });
+
+    $('.show-checklist input[type="text"]').blur(function(e) {
+        $(this).addClass('hidden');
+        $(this).prev().show();
+        $(this).next().show();
+        $(this).parent().find('.editable').removeClass('hidden').val($(this).val());
+    });
+
 </script>

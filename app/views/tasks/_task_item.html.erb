@@ -1,10 +1,18 @@
 <div class='task-item <%= task.task_type %> <%= day_remaining_status(task) %>' data-task-id='<%= task.id %>' id='task-<%= task.id %>' data-project-id='<%= task.project.id %>'>
   <div class='pull-left content-left'>
     <ul>
-      <li class='task-name'> <%= task.title %> </li>
+      <li class='task-name'>
+        <%= truncate(task.title, :length => 50, :omission => '...') %>
+      </li>
       <li>
         <%= image_tag('date.png', :title => 'End Date') %>
         <span class='task-end-date'> <%= task.end_date %> </span>
+        <span class='pull-right'>
+          <% if task.attachments.present? %>
+             <img class='has-attachment' src="/assets/has_attachment.png" alt=''>
+          <%end%>
+        </span>
+        <span class='pull-right comments-count'> <%= task.comments.size %> </span>
       </li>
     </ul>
   </div>

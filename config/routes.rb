@@ -4,6 +4,12 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :checklists do
+
+  end
+
+  resources :checklist_items
+
   post "/search", :to => "tasks#search_task"
   post "/update_position", :to => "tasks#update_position"
   post "/remove_task", :to => "tasks#remove_task"

@@ -158,6 +158,16 @@
     padding-left: 10px;
 }
 
+.comments-count {
+    background: url("comment.png") no-repeat scroll center 2px / 100% 90% rgba(0, 0, 0, 0);
+    color: #777;
+    display: inline-block;
+    font-size: 11px;
+    height: 19px;
+    min-width: 22px;
+    text-align: center;
+}
+
 .add-attachment {
     background-image: url("attachment.png");
     background-position: center center;
@@ -193,9 +203,60 @@
     vertical-align: top;
 }
 
+.has-attachment {
+    display: inline-block;
+    height: 18px;
+    margin-left: 5px;
+    width: 18px;
+}
+
 .attachment-list .attachment-item img {
     height: 100%;
     width: 100%;
+}
+
+.attachment-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.attachment-hover-details > * {
+    opacity: 1;
+}
+
+.attachment-hover-details {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+}
+
+.attachment-action-wrapper {
+    margin: 25px auto auto;
+    text-align: center;
+}
+
+.attachment-action {
+    background: none repeat scroll 0 0 #dfdfdf;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    display: inline-block;
+    height: 25px;
+    padding: 2px;
+    width: 25px;
+}
+
+.attachment-action:hover {
+    background: #fdfdfd;
+}
+
+.attachment-item, .attachment-action-wrapper .attachment-action img {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
 }
 
 .progress-bar {
@@ -355,6 +416,7 @@ img.attachment-details {
     height: auto;
     border: solid 10px #fdfdfd;
     border-radius: 4px;
+    min-width: 250px;
 }
 
 .attachment-details-wrap {
@@ -365,6 +427,7 @@ img.attachment-details {
     left: 40px;
     top: 40px;
     position: absolute;
+    background: none repeat scroll 0 0 #555;
 }
 
 .attachment-details-wrap .attachment-title {
@@ -389,6 +452,7 @@ img.attachment-details {
     position: absolute;
     right: 10px;
     top: 10px;
+    border-radius: 4px 0 0 4px;
     cursor: pointer;
 }
 
@@ -456,4 +520,16 @@ img.attachment-details {
     left: 225px;
     position: fixed;
     top: 66px;
+}
+
+.progressbar .ui-widget-header {
+    border: none;
+    border-radius: 0 !important;
+    background: linear-gradient(to bottom, #36a0d0 0%, #41a1c6 50%, #5ab8dd 100%) repeat scroll 0 0 rgba(0, 0, 0, 0)!important;
+}
+
+.progress-text {
+    position: absolute;
+    left: 45%;
+    color: #333;
 }

@@ -44,6 +44,14 @@ module ApplicationHelper
     end
   end
 
+  def initialize_form(form, association, force = false)
+    if form.object.new_record? || force
+      form.object.class.reflect_on_association(association).klass.new
+    else
+      form
+    end
+  end
+
   def is_read(notification)
    NotificationSubcription.read_info(notification).present?
   end

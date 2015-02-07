@@ -4,19 +4,20 @@
 
 .project-dashboard {
   padding: 10px 0;
-  background: #aaa;
+  background: none repeat scroll 0 0 #38a0cd;
   color: #fdfdfd;
   text-align: center;
   text-transform: uppercase;
-  margin-top: -5px;
+  margin-top: -2px;
   font-weight: bold;
 }
 
 #project-item-wrapper {
+  box-shadow: 0 0 8px #ccc;
   height: auto;
-  min-height: 700px;
-  max-width: 950px;
   margin: auto;
+  max-width: 75%;
+  min-height: 700px;
 }
 
 #project-item-wrapper .project-status {
@@ -123,7 +124,7 @@
 }
 
 .color-label-status span:nth-child(even) {
-  width: 180px;
+  width: 211px;
 }
 
 .project-item:hover {

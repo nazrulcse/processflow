@@ -139,16 +139,18 @@ function popupMessage(message, klass) {
     }, 4000);
 }
 
-function show_attachment(obj) {
+function show_attachment(image_file) {
     var style = "";
-    file = $(obj).attr('src');
-    filename = file.substring(file.lastIndexOf('/')+1);
+    var filename = "";
+    if(image_file != '') {
+        filename = image_file.substring(image_file.lastIndexOf('/')+1);
+    }
     $(".attachment-details-wrap").remove();
     $('body').append("<div class='attachment-overlay'> </div>" +
         "<div class='attachment-details-wrap'>" +
         "<div class='attachment-title'> Title: "+filename+"</div>" +
         "<span class='close-attachment'> X Close </span>"+
-        "<img class='attachment-details' src='"+$(obj).attr('src')+"'/>" +
+        "<img class='attachment-details' src='"+image_file+"'/>" +
         "</div>");
     windowsize = {width: $(window).width(), height: $(window).height()};
     image = $(".attachment-details");

@@ -1,0 +1,18 @@
+<div class='show-checklist'>
+  <%= form_for(checklist, :remote => true) do |f| %>
+      <div class='checklist-title'>
+        <%= checklist.title %>
+      </div>
+      <ul class='checklist-<%= checklist.id %>'>
+        <%= f.fields_for :checklist_items, initialize_form(f, :checklist_items) do |builder| %>
+            <%= render 'checklists/checklist_item', :builder => builder %>
+        <% end %>
+        <li>
+          <%= f.fields_for :checklist_items, initialize_form(f, :checklist_items, true) do |builder| %>
+              <%= builder.text_field :title, :class => 'hidden add-check-item', :placeholder => 'add new checklist item...' %>
+              <a href="javascript:void(0);" class="add-checklist-item"> new item.... </a>
+          <% end %>
+        </li>
+      </ul>
+  <% end %>
+</div>

@@ -11,6 +11,7 @@
     box-shadow: 0 1px 5px #CCCCCC;
     overflow: auto;
     display: table;
+    width: 100%;
 }
 
 #dashboard div.task-category {

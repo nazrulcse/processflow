@@ -7,7 +7,7 @@
    <%= history.user.name %>
 </li>
 <li>
-  <b> <%= history.context %> </b>
+  <b> <%= history.context.to_s.html_safe %> </b>
   <label class='label-success label pull-right'> <%= history.created_at %> </label>
 
   <div class='clearfix'></div>

@@ -25,9 +25,7 @@ class AttachmentsController < ApplicationController
 
   def download
     @attachment = Attachment.find(params[:id])
-    send_file(@attachment.file.path,
-              :disposition => 'attachment',
-              :url_based_filename => false)
+    send_file(@attachment.file.path)
   end
 
   private
