@@ -17,6 +17,15 @@
     padding: 2px 0;
 }
 
+#add-checklist {
+    background: url("add_list.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 5px 10px 30px;
+    background-size: 22px 22px;
+}
+
 .show-checklist {
     border: solid 1px #0381BB;
     margin-bottom: 10px;
