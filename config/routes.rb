@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   end
 
   resources :checklists do
-
+    resources :checklist_items do
+      member do
+        get 'complete'
+      end
+    end
   end
-
-  resources :checklist_items
 
   post "/search", :to => "tasks#search_task"
   post "/update_position", :to => "tasks#update_position"

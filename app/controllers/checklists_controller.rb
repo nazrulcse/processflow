@@ -14,6 +14,15 @@ class ChecklistsController < ApplicationController
     end
   end
 
+  def destroy
+    task = Task.find_by_id(params[:task_id])
+    checklist = task.checklists.find_by_id(params[:id])
+    respond_to do |format|
+      checklist.destroy
+      format.js{}
+    end
+  end
+
   private
 
   def checklist_params

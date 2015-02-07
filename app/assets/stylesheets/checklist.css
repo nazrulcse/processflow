@@ -34,10 +34,10 @@
 }
 
 .show-checklist .checklist-title {
-    padding: 7px;
-    background: linear-gradient(to bottom, #36a0d0 0%, #41a1c6 50%, #5ab8dd 100%) repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+    padding: 7px 7px 7px 25px;
+    background: url('task_board.png') no-repeat left center #36a0d0;
+    background-size: 20px 20px;
     border: medium none;
-    text-indent: 12px;
     color: #fdfdfd;
     font-weight: bold;
     font-size: 16px;
@@ -52,12 +52,16 @@
     width: 99%;
 }
 
+.checklist-item-completed {
+    text-decoration: line-through;
+}
+
 .edit-check-item {
     width: 91%;
 }
 
 a.remove-checklist {
-    color: red;
+    color: #2a6496;
     float: right;
     height: 2px;
     padding: 5px;

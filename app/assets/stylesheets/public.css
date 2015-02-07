@@ -23,6 +23,10 @@
     clear: both;
 }
 
+.reset-padding {
+    padding: 0 !important;
+}
+
 .body-content {
     background-image: url("bg.png");
     display: block;

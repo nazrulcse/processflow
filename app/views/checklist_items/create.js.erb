@@ -1,0 +1,6 @@
+<% if @checklist_item.errors.any? %>
+popupMessage('Error occur please try again');
+<%else%>
+$('.checklist-<%= params[:checklist_id] %> li:last-child').before("<%= escape_javascript(render('checklists/checklist_item', :item => @checklist_item).html_safe) %>")
+$('.add-checklist-item').show();
+<%end%>
