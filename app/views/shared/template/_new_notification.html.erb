@@ -1,0 +1,20 @@
+<script id="notification-item-template" type="text/template">
+  <li data-task-id="{{task_id}}" data-project-id="{{project_id}}">
+    <a href="/project/{{project_id}}/tasks/{{task_id}}">
+      <div class='pull-left'>
+        <div class=' notification-image'>
+          <img src="/uploads/user/image/1/small_thumb_292762_3383628283285_742236737_n.jpg" alt="Small thumb 292762 3383628283285 742236737 n">
+        </div>
+      </div>
+      <div class='pull-left'>
+        <div class='notification-content'>
+          {{message}}
+        </div>
+    <span class='notification-time'>
+            <i> {{time_ago}} ago </i>
+    </span>
+      </div>
+      <div class='clearfix'></div>
+    </a>
+  </li>
+</script>

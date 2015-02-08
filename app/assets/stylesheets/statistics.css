@@ -1,0 +1,22 @@
+#statistics {
+    width: 98%;
+    margin: auto;
+}
+
+#statistics-container {
+    width: 80%;
+    margin: 50px auto 15px auto;
+    padding: 10px;
+    background: #fdfdfd;
+    border-radius: 5px;
+}
+
+.statistics-label {
+    padding: 10px;
+    text-align: center;
+}
+
+.statistics-label span {
+    display: inline-block;
+    vertical-align: text-bottom;
+}

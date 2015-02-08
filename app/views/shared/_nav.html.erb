@@ -7,7 +7,7 @@
       <% if current_user.image? %>
           <%= image_tag(current_user.image_url(:small_thumb), :class => 'nav-avatar img-circle') %>
       <%else%>
-          <%= image_tag("/assets/default_user_icon.png", :class => 'nav-avatar img-circle') %>
+          <%= image_tag("default_user_icon.png", :class => 'nav-avatar img-circle') %>
       <%end%>
       <b> <%= current_user.name %> </b>
     </li>

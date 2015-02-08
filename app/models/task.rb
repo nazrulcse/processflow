@@ -6,6 +6,12 @@ class Task < ActiveRecord::Base
   belongs_to :status #, :foreign_key => :status_id
   has_and_belongs_to_many :users
 
+  BACKLOG = 1
+  TODO = 2
+  DOING = 3
+  RESOLVED = 4
+  DONE = 5
+
   after_create :create_history
   after_update :update_history
 

@@ -38,6 +38,10 @@
     width: auto;
 }
 
+.text-right {
+    text-align: right !important;
+}
+
 body {
     margin: 0;
     padding: 0;

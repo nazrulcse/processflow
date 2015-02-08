@@ -28,7 +28,7 @@ module ApplicationHelper
     if(@user.image?)
       @user.image_url(:small_thumb)
     else
-      '/assets/default_user_icon.png'
+      'default_user_icon.png'
     end
   end
 

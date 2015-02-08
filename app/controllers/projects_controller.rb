@@ -20,6 +20,14 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def statistics
+     project = Project.find_by_id(params[:id])
+     @history = project.statistics.where('statistics_type = ?', 'feature')
+     respond_to do |format|
+       format.html{}
+     end
+  end
+
   def new
     @project = Project.new
     render :layout => false

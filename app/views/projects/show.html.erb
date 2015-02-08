@@ -44,11 +44,55 @@
             <%= render :partial => 'tasks/task_item', :locals => {:task => task} %>
         <% end %>
       </div>
-      <!--<ul ng-controller="taskCtrl">-->
-      <!--<li ng-repeat='task in tasks'>-->
-      <!--{{task}}-->
-      <!--</li>-->
-      <!--</ul>-->
     </div>
   </div>
 </div>
+
+<div class='modal fade bs-example-modal-sm' id='statistics' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel' aria-hidden='true'>
+  <div class='modal-dialog modal-sm'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+        <h4 class='modal-title'> Project Statistics </h4>
+      </div>
+      <div class='modal-body'>
+        <div style="width: 50%">
+          <canvas id="statistics-canvas" height="450" width="600"></canvas>
+        </div>
+      </div>
+      <div class='modal-footer'>
+        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+        <button type='button' id='btnSave' class='btn btn-primary'>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type='text/javascript'>
+ $(function() {
+     var LineChartData = {
+         labels : ["January", "February", "March", "April", "May", "June", "July"],
+         datasets : [
+             {
+                 fillColor : "rgba(220,220,220,0.5)",
+                 strokeColor : "rgba(220,220,220,0.8)",
+                 highlightFill: "rgba(220,220,220,0.75)",
+                 highlightStroke: "rgba(220,220,220,1)",
+                 data : [2,10,7,0,9]
+             },
+             {
+                 fillColor : "rgba(151,187,205,0.5)",
+                 strokeColor : "rgba(151,187,205,0.8)",
+                 highlightFill : "rgba(151,187,205,0.75)",
+                 highlightStroke : "rgba(151,187,205,1)",
+                 data : [9,7,2,10,11]
+             }
+         ]
+     }
+
+     var ctx = document.getElementById("statistics-canvas").getContext("2d");
+     window.myBar = new Chart(ctx).Line(LineChartData, {
+         responsive : true
+     });
+ })
+</script>

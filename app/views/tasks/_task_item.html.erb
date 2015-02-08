@@ -9,7 +9,7 @@
         <span class='task-end-date'> <%= task.end_date %> </span>
         <span class='pull-right'>
           <% if task.attachments.present? %>
-             <img class='has-attachment' src="/assets/has_attachment.png" alt=''>
+             <%= image_tag('has_attachment.png', :class => 'has-attachment') %>
           <%end%>
         </span>
         <span class='pull-right comments-count'> <%= task.comments.size %> </span>
@@ -34,7 +34,7 @@
             <% if task.users.first().image? %>
                 <%= image_tag(task.users.first().image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{task.users.first().name}") %>
             <%else%>
-                <%= image_tag("/assets/default_user_icon.png", :class => 'nav-avatar img-circle') %>
+                <%= image_tag("default_user_icon.png", :class => 'nav-avatar img-circle') %>
             <%end%>
         <%else%>
           Unassign
