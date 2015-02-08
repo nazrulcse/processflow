@@ -36,6 +36,9 @@ Rails.application.routes.draw do
         delete "unassign"
       end
     end
+    member do
+      get 'statistics'
+    end
   end
 
   resources :tasks do
