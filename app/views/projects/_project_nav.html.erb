@@ -1,45 +1,50 @@
 <div class="project-nav">
   <div class="btn-group project-nav-control">
     <a class="btn-action add-card" href="javascript:void(0);" id="btn-task">
-     <img src="/assets/new_project_icon.png" alt="add"/> Add Card
+      <img src="/assets/new_project_icon.png" alt="add"/> Add Card
     </a>
     <% if is_project_owner!(project) %>
-      <a id='invite-member' href="javascript:void(0);" class='btn-action'>
-        <img src="/assets/add-user.png"/> Invitation
-      </a>
-      <%= render 'shared/small_modal' %>
+        <a id='invite-member' href="javascript:void(0);" class='btn-action'>
+          <img src="/assets/add-user.png"/> Invitation
+        </a>
+        <%= render 'shared/small_modal' %>
     <% end %>
     <a class="btn-action add-filter">
       <img src="/assets/filter_add.png" alt='filter'> Filter
     </a>
+
     <div class="filter-popup">
-        <div class="arrow" style="left: 50%;"></div>
-        <h4 style="margin-bottom: 8px; color: #888"> Search Task </h4>
-        <input type='text' id='search-field' class='form-control' data-project-id="<%= project.id %>">
-        <span class='glyphicon glyphicon-remove clear-search hidden' data-project-id="<%= project.id %>"></span>
+      <div class="arrow" style="left: 50%;"></div>
+      <h4 style="margin-bottom: 8px; color: #888"> Search Task </h4>
+      <input type='text' id='search-field' class='form-control' data-project-id="<%= project.id %>">
+      <span class='glyphicon glyphicon-remove clear-search hidden' data-project-id="<%= project.id %>"></span>
     </div>
     <a href="/projects" class="btn-action">
       <img src="/assets/activity-log.png" alt="log"/> Activity Log
     </a>
     <%= link_to(image_tag('statistics.png') + ' Statistics', statistics_project_path(project), :class => 'btn-action') %>
   </div>
-  <div  class="import_action">
-    <%= form_tag import_path,:id => 'import_submit', multipart: true do %>
-        <div class="import_wraper"> <div class="import_button"><img src="/assets/import2.png" alt="log"/> Import<span class="glyphicon glyphicon-info-sign import_info" data-toggle="popover" title="Popover title"data-content="And here's some amazing content. It's very engaging. Right?" trigger="hover"></span> </div><input id="file" class="import_file" type="file" name="file"></div>
+  <div class="import_action">
+    <%= form_tag import_path, :id => 'import_submit', multipart: true do %>
+        <div class="import_wraper">
+          <div class="import_button">
+            <img src="/assets/import2.png" alt="log"/> Import
+          </div>
+          <input id="file" class="import_file" type="file" name="file"></div>
         <%= hidden_field :project_id, '', :value => project.id %>
-
     <% end %>
+    <span class="glyphicon glyphicon-info-sign import_help" data-role='button' data-toggle="popover" data-placement="bottom" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-trigger="click"></span>
   </div>
   <div class="bratcamp pull-left">
-     Project &#10093;&#10093;
-     <a href='javascript:void(0);' class='project-title btn-action' data-id="<%= project.id %>">
-       <%= project.name %>
-     </a>
+    Project &#10093;&#10093;
+    <a href='javascript:void(0);' class='project-title btn-action' data-id="<%= project.id %>">
+      <%= project.name %>
+    </a>
   </div>
   <!--<div class="pull-left">-->
-    <!--<a href='javascript:void(0);' class='btn-action project-title' data-id="<%#= project.id %>">-->
-      <!--<%#= project.name %>-->
-    <!--</a>-->
+  <!--<a href='javascript:void(0);' class='btn-action project-title' data-id="<%#= project.id %>">-->
+  <!--<%#= project.name %>-->
+  <!--</a>-->
   <!--</div>-->
   <div class="pull-right task-color-label-status">
     <span class="bug-task"></span> <span> Bug </span>
@@ -57,14 +62,14 @@
 
     $(document).ready(function () {
         $('[data-toggle="popover"]').popover({
-            placement : 'top'
+            placement: 'bottom'
         });
 
-        $( "#file" ).change(function() {
-            $( "#import_submit" ).submit();
+        $("#file").change(function () {
+            $("#import_submit").submit();
         });
 
-        $(".add-filter").click(function() {
+        $(".add-filter").click(function () {
             $(this).next('.filter-popup').toggle();
             return false;
         });
