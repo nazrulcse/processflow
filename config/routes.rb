@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
+  post "/import", :to => "tasks#import"
   post "/search", :to => "tasks#search_task"
   post "/update_position", :to => "tasks#update_position"
   post "/remove_task", :to => "tasks#remove_task"

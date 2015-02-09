@@ -36,6 +36,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 #gem 'rmagick'
 gem 'metric_fu'
+gem 'roo'
+
 
 gem 'tzinfo-data'
 

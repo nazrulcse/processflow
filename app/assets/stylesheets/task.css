@@ -22,7 +22,7 @@
 }
 
 .project-nav .bratcamp {
-    width: 45%;
+    width: 44%;
     text-align: center;
     color: #fdfdfd;
     font-weight: 700;
@@ -520,6 +520,37 @@ img.attachment-details {
     left: 225px;
     position: fixed;
     top: 66px;
+}
+
+.import_wraper{
+    width: 130px;
+    overflow: hidden;
+}
+.import_button{
+    position: relative;
+    top: 0;
+}
+.import_file{
+
+    opacity: 0;
+    left: 346px;
+    position: absolute;
+    top: 50px;
+}
+
+.import_action {
+    color: #fdfdfd;
+    display: inline-block;
+    float: left;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+.import_info{
+    padding-left: 5px;
+}
+
 }
 
 .progressbar .ui-widget-header {
