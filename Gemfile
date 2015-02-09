@@ -34,6 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'metric_fu'
+gem 'roo'
+
 
 # Use unicorn as the app server
 # gem 'unicorn'
