@@ -1,0 +1,24 @@
+div.attachment-item[data-attachment-type$=".pdf"] {
+    background-image: url('file/pdf.png');
+}
+
+div.attachment-item[data-attachment-type$='.docx'],
+div.attachment-item[data-attachment-type$='.doc'] {
+    background-image: url('file/docx.png');
+}
+
+div.attachment-item[data-attachment-type$='.txt'],
+div.attachment-item[data-attachment-type$='.java'] {
+    background-image: url('file/text.png');
+}
+
+div.attachment-item[data-attachment-type$=".exe"] {
+    background-image: url('file/exe.png');
+    background-size: 100% 100%;
+}
+
+div.attachment-item {
+    background-position: center 2px;
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+}

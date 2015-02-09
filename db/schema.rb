@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617172432) do
+ActiveRecord::Schema.define(version: 20140708141925) do
 
   create_table "attachments", force: true do |t|
     t.string   "file"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 20140617172432) do
     t.integer  "project_id"
     t.string   "token"
     t.date     "exp_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notification_subcriptions", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.integer  "history_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,6 +96,7 @@ ActiveRecord::Schema.define(version: 20140617172432) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "spend"
+    t.string   "task_type"
   end
 
   create_table "tasks_users", force: true do |t|
@@ -101,6 +110,15 @@ ActiveRecord::Schema.define(version: 20140617172432) do
     t.string   "name"
     t.integer  "user_id"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tracks", force: true do |t|
+    t.string   "model"
+    t.integer  "model_id"
+    t.string   "action"
+    t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -120,6 +120,14 @@
 <script type="text/javascript">
     $(function () {
         $('.jcarousel').jcarousel();
+        $("html").niceScroll({
+            styler:"fb",
+            cursorcolor: '#8E91DF',
+            cursorwidth: 10,
+            cursorborder: '',
+            cursoropacitymin: 1,
+            cursorborderradius: 0
+        });
     });
     <% @klass = flash[:notice].present? ? '' : 'error' %>
     <% flash.each do |name, msg| -%>

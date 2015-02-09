@@ -1,0 +1,8 @@
+<li class="checklist-item-<%= item.id %>">
+  <%= check_box_tag(:is_complete, '', item.is_complete, :class => 'complete-checklist', :data => {:checklist => item.checklist.id, :id => item.id}) %>
+  <%= text_field_tag(:title, item.title, :class => 'hidden edit-check-item') %>
+  <span class='editable <%= item.is_complete ? 'checklist-item-completed' : '' %>'>
+    <%= item.title %>
+  </span>
+  <%= link_to(raw("<span class='glyphicon glyphicon-remove'></span>"), checklist_checklist_item_path(item.checklist.id, item.id), :class => 'remove-checklist', :method => :delete, :remote => true) %>
+</li>

@@ -19,6 +19,12 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     list-style: none;
 }
 
+.body-container {
+    padding: 0 !important;
+    height: 100%;
+    overflow: hidden;
+}
+
 a:hover, a:focus {
     color: #2a6496;
     text-decoration: none !important;
@@ -43,6 +49,11 @@ a:hover, a:focus {
 
 .general-menu li a {
     font-weight: 700;
+    color: #ffffff;
+}
+
+.general-menu li a:hover {
+    color: #444444;
 }
 
 .notification-value.font-1 {
@@ -55,4 +66,20 @@ a:hover, a:focus {
 
 .notification-value.font-3 {
     font-size: 9px;
+}
+
+.main-temp-content {
+    width: 100%;
+    height: 550px;
+    top: 0;
+    background-image: url('slider/project_board.png');
+    position: fixed;
+    z-index: -1;
+}
+
+.second-content {
+    height: 550px;
+    background: #cccccc;
+    width: 100%;
+    z-index: 100;
 }

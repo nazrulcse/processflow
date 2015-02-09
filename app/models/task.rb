@@ -2,6 +2,7 @@ class Task < ActiveRecord::Base
   belongs_to :project
   has_many :attachments
   has_many :histories
+  has_many :checklists
   belongs_to :status #, :foreign_key => :status_id
   has_and_belongs_to_many :users
 

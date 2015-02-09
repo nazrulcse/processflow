@@ -1,0 +1,22 @@
+<div class='show-checklist' id="checklist-<%= checklist.id %>">
+  <div class='checklist-title'>
+    <%= form_for(checklist, :remote => true) do |cf| %>
+        <%= cf.text_field :title, :class => 'hidden edit-check-item' %>
+        <span class='editable'>
+          <%= checklist.title %>
+        </span>
+        <%= link_to(raw("<span class='glyphicon glyphicon-remove'></span>"), checklist_path(checklist.id, :task_id => checklist.task.id), :class => 'remove-checklist reset-padding', :method => :delete, :remote => true) %>
+    <% end %>
+  </div>
+  <ul class='checklist-<%= checklist.id %> reset-margin'>
+    <% checklist.checklist_items.each do |item| %>
+        <%= render 'checklists/checklist_item', :item => item %>
+    <% end %>
+    <li>
+      <%= form_for([checklist, ChecklistItem.new()], :remote => true) do |f| %>
+          <%= f.text_field :title, :class => 'hidden add-check-item', :placeholder => 'add new checklist item...' %>
+          <a href="javascript:void(0);" class="add-checklist-item"> new item.... </a>
+      <% end %>
+    </li>
+  </ul>
+</div>

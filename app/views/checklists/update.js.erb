@@ -1,0 +1,7 @@
+$("#edit_checklist_<%= params[:id] %>").find('input[type="text"]').val('').addClass('hidden');
+$('.add-checklist-item').show();
+<%form_for(@checklist) do |f| %>
+ <% f.fields_for :checklist_items, initialize_form(f, :checklist_items) do |builder| %>
+   $("#edit_checklist_<%= params[:id] %>").parents('li').before("<%= escape_javascript(render 'checklists/checklist_item', :builder => builder) %>");
+ <%end%>
+<%end%>

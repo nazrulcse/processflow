@@ -3,7 +3,7 @@
     <%= image_tag(get_image(comment.user_id)) %>
   </div>
   <div class='content-right pull-left'>
-    <%= comment.comment.html_safe %>
+    <%= raw(comment.comment.to_s.html_safe) %>
   </div>
   <div class='clearfix'></div>
   <div class='comments-reply btn-group hidden'>

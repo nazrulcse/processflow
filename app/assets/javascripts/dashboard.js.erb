@@ -396,8 +396,8 @@ function initDashboard() {
         });
     });
 
-    $(document).off('click', '.attachment-image-item img').on('click', '.attachment-image-item img', function() {
-        show_attachment($(this));
+    $(document).off('click', '.quick-view').on('click', '.quick-view', function() {
+        show_attachment($(this).parents('.attachment-item').find('img').first().attr('src'));
     });
 
     $(document).on('click', '.attachment-overlay, .close-attachment', function() {

@@ -3,6 +3,15 @@ Rails.application.routes.draw do
   resources :tasks do
     resources :comments
   end
+
+  resources :checklists do
+    resources :checklist_items do
+      member do
+        get 'complete'
+      end
+    end
+  end
+
   post "/import", :to => "tasks#import"
   post "/search", :to => "tasks#search_task"
   post "/update_position", :to => "tasks#update_position"

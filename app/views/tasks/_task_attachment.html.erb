@@ -1,9 +1,19 @@
-<% if is_image?(attachment.file) %>
-    <div class='attachment-item attachment-image-item'>
+<div class="attachment-item attachment-image-item" data-attachment-type="<%= attachment.file %>">
+    <% if is_image?(attachment.file) %>
       <%= image_tag(attachment.file) %>
-    </div>
-<% else %>
-    <div class='attachment-item'>
-       <%= link_to(image_tag('document.png', :style => 'width: 90px; height: 64px;'), download_attachment_path(attachment), :style => 'display: block;') %>
-    </div>
-<% end %>
+      <div class="attachment-hover-details">
+        <div class='attachment-action-wrapper'>
+          <a href="javascript:void(0);" class="attachment-action quick-view"> <%= image_tag('quick_view.png') %> </a>
+          <a href="<%= download_attachment_path(attachment) %>" class="attachment-action"> <%= image_tag('download.png') %> </a>
+          <a href="javascript:void(0);" class="attachment-action"> <%= image_tag('trash_can.png') %> </a>
+        </div>
+      </div>
+    <%else%>
+      <div class="attachment-hover-details">
+        <div class='attachment-action-wrapper'>
+          <a href="<%= download_attachment_path(attachment) %>" class="attachment-action"> <%= image_tag('download.png') %> </a>
+          <a href="javascript:void(0);" class="attachment-action"> <%= image_tag('trash_can.png') %> </a>
+        </div>
+      </div>
+    <% end %>
+</div>

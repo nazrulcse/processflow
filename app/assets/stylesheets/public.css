@@ -23,6 +23,10 @@
     clear: both;
 }
 
+.reset-padding {
+    padding: 0 !important;
+}
+
 .body-content {
     background-image: url("bg.png");
     display: block;
@@ -30,7 +34,7 @@
     min-height: 100%;
     min-width: 100%;
     padding-top: 5px;
-    position: absolute;
+    /*position: absolute;*/
     width: auto;
 }
 
@@ -81,4 +85,8 @@ form {
 }
 .unread{
     background-color: #00AAE7 !important;
+}
+
+.logo-link:hover {
+   background: none !important;
 }

@@ -10,6 +10,18 @@ module TasksHelper
     end
   end
 
+  def task_progress(task)
+    effort = task.effort.nil? ? 0 : task.effort
+    spend = task.spend.nil? ? 0 : task.spend
+    if spend > effort
+      return 100
+    elsif effort == 0
+      return 0
+    else
+      return (spend * 100 / effort)
+    end
+  end
+
   def rest_of_users(task_users, project_users)
     if (task_users.nil?)
       return project_users
