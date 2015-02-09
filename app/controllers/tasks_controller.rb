@@ -177,6 +177,15 @@ class TasksController < ApplicationController
     NotificationSubcription.destroy_all(["project_id = ? and user_id = ?", project_id, user_id])
   end
 
+  def import
+    porject_id = params[:project_id]
+    puts'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
+    puts porject_id
+    puts'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
+    Task.import(params[:file], porject_id )
+    redirect_to dashboard_url(porject_id), notice: "Products imported."
+  end
+
   private
   def task_params
     params.require(:task).permit(:title, :description, :priority, :effort, :status_id, :end_date, :position, :relation, :project_id, :task_type)

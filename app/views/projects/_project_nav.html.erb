@@ -22,6 +22,13 @@
       <img src="/assets/activity-log.png" alt="log"/> Activity Log
     </a>
   </div>
+  <div  class="import_action">
+    <%= form_tag import_path,:id => 'import_submit', multipart: true do %>
+        <div class="import_wraper"> <div class="import_button"><img src="/assets/import2.png" alt="log"/> Import<span class="glyphicon glyphicon-info-sign import_info" data-toggle="popover" title="Popover title"data-content="And here's some amazing content. It's very engaging. Right?" trigger="hover"></span> </div><input id="file" class="import_file" type="file" name="file"></div>
+        <%= hidden_field :project_id, '', :value => project.id %>
+
+    <% end %>
+  </div>
   <div class="bratcamp pull-left">
      Project &#10093;&#10093;
      <a href='javascript:void(0);' class='project-title btn-action' data-id="<%= project.id %>">
@@ -48,6 +55,13 @@
 <script type='text/javascript'>
 
     $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({
+            placement : 'top'
+        });
+
+        $( "#file" ).change(function() {
+            $( "#import_submit" ).submit();
+        });
 
         $(".add-filter").click(function() {
             $(this).next('.filter-popup').toggle();
