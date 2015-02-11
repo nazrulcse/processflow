@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>
+    ProcessFlow: Welcome
+  </title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<div class="header">
+  <div class="container">
+    <div class="logo-menu">
+      <div class="logo">
+        <h1>
+          <a class="logo" href="/">
+            <img src="/assets/processflow36.png" alt="Processflow36">ROCESSFLOW
+          </a>
+        </h1>
+      </div>
+      <div id="mobile-header">
+        <a href="#" class="responsive-menu-button"><img src="images/11.png"></a>
+      </div>
+      <div id="navigation" class="menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#stories">Stories</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='user-account'>
+  <div class="contact content-item" style='padding: 25px 0 20px 0;'>
+    <div class='container'>
+      <div class='contact-section'>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+  <%#= render :partial => 'devise/registrations/signup_form' %>
+</div>
+<div class="color-border">
+</div>
+<div class="footer">
+  <div class="container">
+    <div class="infooter">
+      <p class="copyright">Copyright &copy; Extant 2014 by
+        <a class="credit" href="http://www.html5layouts.com">HTML5 Layouts</a></p>
+    </div>
+    <ul class="socialmedia">
+      <li><a href=""><i class="icon-twitter"></i></a></li>
+      <li><a href=""><i class="icon-facebook"></i></a></li>
+      <li><a href=""><i class="icon-dribbble"></i></a></li>
+      <li><a href=""><i class="icon-linkedin"></i></a></li>
+      <li><a href=""><i class="icon-instagram"></i></a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

@@ -58,8 +58,8 @@ Rails.application.routes.draw do
     post "/account", :to => "devise/registrations#create"
     get "/profile", :to => "devise/registrations#edit"
     put "/profile", :to => "registrations#update"
-    #get "/", :to => "devise/sessions#new"
-    post "/", :to => "devise/sessions#create"
+    get "/login", :to => "devise/sessions#new"
+    post "/login", :to => "devise/sessions#create"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

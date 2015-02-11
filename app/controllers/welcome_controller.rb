@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html { render :layout => 'home' }
+      format.html { render :layout => 'landing' }
     end
   end
 

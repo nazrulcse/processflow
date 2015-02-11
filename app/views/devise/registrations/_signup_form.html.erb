@@ -1,66 +1,137 @@
-<div class="project-overview new-account-wrap">
-  <h1 class='font_0 template-title-text new-account-title'>
-    <% if (current_user.present?) %>
-       Edit Profile
-    <%else%>
-       create new account
-    <%end%>
-  </h1>
-  <div class="new-account content-item">
-    <!--<h2 class="profile-title">-->
-    <!--<%# if (current_user.present?) %>-->
-    <!--Edit Profile -->
-    <%#= image_tag(@user.image_url(:small_thumb), :class => "pull-right nav-avatar") if @user.image? %>
-    <!--<%# else %>-->
-    <!--Sign up-->
-    <!--<%# end %>-->
-    <!--</h2>-->
-    <%= form_for(resource, as: resource_name, url: current_user.present? ? profile_path() : account_path(), :html => {:method => current_user.present? ? :put : :post}) do |f| %>
-        <%= devise_error_messages! %>
+<%= form_for(resource, as: resource_name, url: current_user.present? ? profile_path() : account_path(), :html => {:method => current_user.present? ? :put : :post, :class => 'user-account'}) do |f| %>
+    <header>
+      <% if current_user.present? %>
+          Account Edit form
+      <% else %>
+          Registration Form
+      <% end %>
+    </header>
+    <fieldset>
+      <section>
+        <label class="input">
+          <i class="icon-append icon-user"></i>
+          <%= f.text_field :name, autofocus: true, :placeholder => 'full name' %>
+          <b class="tooltip tooltip-bottom-right">Only latin characters and numbers</b>
+        </label>
+      </section>
 
-        <div>
-          <%= f.label :name %>
-          <%= f.text_field :name, autofocus: true, :class => 'form-control' %>
-        </div>
+      <section>
+        <label class="input">
+          <i class="icon-append icon-envelope-alt"></i>
+          <%= f.email_field :email, autofocus: true, :placeholder => 'email' %>
+          <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+        </label>
+      </section>
 
-        <div>
-          <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
-        </div>
-        <div>
-          <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
-        </div>
+      <section>
+        <label class="input">
+          <i class="icon-append icon-lock"></i>
+          <%= f.password_field :password, autocomplete: "off", :placeholder => 'password' %>
+          <b class="tooltip tooltip-bottom-right">Only latin characters and numbers</b>
+        </label>
+      </section>
 
-        <div>
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
-        </div>
+      <section>
+        <label class="input">
+          <i class="icon-append icon-lock"></i>
+          <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => 'confirm password' %>
+          <b class="tooltip tooltip-bottom-right">Only latin characters and numbers</b>
+        </label>
+      </section>
+    </fieldset>
 
-        <div>
-          <%= f.label :country %>
-          <%= f.select(:country, ['Bangladesh', 'India', 'Pakistan'], {}, prompt: true, :class => 'form-control') %>
-        </div>
+    <fieldset>
+      <section>
+        <label class="input">
+          <%= f.number_field :zip, :placeholder => 'zip code' %>
+        </label>
+      </section>
 
-        <div>
-          <%= f.label :zip %>
-          <%= f.number_field :zip, :class => 'form-control' %>
-        </div>
+      <section>
+        <label style='width: 100%;' class='reset-margin'>
+          <%= f.select(:country, ['Bangladesh', 'India', 'Pakistan'], {}, prompt: true) %>
+          <i></i>
+        </label>
+      </section>
 
-        <div>
-          <%= f.label :image %>
-          <%= f.file_field :image %>
+      <section>
+        <div class='image-upload btn btn-default'>
+          <i class='icon-upload'></i> Upload image
+          <%= f.file_field :image, :class => 'upload' %>
           <%= f.hidden_field :image_cache %>
         </div>
+      </section>
 
-        <div style="margin-top: 10px;">
-          <% if (!current_user.present?) %>
-              <%= f.submit "Sign up", :id => 'registration', :class => 'btn btn-primary btn-lg btn-block' %>
-          <% else %>
-              <%= f.submit "Update", :class => 'btn btn-primary btn-lg btn-block' %>
-          <% end %>
-        </div>
-    <% end %>
-    <div class="pull-right"> <%= render "devise/shared/links" %> </div>
-  </div>
-</div>
+      <section>
+        <label class="checkbox">
+          <input name="checkbox" type="checkbox"><i></i>I agree to the Terms of Service
+        </label>
+        <label class="checkbox">
+          <input name="checkbox" type="checkbox"><i></i>I want to receive news and special offers
+        </label>
+      </section>
+    </fieldset>
+    <footer>
+      <% if (!current_user.present?) %>
+          <%= f.submit "Sign up", :id => 'registration', :class => 'button' %>
+      <% else %>
+          <%= f.submit "Update", :class => 'button' %>
+      <% end %>
+    </footer>
+<% end %>
+
+
+<!--<h1 class='font_0'>-->
+<!--
+<% if (current_user.present?) %>-->
+    <!--Edit Profile-->
+    <!--
+<% else %>-->
+    <!--create new account-->
+    <!--
+<% end %>-->
+<!--</h1>-->
+<!--<%= form_for(resource, as: resource_name, url: current_user.present? ? profile_path() : account_path(), :html => {:method => current_user.present? ? :put : :post}) do |f| %>-->
+    <!--<%= devise_error_messages! %>-->
+
+    <!--<div>-->
+    <!---->
+    <!--</div>-->
+
+    <!--<div>-->
+    <!---->
+    <!--</div>-->
+    <!--<div>-->
+    <!--->
+    <!--</div>-->
+
+    <!--<div>-->
+    <!---->
+    <!--</div>-->
+
+    <!--<div>-->
+    <!---->
+    <!--</div>-->
+
+    <!--<div>-->
+    <!---->
+    <!--</div>-->
+
+    <!--<div>-->
+    <!--<%= f.file_field :image %>-->
+    <!--<%= f.hidden_field :image_cache %>-->
+    <!--</div>-->
+
+    <!--<div style="margin-top: 10px;">-->
+    <!--
+    <% if (!current_user.present?) %>-->
+        <!--<%= f.submit "Sign up", :id => 'registration', :class => 'btn btn-primary btn-lg btn-block' %>-->
+        <!--
+    <% else %>-->
+        <!--<%= f.submit "Update", :class => 'btn btn-primary btn-lg btn-block' %>-->
+        <!--
+    <% end %>-->
+    <!--</div>-->
+    <!--
+<% end %>-->
+<!--<div class="pull-right"> <%= render "devise/shared/links" %> </div>-->
