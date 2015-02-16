@@ -55,17 +55,9 @@
 }
 
 .activity-feed, .my-project {
-  background-image: url("feed.png");
-  background-position: left center;
-  background-repeat: no-repeat;
   color: #999;
   font-size: 20px;
   margin-bottom: 10px;
-  padding-left: 20px;
-}
-
-.my-project {
-  background-image: url('project_board.png');
 }
 
 #btn-new-project {
@@ -162,6 +154,10 @@
   width: 100%;
   position: relative;
   margin-right: 25px;
+}
+
+.bratcamp .project-title {
+  color: #fdfdfd;
 }
 
 .project-list li:nth-child(3n + 2) {

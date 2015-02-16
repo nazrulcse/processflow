@@ -18,11 +18,11 @@
 }
 
 #add-checklist {
-    background: url("add_list.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0);
     display: block;
     font-size: 16px;
     font-weight: bold;
-    padding: 5px 5px 10px 30px;
+    padding: 5px 5px 10px 4px;
     background-size: 22px 22px;
 }
 
@@ -34,13 +34,17 @@
 }
 
 .show-checklist .checklist-title {
-    padding: 7px 7px 7px 25px;
-    background: url('task_board.png') no-repeat left center #36a0d0;
+    padding: 7px 7px 7px 4px;
+    background: #36a0d0;
     background-size: 20px 20px;
     border: medium none;
     color: #fdfdfd;
     font-weight: bold;
     font-size: 16px;
+}
+
+.show-checklist .checklist-title i {
+    font-size: 18px;
 }
 
 .add-check-item,
