@@ -179,11 +179,13 @@ class TasksController < ApplicationController
 
   def import
     porject_id = params[:project_id]
-    puts'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    puts porject_id
-    puts'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    Task.import(params[:file], porject_id )
-    redirect_to dashboard_url(porject_id), notice: "Products imported."
+    task = Task.import(params[:file], porject_id )
+     if task != 0
+       redirect_to dashboard_url(porject_id), notice: "Tasks are imported."
+     else
+       redirect_to dashboard_url(porject_id), notice: "Tasks are not imported. Unknown file type"
+     end
+
   end
 
   private

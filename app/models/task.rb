@@ -62,40 +62,36 @@ class Task < ActiveRecord::Base
   def self.import(file,project_id)
     project = Project.find_by_id(project_id)
     spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
-    header.each_with_index do |h, i|
-      # if !(('title' == h) or ('description' == h )or ('priority' == h ))
-      #   header.delete(h)
-      # end
+    if spreadsheet != 0
+      header = spreadsheet.row(1)
+      header.each_with_index do |h, i|
+        # if !(('title' == h) or ('description' == h )or ('priority' == h ))
+        #   header.delete(h)
+        # end
+      end
+      task = project.tasks.build();
+      (2..spreadsheet.last_row).each do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        unless row['title'].blank?
+          task.title = row['title']
+        end
+        unless row['description'].blank?
+          task.description = row['description']
+        end
+        unless row['priority'].blank?
+          task.priority = row['priority']
+        end
+        unless row['status_id'].blank?
+          task.status_id = row['status_id']
+        end
+
+        task.last_updated_by = project.owner_id
+        task.save!
+      end
+    else
+      return 0
     end
-    task = project.tasks.build();
-    (2..spreadsheet.last_row).each do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      unless row['title'].blank?
-        task.title = row['title']
-      end
-      unless row['description'].blank?
-        task.description = row['description']
-      end
-      unless row['priority'].blank?
-        task.priority = row['priority']
-      end
-      unless row['status_id'].blank?
-        task.status_id = row['status_id']
-      end
-      # unless row[:title].blank?
-      #   task.title = row[:title]
-      # end
-      # unless row[:title].blank?
-      #   task.title = row[:title]
-      # end
-      # unless row[:title].blank?
-      #   task.title = row[:title]
-      # end
-      # task = project.tasks.build(row.to_hash.slice(*row.to_hash.keys))
-      task.last_updated_by = project.owner_id
-      task.save!
-    end
+
   end
 
   def self.open_spreadsheet(file)
@@ -103,7 +99,8 @@ class Task < ActiveRecord::Base
       when '.csv' then Roo::Csv.new(file.path, nil, :ignore)
       when '.xls' then Roo::Excel.new(file.path, nil, :ignore)
       when '.xlsx' then Roo::Excelx.new(file.path, nil, :ignore)
-      else raise "Unknown file type: #{file.original_filename}"
+      else
+        return 0
     end
   end
 
