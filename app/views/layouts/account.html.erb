@@ -21,7 +21,9 @@
         </h1>
       </div>
       <div id="mobile-header">
-        <a href="#" class="responsive-menu-button"><img src="images/11.png"></a>
+        <a href="#" class="responsive-menu-button">
+          <%= image_tag('colleps.png') %>
+        </a>
       </div>
       <div id="navigation" class="menu">
         <ul>
@@ -62,4 +64,20 @@
   </div>
 </div>
 </body>
+<script type="text/javascript">
+    $(function () {
+        $("html").niceScroll({
+            styler: "fb",
+            cursorcolor: '#8E91DF',
+            cursorwidth: 10,
+            cursorborder: '',
+            cursoropacitymin: 1,
+            cursorborderradius: 0
+        });
+    });
+    <% @klass = flash[:notice].present? ? '' : 'error' %>
+    <% flash.each do |name, msg| -%>
+    popupMessage("<%= msg %>", "<%= @klass %>");
+    <% end -%>
+</script>
 </html>

@@ -3,16 +3,16 @@
       <%= image_tag(attachment.file) %>
       <div class="attachment-hover-details">
         <div class='attachment-action-wrapper'>
-          <a href="javascript:void(0);" class="attachment-action quick-view"> <%= image_tag('quick_view.png') %> </a>
-          <a href="<%= download_attachment_path(attachment) %>" class="attachment-action"> <%= image_tag('download.png') %> </a>
-          <a href="javascript:void(0);" class="attachment-action"> <%= image_tag('trash_can.png') %> </a>
+          <a href="javascript:void(0);" class="attachment-action quick-view"> <i class='fa fa-eye fa-task-item'> </i> </a>
+          <a href="<%= download_attachment_path(attachment) %>" class="attachment-action"> <i class='fa fa-download fa-task-item'> </i> </a>
+          <a href="javascript:void(0);" class="attachment-action"> <i class='fa fa-trash-o fa-task-item'> </i> </a>
         </div>
       </div>
     <%else%>
       <div class="attachment-hover-details">
         <div class='attachment-action-wrapper'>
-          <a href="<%= download_attachment_path(attachment) %>" class="attachment-action"> <%= image_tag('download.png') %> </a>
-          <a href="javascript:void(0);" class="attachment-action"> <%= image_tag('trash_can.png') %> </a>
+          <a href="<%= download_attachment_path(attachment) %>" class="attachment-action"> <i class='fa fa-download fa-task-item'></i> </a>
+          <a href="javascript:void(0);" class="attachment-action"> <i class='fa fa-trash-o fa-task-item'> </i> </a>
         </div>
       </div>
     <% end %>

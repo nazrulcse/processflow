@@ -11,14 +11,9 @@
     margin-right: 5px;
     color: #fdfdfd;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 12px;
     cursor: pointer;
-}
-
-.project-nav .btn-action img {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
+    overflow: hidden;
 }
 
 .project-nav .bratcamp {
@@ -27,6 +22,7 @@
     color: #fdfdfd;
     font-weight: 700;
     font-size: 11px;
+    overflow: hidden;
 }
 
 .btn-action.add-card {
@@ -159,13 +155,35 @@
 }
 
 .comments-count {
-    background: url("comment.png") no-repeat scroll center 2px / 100% 90% rgba(0, 0, 0, 0);
     color: #777;
     display: inline-block;
     font-size: 11px;
     height: 19px;
     min-width: 22px;
     text-align: center;
+}
+
+.task-element {
+    display: inline-block;
+    margin-left: 4px;
+}
+
+.fa-task-item {
+    font-size: 14px;
+}
+
+div.task-priority-medium {
+    width: 10px;
+    overflow: hidden;
+}
+
+div.task-priority-low {
+    width: 7px;
+    overflow: hidden;
+}
+
+.task-item .content-right ul li {
+    text-align: right;
 }
 
 .add-attachment {
@@ -539,6 +557,7 @@ img.attachment-details {
     position: absolute;
     top: 0;
     cursor: pointer;
+    margin: 0 !important;
 }
 
 .import_action .popover {
@@ -548,20 +567,15 @@ img.attachment-details {
 }
 
 .import_action {
-    color: #fdfdfd;
-    display: inline-block;
-    float: left;
-    font-size: 11px;
-    font-weight: 700;
     margin-left: 5px;
-    position: relative;
     padding-right: 18px;
+    width: 120px;
 }
 
 .import_help {
     display: block;
     position: absolute;
-    right: 2px;
+    right: 7px;
     cursor: default;
     top: 4px;
 }

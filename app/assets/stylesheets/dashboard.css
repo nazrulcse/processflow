@@ -54,7 +54,7 @@
     border-radius: 4px 4px 0 0 !important;
     vertical-align: top;
     height: auto !important;
-    padding: 7px;
+    padding: 10px 5px 4px 5px;
     border-bottom: 1px solid #FFFFFF;
     margin-bottom: 1px;
     background: #36a0d0; /* Old browsers */
@@ -83,6 +83,10 @@
 
 .project-nav-control {
     float: left;
+}
+
+.project-nav a i {
+    font-size: 14px;
 }
 
 .project-nav-control.add-project-member {

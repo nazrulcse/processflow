@@ -44,6 +44,7 @@
 </div>
 <script type='text/javascript'>
     $(function () {
+        $('select').customDropDown();
         var LineChartData = {
             labels: <%= statistics[:labels] %>,
             datasets: [

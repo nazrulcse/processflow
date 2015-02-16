@@ -5,7 +5,7 @@
   <div id='project-item-wrapper'>
     <div class="project-status">
       <h2 class='my-project'>
-        My Project
+        <i class='fa fa-list-alt'> </i> My Project
         <a href='javascript:void(0)' id='btn-new-project' class='btn-primary btn-sm pull-right'>
             New Project
         </a>
@@ -29,15 +29,15 @@
       </ul>
     </div>
     <div class="project-feed">
-      <h2 class='activity-feed'> Activity feed </h2>
+      <h2 class='activity-feed'> <i class='fa fa-rss'></i> Activity feed </h2>
       <div class='feed-list'>
           <%= render :partial => 'feeds', :locals => {:feeds => @feeds} %>
       </div>
       <div class='pagination'>
         <% if @feeds.present? && @feeds.count > 10 %>
             <ul class='jpage-pagination'>
-              <li class='previous disable' data-offset= '0'><</li>
-              <li class='next' data-offset= '0'>></li>
+              <li class='previous disable' data-offset= '0'> <i class='fa fa-angle-left'> </i> </li>
+              <li class='next' data-offset= '0'><i class='fa fa-angle-right'> </i></li>
             </ul>
         <%else%>
             <li class='no-feed'> No Active Feed Found </li>

@@ -1,16 +1,16 @@
 <div class="project-nav">
   <div class="btn-group project-nav-control">
     <a class="btn-action add-card" href="javascript:void(0);" id="btn-task">
-      <img src="/assets/new_project_icon.png" alt="add"/> Add Card
+      <i class="fa fa-plus-circle"></i> Add Card
     </a>
     <% if is_project_owner!(project) %>
         <a id='invite-member' href="javascript:void(0);" class='btn-action'>
-          <img src="/assets/add-user.png"/> Invitation
+          <i class="fa fa-user"></i> Invitation
         </a>
         <%= render 'shared/small_modal' %>
     <% end %>
     <a class="btn-action add-filter">
-      <img src="/assets/filter_add.png" alt='filter'> Filter
+      <i class="fa fa-filter"></i> Filter
     </a>
 
     <div class="filter-popup">
@@ -20,23 +20,23 @@
       <span class='glyphicon glyphicon-remove clear-search hidden' data-project-id="<%= project.id %>"></span>
     </div>
     <a href="/projects" class="btn-action">
-      <img src="/assets/activity-log.png" alt="log"/> Activity Log
+      <i class="fa fa-terminal"></i> Activity Log
     </a>
-    <%= link_to(image_tag('statistics.png') + ' Statistics', statistics_project_path(project), :class => 'btn-action') %>
-  </div>
-  <div class="import_action">
-    <%= form_tag import_path, :id => 'import_submit', multipart: true do %>
-        <div class="import_wraper">
-          <div class="import_button">
-            <img src="/assets/import2.png" alt="log"/> Import
+    <%= link_to(raw("<i class='fa fa-bar-chart'></i>") + ' Statistics', statistics_project_path(project), :class => 'btn-action') %>
+    <a href="javascript:void(0);" class='import_action btn-action'>
+      <%= form_tag import_path, :id => 'import_submit', multipart: true do %>
+          <div class="import_wraper">
+            <i class='fa fa-upload'></i> Import Task
+            <input id="file" class="import_file" type="file" name="file">
           </div>
-          <input id="file" class="import_file" type="file" name="file"></div>
-        <%= hidden_field :project_id, '', :value => project.id %>
-    <% end %>
-    <span class="glyphicon glyphicon-info-sign import_help" data-role='button' data-toggle="popover" data-placement="bottom" title="Import Help" data-content="You should import only csv or .xls and .xlsx File. And First line should be Header." data-trigger="hover"></span>
+          <%= hidden_field :project_id, '', :value => project.id %>
+      <% end %>
+      <span class="glyphicon glyphicon-info-sign import_help" data-role='button' data-toggle="popover" data-placement="bottom" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-trigger="click"></span>
+    </a>
   </div>
+
   <div class="bratcamp pull-left">
-    Project &#10093;&#10093;
+    <a href="/projects" class='btn-action'> Project &#10093;&#10093; </a>
     <a href='javascript:void(0);' class='project-title btn-action' data-id="<%= project.id %>">
       <%= project.name %>
     </a>

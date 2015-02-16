@@ -1,21 +1,16 @@
 <ul>
-<% @feeds.each do |feed| %>
-      <% if(feed.task.task_type == 'bug') %>
-          <li class='task_bug'>
-      <% else %>
-          <li class= 'task_feature'>
-      <% end %>
+  <% @feeds.each do |feed| %>
+      <li class="<%= feed.task.task_type == 'bug' ? 'task_bug' : 'task_feature' %>">
+        <div class='feed-content'>
+          <b> <%= link_to(feed.task.project.name, project_path(feed.task.project.id)) %> </b>
+          <%= feed.user.name %>
+          <%= feed.context %>
+          <b style="display: block;"> <%= feed.task.title %> </b>
+        </div>
 
-      <div class='feed-content'>
-        <b> <%= link_to(feed.task.project.name, project_path(feed.task.project.id)) %> </b>
-        <%= feed.user.name %>
-        <%= feed.context %>
-        <b style="display: block;"> <%= feed.task.title %> </b>
-      </div>
-
-                <span class='notification-time'>
-                  <i> <%= time_ago_in_words(feed.created_at) %> ago </i>
-                </span>
-    </li>
-<% end %>
-  </ul>
+        <span class='notification-time'>
+          <i> <%= time_ago_in_words(feed.created_at) %> ago </i>
+        </span>
+      </li>
+  <% end %>
+</ul>
