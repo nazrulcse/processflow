@@ -5,7 +5,10 @@
         <span class='editable'>
               <i class='fa fa-tasks fa-task-item'> </i> <%= checklist.title %>
         </span>
-        <%= link_to(raw("<span class='glyphicon glyphicon-remove'></span>"), checklist_path(checklist.id, :task_id => checklist.task.id), :class => 'remove-checklist reset-padding', :method => :delete, :remote => true) %>
+        <span class='checklist-action windows-action'>
+          <%= link_to(raw("<span class='fa fa-sort-asc'></span>"), 'javascript:void(0);', :class => 'minimize-checklist reset-padding', :method => :delete, :remote => true) %>
+          <%= link_to(raw("<span class='glyphicon glyphicon-remove'></span>"), checklist_path(checklist.id, :task_id => checklist.task.id), :class => 'remove-checklist reset-padding', :method => :delete, :remote => true) %>
+        </span>
     <% end %>
   </div>
   <ul class='checklist-<%= checklist.id %> reset-margin'>

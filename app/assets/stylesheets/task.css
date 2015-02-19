@@ -16,6 +16,10 @@
     overflow: hidden;
 }
 
+.project-nav .btn-action:hover {
+    color: #dfdfdf;
+}
+
 .project-nav .bratcamp {
     width: 30%;
     text-align: center;

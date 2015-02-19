@@ -319,6 +319,19 @@ p.box-desc {
     background-color: #D6D6D6;
 }
 
+.feature-img {
+    border: 1px solid #ccc;
+    height: 160px;
+    padding: 10px;
+    text-align: center;
+}
+
+.feature-img img {
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+}
+
 .contact-section {
     width: 60%;
     margin: 0 auto;

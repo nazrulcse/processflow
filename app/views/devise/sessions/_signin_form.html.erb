@@ -1,6 +1,6 @@
 <%= form_for(resource, as: resource_name, url: login_path(), :html => {:class => 'user-account user-sign-in'}) do |f| %>
     <header>
-      User SignIn
+      <i class='fa fa-sign-in'></i> User SignIn
     </header>
     <fieldset>
       <section>
@@ -18,8 +18,8 @@
         </label>
       </section>
       <section>
-        <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-        </section>
+        <%= link_to raw("<i class='fa fa-facebook'></i>") + " Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+      </section>
       <section>
         <label class="checkbox">
           <input name="checkbox" type="checkbox"> Remember me
@@ -27,7 +27,7 @@
       </section>
     </fieldset>
     <footer>
-      <%= f.submit "Login", :class => 'button' %>
+      <%= f.submit  "Login", :class => 'button' %>
     </footer>
 <% end %>
 
