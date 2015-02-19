@@ -1,6 +1,6 @@
 <%= form_for(resource, as: resource_name, url: login_path(), :html => {:class => 'user-account user-sign-in'}) do |f| %>
     <header>
-      User SignIn
+      <i class='fa fa-sign-in'></i> User SignIn
     </header>
     <fieldset>
       <section>
@@ -28,7 +28,7 @@
       </section>
     </fieldset>
     <footer>
-      <%= f.submit "Login", :class => 'button' %>
+      <%= f.submit  "Login", :class => 'button' %>
     </footer>
 <% end %>
 

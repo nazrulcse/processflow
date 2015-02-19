@@ -8,13 +8,20 @@
 }
 
 #checklist ul {
-    margin-bottom: 10px;
-    padding-left: 10px;
+    padding: 5px;
 }
 
 #checklist ul li {
     min-height: 25px;
-    padding: 2px 0;
+    padding: 3px;
+    background: #F3F4F5;
+    border: solid 1px #dfdfdf;
+    margin-bottom: 5px;
+}
+
+#checklist ul li:last-child {
+    border: 0;
+    background: transparent;
 }
 
 #add-checklist {
@@ -27,20 +34,46 @@
 }
 
 .show-checklist {
-    border: solid 1px #0381BB;
-    margin-bottom: 10px;
-    border-top-color: transparent;
+    border: 4px solid #e4e4e4;
     border-radius: 4px;
+    margin-bottom: 10px;
 }
 
 .show-checklist .checklist-title {
-    padding: 7px 7px 7px 4px;
-    background: #36a0d0;
-    background-size: 20px 20px;
+    background: none repeat scroll 0 0 / 20px 20px #e4e4e4;
     border: medium none;
-    color: #fdfdfd;
-    font-weight: bold;
+    color: #444;
     font-size: 16px;
+    font-weight: bold;
+    padding: 7px 7px 7px 4px;
+    position: relative;
+}
+
+.show-checklist .checklist-action {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.windows-action a {
+    color: #245269;
+    background: #dfdfdf;
+    padding: 4px 9px 0 10px !important;
+    border: solid 1px #ccc;
+    border-top: none;
+}
+
+.windows-action a span {
+    color: #aaa;
+}
+
+.windows-action a:hover {
+   background: #0381BB;
+}
+
+.windows-action a:last-child {
+    border-left: none;
+    margin-left: -5px;
 }
 
 .show-checklist .checklist-title i {
@@ -65,12 +98,17 @@
 }
 
 a.remove-checklist {
-    color: #2a6496;
-    float: right;
+    color: red;
     height: 2px;
-    padding: 5px;
+    padding: 2px 10px 0 0;
 }
 
 .editable {
     cursor: pointer;
+    display: inline-block;
+    width: 90%;
+}
+
+.checklist-item-action {
+    display: none;
 }

@@ -6,14 +6,14 @@
       </li>
       <li>
         <span class='task-end-date'> <i class="fa fa-calendar reset-margin fa-task-item task-element"></i> <%= task.end_date %> </span>
-        <span class='pull-right task-element'>
+        <span class='task-element'>
           <% if task.attachments.present? %>
               <i class="fa fa-paperclip"></i>
           <%end%>
         </span>
-        <span class='pull-right comments-count task-element'> <%= task.comments.size %><i class='fa fa-comments fa-task-item'></i> </span>
+        <span class='comments-count task-element'> <%= task.comments.size %><i class='fa fa-comments fa-task-item'></i> </span>
         <% if task.checklists.present? %>
-          <span class='pull-right task-element'> <i class="fa fa-tasks task-element fa-task-item"></i> </span>
+          <span class='task-element'> <i class="fa fa-tasks task-element fa-task-item"></i> </span>
         <%end%>
       </li>
     </ul>

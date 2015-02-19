@@ -54,7 +54,7 @@
     border-radius: 4px 4px 0 0 !important;
     vertical-align: top;
     height: auto !important;
-    padding: 10px 5px 4px 5px;
+    padding: 10px 10px 4px 10px;
     border-bottom: 1px solid #FFFFFF;
     margin-bottom: 1px;
     background: #36a0d0; /* Old browsers */
@@ -129,11 +129,11 @@
 /* Task Item Design */
 
 .task-item .content-left {
-    width: 70.9%;
+    width: 76%;
 }
 
 .task-item .content-right {
-    width: 29%;
+    width: 24%;
     text-align: center;
 }
 

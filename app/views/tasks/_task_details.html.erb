@@ -277,12 +277,14 @@
         });
     });
 
-    $('.attachment-item').hover(function (event) {
-                $(this).find('.attachment-hover-details').stop().slideDown('fast');
-            },
-            function (event) {
-                $(this).find('.attachment-hover-details').stop().slideUp('fast');
-            });
+    $(document).on({
+        mouseenter: function(){
+            $(this).find('.attachment-hover-details').stop().slideDown('fast');
+        },
+        mouseleave: function(){
+            $(this).find('.attachment-hover-details').stop().slideUp('fast');
+        }
+    }, '.attachment-item');
 
     $('#add-checklist').click(function () {
         $(this).next().removeClass('hidden');
@@ -364,4 +366,29 @@
             }
        });
     });
+
+    $(document).on({
+        mouseenter: function(){
+            $('.checklist-item-action').hide();
+            $(this).find('.checklist-item-action').show();
+        },
+        mouseleave: function(){
+            $('.checklist-item-action').hide();
+        }
+    }, '.show-checklist ul li');
+
+    $(document).on('click', '.minimize-checklist', function() {
+        content = $(this).parents('.show-checklist').find('ul');
+        if(content.hasClass('hide')) {
+            content.removeClass('hide');
+            $(this).find('span').addClass('fa-sort-asc')
+            $(this).find('span').removeClass('fa-sort-desc')
+        }
+        else {
+            content.addClass('hide');
+            $(this).find('span').addClass('fa-sort-desc')
+            $(this).find('span').removeClass('fa-sort-asc')
+        }
+    });
+
 </script>
