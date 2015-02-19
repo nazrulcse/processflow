@@ -24,7 +24,7 @@
     </a>
     <%= link_to(raw("<i class='fa fa-bar-chart'></i>") + ' Statistics', statistics_project_path(project), :class => 'btn-action') %>
     <a href="javascript:void(0);" class='import_action btn-action'>
-      <%= form_tag import_path, :id => 'import_submit', multipart: true do %>
+      <%= form_tag import_path, :id => 'import_submit', :multipart => true do %>
           <div class="import_wraper">
             <i class='fa fa-upload'></i> Import Task
             <input id="file" class="import_file" type="file" name="file">
