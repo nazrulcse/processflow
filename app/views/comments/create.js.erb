@@ -1,9 +1,3 @@
-<% if @comment.parent.present?  %>
-$("#comments_<%= @comment.parent %>").closest("ul").append("<ul style='padding-left: 10px;'><li><%= escape_javascript(render :partial => 'comments/comments_item', :locals => {:comment => @comment}).html_safe %></li></ul>");
-$(".jqte_editor").text('');
-$(".reply-wrapper").remove();
-<% else %>
+$('.new_comment').remove();
 $(".comments-list").append("<li> <%= escape_javascript(render :partial => 'comments/comments_item', :locals => {:comment => @comment}).html_safe %> </li>");
-$(".jqte_editor").text('');
-$(".reply-wrapper").remove();
-<% end %>
+$(".add-cmnt").removeClass('hidden');

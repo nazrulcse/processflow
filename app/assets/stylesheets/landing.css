@@ -16,7 +16,10 @@ table {
 .header {
     width: 100%;
     background-color: #fff;
-
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    border-bottom: solid 1px #dfdfdf;
 }
 
 .container {
@@ -63,12 +66,20 @@ table {
     -o-transition: color 0.3s ease-in;
     -webkit-transition: color 0.3s ease-in;
     -ms-transition: color 0.3s ease-in;
+
+    transition: background-color 0.3s ease-in;
+    -moz-transition: background-color 0.3s ease-in;
+    -o-transition: background-color 0.3s ease-in;
+    -webkit-transition: background-color 0.3s ease-in;
+    -ms-transition: background-color 0.3s ease-in;
+
     padding: 21px 15px;
     box-shadow: 0 1px 1px #fff inset;
 }
 
 .menu ul li a:hover {
-    color: #1C97CA;
+    background: #1c97ca !important;
+    color: #fff !important;
 }
 
 .banner {
@@ -80,6 +91,12 @@ table {
 .banner .banner-container {
     padding: 150px 0px;
     background: rgba(36, 67, 109, 0.9);
+    margin-top: 68px;
+}
+
+a.active-menu {
+    background: #1c97ca !important;
+    color: #fff !important;
 }
 
 .header-text {
@@ -144,7 +161,7 @@ table {
 }
 
 .color-border {
-    background: url(color_border.jpg) repeat-x scroll center top;
+    background: url(color_border.png) repeat-x scroll center top;
     width: 100%;
     float: left;
     display: block;
@@ -288,7 +305,7 @@ p.box-desc {
     border-bottom-right-radius: 5px;
     border-top: none;
     text-align: center;
-    padding: 10px 0px 20px;
+    padding: 10px 10px 20px 10px;
 }
 
 .story-box h4 {

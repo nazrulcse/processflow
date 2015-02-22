@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :tasks do
-    resources :comments
+    resources :comments do
+      member do
+        get 'reply'
+      end
+    end
   end
 
   resources :checklists do

@@ -27,9 +27,10 @@
       </div>
       <div class="menu" id="navigation">
         <ul>
-          <li><a href="#"> <i class='fa fa-home'> </i> Home</a></li>
-          <li><a href="#features"><i class='fa fa-clock-o'> </i> Benefits </a></li>
-          <li><a href="#stories"> <i class='fa fa-rocket'></i> Features</a></li>
+          <li><a href="/#home" class='active-menu'> <i class='fa fa-home'> </i> Home</a></li>
+          <li><a href="#gallery"> <i class='fa fa-image'> </i> Gallery </a></li>
+          <li><a href="#benefits"><i class='fa fa-clock-o'> </i> Benefits </a></li>
+          <li><a href="#features"> <i class='fa fa-rocket'></i> Features</a></li>
           <li><a href="#contact"><i class='fa fa-user'> </i> Contact</a></li>
         </ul>
       </div>
@@ -37,7 +38,7 @@
   </div>
 </div>
 
-<div class="banner">
+<div class="banner" id='home'>
   <div class='banner-container'>
     <div class="container">
       <div class="header-text">
@@ -64,8 +65,8 @@
   </div>
 </div>
 
-<div class="color-border">
-</div>
+<!--<div class="color-border">-->
+<!--</div>-->
 
 <div class="desc">
   <div class="container">
@@ -74,6 +75,15 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia mi nulla, in imperdiet arcu hendrerit in.
       Curabitur ut augue facilisis leo malesuada consequat.</p>
   </div>
+</div>
+
+<div class="color-border">
+</div>
+
+<div class="camera_wrap" id="gallery">
+  <div data-src="/assets/slider/history.png"></div>
+  <div data-src="/assets/slider/new_task.png"></div>
+  <div data-src="/assets/slider/notification.png"></div>
 </div>
 
 <div class="features" id="features">
@@ -108,7 +118,7 @@
   </div>
 </div>
 
-<div class="stories" id="stories">
+<div class="stories" id="benefits">
   <div class="container">
     <h3 class="text-head"> Feature Of Processflow </h3>
 
@@ -123,14 +133,17 @@
           </div>
           <div class="story-box">
             <h4>Import Task</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia mi nulla, in imperdiet arcu
-              hendrerit in.</p>
+            <p>
+              You can directly import task from your estimation file.
+              Currently we are supporting .xle, .xlxs and cvs file. For importing your task you have to slite formatted your file.
+            </p>
           </div>
         </li>
         <li>
           <div class="story-img"><img src="images/story2.png"/></div>
           <div class="story-box">
             <h4>This is Awesome</h4>
+
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia mi nulla, in imperdiet arcu
               hendrerit in.</p>
           </div>
@@ -139,6 +152,7 @@
           <div class="story-img"><img src="images/story3.png"/></div>
           <div class="story-box">
             <h4>This is Mind-blowing</h4>
+
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia mi nulla, in imperdiet arcu
               hendrerit in.</p>
           </div>
@@ -151,6 +165,7 @@
           </div>
           <div class="story-box">
             <h4>Import Task</h4>
+
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia mi nulla, in imperdiet arcu
               hendrerit in.</p>
           </div>
@@ -159,6 +174,7 @@
           <div class="story-img"><img src="images/story2.png"/></div>
           <div class="story-box">
             <h4>This is Awesome</h4>
+
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia mi nulla, in imperdiet arcu
               hendrerit in.</p>
           </div>
@@ -167,6 +183,7 @@
           <div class="story-img"><img src="images/story3.png"/></div>
           <div class="story-box">
             <h4>This is Mind-blowing</h4>
+
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia mi nulla, in imperdiet arcu
               hendrerit in.</p>
           </div>
@@ -213,21 +230,43 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+        $('.camera_wrap').camera({
+            height: '40%',
+            pagination: true
+        }); //the basic method
         $('#simple-menu').sidr({
             side: 'right'
         });
     });
+
     $('.responsive-menu-button').sidr({
         name: 'sidr-main',
         source: '#navigation',
         side: 'right'
-
     });
-    $(document).ready(
-            function () {
-                $("html").niceScroll({cursorborder: "0px solid #fff", cursorwidth: "5px", scrollspeed: "70"});
+
+    var menu_item = ['#home', '#gallery', '#features', '#benefits', '#contact'];
+
+    $(document).ready(function () {
+        $(window).scroll(function(e) {
+            var active_menu = menu_item[0];
+            var min_position = 9999999;
+            var scroll_pos = $(document).scrollTop();
+            for(var i = 0; i < menu_item.length; i++) {
+                pos = $(menu_item[i]).position();
+                dist = scroll_pos - (pos.top - $(menu_item[i]).height() + 350);
+                if(Math.abs(dist) < min_position) {
+                    active_menu = menu_item[i];
+                    min_position = Math.abs(dist);
+                }
             }
-    );
+            console.log(active_menu);
+            $('.menu a').removeClass('active-menu');
+            $(".menu a[href*='"+active_menu+"']").addClass('active-menu');
+        });
+
+        $("html").niceScroll({cursorborder: "0px solid #fff", cursorwidth: "5px", scrollspeed: "70"});
+    });
 </script>
 </body>
 </html>

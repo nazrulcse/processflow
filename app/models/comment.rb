@@ -9,9 +9,9 @@ class Comment < ActiveRecord::Base
   before_destroy :destroy_history
 
   def create_history
-    if (self.parent.present?)
-      @comment = Comment.find_by_parent(self.parent)
-      History.create(:task_id => self.task.id, :user_id => self.user_id, :context => "Added reply: #{self.comment} of Comment #{@comment.comment}")
+    if self.parent.present?
+      comment = Comment.find_by_id(self.parent)
+      History.create(:task_id => self.task.id, :user_id => self.user_id, :context => "Added reply: #{self.comment} of Comment #{comment.comment}")
     else
       History.create(:task_id => self.task.id, :user_id => self.user_id, :context => "Added new comment: #{self.comment}")
     end

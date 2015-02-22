@@ -289,93 +289,94 @@ function initDashboard() {
 
     /* Comments and reply section */
 
-    $(document).off('click', '#btncomment').on('click', '#btncomment', function () {
-        comment = $('textarea').val();
-        task_id = $(this).attr('data-task-id');
-        if (comment != '') {
-            $.ajax({
-                type: 'POST',
-                url: '/tasks/' + task_id + '/comments',
-                dataType: 'script',
-                data: { comment: comment},
-                success: function (res) {
-
-                },
-                error: function (e) {
-
-                }
-            });
-        }
-    });
-
-    $(document).on('click', '.delete', function () {
-        id = $(this).attr('id');
-        task_id = $(this).attr('task_id');
-        $.ajax({
-            type: 'DELETE',
-            url: '/tasks/' + task_id + '/comments/' + id + '',
-            dataType: 'script',
-            success: function (res) {
-
-            },
-            error: function (e) {
-
-            }
-        });
-    });
-
-    $(document).off('click', '#save-reply').on('click', '#save-reply', function () {
-        reply_context = $('.jqte_editor').text();
-        parent_comments = $(this).parents('.comments-item-wrapper').attr('data-comments-id');
-        task_id = $(this).attr('data-task-id');
-        if (reply_context != '' && parent_comments != '' && task_id != '') {
-            $.ajax({
-                type: 'POST',
-                url: '/tasks/' + task_id + '/comments',
-                dataType: 'script',
-                data: { comment: reply_context, parent: parent_comments},
-                success: function (res) {
-
-                },
-                error: function (e) {
-
-                }
-            });
-        }
-        else {
-            popupMessage('Internal Error', 'error');
-        }
-    });
-
-    $(document).off('click', '#editbtn').on('click', '#editbtn', function () {
-        comments_id = $(this).attr('data-comments-id');
-        task_id = $(this).attr('data-task-id');
-        edit_context = $('.jqte_editor').text();
-        if (edit_context != '') {
-            $.ajax({
-                url: '/tasks/' + task_id + '/comments/' + comments_id,
-                type: 'PUT',
-                dataType: 'script',
-                data: {comment: edit_context},
-                success: function (res) {
-
-                },
-                error: function (e) {
-
-                }
-            });
-        }
-    });
-
-    $(document).off('click', '#canceleditbtn').on('click', '#canceleditbtn', function () {
-
-        $('.edit-wrapper').remove();
-    });
-
-    $(document).off('click', '#cancel-reply').on('click', '#cancel-reply', function () {
-
-        $('.reply-wrapper').remove();
-    });
+//    $(document).off('click', '#btncomment').on('click', '#btncomment', function () {
+//        comment = $('textarea').val();
+//        task_id = $(this).attr('data-task-id');
+//        if (comment != '') {
+//            $.ajax({
+//                type: 'POST',
+//                url: '/tasks/' + task_id + '/comments',
+//                dataType: 'script',
+//                data: { comment: comment},
+//                success: function (res) {
+//                    $("#write-comments").addClass('hidden');
+//                    $(".add-cmnt").removeClass('hidden');
+//                },
+//                error: function (e) {
+//
+//                }
+//            });
+//        }
+//    });
+//
+//    $(document).on('click', '.delete', function () {
+//        id = $(this).attr('id');
+//        task_id = $(this).attr('task_id');
+//        $.ajax({
+//            type: 'DELETE',
+//            url: '/tasks/' + task_id + '/comments/' + id + '',
+//            dataType: 'script',
+//            success: function (res) {
+//
+//            },
+//            error: function (e) {
+//
+//            }
+//        });
+//    });
+//
+//    $(document).off('click', '#save-reply').on('click', '#save-reply', function () {
+//        reply_context = $('.jqte_editor').text();
+//        parent_comments = $(this).parents('.comments-item-wrapper').attr('data-comments-id');
+//        task_id = $(this).attr('data-task-id');
+//        if (reply_context != '' && parent_comments != '' && task_id != '') {
+//            $.ajax({
+//                type: 'POST',
+//                url: '/tasks/' + task_id + '/comments',
+//                dataType: 'script',
+//                data: { comment: reply_context, parent: parent_comments},
+//                success: function (res) {
+//
+//                },
+//                error: function (e) {
+//
+//                }
+//            });
+//        }
+//        else {
+//            popupMessage('Internal Error', 'error');
+//        }
+//    });
+//
+//    $(document).off('click', '#editbtn').on('click', '#editbtn', function () {
+//        comments_id = $(this).attr('data-comments-id');
+//        task_id = $(this).attr('data-task-id');
+//        edit_context = $('.jqte_editor').text();
+//        if (edit_context != '') {
+//            $.ajax({
+//                url: '/tasks/' + task_id + '/comments/' + comments_id,
+//                type: 'PUT',
+//                dataType: 'script',
+//                data: {comment: edit_context},
+//                success: function (res) {
+//
+//                },
+//                error: function (e) {
+//
+//                }
+//            });
+//        }
+//    });
+//
+//    $(document).off('click', '#canceleditbtn').on('click', '#canceleditbtn', function () {
+//
+//        $('.edit-wrapper').remove();
+//    });
+//
+//    $(document).off('click', '#cancel-reply').on('click', '#cancel-reply', function () {
+//
+//        $('.reply-wrapper').remove();
+//    });
 
 
     $(document).on('click', '.notification-list ul li a', function (e) {

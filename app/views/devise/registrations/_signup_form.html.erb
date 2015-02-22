@@ -70,9 +70,14 @@
           <input name="checkbox" type="checkbox"><i></i>I want to receive news and special offers
         </label>
       </section>
+      <% unless current_user.present? %>
+          <section>
+            <%= render 'shared/social_signup' %>
+          </section>
+      <% end %>
     </fieldset>
     <footer>
-      <% if (!current_user.present?) %>
+      <% if !current_user.present? %>
           <%= f.submit "Sign up", :id => 'registration', :class => 'button' %>
       <% else %>
           <%= f.submit "Update", :class => 'button' %>

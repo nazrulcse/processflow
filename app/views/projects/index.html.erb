@@ -6,42 +6,46 @@
     <div class="project-status">
       <h2 class='my-project'>
         <i class='fa fa-list-alt'> </i> My Project
-        <a href='javascript:void(0)' id='btn-new-project' class='btn-primary btn-sm pull-right'>
-            New Project
-        </a>
       </h2>
       <ul class='project-list'>
-        <li class='color-label-status'>
-          <div class='color-label-status-item'>
-            <span style='background: #939397;'> </span> <span> Backlog Task </span>
-            <span style='background: #5BC0F8;'> </span> <span> TODO Task </span>
-            <span style='background: #34BFCD;'> </span> <span> Doing Task </span>
-            <span style='background: #1462AA;'> </span> <span> Resolved Task </span>
-            <span style='background: #D54B1D;'> </span> <span> Done Task </span>
-          </div>
-        </li>
+        <!--<li class='color-label-status'>-->
+        <!--<div class='color-label-status-item'>-->
+        <!--<span style='background: #939397;'> </span> <span> Backlog Task </span>-->
+        <!--<span style='background: #5BC0F8;'> </span> <span> TODO Task </span>-->
+        <!--<span style='background: #34BFCD;'> </span> <span> Doing Task </span>-->
+        <!--<span style='background: #1462AA;'> </span> <span> Resolved Task </span>-->
+        <!--<span style='background: #D54B1D;'> </span> <span> Done Task </span>-->
+        <!--</div>-->
+        <!--</li>-->
         <% @projects.each do |project| %>
             <%= render :partial => 'projects/project_list', :locals => {:project => project} %>
         <% end %>
-        <% if @projects.count == 0 %>
-            <li class='no-feed'> Create Your First Project </li>
-        <%end%>
+        <li class='no-feed'>
+          <a href='javascript:void(0)' id='btn-new-project' class='project-item'>
+            <% if @projects.count == 0 %>
+                Create your first project
+            <% else %>
+                New Project
+            <% end %>
+          </a>
+        </li>
       </ul>
     </div>
     <div class="project-feed">
-      <h2 class='activity-feed'> <i class='fa fa-rss'></i> Activity feed </h2>
+      <h2 class='activity-feed'><i class='fa fa-rss'></i> Activity feed </h2>
+
       <div class='feed-list'>
-          <%= render :partial => 'feeds', :locals => {:feeds => @feeds} %>
+        <%= render :partial => 'feeds', :locals => {:feeds => @feeds} %>
       </div>
       <div class='pagination'>
         <% if @feeds.present? && @feeds.count > 10 %>
             <ul class='jpage-pagination'>
-              <li class='previous disable' data-offset= '0'> <i class='fa fa-angle-left'> </i> </li>
-              <li class='next' data-offset= '0'><i class='fa fa-angle-right'> </i></li>
+              <li class='previous disable' data-offset='0'><i class='fa fa-angle-left'> </i></li>
+              <li class='next' data-offset='0'><i class='fa fa-angle-right'> </i></li>
             </ul>
-        <%else%>
-            <li class='no-feed'> No Active Feed Found </li>
-        <%end%>
+        <% else %>
+            <li class='no-feed'> No Active Feed Found</li>
+        <% end %>
       </div>
     </div>
     <div class='clearfix'></div>

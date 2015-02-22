@@ -6,16 +6,32 @@
       </b>
     </div>
     <div class="graph-<%= project.id %>"></div>
+    <canvas id="graph-<%= project.id %>" height='120'></canvas>
   </a>
 </li>
 <script type="text/javascript">
-    $(".graph-<%= project.id %>").sparkline(<%= project_statistic(project) %>, {
-        type: 'bar',
-        color: ['red', 'green', 'blue'],
-        barWidth: '20px',
-        height: '100px',
-        colorMap: ['#939397', '#5BC0F8', '#34BFCD', '#1462AA', '#D54B1D'],
-        tooltipFormat: '{{value}}',
-        zeroAxis: true
-    });
+    $(function () {
+        var BarChartData = {
+            labels: ['Backlog', 'Todo', 'Doing', 'Resolved', 'Done'],
+            datasets: [
+                {
+                    fillColor: "rgba(151,187,205,0.5)",
+                    strokeColor: "rgba(151,187,205,0.8)",
+                    highlightFill: "rgba(151,187,205,0.75)",
+                    highlightStroke: "rgba(151,187,205,1)",
+                    data: <%= project_statistic(project) %>
+                }
+            ]
+        }
+
+        var ctx = document.getElementById("graph-<%= project.id %>").getContext("2d");
+        var project_statistics = new Chart(ctx).Bar(BarChartData, {
+            responsive: true,
+            datasetFill: false,
+            scaleShowGridLines: false,
+            scaleGridLineWidth: 1,
+            maintainAspectRatio: false,
+            tooltipFillColor: "rgba(0,0,0,0.7)"
+        });
+    })
 </script>

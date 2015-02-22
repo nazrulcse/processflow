@@ -1,0 +1,3 @@
+$('.comments-wrapper').remove();
+$("#comments-<%= params[:id] %>").after("<%= escape_javascript(render('form').html_safe) %>");
+$('.task-comments-field').focus();

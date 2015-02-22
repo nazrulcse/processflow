@@ -13,11 +13,12 @@
 }
 
 #project-item-wrapper {
-  box-shadow: 0 0 8px #ccc;
+  box-shadow: 0 0 1px #ccc;
   height: auto;
   margin: auto;
   max-width: 75%;
   min-height: 700px;
+  background: #fdfdfd;
 }
 
 #project-item-wrapper .project-status {
@@ -61,7 +62,8 @@
 }
 
 #btn-new-project {
-  margin-right: 5px;
+  font-size: 18px;
+  font-weight: bold;
   text-decoration: none !important;
 }
 
@@ -135,7 +137,6 @@
 
 .project-item .project-name {
   padding: 4px 0 7px 0;
-  margin-top: 38px;
   font-size: 18px;
 }
 

@@ -67,18 +67,16 @@
       </ul>
     </div>
     <div>
-      <%= link_to 'Add Comments...', 'javascript:void(0);', :class => "add-cmnt btn btn-link" %>
-
+      <%= link_to 'Add Comments...', new_task_comment_path(@task), :remote => true, :class => "add-cmnt btn btn-link" %>
     </div>
-    <div id="write-comments" class="hidden" style="margin-bottom: 10px;">
-      <textarea style="" class="form-control jqte-test"></textarea>
-
-      <div class="btn-group pull-right">
-        <button type="button" id="btncmtcncel" class="btn btn-default"> Cancel</button>
-        <button type="button" id="btncomment" data-task-id="<%= @task.id %>" class="btn btn-default"> Done</button>
-      </div>
-      <div class="clearfix"></div>
-    </div>
+    <!--<div id="write-comments" class="hidden" style="margin-bottom: 10px;">-->
+      <!--<textarea style="" class="form-control jqte-test"></textarea>-->
+      <!--<div class="btn-group pull-right">-->
+        <!--<button type="button" id="btncmtcncel" class="btn btn-default"> Cancel</button>-->
+        <!--<button type="button" id="btncomment" data-task-id="<%#= @task.id %>" class="btn btn-default"> Done</button>-->
+      <!--</div>-->
+      <!--<div class="clearfix"></div>-->
+    <!--</div>-->
   </div>
 
   <!- Relation Tab content ->
@@ -212,8 +210,6 @@
 <script type="text/javascript">
     $('.dropdown-toggle').dropdown();
     $(document).ready(function () {
-        $('.jqte-test').jqte();
-
         $(".progressbar").progressbar({
             value: <%= task_progress(@task) %>
         });
@@ -232,33 +228,48 @@
         $(".comments-reply").addClass('hidden');
     });
 
-    $(document).off("click", ".add-cmnt").on("click", ".add-cmnt", function () {
-        $("#write-comments").removeClass('hidden');
-        $(this).addClass('hidden');
-    });
+//    $(document).off("click", ".add-cmnt").on("click", ".add-cmnt", function () {
+//        $.ajax({
+//            url: "/tasks/<%= @task.id %>/comments",
+//            type: 'get',
+//            success: function(html) {
+//                $(this).addClass('hidden');
+//            }
+//        });
+//    });
 
 
     $(document).off("click", "#btncmtcncel").on("click", "#btncmtcncel", function () {
+        $('.new_comment, .edit_comment').remove();
         $("#write-comments").addClass('hidden');
         $(".add-cmnt").removeClass('hidden');
     });
 
 
     $(document).off("click", ".reply").on("click", ".reply", function () {
-        $(".reply-wrapper, .edit-wrapper").remove();
-        $(this).parent().before("<%= escape_javascript(render :partial => 'comments/reply', :locals => {:task => @task} )%>");
-        $(this).parents('.comments-item-wrapper').find('.jqte_editor').focus();
+        //var element = $(this);
+//        $.ajax({
+//            url: "/tasks/<%#= @task.id %>/comments/:id/edit(.:format)",
+//            type: 'get',
+//            success: function(html) {
+//                element.parent().before(html);
+//                element.parents('.comments-item-wrapper').find('.jqte_editor').focus();
+//            }
+//        });
+       // $(".reply-wrapper, .edit-wrapper").remove();
+       // $(this).parent().before("<%#= escape_javascript(render :partial => 'comments/reply', :locals => {:task => @task} )%>");
+
     });
 
-    $(document).off("click", ".comments-edit").on("click", ".comments-edit", function () {
-        $(".edit-wrapper, .reply-wrapper").remove();
-        edit_comments = $(this);
-        edit_comments.parent().before("<%= escape_javascript(render :partial => 'comments/edit', :locals => {:task => @task})%>");
-        comments_id = edit_comments.attr('id');
-        edit_context = edit_comments.parents('.comments-item-wrapper').find('.content-right').html();
-        edit_comments.parents('.comments-item-wrapper').find('.jqte_editor').html(edit_context).focus();
-        $("#editbtn").attr('data-comments-id', comments_id);
-    });
+//    $(document).off("click", ".comments-edit").on("click", ".comments-edit", function () {
+//        $(".edit-wrapper, .reply-wrapper").remove();
+//        edit_comments = $(this);
+//        edit_comments.parent().before("<%#= escape_javascript(render :partial => 'comments/edit', :locals => {:task => @task})%>");
+//        comments_id = edit_comments.attr('id');
+//        edit_context = edit_comments.parents('.comments-item-wrapper').find('.content-right').html();
+//        edit_comments.parents('.comments-item-wrapper').find('.jqte_editor').html(edit_context).focus();
+//        $("#editbtn").attr('data-comments-id', comments_id);
+//    });
 
     $(document).off("click", ".remove_task").on("click", ".remove_task", function () {
         task_id = $(this).attr('data-task-id');

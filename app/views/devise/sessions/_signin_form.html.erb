@@ -18,13 +18,12 @@
         </label>
       </section>
       <section>
-        <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-        <%= link_to "Sign in with Google",   user_omniauth_authorize_path(:google_oauth2) %>
-        </section>
-      <section>
         <label class="checkbox">
           <input name="checkbox" type="checkbox"> Remember me
         </label>
+      </section>
+      <section>
+        <%= render 'shared/social_signup' %>
       </section>
     </fieldset>
     <footer>
