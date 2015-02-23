@@ -18,6 +18,11 @@
     float: right !important;
 }
 
+.highlight-username {
+    font-size: 13px;
+    color: #333;
+}
+
 .clear-fix {
     float: none;
     clear: both;

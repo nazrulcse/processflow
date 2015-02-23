@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :tasks
   has_many :histories
+  has_many :comments
 
   mount_uploader :image, ImageUploader
   validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
