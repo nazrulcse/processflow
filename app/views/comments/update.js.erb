@@ -1,2 +1,2 @@
-$("#comments-<%= @comments.id %>").find('.content-right').html("<%= (@comments.comment).strip %>");
+$("#comments-<%= @comments.id %>").find('.comment-body').html("<%= (@comments.comment).strip %>");
 $('.comments-wrapper').remove();

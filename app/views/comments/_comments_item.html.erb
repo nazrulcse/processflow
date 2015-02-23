@@ -1,15 +1,16 @@
 <div class='comments-item-wrapper' id='comments-<%= comment.id %>' data-comments-id='<%= comment.id %>'>
-  <div class='content-left pull-left'>
-    <%= image_tag(get_image(comment.user_id)) %>
+  <div class='comments-user'>
+    <%= image_tag(get_image(comment.user_id), :width => '35', :class => 'img-circle') %>
+    <span class='highlight-username'> <%= comment.user.name %> </span>
   </div>
-  <div class='content-right pull-left'>
+  <div class='comment-body'>
     <%= raw(comment.comment.to_s.html_safe) %>
   </div>
   <div class='clearfix'></div>
-  <div class='comments-reply btn-group hidden'>
-     <%= link_to raw("<i class='fa fa-reply'> </i>"), reply_task_comment_path(comment.task, comment), :class => 'reply btn btn-primary', :remote => true %>
-     <%= link_to raw("<i class='fa fa-trash-o'> </i>"), 'javascript:void(0);',
-                method: :delete, data: {confirm: 'Are you sure?'}, :class => 'delete btn btn-danger', task_id: comment.task_id, id: comment.id %>
-     <%= link_to raw("<i class='fa fa-pencil'> </i>"), edit_task_comment_path(comment.task, comment), :class => 'comments-edit btn btn-default', :remote => true %>
+  <div class='comments-reply btn-group'>
+    <%= link_to raw("<i class='fa fa-reply'> Reply </i>"), reply_task_comment_path(comment.task, comment), :class => 'reply btn', :remote => true %>
+    <%= link_to raw("<i class='fa fa-pencil'> Edit </i>"), edit_task_comment_path(comment.task, comment), :class => 'comments-edit btn', :remote => true %>
+    <%= link_to raw("<i class='fa fa-trash-o'> Delete </i>"), task_comment_path(comment.task, comment), :remote => true,
+                method: :delete, data: {confirm: 'Are you sure?'}, :class => 'delete btn', task_id: comment.task_id, id: comment.id %>
   </div>
 </div>

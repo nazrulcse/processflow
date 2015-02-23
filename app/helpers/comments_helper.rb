@@ -6,7 +6,7 @@ module CommentsHelper
       html = "<li>#{render :partial => 'comments/comments_item', :locals => {:comment => comment}} </li>"
       if comment.replies
         for reply in comment.replies
-          html << "<ul style='padding-left: 10px; margin: 0px;'>"
+          html << "<ul class='child-#{reply.id}' style='padding-left: 10px; margin: 0px;'>"
           html << comments_replies(reply)
           html << "</ul>"
         end

@@ -1,3 +1,15 @@
+if (<%= @comment.parent.present? %>) {
+    next_element = $(".task-comments-field").parents('li').next('ul');
+    if (jQuery.isEmptyObject(next_element)) {
+        next_element.append("<li> <%= escape_javascript(render :partial => 'comments/comments_item', :locals => {:comment => @comment}).html_safe %> </li>");
+    }
+    else {
+        $('.task-comments-field').parents('li').after("<ul class='comment-parent'> <li> <%= escape_javascript(render :partial => 'comments/comments_item', :locals => {:comment => @comment}).html_safe %> </li></ul>");
+    }
+}
+else {
+    $(".comments-list").append("<li> <%= escape_javascript(render :partial => 'comments/comments_item', :locals => {:comment => @comment}).html_safe %> </li>");
+}
 $('.new_comment').remove();
-$(".comments-list").append("<li> <%= escape_javascript(render :partial => 'comments/comments_item', :locals => {:comment => @comment}).html_safe %> </li>");
 $(".add-cmnt").removeClass('hidden');
+
