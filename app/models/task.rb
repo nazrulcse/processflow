@@ -103,8 +103,4 @@ class Task < ActiveRecord::Base
         return 0
     end
   end
-
-
-
-
 end
