@@ -3,4 +3,19 @@ popupMessage('Error occur please try again');
 <%else%>
 $('.checklist-<%= params[:checklist_id] %> li:last-child').before("<%= escape_javascript(render('checklists/checklist_item', :item => @checklist_item).html_safe) %>")
 $('.add-checklist-item').show();
+$.ajax({
+    url: '/count_item',
+    type: 'GET',
+    data: {id: <%= params[:checklist_id] %>},
+    dataType: 'script',
+    success: function () {
+    },
+    error: function () {
+    }
+});
+
+//value1 = parseInt(($('#item_complete').text()));
+//progress = (value1 / value) * 100;
+//alert(progress)
+//$('#checklist-progress_bar').css('width', progress + '%');
 <%end%>

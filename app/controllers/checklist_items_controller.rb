@@ -9,8 +9,8 @@ class ChecklistItemsController < ApplicationController
   end
 
   def complete
-    checklist = Checklist.find_by_id(params[:checklist_id])
-    @check_list_item = checklist.checklist_items.find_by_id(params[:id])
+    @checklist = Checklist.find_by_id(params[:checklist_id])
+    @check_list_item = @checklist.checklist_items.find_by_id(params[:id])
     respond_to do |format|
       if @check_list_item.is_complete
         @check_list_item.is_complete = false
@@ -22,13 +22,20 @@ class ChecklistItemsController < ApplicationController
     end
   end
 
+  def count_item
+       @checklist = Checklist.find_by_id(params[:id])
+       @complete_item = @checklist.checklist_items.where(:is_complete => 1).count()
+       @total_item = @checklist.checklist_items.count()
+       @percent =  ( @complete_item.to_f  / @total_item) * 100
+  end
+
   def update
 
   end
 
   def destroy
-    checklist = Checklist.find_by_id(params[:checklist_id])
-    check_list_item = checklist.checklist_items.find_by_id(params[:id])
+    @checklist = Checklist.find_by_id(params[:checklist_id])
+    check_list_item = @checklist.checklist_items.find_by_id(params[:id])
     respond_to do |format|
       check_list_item.destroy
       format.js{}

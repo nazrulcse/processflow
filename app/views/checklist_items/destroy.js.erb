@@ -1,1 +1,11 @@
 $('.checklist-item-<%= params[:id] %>').remove();
+$.ajax({
+    url: '/count_item',
+    type: 'GET',
+    data: {id: <%= @checklist.id %>},
+    dataType: 'script',
+    success: function () {
+    },
+    error: function () {
+    }
+});

@@ -3,13 +3,17 @@
     <%= form_for(checklist, :remote => true) do |cf| %>
         <%= cf.text_field :title, :class => 'hidden edit-check-item' %>
         <span class='editable'>
-              <i class='fa fa-tasks fa-task-item'> </i> <%= checklist.title %>
+              <i class='fa fa-tasks fa-task-item'> </i> <%= checklist.title %> <i class="item_complete-<%= checklist.id %>"><%= complete_checklist_items(checklist.id)%></i>/<i class="item_total-<%= checklist.id %>"><%= total_checklist_items(checklist.id) %></i>
+
         </span>
         <span class='checklist-action windows-action'>
           <%= link_to(raw("<span class='fa fa-sort-asc'></span>"), 'javascript:void(0);', :class => 'minimize-checklist reset-padding', :method => :delete, :remote => true) %>
           <%= link_to(raw("<span class='glyphicon glyphicon-remove'></span>"), checklist_path(checklist.id, :task_id => checklist.task.id), :class => 'remove-checklist reset-padding', :method => :delete, :remote => true) %>
         </span>
     <% end %>
+  </div>
+  <div class="checklist-progress">
+    <div class="checklist-progress-bar-<%= checklist.id %> progress-bar-color" style="width: <%= (complete_checklist_items(checklist.id).to_f / total_checklist_items(checklist.id) ) * 100 %>%"></div>
   </div>
   <ul class='checklist-<%= checklist.id %> reset-margin'>
     <% checklist.checklist_items.each do |item| %>

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       end
     end
   end
-
+  get  "/count_item", :to => "checklist_items#count_item"
   post "/import", :to => "tasks#import"
   post "/search", :to => "tasks#search_task"
   post "/update_position", :to => "tasks#update_position"

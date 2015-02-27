@@ -1,0 +1,5 @@
+$('.item_total-<%= @checklist.id %>').text('');
+$('.item_total-<%= @checklist.id %>').text(<%= @total_item %>) ;
+$('.item_complete-<%= @checklist.id %>').text('') ;
+$('.item_complete-<%= @checklist.id %>').text(<%= @complete_item %>) ;
+$('.checklist-progress-bar-<%= @checklist.id %>').css('width', <%= @percent %> + '%') ;

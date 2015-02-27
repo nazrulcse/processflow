@@ -99,3 +99,7 @@ body.modal-open {
 .btn-group > a.task-type.active {
     background: #555 !important;
 }
+
+input[type="radio"], input[type="checkbox"] {
+    vertical-align: top;
+}

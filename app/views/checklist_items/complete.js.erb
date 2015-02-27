@@ -3,3 +3,13 @@ $(".checklist-item-<%= params[:id] %>").find('.editable').addClass('checklist-it
 <%else%>
 $(".checklist-item-<%= params[:id] %>").find('.editable').removeClass('checklist-item-completed');
 <%end%>
+$.ajax({
+    url: '/count_item',
+    type: 'GET',
+    data: {id: <%= @checklist.id %>},
+    dataType: 'script',
+    success: function () {
+    },
+    error: function () {
+    }
+});
