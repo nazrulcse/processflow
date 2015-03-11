@@ -453,6 +453,9 @@ $(document).ready(function () {
             else if($response.action == 'remove') {
                 remove_task($response);
             }
+            else if ($response.action == 'chk_create')   {
+                  chk_create($response)
+            }
         }
     });
 });

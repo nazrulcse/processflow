@@ -131,6 +131,13 @@ function new_task(response) {
     $('.task-category.backlog .task-content').append(rendered);
 }
 
+function chk_create(response)  {
+    template = $('#tmp_new_checklist_item').html();
+    var rendered = Mustache.render(template, response);
+    console.log(rendered);
+    $('.checklist-' + response.checklist_id).find('li').last().before(rendered);
+}
+
 function popupMessage(message, klass) {
     $('#message-modal .modal-body').html(message).addClass(klass);
     $('#message-modal').modal('show');
