@@ -379,6 +379,16 @@ function initDashboard() {
 //    });
 
 
+    $(document).off('mouseenter, mouseleave', '.attachment-item').on({
+        mouseenter: function(){
+            $(this).find('.attachment-hover-details').stop().slideDown('fast');
+        },
+        mouseleave: function(){
+            $(this).find('.attachment-hover-details').stop().slideUp('fast');
+        }
+    }, '.attachment-item');
+
+
     $(document).on('click', '.notification-list ul li a', function (e) {
         e.preventDefault();
         url = $(this).attr('href');

@@ -280,7 +280,8 @@ p.box-desc {
     margin: 40px 1.5% 0px;
     border-radius: 5px;
     background-color: #fff;
-    float: left;
+    display: inline-block;
+    vertical-align: top;
     transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
     -o-transition: all 0.3s ease-in;
@@ -435,7 +436,7 @@ form textarea:focus {
     width: 100%;
     background-color: #373A42;
     float: left;
-    padding: 50px 0px;
+    padding: 45px 0px;
     text-align: center;
 }
 
@@ -451,10 +452,19 @@ form textarea:focus {
     border-bottom: 1px dotted #585c65;
 }
 
+.footer .sitemap {
+    margin-top: 10px;
+    color: #585c65;
+}
+
+.footer .sitemap a {
+    color: #585c65;
+}
+
 ul.socialmedia {
     margin: 0;
     list-style: none;
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 ul.socialmedia li {

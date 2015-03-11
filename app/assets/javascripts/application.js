@@ -11,9 +11,11 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require_tree .
 //= require turbolinks
+//Turbolinks.enableProgressBar();
 $(function () {
     initPage();
     return false;
@@ -132,10 +134,13 @@ function new_task(response) {
 }
 
 function popupMessage(message, klass) {
-    $('#message-modal .modal-body').html(message).addClass(klass);
-    $('#message-modal').modal('show');
+    $('#notification').html(message).addClass(klass).show().animate({
+        top: "+60"
+    }, 200);
     setTimeout(function () {
-        $('#message-modal').modal('hide');
+        $('#notification').hide().animate({
+            top: "-60"
+        }, 500);
     }, 4000);
 }
 
@@ -178,3 +183,6 @@ function initProjectList() {
 //        $('#project-item-wrapper').css('margin-top', offset / 2);
 //    }
 }
+
+//$(document).on("page:fetch", startSpinner);
+//$(document).on("page:receive", stopSpinner);

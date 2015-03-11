@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140708141925) do
+ActiveRecord::Schema.define(version: 20150215144540) do
 
   create_table "attachments", force: true do |t|
     t.string   "file"
+    t.integer  "task_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "checklist_items", force: true do |t|
+    t.string   "title"
+    t.integer  "checklist_id"
+    t.boolean  "is_complete"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "checklists", force: true do |t|
+    t.string   "title"
     t.integer  "task_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -60,8 +75,8 @@ ActiveRecord::Schema.define(version: 20140708141925) do
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
     t.integer  "owner_id"
+    t.integer  "user_id"
   end
 
   create_table "projects_users", force: true do |t|
@@ -73,6 +88,15 @@ ActiveRecord::Schema.define(version: 20140708141925) do
     t.integer  "user_id"
     t.string   "key"
     t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statistics", force: true do |t|
+    t.date     "date"
+    t.text     "statistics"
+    t.string   "statistics_type"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -97,6 +121,7 @@ ActiveRecord::Schema.define(version: 20140708141925) do
     t.datetime "updated_at"
     t.float    "spend"
     t.string   "task_type"
+    t.string   "last_updated_by"
   end
 
   create_table "tasks_users", force: true do |t|
@@ -140,6 +165,8 @@ ActiveRecord::Schema.define(version: 20140708141925) do
     t.integer  "zip"
     t.string   "country"
     t.string   "image"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
