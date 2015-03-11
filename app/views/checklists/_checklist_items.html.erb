@@ -3,8 +3,11 @@
     <%= form_for(checklist, :remote => true) do |cf| %>
         <%= cf.text_field :title, :class => 'hidden edit-check-item' %>
         <span class='editable'>
-              <i class='fa fa-tasks fa-task-item'> </i> <span class="checklist_title"><%= checklist.title %> </span> <i class="item_complete-<%= checklist.id %>"><sup><%= complete_checklist_items(checklist.id)%></sup></i>/<i class="item_total-<%= checklist.id %>"><sub><%= total_checklist_items(checklist.id) %></sub></i>
-
+          <i class='fa fa-tasks fa-task-item'> </i>
+          <span class="checklist_title"><%= checklist.title %> </span>
+          <span class='checklist-counter'>
+             <i class="item_complete-<%= checklist.id %>"><sup><%= complete_checklist_items(checklist.id) %></sup></i>/<i class="item_total-<%= checklist.id %>"><sub><%= total_checklist_items(checklist.id) %></sub></i>
+          </span>
         </span>
         <span class='checklist-action windows-action'>
           <%= link_to(raw("<span class='fa fa-sort-asc'></span>"), 'javascript:void(0);', :class => 'minimize-checklist reset-padding', :method => :delete, :remote => true) %>
@@ -22,7 +25,7 @@
     <li>
       <%= form_for([checklist, ChecklistItem.new()], :remote => true) do |f| %>
           <%= f.text_field :title, :class => 'hidden add-check-item', :placeholder => 'add new checklist item...' %>
-          <a href="javascript:void(0);" class="add-checklist-item"> new item.... </a>
+          <a href="javascript:void(0);" class="add-checklist-item"> <i class='fa fa-times-circle'> </i> add checklist item.... </a>
       <% end %>
     </li>
   </ul>

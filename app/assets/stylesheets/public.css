@@ -99,3 +99,17 @@ form {
 .logo-link:hover {
    background: none !important;
 }
+
+
+#notification {
+    position: absolute;
+    width: 450px;
+    left: 35%;
+    top: -60px;
+    border-radius: 5px;
+    display: none;
+    text-align: center;
+    padding: 7px;
+    color: #0E74AF;
+    z-index: 99999;
+}

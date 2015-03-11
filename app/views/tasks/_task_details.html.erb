@@ -8,8 +8,9 @@
       Action <span class="caret"></span>
     </a>
     <ul class="dropdown-menu btn-danger" role="menu">
-      <li><a href="#" class="remove_task" data-task-id="<%= @task.id %>" data-project-id="<%= @task.project_id %>">Remove
-        task</a></li>
+      <li>
+        <a href="#" class="remove_task" data-task-id="<%= @task.id %>" data-project-id="<%= @task.project_id %>"> Remove task </a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -48,6 +49,9 @@
       <%= form_for(@attachment, :hrml => {:multipart => true}, :id => "myForm") do |f| %>
           <%= f.file_field(:file, :class => 'file_upload', :data_task_id => @task.id) %>
       <% end %>
+      <div class='hints-upload'>
+        Drag and drop upload attachment, any type of file and image are accepted.
+      </div>
     </div>
 
     <div id="checklist">
@@ -69,14 +73,6 @@
     <div>
       <%= link_to 'Add Comments...', new_task_comment_path(@task), :remote => true, :class => "add-cmnt btn btn-link" %>
     </div>
-    <!--<div id="write-comments" class="hidden" style="margin-bottom: 10px;">-->
-      <!--<textarea style="" class="form-control jqte-test"></textarea>-->
-      <!--<div class="btn-group pull-right">-->
-        <!--<button type="button" id="btncmtcncel" class="btn btn-default"> Cancel</button>-->
-        <!--<button type="button" id="btncomment" data-task-id="<%#= @task.id %>" class="btn btn-default"> Done</button>-->
-      <!--</div>-->
-      <!--<div class="clearfix"></div>-->
-    <!--</div>-->
   </div>
 
   <!- Relation Tab content ->
@@ -287,15 +283,6 @@
             }
         });
     });
-
-    $(document).on({
-        mouseenter: function(){
-            $(this).find('.attachment-hover-details').stop().slideDown('fast');
-        },
-        mouseleave: function(){
-            $(this).find('.attachment-hover-details').stop().slideUp('fast');
-        }
-    }, '.attachment-item');
 
     $('#add-checklist').click(function () {
         $(this).next().removeClass('hidden');

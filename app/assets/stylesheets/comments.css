@@ -11,9 +11,10 @@
     border-radius: 5px;
     box-shadow: 0 0 7px #eee;
     margin-left: 5px;
-    min-height: 60px;
-    padding: 4px 0 3px 10px;
+    min-height: 35px;
+    padding: 10px;
     width: 100%;
+    word-wrap: break-word;
 }
 
 .comments-user {
@@ -22,9 +23,13 @@
 }
 
 .comments-reply {
-    top: 0;
-    right: 0;
     position: absolute;
+    right: 0;
+    top: 15px;
+}
+
+.comments-reply a {
+    padding: 2px;
 }
 
 #btncmtcncel, #cancel-reply, #canceleditbtn {

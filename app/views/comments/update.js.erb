@@ -1,2 +1,2 @@
-$("#comments-<%= @comments.id %>").find('.comment-body').html("<%= (@comments.comment).strip %>");
-$('.comments-wrapper').remove();
+$("#comments-<%= @comments.id %>").find('.comment-body').html("<%= escape_javascript(@comments.comment).html_safe %>");
+$('.edit_comment').remove();

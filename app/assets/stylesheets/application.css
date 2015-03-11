@@ -25,6 +25,11 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     overflow: hidden;
 }
 
+html.turbolinks-progress-bar::before {
+    background-color: red !important;
+    height: 5px !important;
+}
+
 a:hover, a:focus {
     color: #2a6496;
     text-decoration: none !important;

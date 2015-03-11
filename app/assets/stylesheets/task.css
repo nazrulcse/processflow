@@ -199,6 +199,16 @@ div.task-priority-low {
     margin: 10px 0;
     width: 100%;
     cursor: pointer;
+    position: relative;
+}
+
+.hints-upload {
+    color: rgba(23, 23, 3, 0.3);
+    left: 12%;
+    position: absolute;
+    text-align: center;
+    top: 33%;
+    width: 75%;
 }
 
 .add-attachment #attachment_file {
@@ -218,11 +228,12 @@ div.task-priority-low {
 .attachment-list .attachment-item {
     border: 1px solid #a9a9a9;
     display: inline-block;
-    /*height: 93px;*/
+    min-height: 150px;
     margin-right: 10px;
     padding: 5px;
     vertical-align: top;
     width: 148px;
+    margin-bottom: 10px;
 }
 
 .has-attachment {
@@ -233,7 +244,7 @@ div.task-priority-low {
 }
 
 .attachment-list .attachment-item img {
-    /*height: 100%;*/
+    height: 85px;
     width: 100%;
 }
 
@@ -259,6 +270,7 @@ div.task-priority-low {
 .attachment-date{
     font-size: 13px;
     padding-top: 5px;
+    word-wrap: break-word;
 }
 
 .attachment-action-wrapper {
