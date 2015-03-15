@@ -28,8 +28,7 @@
       <li>
         <span class='total-effort'> <%= task.effort.present? ? task.effort : 0.0 %> </span> <i class='fa fa-clock-o fa-task-item'></i>
       </li>
-      <li>
-        <span class='glyphicon-class'></span>
+      <li class='assigned-member'>
         <% if task.users.count > 1 %>
            <%= image_tag(task.users.first().image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{task.users.first().name}") if task.users.first().image? %>
            <a href='javascript:void(0);' class='btn-link' title='More'> ... </a>

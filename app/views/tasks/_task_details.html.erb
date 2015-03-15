@@ -9,7 +9,7 @@
     </a>
     <ul class="dropdown-menu btn-danger" role="menu">
       <li>
-        <a href="#" class="remove_task" data-task-id="<%= @task.id %>" data-project-id="<%= @task.project_id %>"> Remove task </a>
+        <%= link_to 'Remove task', project_task_path(@task.project_id, @task), :class => 'remove_task', :confirm => 'Are you sure?', :method => :delete, :remote => true %>
       </li>
     </ul>
   </li>
@@ -267,22 +267,22 @@
 //        $("#editbtn").attr('data-comments-id', comments_id);
 //    });
 
-    $(document).off("click", ".remove_task").on("click", ".remove_task", function () {
-        task_id = $(this).attr('data-task-id');
-        project_id = $(this).attr('data-project-id');
-        $.ajax({
-            type: 'DELETE',
-            url: '/tasks/' + task_id,
-            dataType: 'script',
-            data: {project_id: project_id},
-            success: function (res) {
-
-            },
-            error: function (e) {
-
-            }
-        });
-    });
+//    $(document).off("click", ".remove_task").on("click", ".remove_task", function () {
+//        task_id = $(this).attr('data-task-id');
+//        project_id = $(this).attr('data-project-id');
+//        $.ajax({
+//            type: 'DELETE',
+//            url: '/tasks/' + task_id,
+//            dataType: 'script',
+//            data: {project_id: project_id},
+//            success: function (res) {
+//
+//            },
+//            error: function (e) {
+//
+//            }
+//        });
+//    });
 
     $('#add-checklist').click(function () {
         $(this).next().removeClass('hidden');

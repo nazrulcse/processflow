@@ -259,7 +259,7 @@ function initDashboard() {
             dataType: 'html',
             async: false,
             success: function (data) {
-                $('.assign-people').prepend(data);
+//              $('.assign-people').prepend(data);
                 popupMessage('Assigned new people in this task.', 'info');
             },
             error: function () {
@@ -459,6 +459,9 @@ $(document).ready(function () {
             }
             else if ($response.action == 'create') {
                 new_task($response);
+            }
+            else if ($response.action == 'assign_member') {
+                assign_task_member($response);
             }
             else if($response.action == 'remove') {
                 remove_task($response);

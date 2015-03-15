@@ -546,18 +546,19 @@ img.attachment-details {
     border-radius: 7px;
     box-shadow: 0 0 5px #555;
     display: none;
-    margin-top: 7px;
+    margin-top: 4px;
     padding: 6px 5px 10px 10px;
     position: absolute;
+    z-index: 99;
 }
 
 .project-nav .filter-popup:before {
-    border-bottom: 8px solid #fdfdfd;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
+    border-bottom: 11px solid #fdfdfd;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
     content: "";
     height: 10px;
-    left: 225px;
+    left: 231px;
     position: fixed;
     top: 66px;
 }
