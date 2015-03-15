@@ -4,24 +4,25 @@
       <ul>
         <li class="task-name"> {{title}} </li>
         <li>
-          <img title="End Date" src="/assets/date.png" alt="Date">
-          <span class="task-end-date"> {{end_date}} </span>
+          <span class="task-end-date">
+            <i class="fa fa-calendar reset-margin fa-task-item task-element"></i> {{end_date}}
+          </span>
         </li>
       </ul>
     </div>
     <div class="pull-right content-right">
       <ul>
-        <li>
-          <img title="Priority" src="/assets/task_{{priority}}.png" class="pull-right task-priority-icon" alt="Task high">
-
-          <div class="clear-fix"></div>
+        <li class='clearfix'>
+          <div title="Priority {{priority}}" class="task-priority-{{priority}} pull-right">
+            <i class="fa fa-signal fa-task-item">  </i>
+          </div>
         </li>
-        <li style="vertical-align: middle;">
-          <span class="total-effort"> {{effort}} </span>h <img title="Effort" src="/assets/effort.png" alt="Effort">
+        <li>
+          <span class="total-effort"> {{effort}} </span> <i class="fa fa-clock-o fa-task-item"></i>
         </li>
         <li>
           <span class="glyphicon-class"></span>
-          <img src='{{assign_member}}' class='nav-avatar img-circle' alt="Unassigned"/>
+          <img src='{{assign_member}}' class='nav-avatar img-circle' alt="Unassign"/>
         </li>
       </ul>
     </div>

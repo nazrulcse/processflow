@@ -5,7 +5,7 @@
 
   </div>
   <div class='comment-body'>
-    <%= raw(comment.comment.to_s.html_safe) %>
+    <%= simple_format(comment.comment) %>
   </div>
   <div class='clearfix'></div>
   <div class='comments-reply hidden btn-group'>

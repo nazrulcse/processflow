@@ -109,7 +109,7 @@
             });
         });
 
-        $('#btn-task').click(function () {
+        $(document).off('click', '.add-card').on('click', '.add-card', function () {
             $.ajax({
                 url: "<%= new_project_task_path(project) %>",
                 type: 'get',

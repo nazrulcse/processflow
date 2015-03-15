@@ -50,3 +50,14 @@
 
 <%= render 'shared/template/new_task' %>
 <%= render 'shared/template/new_notification' %>
+
+<script type="text/javascript">
+    $(function () {
+        $(document).mouseup(function (e) {
+            var container = $(".filter-popup");
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                container.hide();
+            }
+        });
+    })
+</script>

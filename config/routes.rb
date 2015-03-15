@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   post "/import", :to => "tasks#import"
   post "/search", :to => "tasks#search_task"
   post "/update_position", :to => "tasks#update_position"
-  post "/remove_task", :to => "tasks#remove_task"
+  #post "/remove_task", :to => "tasks#remove_task"
   post "/destroy_notification_subcription", :to => "tasks#destroy_notification_subcription"
   post "/feeds", :to => "projects#get_feeds"
 

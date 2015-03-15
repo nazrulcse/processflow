@@ -17,7 +17,7 @@ class TasksController < ApplicationController
     @task.last_updated_by = current_user.id
     cb = lambda { |envelope| puts envelope.message }
     @task.save
-    if(params[:assigned].present?)
+    if (params[:assigned].present?)
       user = User.find_by_id(params[:assigned])
       user.tasks << @task
       user_image = user.image_url.present? ? user.image_url : '/assets/default_user_icon.png'
@@ -35,10 +35,10 @@ class TasksController < ApplicationController
       message['day_remaining_status'] = day_remaining_status(@task)
       message['assign_member'] = user_image
       pb = process_flow.publish({
-          :channel => "channel_#{@task.project_id}",
-          :message => message.to_json,
-          :callback => cb
-      })
+                                    :channel => "channel_#{@task.project_id}",
+                                    :message => message.to_json,
+                                    :callback => cb
+                                })
     rescue
       puts "Error Exception"
     end
@@ -64,7 +64,7 @@ class TasksController < ApplicationController
     @task = @project.tasks.find_by_id(params[:id])
     cb = lambda { |envelope| puts envelope.message }
     respond_to do |format|
-      if (@task.update_attributes(params[:field] => params[:value], :last_updated_by => current_user.id))
+      if @task.update_attributes(params[:field] => params[:value], :last_updated_by => current_user.id)
         message['message'] = @task.histories.last().context if @task.histories.present?
         message['field'] = params[:field]
         message['value'] = params[:value]
@@ -74,10 +74,10 @@ class TasksController < ApplicationController
         message['project_id'] = @task.project_id
         message['time_ago'] = 'less then few seconds '
         pb = process_flow.publish({
-            :channel => "channel_#{@project.id}",
-            :message => message.to_json,
-            :callback => cb
-        })
+                                      :channel => "channel_#{@project.id}",
+                                      :message => message.to_json,
+                                      :callback => cb
+                                  })
         format.js { render :layout => false }
       end
     end
@@ -103,12 +103,26 @@ class TasksController < ApplicationController
   end
 
   def assign
+    message = {}
     @user = User.find_by_id(params[:user_id])
     @task = Task.find_by_id(params[:id])
     @user.tasks << @task
     @user.save
+    cb = lambda { |envelope| puts envelope.message }
     respond_to do |format|
-      format.js { render :layout => false }
+        message['message'] = 'Assign new member'
+        message['value'] = @user.image_url(:small_thumb).present? ? @user.image_url(:small_thumb) : '/assets/default_user_icon.png'
+        message['action'] = 'assign_member'
+        message['user_id'] = @user.id
+        message['user_name'] = @user.name
+        message['task_id'] = @task.id
+        message['project_id'] = @task.project_id
+        pb = process_flow.publish({
+                                      :channel => "channel_#{@task.project_id}",
+                                      :message => message.to_json,
+                                      :callback => cb
+                                  })
+        format.js { render :layout => false }
     end
   end
 
@@ -126,7 +140,7 @@ class TasksController < ApplicationController
   def get_notification
     @count = params[:count]
     @project_id = params[:project_id]
-    @notifications = History.notification(@project_id,current_user.id).limit(15).offset(@count)
+    @notifications = History.notification(@project_id, current_user.id).limit(15).offset(@count)
     respond_to do |format|
       format.js { render :layout => false }
     end
@@ -138,19 +152,19 @@ class TasksController < ApplicationController
     @task_id = params[:id]
     project_id = params[:project_id]
     project = current_user.projects.find_by_id(project_id)
-    if (project.present?)
+    if project.present?
       task = Task.find_by_id(@task_id)
       message['message'] = "<b> #{task.title} </b> has been removed"
       message['action'] = 'remove'
       message['task_id'] = task.id
       message['project_id'] = task.project_id
       message['time_ago'] = 'less then few seconds '
-      if (task.destroy)
+      if task.destroy
         pb = process_flow.publish({
-            :channel => "channel_#{project_id}",
-            :message => message.to_json,
-            :callback => cb
-        })
+                                      :channel => "channel_#{project_id}",
+                                      :message => message.to_json,
+                                      :callback => cb
+                                  })
       end
     else
       flash[:error] = 'Internal error'
@@ -179,12 +193,12 @@ class TasksController < ApplicationController
 
   def import
     porject_id = params[:project_id]
-    task = Task.import(params[:file], porject_id )
-     if task != 0
-       redirect_to dashboard_url(porject_id), notice: "Tasks are imported."
-     else
-       redirect_to dashboard_url(porject_id), notice: "Tasks are not imported. Unknown file type"
-     end
+    task = Task.import(params[:file], porject_id)
+    if task != 0
+      redirect_to dashboard_url(porject_id), notice: "Tasks are imported."
+    else
+      redirect_to dashboard_url(porject_id), notice: "Tasks are not imported. Unknown file type"
+    end
 
   end
 

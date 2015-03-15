@@ -103,6 +103,18 @@ function remove_task(response) {
     add_notification(response);
 }
 
+function assign_task_member(response) {
+    element = $('.task-details-'+response.task_id);
+    task = $('#task-'+response.task_id);
+    if (task.find('.assigned-member img').length <= 0) {
+        task.find('.assigned-member').html("<img src='" + response.value + "' class='nav-avatar img-circle' alt='user'/>");
+    }
+    user_image = "<span data-assigned-name='"+response.user_name+"' data-assigned-user-id='"+response.user_id+"' class='assigned-people'>" +
+        "<img src='"+response.value+"' id='assign-user-"+response.user_id+"-"+response.task_id+"' class='nav-avatar' alt='Default user icon'>" +
+        "</span>";
+    element.find('.assigned-new-people').before(user_image);
+}
+
 function formatted_date(date) {
     d = new Date(date);
     var dd = d.getDate() + 1;
