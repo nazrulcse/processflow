@@ -1,0 +1,29 @@
+<script id="tmp_new_checklist" type="text/template">
+<div id="checklist-{{id}}" class="show-checklist">
+  <div class="checklist-title">
+    <form method="post" id="edit_checklist_{{id}}" data-remote="true" class="edit_checklist" action="/checklists/{{id}}" accept-charset="UTF-8"><div style="display:none"><input type="hidden" value="✓" name="utf8"><input type="hidden" value="patch" name="_method"></div>
+      <input type="text" value="test" name="checklist[title]" id="checklist_title" class="hidden edit-check-item">
+        <span class="editable">
+          <i class="fa fa-tasks fa-task-item"> </i>
+          <span class="checklist_title">{{title}}</span>
+          <span class="checklist-counter">
+             <i class="item_complete-{{id}}"><sup>0</sup></i>/<i class="item_total-{{id}}"><sub>0</sub></i>
+          </span>
+        </span>
+        <span class="checklist-action windows-action">
+          <a rel="nofollow" href="javascript:void(0);" data-remote="true" data-method="delete" class="minimize-checklist reset-padding"><span class="fa fa-sort-asc"></span></a>
+          <a rel="nofollow" href="/checklists/{{id}}?task_id={{task_id}}" data-remote="true" data-method="delete" class="remove-checklist reset-padding"><span class="glyphicon glyphicon-remove"></span></a>
+        </span>
+    </form>  </div>
+  <div class="checklist-progress">
+    <div style="width: 0%" class="checklist-progress-bar-{{id}} progress-bar-color"></div>
+  </div>
+  <ul class="checklist-{{id}} reset-margin">
+    <li>
+      <form method="post" id="new_checklist_item" data-remote="true" class="new_checklist_item" action="/checklists/{{id}}/checklist_items" accept-charset="UTF-8"><div style="display:none"><input type="hidden" value="✓" name="utf8"></div>
+        <input type="text" placeholder="add new checklist item..." name="checklist_item[title]" id="checklist_item_title" class="hidden add-check-item">
+        <a class="add-checklist-item" href="javascript:void(0);"> <i class="fa fa-times-circle"> </i> add checklist item.... </a>
+      </form>    </li>
+  </ul>
+</div>
+</script>
