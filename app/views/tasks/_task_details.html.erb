@@ -226,7 +226,7 @@
 
 //    $(document).off("click", ".add-cmnt").on("click", ".add-cmnt", function () {
 //        $.ajax({
-//            url: "/tasks/<%= @task.id %>/comments",
+//            url: "/tasks/<%#= @task.id %>/comments",
 //            type: 'get',
 //            success: function(html) {
 //                $(this).addClass('hidden');
@@ -343,7 +343,9 @@
     });
 
     $(document).off('click', '.show-checklist input[type="checkbox"]').on('click', '.show-checklist input[type="checkbox"]', function (e) {
-        $(this).parents('form').submit();
+        $(this).parents('form').submit(function() {
+            $('.add-checklist-item').show();
+        });
     });
 
     $(document).off('click', '.show-checklist .editable').on('click', '.show-checklist .editable', function (e) {

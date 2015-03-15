@@ -1,0 +1,14 @@
+<script id="tmp_new_checklist_item" type="text/template">
+  <li class="checklist-item-{{id}}">
+    <%#= check_box_tag('is_complete', '', false, :class => 'complete-checklist', :data => {:checklist => "", :id => "{{id}"}) %>
+    <input type="checkbox" name="is_complete" class='complete-checklist' data-checklist='{{checklist_id}}' data-id='{{id}}'/>
+    <%= text_field_tag(:title, "{{title}}", :class => 'hidden edit-check-item') %>
+    <span class='editable'>
+         {{title}}
+      <i class="pull-right"> {{time_ago}} ago </i>
+  </span>
+  <span class='pull-right checklist-item-action'>
+    <%= link_to(raw("<span class='fa fa-trash-o'></span>"), '/checklists/{{checklist_id}}/checklist_items/{{id}}', :class => 'remove-checklist', :method => :delete, :remote => true) %>
+  </span>
+  </li>
+</script>
