@@ -28,8 +28,10 @@ class ChecklistItemsController < ApplicationController
   end
 
   def complete
+    message = {}
     @checklist = Checklist.find_by_id(params[:checklist_id])
     @check_list_item = @checklist.checklist_items.find_by_id(params[:id])
+    cb = lambda { |envelope| puts envelope.message }
     respond_to do |format|
       if @check_list_item.is_complete
         @check_list_item.is_complete = false
@@ -37,6 +39,20 @@ class ChecklistItemsController < ApplicationController
         @check_list_item.is_complete = true
       end
       @check_list_item.save
+      begin
+        message['message'] = 'complete task list'
+        message['id'] = @check_list_item.id
+        message['checklist_id'] = @check_list_item.checklist_id
+        message['action'] = 'chk_list_comp'
+        message['is_complete'] =   @check_list_item.is_complete
+        pb = process_flow.publish({
+                                      :channel => "channel_#{@check_list_item.checklist.task.project_id}",
+                                      :message => message.to_json,
+                                      :callback => cb
+                                  })
+      rescue Exception => e
+        puts e.backtrace.inspect
+      end
       format.js{}
     end
   end
@@ -53,10 +69,25 @@ class ChecklistItemsController < ApplicationController
   end
 
   def destroy
+    message = {}
     @checklist = Checklist.find_by_id(params[:checklist_id])
     check_list_item = @checklist.checklist_items.find_by_id(params[:id])
+    cb = lambda { |envelope| puts envelope.message }
     respond_to do |format|
       check_list_item.destroy
+      begin
+        message['message'] = 'Destroy task list'
+        message['id'] = check_list_item.id
+        message['checklist_id'] = check_list_item.checklist_id
+        message['action'] = 'chk_list_dest'
+        pb = process_flow.publish({
+                                      :channel => "channel_#{check_list_item.checklist.task.project_id}",
+                                      :message => message.to_json,
+                                      :callback => cb
+                                  })
+      rescue Exception => e
+        puts e.backtrace.inspect
+      end
       format.js{}
     end
   end

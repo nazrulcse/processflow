@@ -1,8 +1,8 @@
-<% if @check_list_item.is_complete %>
-$(".checklist-item-<%= params[:id] %>").find('.editable').addClass('checklist-item-completed');
-<%else%>
-$(".checklist-item-<%= params[:id] %>").find('.editable').removeClass('checklist-item-completed');
-<%end%>
+<%# if @check_list_item.is_complete %>
+//$(".checklist-item-<%= params[:id] %>").find('.editable').addClass('checklist-item-completed');
+<%#else%>
+//$(".checklist-item-<%= params[:id] %>").find('.editable').removeClass('checklist-item-completed');
+<%#end%>
 $.ajax({
     url: '/count_item',
     type: 'GET',

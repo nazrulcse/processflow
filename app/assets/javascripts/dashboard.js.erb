@@ -469,6 +469,24 @@ $(document).ready(function () {
             else if ($response.action == 'chk_create')   {
                   chk_create($response)
             }
+
+            else if ($response.action == 'chk_list_comp')   {
+                chk_list_comp($response)
+            }
+
+            else if ($response.action == 'chk_list_dest')   {
+
+                chk_list_dest($response)
+            }
+
+            else if ($response.action == 'chk_list_create')   {
+                chk_list_create($response)
+            }
+
+            else if ($response.action == 'chk_list_remove')   {
+                alert('test');
+                chk_list_remove($response)
+            }
         }
     });
 });

@@ -152,6 +152,33 @@ function chk_create(response)  {
     $('.checklist-' + response.checklist_id).find('li').last().before(rendered);
 }
 
+function chk_list_create(response)  {
+    template = $('#tmp_new_checklist').html();
+    var rendered = Mustache.render(template, response);
+    console.log(rendered);
+    $('#checklist').append(rendered);
+}
+
+function chk_list_dest(response)  {
+    $(".checklist-item-" + response.id).remove();
+}
+
+function chk_list_remove(response)  {
+    $("#checklist-" + response.id).remove();
+}
+
+function chk_list_comp(response)  {
+    if(response.is_complete != false )  {
+        $(".checklist-item-" + response.id).find('#is_complete').prop('checked', true);
+        $(".checklist-item-" + response.id).find('.editable').addClass('checklist-item-completed');
+    }
+    else{
+        $(".checklist-item-" + response.id).find('#is_complete').prop('checked', false);
+        $(".checklist-item-" + response.id).find('.editable').removeClass('checklist-item-completed');
+    }
+
+}
+
 function popupMessage(message, klass) {
     $('#notification').html(message).addClass(klass).show().animate({
         top: "+60"
