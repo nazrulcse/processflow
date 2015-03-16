@@ -1,0 +1,16 @@
+<%= form_for(@relation, :remote => true) do |f| %>
+  <%= f.hidden_field :project_id %>
+  <%= f.hidden_field :child %>
+  <div class='fields'>
+     <%= f.select :parent, Task.where(:project_id => @relation.project_id).collect { |t| [ t.title, t.id ] }, prompt: true %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Create Relation', :class => 'btn btn-default' %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+     $('#relation_parent').customDropDown();
+  });
+</script>

@@ -23,6 +23,10 @@ module ApplicationHelper
     return current_user.email
   end
 
+  def new_relation(task)
+    Relation.new(:child => task.id, :project_id => task.project_id)
+  end
+
   def get_image(user_id)
     @user = User.find_by_id(user_id)
     if(@user.image?)

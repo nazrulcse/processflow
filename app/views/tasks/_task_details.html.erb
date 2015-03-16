@@ -78,7 +78,16 @@
   <!- Relation Tab content ->
 
   <div class="tab-pane task-details-content-left pull-left" id="relation">
-
+    <%= render 'relations/form', :@relation => new_relation(@task)  %>
+    <div>
+      <h3> Relation </h3>
+      <% @task.relations.each do |relation| %>
+          <div class='relation'>
+            <%= link_to raw(image_tag('processflow36.png', :width => 13) + ' ' + relation.parent_task.title), project_task_path(@task.project_id, relation.parent_task), :remote => true, :class => 'relation-parent' %> <br>
+            <%= link_to raw(image_tag('processflow36.png', :width => 13) + ' ' + relation.child_task.title), project_task_path(@task.project_id, relation.child_task), :remote => true,  :class => 'relation-child' %>
+          </div>
+        <%end%>
+    </div>
   </div>
 
   <!- History Tab content ->

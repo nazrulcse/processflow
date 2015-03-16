@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :tasks
   has_many :statistics
+  has_many :relations
 
   def self.create_statistics
      self.all.each do |project|

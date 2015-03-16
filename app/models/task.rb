@@ -30,6 +30,10 @@ class Task < ActiveRecord::Base
     end
   end
 
+  def relations
+    self.project.relations.where('child = ? or parent = ?', self.id, self.id)
+  end
+
   def update_history
     if (self.status_id_changed?)
       context = "Changed task status to: #{self.status.detail}"

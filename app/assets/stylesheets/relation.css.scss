@@ -1,0 +1,26 @@
+a {
+   outline: 0;
+}
+
+.relation-parent {
+  margin-top: 10px;
+}
+
+.relation-child {
+  margin-top: 7px;
+  margin-left: 15px;
+}
+
+.relation {
+  a {
+    background: none repeat scroll 0 0 #3ca0c9;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    font-size: 13px;
+    padding: 5px;
+    &:hover {
+      color: #dddddd;
+    }
+  }
+}

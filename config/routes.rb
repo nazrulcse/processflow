@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :relations
+
   resources :checklists do
     resources :checklist_items do
       member do
