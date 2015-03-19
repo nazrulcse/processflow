@@ -1,13 +1,13 @@
 <div class='show-checklist' id="checklist-<%= checklist.id %>">
   <div class='checklist-title'>
     <%= form_for(checklist, :remote => true) do |cf| %>
+        <i class='fa fa-tasks fa-task-item'> </i>
         <%= cf.text_field :title, :class => 'hidden edit-check-item' %>
-        <span class='editable'>
-          <i class='fa fa-tasks fa-task-item'> </i>
+        <span class='editable' style='width: auto;'>
           <span class="checklist_title"><%= checklist.title %> </span>
-          <span class='checklist-counter'>
+        </span>
+        <span class='checklist-counter'>
              <i class="item_complete-<%= checklist.id %>"><sup><%= complete_checklist_items(checklist.id) %></sup></i>/<i class="item_total-<%= checklist.id %>"><sub><%= total_checklist_items(checklist.id) %></sub></i>
-          </span>
         </span>
         <span class='checklist-action windows-action'>
           <%= link_to(raw("<span class='fa fa-sort-asc'></span>"), 'javascript:void(0);', :class => 'minimize-checklist reset-padding', :method => :delete, :remote => true) %>

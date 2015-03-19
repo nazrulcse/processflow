@@ -41,11 +41,24 @@
 }
 
 .task-details-content-left {
-    width: 700px;
+    min-width: 700px;
+    width: 73%;
 }
 
 .task-details-content-right {
-    width: 250px;
+    min-width: 250px;
+    width: 25%;
+}
+
+.task-details-show {
+    margin: auto;
+    padding: 5px;
+    width: 85%;
+    min-height: 700px;
+}
+
+.task-details-show.modal-content {
+    box-shadow: none;
 }
 
 .task-details-content-right .task-info {
@@ -74,13 +87,13 @@
 }
 
 .task-detail-tab > li a.remove_task {
-    color: #dfdfdf !important;
+    color: #fdfdfd !important;
 }
 
-.task-detail-tab > li a.remove_task:hover {
-    background: inherit !important;
-    color: #dfdfdf !important;
-}
+/*.task-detail-tab > li a.remove_task:hover {*/
+    /*background: inherit !important;*/
+    /*color: #dfdfdf !important;*/
+/*}*/
 
 .task-details .task-name {
     margin: 6px 0 3px 10px;
