@@ -126,7 +126,7 @@
 }
 
 .edit-check-item {
-    width: 91%;
+    width: 80%;
 }
 
 a.remove-checklist {
@@ -135,7 +135,7 @@ a.remove-checklist {
     padding: 2px 10px 0 0;
 }
 
-.editable {
+.editable1 {
     cursor: pointer;
     display: inline-block;
     padding-right: 20px;

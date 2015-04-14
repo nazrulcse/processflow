@@ -23,9 +23,25 @@ class ChecklistsController < ApplicationController
   end
 
   def update
+    message = {}
     @checklist = Checklist.find_by_id(params[:id])
     @checklist.update_attributes(update_params)
+    cb = lambda { |envelope| puts envelope.message }
     respond_to do |format|
+      begin
+        message['message'] = 'Update Checklist'
+        message['id'] = @checklist.id
+        message['title'] = @checklist.title
+        message['task_id'] = @checklist.task_id
+        message['action'] = 'chk_list_edit'
+        pb = process_flow.publish({
+                                      :channel => "channel_#{@checklist.task.project_id}",
+                                      :message => message.to_json,
+                                      :callback => cb
+                                  })
+      rescue Exception => e
+        puts e.backtrace.inspect
+      end
       format.js {}
     end
   end

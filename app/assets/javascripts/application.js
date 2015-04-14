@@ -166,6 +166,9 @@ function chk_list_dest(response)  {
 function chk_list_remove(response)  {
     $("#checklist-" + response.id).remove();
 }
+function chk_list_edit(response)  {
+    $("#checklist-" + response.id).find('.editable').find('.checklist_title').remove();
+}
 
 function chk_list_comp(response)  {
     if(response.is_complete != false )  {
