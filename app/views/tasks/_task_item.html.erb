@@ -30,14 +30,10 @@
       </li>
       <li class='assigned-member'>
         <% if task.users.count > 1 %>
-           <%= image_tag(task.users.first().image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{task.users.first().name}") if task.users.first().image? %>
-           <a href='javascript:void(0);' class='btn-link' title='More'> ... </a>
+            <%= image_tag user_avatar(task.users.first().id, 'small'), :class => 'img-circle assign-member', :title => "#{task.users.first().name}" %>
+            <a href='javascript:void(0);' class='btn-link' title='More'> ... </a>
         <%elsif task.users.count == 1 %>
-            <% if task.users.first().image? %>
-                <%= image_tag(task.users.first().image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{task.users.first().name}") %>
-            <%else%>
-                <%= image_tag("default_user_icon.png", :class => 'nav-avatar img-circle') %>
-            <%end%>
+            <%= image_tag user_avatar(task.users.first().id, 'small'), :class => 'img-circle assign-member', :title => "#{task.users.first().name}" %>
         <%else%>
           Unassign
         <%end%>

@@ -11,6 +11,7 @@
     <%else%>
       <div class="attachment-hover-details">
         <div class='attachment-action-wrapper'>
+          <%= link_to raw("<i class='fa fa-eye fa-task-item'> </i>"), preview_attachment_path(attachment), :class => 'attachment-action preview-view', :remote => true %>
           <a href="<%= download_attachment_path(attachment) %>" class="attachment-action"> <i class='fa fa-download fa-task-item'></i> </a>
           <a href="javascript:void(0);" class="attachment-action"> <i class='fa fa-trash-o fa-task-item'> </i> </a>
         </div>

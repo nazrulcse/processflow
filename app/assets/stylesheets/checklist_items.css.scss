@@ -1,3 +1,41 @@
 // Place all the styles related to the checklist_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('fontawesome-webfont.eot?v=3.2.1');
+  src: url('fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('fontawesome-webfont.woff?v=3.2.1') format('woff'), url('fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+  font-weight: normal;
+  font-style: normal
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+.checkbox-label {
+  display: inline-block !important;
+  padding: 7px;
+  border: solid 1px #333;
+  font: normal normal normal 14px/1 FontAwesome;
+  position: relative;
+  cursor: pointer;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.checkbox-label:hover:after {
+  content: "\f00c";
+  color: #54ACBE;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+input[type=checkbox]:checked + label.checkbox-label:before {
+  content: "\f00c";
+  color: #00AAE7;
+  position: absolute;
+  left: 0;
+  top: 0;
+}

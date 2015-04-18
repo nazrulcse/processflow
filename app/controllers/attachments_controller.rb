@@ -28,6 +28,15 @@ class AttachmentsController < ApplicationController
     send_file(@attachment.file.path)
   end
 
+  def preview
+    @attachment = Attachment.find(params[:id])
+    yomu = Yomu.new 'C:/Users/nazrul/Development/Projects/processflow/public/uploads/attachment/file/4/Resume-Nazrul_Islam-RoR.docx'
+    #puts yomu.inspect
+    puts "Text #{yomu.text}"
+    #yomu = Yomu.new 'http://svn.apache.org/repos/asf/poi/trunk/test-data/document/sample.docx'
+    #puts yomu.text
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_attachment

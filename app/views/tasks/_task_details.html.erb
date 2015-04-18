@@ -12,7 +12,7 @@
         <%= link_to 'Remove task', project_task_path(@task.project_id, @task), :class => 'remove_task btn-danger', :confirm => 'Are you sure?', :method => :delete, :remote => true %>
       </li>
       <li>
-        <%= link_to 'Full page', project_task_path(@task.project_id, @task) %>
+        <%= link_to raw("Full page <i class='fa fa-external-link'></i>"), project_task_path(@task.project_id, @task) %>
       </li>
     </ul>
   </li>
@@ -52,9 +52,9 @@
       <%= form_for(@attachment, :hrml => {:multipart => true}, :id => "myForm") do |f| %>
           <%= f.file_field(:file, :class => 'file_upload', :data_task_id => @task.id) %>
       <% end %>
-      <div class='hints-upload'>
-        Drag and drop upload attachment, any type of file and image are accepted.
-      </div>
+      <!--<div class='hints-upload'>-->
+        <!--Drag and drop upload attachment, any type of file and image are accepted.-->
+      <!--</div>-->
     </div>
 
     <div id="checklist">
@@ -137,6 +137,10 @@
             <label class="info-label"> Remaining </label>
             <span class="info-txt progress-remaining"><%= remaining_effort(@task).round(2) %></span> h
           </li>
+          <li>
+            <label class="info-label"> Status </label>
+            <span class="info-txt"> <%= @task.status.detail %> </span>
+          </li>
         </ul>
       </div>
     </div>
@@ -176,6 +180,12 @@
               </li>
             </ul>
           </li>
+          <li>
+            <label class="info-label"> Card ID: </label> #<%= @task.id %>
+          </li>
+          <li>
+           <input type="text" class="task-url" value="<%= slug_url(@task.slug) unless @task.slug.nil? %>">
+          </li>
         </ul>
       </div>
     </div>
@@ -188,7 +198,7 @@
 
         <% @task.users.each do |user| %>
            <span class="assigned-people" data-assigned-user-id="<%= user.id %>" data-assigned-name="<%= user.name %>">
-             <%= image_tag(user.image.present? ? user.image_url(:small_thumb) : 'default_user_icon.png', :id => "assign-user-#{user.id}-#{@task.id}", :class => 'nav-avatar') %>
+             <%= image_tag user_avatar(user.id, 'small'), :title => user.name, :id => "assign-user-#{user.id}-#{@task.id}", :class => 'nav-avatar img-circle' %>
            </span>
         <% end %>
         <span class="assigned-new-people">
@@ -401,6 +411,10 @@
             $(this).find('span').addClass('fa-sort-desc')
             $(this).find('span').removeClass('fa-sort-asc')
         }
+    });
+
+    $('.task-url').on('click', function() {
+       $(this).select();
     });
 
 </script>

@@ -139,10 +139,10 @@ a.remove-checklist {
     cursor: pointer;
     display: inline-block;
     padding-right: 20px;
-    width: calc(100% - 20px);
+    width: calc(100% - 26px);
 }
 
-.editable .checklist-time{
+.editable .checklist-time {
     float: right;
 }
 
@@ -151,4 +151,8 @@ a.remove-checklist {
     position: absolute;
     top: 0;
     right: -5px;
+}
+
+i.complete-checklist {
+    color: #0381BB;
 }

@@ -1,5 +1,9 @@
-$('.item_total-<%= @checklist.id %>').text('');
-$('.item_total-<%= @checklist.id %>').text(<%= @total_item %>) ;
-$('.item_complete-<%= @checklist.id %>').text('') ;
-$('.item_complete-<%= @checklist.id %>').text(<%= @complete_item %>) ;
+$('.item_total-<%= @checklist.id %>').html(<%= @total_item %>) ;
+$('.item_complete-<%= @checklist.id %>').html(<%= @complete_item %>) ;
 $('.checklist-progress-bar-<%= @checklist.id %>').css('width', <%= @percent %> + '%') ;
+if(<%= @total_item == @complete_item %>) {
+    $('#checklist-<%= @checklist.id %>').find('.fa-task-item').addClass('complete-checklist');
+}
+else {
+    $('#checklist-<%= @checklist.id %>').find('.fa-task-item').removeClass('complete-checklist');
+}

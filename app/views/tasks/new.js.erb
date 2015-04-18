@@ -1,0 +1,3 @@
+$('#new-task').modal('show');
+$('#new-task .modal-body').html("<%= escape_javascript(render 'tasks/form').html_safe %>");
+$('#new-task .modal-title').html('New Task');

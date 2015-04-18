@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316154823) do
+ActiveRecord::Schema.define(version: 20150418144224) do
 
   create_table "attachments", force: true do |t|
     t.string   "file"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20150316154823) do
     t.float    "spend"
     t.string   "task_type"
     t.string   "last_updated_by"
+    t.string   "slug"
   end
 
   create_table "tasks_users", force: true do |t|

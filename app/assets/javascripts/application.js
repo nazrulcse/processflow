@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require_tree .
 //= require turbolinks
-//Turbolinks.enableProgressBar();
+Turbolinks.enableProgressBar();
 $(function () {
     initPage();
     return false;
@@ -168,13 +168,14 @@ function chk_list_remove(response)  {
 }
 
 function chk_list_comp(response)  {
+    var checklist_item = $(".checklist-item-" + response.id);
     if(response.is_complete != false )  {
-        $(".checklist-item-" + response.id).find('#is_complete').prop('checked', true);
-        $(".checklist-item-" + response.id).find('.editable').addClass('checklist-item-completed');
+        checklist_item.find('#checklist-item-' + response.id).prop('checked', true);
+        checklist_item.find('.editable').addClass('checklist-item-completed');
     }
     else{
-        $(".checklist-item-" + response.id).find('#is_complete').prop('checked', false);
-        $(".checklist-item-" + response.id).find('.editable').removeClass('checklist-item-completed');
+        checklist_item.find('#checklist-item-' + response.id).prop('checked', false);
+        checklist_item.find('.editable').removeClass('checklist-item-completed');
     }
 
 }
