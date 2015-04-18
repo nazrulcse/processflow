@@ -391,8 +391,11 @@ $(document).ready(function () {
             }
 
             else if ($response.action == 'chk_list_remove')   {
-                alert('test');
                 chk_list_remove($response)
+            }
+
+            else if ($response.action == 'chk_list_edit')   {
+                chk_list_edit($response)
             }
         }
     });
