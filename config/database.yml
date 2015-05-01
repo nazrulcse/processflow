@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: ProcessFlow_production
-  username: ProcessFlow
+  database: processflow_production
+  username: root
   password: <%= ENV['PROCESSFLOW_DATABASE_PASSWORD'] %>
