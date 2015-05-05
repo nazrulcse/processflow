@@ -206,3 +206,19 @@
 .clear-search:hover {
    box-shadow: 0 0 3px orangered;
 }
+
+.task-notification{
+    background-color: rgb(205, 0, 0);
+    border-radius: 15px;
+    color: #fff;
+    display: inline-block;
+    font-size: 9px;
+    height: 15px;
+    line-height: 10px;
+    margin: 5px 10px 5px 5px;
+    padding: 2px 2px 2px 0 !important;
+    position: relative;
+    text-align: center;
+    text-shadow: none;
+    width: 16px;
+}

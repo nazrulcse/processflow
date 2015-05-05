@@ -5,9 +5,24 @@ class AttachmentsController < ApplicationController
   end
 
   def create
+    message = {}
     @task = Task.find_by_id(params[:task_id])
     @attachment = @task.attachments.build(attachment_params)
+    @attachment.user_id = current_user.id
     if @attachment.save
+      cb = lambda { |envelope| puts envelope.message }
+      begin
+        message['message'] = 'added new Attachment'
+        message['action'] = 'attachment_notification'
+        message['id'] = @attachment.task_id
+        pb = process_flow.publish({
+                                      :channel => "channel_#{@attachment.task.project_id}",
+                                      :message => message.to_json,
+                                      :callback => cb
+                                  })
+      rescue
+        puts "Error Exception"
+      end
       respond_to do |format|
         format.js { render :layout => false }
       end

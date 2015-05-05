@@ -52,6 +52,7 @@ class TasksController < ApplicationController
     @task = @project.tasks.find_by_id(params[:id])
     @attachment = @task.attachments.build();
     @comments = @task.comments.where('comments.parent IS NULL')
+    UserSubcription.delete_all(user_id: current_user.id,task_id: @task.id)
     respond_to do |format|
       format.html {}
       format.js { render :layout => false }

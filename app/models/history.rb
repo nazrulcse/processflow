@@ -3,6 +3,7 @@ class History < ActiveRecord::Base
   belongs_to :user
   has_many :notification_subcriptions
   after_create :create_notification_subcription
+
   scope :notification, -> (project_id, user_id) { joins("INNER JOIN tasks ON tasks.id = histories.task_id " +
                                                    "INNER JOIN projects ON projects.id = tasks.project_id
                                                     where tasks.project_id = #{project_id} order by histories.created_at DESC") }

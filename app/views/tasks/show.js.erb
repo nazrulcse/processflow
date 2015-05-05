@@ -1,2 +1,3 @@
 $('#x-large-modal').modal('show');
 $('#x-large-modal .modal-body').html("<%= escape_javascript(render :partial => 'task_details').html_safe %>");
+$("#task-" + <%= @task.id %> ).find('span.task-notification').remove();
