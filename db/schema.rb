@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316154823) do
+ActiveRecord::Schema.define(version: 20150501063220) do
 
   create_table "attachments", force: true do |t|
     t.string   "file"
     t.integer  "task_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "checklist_items", force: true do |t|
@@ -153,6 +154,13 @@ ActiveRecord::Schema.define(version: 20150316154823) do
     t.integer  "model_id"
     t.string   "action"
     t.text     "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_subcriptions", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

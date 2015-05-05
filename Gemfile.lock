@@ -225,6 +225,7 @@ GEM
       ffi (~> 1.9)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rmagick (2.14.0)
     roo (1.13.2)
       nokogiri
       rubyzip
@@ -306,6 +307,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   pubnub
   rails (= 4.1.1)
+  rmagick
   roo
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
