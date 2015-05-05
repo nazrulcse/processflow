@@ -1,5 +1,6 @@
 <li class="checklist-item-<%= item.id %>">
-  <%= check_box_tag(:is_complete, '', item.is_complete, :class => 'complete-checklist', :data => {:checklist => item.checklist.id, :id => item.id}) %>
+  <%= check_box_tag(:is_complete, '', item.is_complete, :class => 'complete-checklist', :id => "checklist-item-#{item.id}", :data => {:checklist => item.checklist.id, :id => item.id}) %>
+  <label for="checklist-item-<%= item.id %>" class='checkbox-label'></label>
   <%= text_field_tag(:title, item.title, :class => 'hidden edit-check-item') %>
   <span class='editable <%= item.is_complete ? 'checklist-item-completed' : '' %>'>
     <%= item.title %>

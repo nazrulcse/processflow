@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 20150501063220) do
     t.float    "spend"
     t.string   "task_type"
     t.string   "last_updated_by"
+    t.string   "slug"
   end
 
   create_table "tasks_users", force: true do |t|

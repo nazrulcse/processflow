@@ -627,3 +627,10 @@ img.attachment-details {
     left: 45%;
     color: #333;
 }
+
+.task-url {
+    border: 0 solid #ccc;
+    color: #666;
+    padding: 3px;
+    width: 100%;
+}

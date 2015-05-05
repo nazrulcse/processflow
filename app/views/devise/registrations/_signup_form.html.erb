@@ -1,7 +1,7 @@
 <%= form_for(resource, as: resource_name, url: current_user.present? ? profile_path() : account_path(), :html => {:method => current_user.present? ? :put : :post, :class => 'user-account'}) do |f| %>
     <header>
       <% if current_user.present? %>
-          Account Edit form
+          <%= link_to raw("<i class='fa fa-angle-double-left'> </i>"), :back, :title => "Back" %> Account Edit form
       <% else %>
           Registration Form
       <% end %>
@@ -60,17 +60,18 @@
           <%= f.file_field :image, :class => 'upload' %>
           <%= f.hidden_field :image_cache %>
         </div>
-      </section>
-
-      <section>
-        <label class="checkbox">
-          <input name="checkbox" type="checkbox"><i></i>I agree to the Terms of Service
-        </label>
-        <label class="checkbox">
-          <input name="checkbox" type="checkbox"><i></i>I want to receive news and special offers
-        </label>
+        <% if current_user.present? %>
+            <%= image_tag user_avatar(current_user.id, 'thumb'), :style => 'margin-left: 25%;' %>
+        <% end %>
       </section>
       <% unless current_user.present? %>
+          <section>
+            <label class="checkbox reset-padding">
+              <input id="agree-with-term" name="checkbox" type="checkbox">
+              <label for="agree-with-term" class='checkbox-label'></label> I agree to the Terms of Service
+            </label>
+          </section>
+
           <section>
             <%= render 'shared/social_signup' %>
           </section>

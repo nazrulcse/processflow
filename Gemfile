@@ -43,6 +43,8 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'metric_fu'
 gem 'roo'
+gem 'yomu'
+gem 'capistrano'
 
 
 gem 'tzinfo-data'

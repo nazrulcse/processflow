@@ -1,8 +1,6 @@
 <div class="project-nav">
   <div class="btn-group project-nav-control">
-    <a class="btn-action add-card" href="javascript:void(0);" id="btn-task">
-      <i class="fa fa-plus-circle"></i> Add Card
-    </a>
+    <%= link_to raw("<i class='fa fa-plus-circle'></i> Add Card"), new_project_task_path(project), :class => 'btn-action add-card', :remote => true %>
     <% if is_project_owner!(project) %>
         <a id='invite-member' href="javascript:void(0);" class='btn-action'>
           <i class="fa fa-user"></i> Invitation
@@ -41,11 +39,7 @@
       <%= project.name %>
     </a>
   </div>
-  <!--<div class="pull-left">-->
-  <!--<a href='javascript:void(0);' class='btn-action project-title' data-id="<%#= project.id %>">-->
-  <!--<%#= project.name %>-->
-  <!--</a>-->
-  <!--</div>-->
+
   <div class="pull-right task-color-label-status">
     <span class="bug-task"></span> <span> Bug </span>
     <span class="finish_tomorrow"></span> <span> Urgent </span>
@@ -103,20 +97,6 @@
                 data: $('#new_invite').serialize(),
                 success: function (data) {
                     $('#small-modal').modal('hide');
-                },
-                error: function () {
-                }
-            });
-        });
-
-        $(document).off('click', '.add-card').on('click', '.add-card', function () {
-            $.ajax({
-                url: "<%= new_project_task_path(project) %>",
-                type: 'get',
-                success: function (data) {
-                    $('#new-task').modal('show');
-                    $('#new-task .modal-body').html(data);
-                    $('#new-task .modal-title').html('New Task');
                 },
                 error: function () {
                 }

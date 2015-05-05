@@ -4,13 +4,14 @@ class TasksController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @task = @project.tasks.build()
     respond_to do |format|
+      format.js {}
       format.html { render layout: false }
     end
   end
 
   def create
     message = {}
-    user_image = '';
+    user_image = ''
     @project = Project.find_by_id(params[:project_id])
     @task = @project.tasks.build(task_params)
     @task.status_id = 1 #default status to backlog
@@ -66,6 +67,8 @@ class TasksController < ApplicationController
     cb = lambda { |envelope| puts envelope.message }
     respond_to do |format|
       if @task.update_attributes(params[:field] => params[:value], :last_updated_by => current_user.id)
+        @task.slug = SecureRandom.hex
+        @task.save!
         message['message'] = @task.histories.last().context if @task.histories.present?
         message['field'] = params[:field]
         message['value'] = params[:value]
@@ -111,19 +114,19 @@ class TasksController < ApplicationController
     @user.save
     cb = lambda { |envelope| puts envelope.message }
     respond_to do |format|
-        message['message'] = 'Assign new member'
-        message['value'] = @user.image_url(:small_thumb).present? ? @user.image_url(:small_thumb) : '/assets/default_user_icon.png'
-        message['action'] = 'assign_member'
-        message['user_id'] = @user.id
-        message['user_name'] = @user.name
-        message['task_id'] = @task.id
-        message['project_id'] = @task.project_id
-        pb = process_flow.publish({
-                                      :channel => "channel_#{@task.project_id}",
-                                      :message => message.to_json,
-                                      :callback => cb
-                                  })
-        format.js { render :layout => false }
+      message['message'] = 'Assign new member'
+      message['value'] = @user.image_url(:small_thumb).present? ? @user.image_url(:small_thumb) : '/assets/default_user_icon.png'
+      message['action'] = 'assign_member'
+      message['user_id'] = @user.id
+      message['user_name'] = @user.name
+      message['task_id'] = @task.id
+      message['project_id'] = @task.project_id
+      pb = process_flow.publish({
+                                    :channel => "channel_#{@task.project_id}",
+                                    :message => message.to_json,
+                                    :callback => cb
+                                })
+      format.js { render :layout => false }
     end
   end
 
@@ -177,9 +180,11 @@ class TasksController < ApplicationController
 
   def update_position
     task_ids = params[:task]
-    task_ids.each_with_index do |id, index|
-      task = Task.find_by_id(id)
-      task.update_attribute :position, index
+    if task_ids.present?
+      task_ids.each_with_index do |id, index|
+        task = Task.find_by_id(id)
+        task.update_attribute :position, index
+      end
     end
     respond_to do |format|
       format.js { render :layout => false }

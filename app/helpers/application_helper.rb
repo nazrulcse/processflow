@@ -12,25 +12,25 @@ module ApplicationHelper
   end
 
   def generate_graph(project)
-    return "#{project.name} #{image_tag('graph.png')}".html_safe
+    "#{project.name} #{image_tag('graph.png')}".html_safe
   end
 
   def is_project_owner!(project)
-    return project.owner_id == current_user.id ? true : false
+    project.owner_id == current_user.id ? true : false
   end
 
   def get_owner
-    return current_user.email
+    current_user.email
   end
 
   def new_relation(task)
     Relation.new(:child => task.id, :project_id => task.project_id)
   end
 
-  def get_image(user_id)
+  def user_avatar(user_id, version='small')
     @user = User.find_by_id(user_id)
-    if(@user.image?)
-      @user.image_url(:small_thumb)
+    if @user.image.present? && @user.image.version_exists?(version)
+      @user.image_url(version)
     else
       'default_user_icon.png'
     end
@@ -38,7 +38,7 @@ module ApplicationHelper
 
   def count_notification(user_id, project_id)
     total_notification = NotificationSubcription.notification_count(project_id, user_id)
-    return total_notification > 0 ? total_notification : 0
+    total_notification > 0 ? total_notification : 0
   end
 
   def get_reply_div

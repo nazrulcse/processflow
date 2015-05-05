@@ -1,6 +1,6 @@
 <div class="comments-item-wrapper" id="<%=comment.id %>">
   <div class="content-left pull-left">
-     <%= image_tag(get_image(comment.user_id)) %>
+     <%= image_tag(user_avatar(comment.user_id)) %>
   </div>
   <div class="content-right pull-left">
     <%= comment.comment.html_safe %>
