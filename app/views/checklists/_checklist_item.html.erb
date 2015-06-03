@@ -4,8 +4,8 @@
   <%= text_field_tag(:title, item.title, :class => 'hidden edit-check-item') %>
   <span class='editable <%= item.is_complete ? 'checklist-item-completed' : '' %>'>
     <%= item.title %>
-    <i class="pull-right"> <%= time_ago_in_words(item.created_at) %> ago </i>
   </span>
+  <i class="pull-right"> <%= time_ago_in_words(item.created_at) %> ago </i>
   <span class='pull-right checklist-item-action'>
     <%= link_to(raw("<span class='fa fa-trash-o'></span>"), checklist_checklist_item_path(item.checklist.id, item.id), :class => 'remove-checklist', :method => :delete, :remote => true) %>
   </span>

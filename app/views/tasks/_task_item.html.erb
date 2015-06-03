@@ -3,6 +3,9 @@
     <ul>
       <li class='task-name'>
         <%= truncate(task.title, :length => 50, :omission => '...') %>
+        <% if (count_history(current_user.id,task.id) != 0) %>
+        <span class="task-notification"> <%= count_history(current_user.id,task.id) %> </span>
+        <%end%>
       </li>
       <li>
         <span class='task-end-date'> <i class="fa fa-calendar reset-margin fa-task-item task-element"></i> <%= task.end_date %> </span>
@@ -34,6 +37,14 @@
             <a href='javascript:void(0);' class='btn-link' title='More'> ... </a>
         <%elsif task.users.count == 1 %>
             <%= image_tag user_avatar(task.users.first().id, 'small'), :class => 'img-circle assign-member', :title => "#{task.users.first().name}" %>
+           <%= image_tag(task.users.first().image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{task.users.first().name}") if task.users.first().image? %>
+           <a href='javascript:void(0);' class='btn-link' title='More'> ... </a>
+        <% elsif task.users.count == 1 %>
+            <% if task.users.first().image? %>
+                <%= image_tag(task.users.first().image_url(:small_thumb), :class => 'img-circle assign-member', :title => "#{task.users.first().name}") %>
+            <%else%>
+                <%= image_tag("default_user_icon.png", :class => 'nav-avatar img-circle') %>
+            <%end%>
         <%else%>
           Unassign
         <%end%>

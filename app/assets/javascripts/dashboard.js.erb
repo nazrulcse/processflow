@@ -397,6 +397,14 @@ $(document).ready(function () {
             else if ($response.action == 'chk_list_edit')   {
                 chk_list_edit($response)
             }
+
+            else if ($response.action == 'attachment_notification')   {
+                attachment_notification($response)
+            }
+
+            else if ($response.action == 'comment_notification')   {
+                comment_notification($response)
+            }
         }
     });
 

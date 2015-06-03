@@ -2,10 +2,26 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:update, :destroy]
 
   def create
+    message = {}
     @comment = Comment.new(comment_params)
     respond_to do |format|
       if @comment.save
-        format.js { render :layout => false }
+        cb = lambda { |envelope| puts envelope.message }
+        begin
+          message['message'] = 'added new Comment'
+          message['action'] = 'comment_notification'
+          message['id'] = @comment.task_id
+          pb = process_flow.publish({
+                                        :channel => "channel_#{@comment.task.project_id}",
+                                        :message => message.to_json,
+                                        :callback => cb
+                                    })
+        rescue
+          puts "Error Exception"
+        end
+        respond_to do |format|
+          format.js { render :layout => false }
+        end
       end
     end
   end

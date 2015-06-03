@@ -164,6 +164,36 @@ function chk_list_edit(response)  {
     $("#checklist-" + response.id).find('.editable').find('.checklist_title').remove();
 }
 
+function attachment_notification(response)  {
+    if ($("#task-" + response.id ).find('span.task-notification').length != 0)
+    {
+        notification_value =  $("#task-" + response.id ).find('span.task-notification').text();
+        notification_value = parseInt(notification_value) + 1 ;
+        $("#task-" + response.id ).find('span.task-notification').text(notification_value);
+    }
+
+    else{
+        $("#task-" + response.id).find('li.task-name').append('<span class="task-notification"> 1 </span>')
+    }
+}
+
+function comment_notification(response)  {
+    if ($("#task-" + response.id ).find('span.task-notification').length != 0)
+    {
+        notification_value =  $("#task-" + response.id ).find('span.task-notification').text();
+        notification_value = parseInt(notification_value) + 1 ;
+        $("#task-" + response.id ).find('span.task-notification').text(notification_value);
+    }
+    else{
+        $("#task-" + response.id).find('li.task-name').append('<span class="task-notification"> 1 </span>');
+    }
+    comment_value =  $("#task-" + response.id ).find('span.comments-count').text();
+    comment_value = parseInt(comment_value) + 1 ;
+    $("#task-" + response.id ).find('span.comments-count').text('');
+    $("#task-" + response.id ).find('span.comments-count').append( comment_value + '<i class="fa fa-comments fa-task-item"></i>');
+
+}
+
 function chk_list_comp(response)  {
     var checklist_item = $(".checklist-item-" + response.id);
     if(response.is_complete != false )  {
@@ -230,3 +260,11 @@ function initProjectList() {
 
 //$(document).on("page:fetch", startSpinner);
 //$(document).on("page:receive", stopSpinner);
+
+function task_notification(task_id){
+    if ($("#task-" + task_id ).find('span.task-notification').length != 0)
+    {
+       natification_value =  $("#task-" + task_id ).find('span.task-notification').text()
+    }
+
+}
