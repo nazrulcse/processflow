@@ -206,3 +206,35 @@
 .clear-search:hover {
    box-shadow: 0 0 3px orangered;
 }
+
+.slide-notification-icon {
+    padding: 5px;
+    position: absolute;
+    left: -50px;
+    width: 50px;
+    top: 4px;
+    color: #0e76a8;
+    background: #fdfdfd none repeat scroll 0 0;
+    height: 30px;
+    border-radius: 2px 0 0 2px;
+    box-shadow: -1px 0 2px #ffffff;
+    cursor: pointer;
+}
+
+.slide-notification-icon .fa-bell {
+    font-size: 20px;
+}
+
+.slide-notification-wrapper {
+    position: fixed;
+    right: -350px;
+    top: 0;
+    bottom: 0;
+    width: 350px;
+    background: #dddddd;
+    z-index: 100;
+}
+
+.has-notification {
+    color: #cc0006;
+}

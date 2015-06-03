@@ -42,12 +42,6 @@ function initPage() {
     $(document).ajaxError(function() {
         loader('hide');
     });
-
-    $("body").click(function(e) {
-        if(e.target.className !== "notification-menu") {
-            $(".notification-list").hide();
-        }
-    });
 }
 
 var category = {

@@ -296,7 +296,7 @@ function initDashboard() {
     }, '.attachment-item');
 
 
-    $(document).on('click', '.notification-list ul li a', function(e) {
+    $(document).on('click', 'ul.notification-list li a', function(e) {
         e.preventDefault();
         url = $(this).attr('href');
         if (url == '') {
@@ -399,4 +399,21 @@ $(document).ready(function () {
             }
         }
     });
+
+    $('.slide-notification-icon').click(function() {
+        var slider = $('.slide-notification-wrapper');
+        var pos = slider.position();
+        slider_width = slider.width();
+        window_width = $(window).width();
+        if(window_width < (pos.left + slider_width)) {
+            slider.animate({
+                right: 0
+            });
+        }
+        else {
+            slider.animate({
+                right: '-' + slider_width
+            });
+        }
+    })
 });

@@ -12,29 +12,8 @@
       <b> <%= current_user.name %> </b>
     </li>
   </ul>
-  <ul class='nav navbar-nav navbar-right'>
+  <ul class='nav navbar-nav navbar-right' style="margin-right: 30px;">
      <%# if (action_name == 'show' && controller.controller_name == 'projects') %>
-     <% if (action_name == 'dashboard') %>
-        <li>
-          <a data-toggle='dropdown' href='#' class='notification-menu' data-user-id='<%= current_user.id %>' data-project-id='<%= params[:id] %>' >
-            <% total_notification = count_notification(params[:id], current_user.id) %>
-            <span class="notification-value font-<%= total_notification.to_s.length %>">
-                <%= total_notification %>
-            </span>
-          </a>
-
-          <div class='notification-list dropdown-menu' data-projects-id='<%= params[:id] %>'>
-            <div class='notification-title'>
-              Project Notification
-            </div>
-            <ul role='menu' style='display: block;' aria-labelledby='dLabel' class='notification'>
-              <% if @notifications.present? %>
-                  <%= render :partial => 'shared/notification', :locals => {:@notifications => @notifications} %>
-              <% end %>
-            </ul>
-          </div>
-        </li>
-    <% end %>
     <li class='dropdown'>
       <a data-toggle='dropdown' class='dropdown-toggle settings-dropdown' href='#'> <img src='/assets/settings.png'>
       </a>
@@ -68,6 +47,24 @@
     </li>
   </ul>
 </nav>
+<% if (action_name == 'dashboard') %>
+    <div class="slide-notification-wrapper">
+      <div class="slide-notification-icon">
+        <i class="fa fa-bell has-notification"> </i>
+        <span class="notification-count">
+            <%= count_notification(params[:id], current_user.id) %>
+        </span>
+      </div>
+      <div class='notification-title'>
+        Project Notification
+      </div>
+      <ul class="notification-list">
+        <% if @notifications.present? %>
+            <%= render :partial => 'shared/notification', :locals => {:@notifications => @notifications} %>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
 
 <script>
 $(document).off('click', '.notification-menu').on('click', '.notification-menu', function () {
