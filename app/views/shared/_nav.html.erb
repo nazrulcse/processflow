@@ -48,7 +48,7 @@
   </ul>
 </nav>
 <% if (action_name == 'dashboard') %>
-    <div class="slide-notification-wrapper">
+    <div class="slide-notification-wrapper"  data-user-id="<%= current_user.id %>">
       <div class="slide-notification-icon">
         <i class="fa fa-bell has-notification"> </i>
         <span class="notification-count">
@@ -67,28 +67,6 @@
 <% end %>
 
 <script>
-$(document).off('click', '.notification-menu').on('click', '.notification-menu', function () {
-   if( $('.notification-list').is(":visible"))
-   {
-       $('.notification-list').hide()
-   }
-    else{
-       $('.notification-list').show();
-   }
-    project_id = $(this).attr('data-project-id');
-    user_id = $(this).attr('data-user-id');
 
-     $.ajax({
-         url: '<%= destroy_notification_subcription_path() %>',
-         type: 'post',
-         datatype: 'script',
-         data:{ project_id: project_id, user_id: user_id},
-         success: function (data) {
-
-         },
-         error: function () {
-         }
-     });
-});
 
 </script>

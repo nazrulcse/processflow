@@ -322,6 +322,29 @@ function initDashboard() {
         $(this).remove();
         $(".attachment-details-wrap, .attachment-overlay").remove();
     });
+
+    $(document).off('click', '.slide-notification-wrapper').on('click', '.slide-notification-wrapper', function () {
+//   if( $('.slide-notification-wrapper').is(":visible"))
+//   {
+//       $('.slide-notification-wrapper').hide()
+//   }
+//    else{
+//       $('.slide-notification-wrapper').show();
+//   }
+        project_id = current_project_id;
+        user_id = $(this).attr('data-user-id');
+        $.ajax({
+            url: '/destroy_notification_subcription',
+            type: 'post',
+            datatype: 'script',
+            data:{ project_id: project_id, user_id: user_id},
+            success: function (data) {
+
+            },
+            error: function () {
+            }
+        });
+    });
 }
 
 $(document).ready(function () {
@@ -329,7 +352,8 @@ $(document).ready(function () {
     $('.notification-list').perfectScrollbar();
     $('.notification-list').scrollTop(0);
     $('.notification-list').scroll(function () {
-        var count = $(this).find(("ul li")).length;
+        var count = $('.notification-list').find(("li")).length;
+        //alert(count);
         if ($(this).scrollTop() + $(this).innerHeight() == this.scrollHeight) {
             $.ajax({
                 url: '/notification',
@@ -421,7 +445,9 @@ $(document).ready(function () {
         else {
             slider.animate({
                 right: '-' + slider_width
+
             });
+            $('.notification-list').find('a').removeClass('unread');
         }
     })
 });

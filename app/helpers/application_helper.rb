@@ -36,7 +36,7 @@ module ApplicationHelper
     end
   end
 
-  def count_notification(user_id, project_id)
+  def count_notification( project_id,user_id)
     total_notification = NotificationSubcription.notification_count(project_id, user_id)
     total_notification > 0 ? total_notification : 0
   end
