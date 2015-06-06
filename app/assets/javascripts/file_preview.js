@@ -5,7 +5,7 @@ function create_preview(path, type, content) {
     new_width = window_width - 100;
     new_height = window_height - 50;
     host_url = window.location.host
-    iframe = "<iframe src='http://docs.google.com/gview?url=" + host_url + path + "&embedded=true' width='"+new_width+"' height='"+new_height+"'> </iframe>";
+    iframe = "<iframe src='" + path + "' width='"+new_width+"' height='"+new_height+"'> </iframe>";
     preview = "<div id='file-preview'>" + iframe + "</div>";
     $('html').append(preview);
     $("body").addClass("modal-open");

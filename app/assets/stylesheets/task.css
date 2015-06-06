@@ -136,6 +136,8 @@
     font-size: 14px;
     padding: 7px;
     border-radius: 3px;
+    border: none;
+    width: 100%;
 }
 
 .task-details .edit-task-description {
@@ -158,11 +160,11 @@
 }
 
 .editable-content {
-    -moz-appearance: textfield-multiline;
-    -webkit-appearance: textarea;
+    /*-moz-appearance: textfield-multiline;*/
+    /*-webkit-appearance: textarea;*/
     overflow: auto;
     padding: 2px;
-    resize: both;
+    /*resize: both;*/
     background-image: none !important;
     height: 150px;
 }
@@ -239,14 +241,15 @@ div.task-priority-low {
 }
 
 .attachment-list .attachment-item {
-    border: 1px solid #a9a9a9;
+    border: 1px solid #e5e5e5;
     display: inline-block;
-    min-height: 150px;
+    height: 125px;
     margin-right: 10px;
     padding: 5px;
     vertical-align: top;
-    width: 148px;
+    width: 185px;
     margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .has-attachment {
@@ -271,13 +274,14 @@ div.task-priority-low {
 }
 
 .attachment-hover-details {
-    position: absolute;
-    top: 0;
+    background-color: #f5f5f5;
     bottom: 0;
-    width: 100%;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none;
+    padding: 5px 10px;
+    position: absolute;
+    top: 90px;
+    width: 100%;
+    border-top: 1px solid #e5e5e5;
 }
 
 .attachment-date{

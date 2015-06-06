@@ -107,12 +107,12 @@ function initDashboard() {
 
     var old_value = '', new_value = '';
     $(document).off('click', '.task-description').on('click', '.task-description', function () {
-        old_value = $(this).text().trim();
+        old_value = $(this).val();
         $(this).addClass('editable-content');
     });
 
     $(document).off('blur', '.task-description').on('blur', '.task-description', function () {
-        new_value = $(this).text().trim();
+        new_value = $(this).val();
         $(this).removeClass('editable-content');
         if (old_value != new_value) {
             task_id = $('.task-details').attr('data-task-id');
@@ -288,10 +288,14 @@ function initDashboard() {
 
     $(document).off('mouseenter, mouseleave', '.attachment-item').on({
         mouseenter: function(){
-            $(this).find('.attachment-hover-details').css('height', 'auto').stop().slideDown('fast');
+            $(this).find('.attachment-hover-details').stop().animate({
+                top: 0
+            });
         },
         mouseleave: function(){
-            $(this).find('.attachment-hover-details').stop().slideUp('fast');
+            $(this).find('.attachment-hover-details').stop().animate({
+                top: '90'
+            });
         }
     }, '.attachment-item');
 

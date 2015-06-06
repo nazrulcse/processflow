@@ -3,7 +3,11 @@ class WelcomeController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html { render :layout => 'landing' }
+      if current_user.present?
+        format.html {redirect_to projects_path}
+      else
+        format.html { render :layout => 'landing' }
+      end
     end
   end
 

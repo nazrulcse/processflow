@@ -1,24 +1,27 @@
-div.attachment-item[data-attachment-type$=".pdf"] {
-    background-image: url('file/pdf.png');
+div.attachment-icon[data-attachment-type$=".pdf"] {
+    background-position: -162px -46px;
 }
 
-div.attachment-item[data-attachment-type$='.docx'],
-div.attachment-item[data-attachment-type$='.doc'] {
-    background-image: url('file/docx.png');
+div.attachment-icon[data-attachment-type$='.docx'],
+div.attachment-icon[data-attachment-type$='.doc'] {
+    background-position: -219px -88px;
 }
 
-div.attachment-item[data-attachment-type$='.txt'],
-div.attachment-item[data-attachment-type$='.java'] {
-    background-image: url('file/text.png');
+div.attachment-icon[data-attachment-type$=".exe"] {
+    background-position: -203px 0;
 }
 
-div.attachment-item[data-attachment-type$=".exe"] {
-    background-image: url('file/exe.png');
-    background-size: 100% 100%;
-}
-
-div.attachment-item {
-    background-position: center 2px;
+div.attachment-icon {
+    border: medium none;
+    bottom: 0;
+    height: 40px !important;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: -30px;
+    width: 40px !important;
     background-repeat: no-repeat;
-    background-size: 100% 95%;
+    background-image: url('attachmentcards.png');
+    background-position: -121px -46px;
 }

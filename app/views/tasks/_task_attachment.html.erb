@@ -1,26 +1,34 @@
-<div class="attachment-item attachment-image-item" data-attachment-type="<%= attachment.file %>">
+<div class="attachment-item attachment-image-item">
     <% if is_image?(attachment.file) %>
       <%= image_tag(attachment.file) %>
       <div class="attachment-hover-details">
+        <div class="attachment-date">
+          <%= attachment.file.to_s.split('/').last  %>
+        </div>
         <div class='attachment-action-wrapper'>
           <a href="javascript:void(0);" class="attachment-action quick-view"> <i class='fa fa-eye fa-task-item'> </i> </a>
           <a href="<%= download_attachment_path(attachment) %>" class="attachment-action"> <i class='fa fa-download fa-task-item'> </i> </a>
           <a href="javascript:void(0);" class="attachment-action"> <i class='fa fa-trash-o fa-task-item'> </i> </a>
         </div>
+        <div class="attachment-date">
+          <%= attachment.created_at  %>
+        </div>
       </div>
     <%else%>
+      <div class="attachment-icon" data-attachment-type="<%= attachment.file %>"/>
       <div class="attachment-hover-details">
+        <div class="attachment-date">
+          <%= attachment.file.to_s.split('/').last  %>
+        </div>
         <div class='attachment-action-wrapper'>
           <%= link_to raw("<i class='fa fa-eye fa-task-item'> </i>"), preview_attachment_path(attachment), :class => 'attachment-action preview-view', :remote => true %>
           <a href="<%= download_attachment_path(attachment) %>" class="attachment-action"> <i class='fa fa-download fa-task-item'></i> </a>
           <a href="javascript:void(0);" class="attachment-action"> <i class='fa fa-trash-o fa-task-item'> </i> </a>
         </div>
+        <div class="attachment-date">
+          Date: <%= attachment.created_at  %>
+        </div>
       </div>
     <% end %>
-
-  <div class="attachment-date">
-    <span><%= attachment.created_at  %></span>
-    <span><%= attachment.file.to_s.split('/').last  %></span>
-  </div>
 </div>
 

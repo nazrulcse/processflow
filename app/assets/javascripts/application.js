@@ -185,7 +185,7 @@ function comment_notification(response)  {
         $("#task-" + response.id ).find('span.task-notification').text(notification_value);
     }
     else{
-        $("#task-" + response.id).find('li.task-name').append('<span class="task-notification"> 1 </span>');
+        $("#task-" + response.id).find('li.task-name').append('<span class="task-notification" title="new notification"> 1 </span>');
     }
     comment_value =  $("#task-" + response.id ).find('span.comments-count').text();
     comment_value = parseInt(comment_value) + 1 ;

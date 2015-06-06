@@ -36,9 +36,10 @@
     </div>
   </div>
   <div class="tab-pane active task-details-content-left pull-left" id="general">
-    <div class="task-description" contenteditable>
-      <%= @task.description %>
-    </div>
+    <!--<div class="task-description" contenteditable>-->
+      <!--<%#= @task.description %>-->
+    <!--</div>-->
+    <textarea class="task-description"> <%= @task.description %> </textarea>
 
     <div class="attachment-list">
       <% @task.attachments.each do |attachment| %>
