@@ -52,13 +52,15 @@
       <div class="slide-notification-icon">
         <% if  count_notification(params[:id], current_user.id) > 0 %>
             <i class="fa fa-bell has-notification"> </i>
+            <i class="fa fa-angle-double-right hidden"> </i>
             <span class="has-notification">
             <%= count_notification(params[:id], current_user.id) %>
+
         </span>
             <% else %>
-            <i class="fa fa-bell "> </i>
+            <i class="fa fa-bell"> </i>
+            <i class="fa fa-angle-double-left"> </i>
         <% end %>
-        <i class="fa fa-angle-double-left hidden"> </i>
 
       </div>
       <div class='notification-title'>
