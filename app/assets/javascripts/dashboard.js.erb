@@ -441,13 +441,19 @@ $(document).ready(function () {
             slider.animate({
                 right: 0
             });
+            $(".slide-notification-icon").css({left: 0,width:60});
+            $('.slide-notification-icon').find('i').last().removeClass('hidden');
+            $('.slide-notification-icon').find('span').addClass('hidden');
         }
         else {
             slider.animate({
                 right: '-' + slider_width
 
             });
+            $(".slide-notification-icon").css({left: -50 });
             $('.notification-list').find('a').removeClass('unread');
+            $('.slide-notification-icon').find('i').last().addClass('hidden')
+            $('.slide-notification-icon').find('span').removeClass('hidden');
         }
     })
 });

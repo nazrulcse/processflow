@@ -241,6 +241,10 @@
     font-size: 20px;
 }
 
+.slide-notification-icon .fa-angle-double-right {
+    font-size: 20px;
+}
+
 .slide-notification-wrapper {
     position: fixed;
     right: -350px;
