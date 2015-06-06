@@ -50,11 +50,16 @@
 <% if (action_name == 'dashboard') %>
     <div class="slide-notification-wrapper"  data-user-id="<%= current_user.id %>">
       <div class="slide-notification-icon">
-        <i class="fa fa-bell has-notification"> </i>
-        <span class="notification-count">
+        <% if  count_notification(params[:id], current_user.id) > 0 %>
+            <i class="fa fa-bell has-notification"> </i>
+            <span class="has-notification">
             <%= count_notification(params[:id], current_user.id) %>
         </span>
-        <i class="fa fa-angle-double-right has-notification  hidden"> </i>
+            <% else %>
+            <i class="fa fa-bell "> </i>
+        <% end %>
+        <i class="fa fa-angle-double-left hidden"> </i>
+
       </div>
       <div class='notification-title'>
         Project Notification

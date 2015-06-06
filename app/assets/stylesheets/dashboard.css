@@ -226,8 +226,8 @@
 .slide-notification-icon {
     padding: 5px;
     position: absolute;
-    left: -50px;
-    width: 50px;
+    left: -55px;
+    width: 60px;
     top: 4px;
     color: #0e76a8;
     background: #fdfdfd none repeat scroll 0 0;
@@ -245,6 +245,10 @@
     font-size: 20px;
 }
 
+.slide-notification-icon .fa-angle-double-left {
+    font-size: 20px;
+}
+
 .slide-notification-wrapper {
     position: fixed;
     right: -350px;
@@ -257,4 +261,5 @@
 
 .has-notification {
     color: #cc0006;
+    vertical-align: top;
 }
