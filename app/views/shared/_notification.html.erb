@@ -1,20 +1,20 @@
 <% @notifications.each do |notification| %>
     <li data-task-id="<%= notification.task_id %>" data-project-id="<%= notification.task.project_id %>">
       <a class="<%= is_read(notification) ? 'unread' : '' %>" href="<%= project_task_path(notification.task.project_id, notification.task_id) %>">
-      <div class='pull-left'>
-        <div class=' notification-image'>
-          <%= image_tag user_avatar(notification.user_id, 'thumb') %>
+        <div class='pull-left'>
+          <div class=' notification-image'>
+            <%= image_tag user_avatar(notification.user_id, 'thumb') %>
+          </div>
         </div>
-      </div>
-      <div class='pull-left'>
-        <div class='notification-content'>
-          <%= notification.context.html_safe %>
-        </div>
+        <div class='pull-left'>
+          <div class='notification-content'>
+            <%= notification.context.html_safe %>
+          </div>
                 <span class='notification-time'>
                   <i> <%= time_ago_in_words(notification.created_at) %> ago </i>
                 </span>
-      </div>
-      <div class='clearfix'></div>
+        </div>
+        <div class='clearfix'></div>
       </a>
-      </li>
+    </li>
 <% end %>

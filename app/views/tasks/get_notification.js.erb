@@ -1,1 +1,1 @@
-$('.notification').append("<%= escape_javascript(render :partial => 'shared/notification', :locals => {:notifications => @notifications} ).html_safe %>");
+$('.notification-list').append("<%= escape_javascript(render :partial => 'shared/notification', :locals => {:notifications => @notifications} ).html_safe %>");
