@@ -1,5 +1,7 @@
 #file-preview {
-    position: absolute;
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
     left: 0;
     right: 0;
     top: 0;

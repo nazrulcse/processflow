@@ -1,4 +1,7 @@
 <%= render :partial => 'form' %>
+<% unless @project.new_record? %>
+    <h1> Edit Project </h1>
+<%end%>
 <script type="text/javascript">
  $('#btnSave').click(function() {
      $.ajax({

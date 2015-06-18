@@ -1,18 +1,18 @@
 <div class='container-fluid'>
   <div class='row-fluid'>
     <%= form_for [@project, @task] do |f| %>
-        <div class='field'>
-          <div class='btn-group'>
-            <a class='btn btn-primary active task-type' href="javascript:void(0);" data-value="feature">
-              Task
-            </a>
-            <a class='btn btn-danger task-type' href="javascript:void(0);" data-value="bug">
-              Bug
-            </a>
-          </div>
-          <input type="hidden" value="feature" id="task-type" name="task[task_type]">
-        </div>
         <div class='left-side'>
+          <div class='field'>
+            <div class='btn-group'>
+              <a class='btn btn-primary active task-type' href="javascript:void(0);" data-value="feature">
+                Task
+              </a>
+              <a class='btn btn-danger task-type' href="javascript:void(0);" data-value="bug">
+                Bug
+              </a>
+            </div>
+            <input type="hidden" value="feature" id="task-type" name="task[task_type]">
+          </div>
           <div class='field'>
             <%= f.label :title %>
             <%= f.text_field :title, autofocus: true, :class => 'form-control', :style => '' %>
@@ -21,7 +21,7 @@
           <div class='field'>
             <%= f.label :description %>
             <br/>
-            <%= f.text_area :description, :class => 'form-control jqte-test', :style => 'height:168px;' %>
+            <%= f.text_area :description, :class => 'form-control jqte-test', :style => 'height:144px; margin: 0;' %>
           </div>
         </div>
         <div class='right-side'>
@@ -56,7 +56,7 @@
         $('#task_end_date').datepicker({
             dateFormat: 'yy-mm-dd'
         });
-        $('.jqte-test').jqte();
+        //$('.jqte-test').jqte();
         $('select').customDropDown();
         $('.task-type').click(function () {
             $('.task-type').removeClass('active');
