@@ -1,7 +1,7 @@
 <script id="tmp_new_checklist_item" type="text/template">
   <li class="checklist-item-{{id}}">
-    <%#= check_box_tag('is_complete', '', false, :class => 'complete-checklist', :data => {:checklist => "", :id => "{{id}"}) %>
-    <input type="checkbox" name="is_complete" class='complete-checklist' data-checklist='{{checklist_id}}' data-id='{{id}}'/>
+    <%= check_box_tag(:is_complete,'',false,:class => "complete-checklist", :id => "checklist-item-{{id}}", :data => {:checklist => "{{checklist_id}}", :id =>" {{id}}"}) %>
+    <label for="checklist-item-{{id}}" class='checkbox-label'></label>
     <%= text_field_tag(:title, "{{title}}", :class => 'hidden edit-check-item') %>
     <span class='editable'>
          {{title}}
