@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
   validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
   validates :current_password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
+  validates :name, presence: true
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first

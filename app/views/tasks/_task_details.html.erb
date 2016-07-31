@@ -140,7 +140,9 @@
           </li>
           <li>
             <label class="info-label"> Status </label>
-            <span class="info-txt"> <%= @task.status.detail %> </span>
+            <span class="info-txt">
+            <%= @task.status %>
+            <%#= @task.status.detail %> </span>
           </li>
         </ul>
       </div>

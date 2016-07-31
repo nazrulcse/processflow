@@ -35,21 +35,21 @@ class Task < ActiveRecord::Base
   end
 
   def update_history
-    if (self.status_id_changed?)
-      context = "Changed task status to: #{self.status.detail}"
-    elsif (self.description_changed?)
+    if self.status_id_changed?
+      context = "Changed task status to: #{self.status}"
+    elsif self.description_changed?
       context = "Changed task description to: #{self.description}"
-    elsif (self.priority_changed?)
+    elsif self.priority_changed?
       context = "Changed task priority to: #{self.priority}"
-    elsif (self.effort_changed?)
+    elsif self.effort_changed?
       context = "Changed task effort to: #{self.effort}"
-    elsif (self.spend_changed?)
+    elsif self.spend_changed?
       context = "Changed task spend to: #{self.spend}"
-    elsif (self.end_date_changed?)
+    elsif self.end_date_changed?
       context = "Changed task end date to: #{self.end_date}"
-    elsif (self.title_changed?)
+    elsif self.title_changed?
       context = "Changed task title to: #{self.title}"
-    elsif (self.task_type_changed?)
+    elsif self.task_type_changed?
       context = "Changed task type to: #{self.task_type}"
     end
     if context.present?
@@ -57,23 +57,12 @@ class Task < ActiveRecord::Base
     end
   end
 
-  scope :latest, -> (project_id, user_id) {
-    joins("track ")
-  }
-
-
-
   def self.import(file,project_id)
     project = Project.find_by_id(project_id)
     spreadsheet = open_spreadsheet(file)
     if spreadsheet != 0
       header = spreadsheet.row(1)
-      header.each_with_index do |h, i|
-        # if !(('title' == h) or ('description' == h )or ('priority' == h ))
-        #   header.delete(h)
-        # end
-      end
-      task = project.tasks.build();
+      task = project.tasks.build
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
         unless row['title'].blank?

@@ -157,7 +157,9 @@ function initDashboard() {
         var progress = $(this).text().trim();
         var field = $(this).attr('data-task-field').trim();
         task_id = $('.task-details').attr('data-task-id');
-        updateTask(field, progress, task_id);
+        if(progress != '') {
+            updateTask(field, progress, task_id);
+        }
     });
 
     $(document).on('keypress', '.progress-effort, .progress-spend', function (e) {

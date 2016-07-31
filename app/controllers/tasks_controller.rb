@@ -205,7 +205,6 @@ class TasksController < ApplicationController
     else
       redirect_to dashboard_url(porject_id), notice: "Tasks are not imported. Unknown file type"
     end
-
   end
 
   private
