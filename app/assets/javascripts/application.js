@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require_tree .
 //= require turbolinks
-Turbolinks.enableProgressBar();
+//Turbolinks.enableProgressBar();
 $(function () {
     initPage();
     return false;
