@@ -37,6 +37,9 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.users << current_user
     respond_to do |format|
+      puts("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+      puts(@project.errors.inspect)
+      puts("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
       if @project.save
         format.html { render :layout => false }
       end
