@@ -206,6 +206,9 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.1)
       sprockets-rails (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_best_practices (1.15.6)
       activesupport
       code_analyzer (>= 0.4.3)
@@ -215,6 +218,8 @@ GEM
       json
       require_all
       ruby-progressbar
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (4.1.1)
       actionpack (= 4.1.1)
       activesupport (= 4.1.1)
@@ -335,6 +340,7 @@ DEPENDENCIES
   pg
   pubnub
   rails (= 4.1.1)
+  rails_12factor
   rmagick
   roo
   sass-rails (~> 4.0.3)
@@ -347,4 +353,4 @@ DEPENDENCIES
   yomu
 
 BUNDLED WITH
-   1.10.6
+   1.11.0.pre.2
