@@ -35,7 +35,7 @@
       <h2 class='activity-feed'><i class='fa fa-rss'></i> Activity feed </h2>
 
       <div class='feed-list'>
-        <%= render :partial => 'feeds', :locals => {:feeds => @feeds} %>
+        <%#= render :partial => 'feeds', :locals => {:feeds => @feeds} %>
       </div>
       <div class='pagination'>
         <% if @feeds.present? && @feeds.count > 10 %>

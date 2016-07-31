@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = current_user.projects.order('id DESC')
-    @feeds = History.feeds(current_user.id,0)
+    # @feeds = History.feeds(current_user.id,0)
   end
 
   def show
